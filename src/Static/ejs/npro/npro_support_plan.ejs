@@ -1,0 +1,27 @@
+<section class="support-plan mg-b-15">
+
+	<div class="sp-title">
+		<i class="sp-tag"></i>
+		<%= "保障计划" %>
+	</div>
+
+	<ul id="sp-content" class="sp-content">
+		<% if(insurancePlan && insurancePlan.length > 0) { %>
+			<% for(var i=0;i < insurancePlan.length;i++){ %>	
+				<li>
+					<a id="sp-toggle" class="sp-con-brief">
+						<span><%= insurancePlan[i].seriesDesc[0].title %></span>
+						<span><%= insurancePlan[i].seriesDesc[0].price %></span>
+						<i class="sp-icon">
+							<img class="sp-icon-img" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+						</i>
+					</a>
+					<p class="sp-con-details">
+						<%= insurancePlan[i].seriesDesc[0].desc %>
+					</p>
+				</li>
+			<% } %>
+		<% } %>
+	</ul>
+
+</section>

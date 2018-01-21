@@ -1,0 +1,17 @@
+.insure-clause {
+    display:flex;
+    flex-direction: column;
+    padding-left:15px;
+    padding-right:15px;
+
+    background-color:#fff;
+}
+
+.insure-clause a {
+	display:block;
+	font-size:1rem;
+	color: #4b4b4b;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}

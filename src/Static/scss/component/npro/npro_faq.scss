@@ -1,0 +1,76 @@
+.faq {
+    position: relative;
+	display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-bottom:2rem;
+}
+
+.f-title {
+    padding: 15px 0 8px 0;
+    font-size: 1rem;
+    line-height: 1;
+    border-bottom: 1px solid #eee;
+    margin-left: 15px;
+    margin-bottom: 7px;
+    margin-right: 15px;
+}
+
+.f-tag {
+    position: absolute;
+    width: 5px;
+    height: 1rem;
+    left: 0;
+    top: 15px;
+    background-color: #b6a780;
+}
+
+.f-content {
+    padding-left:15px;
+    padding-right:15px;
+    font-size:.85rem;
+    line-height: 1.4;
+    letter-spacing: 1px;
+
+    height:5rem;
+    overflow:hidden;
+
+    transition:all .3s linear;
+}
+
+.f-card > div:first-child{
+    color:#c2343d;
+}
+
+.f-trigger {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.4rem;
+    background-color:#fff;
+}
+
+.f-trigger img {
+    display:block;
+    width:100%;
+    height:auto;
+    transform: rotate(0deg);
+    transition:all .3s linear;
+    width:1.6rem;
+
+
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:.4rem;
+}
+
+.faq .f-content.active ~ a img {
+    transform: rotate(180deg);
+    transition:all .3s linear;
+}
+
+.faq .f-content.active {
+    height:auto;
+}

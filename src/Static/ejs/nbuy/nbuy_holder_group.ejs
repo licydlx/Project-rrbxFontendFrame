@@ -1,0 +1,71 @@
+<section id="#holder" class="main open mg-b-10">
+	<a class="related-person">会员1
+		<i class="arrows"></i>
+	</a>
+	<ul class="input-list">
+		<li>
+			<a>
+				<label>姓&#12288;&#12288;名</label>
+				<input id="holder_userName" maxlength="32" minlength="3" placeholder="请输入投保人姓名" data-belong="policyHolderUser" data-type="userName"></input>
+			</a>
+		</li>
+		<li norequired="true">
+			<a>
+				<label>证件类型</label>
+				<input style="color:#333" id="holder_certiType" data-value="00" placeholder="身份证" value="身份证" unselectable="on" onfocus="this.blur()" readonly="readonly"></input>
+			</a>
+		</li>
+		<li >
+			<a>
+				<label>证件号码</label>
+				<input id="holder_certiNo" type="text" data-belong="policyHolderUser" data-type="certiNo" oninput="if(value.length>18)value=value.slice(0,18)" placeholder="请输入证件号码"></input>
+			</a>
+		</li>
+
+		<li id="selectRela" class="select selectRela" norequired="true">
+			<a>
+				<label>选择计划</label>
+				<div class="input-box">                 
+					<span id="showRela" class="showRela" data-id="00" data-value="本人">本人</span>
+				</div>		
+			</a>
+		</li>
+
+		<li id="selectDate" class="select selectDate" norequired="true">
+			<a>
+				<label>生效日期</label>
+				<div class="input-box">                   
+					<span id="showDate" class="showDate"></span>
+				</div>		
+			</a>
+		</li>
+
+		<li>
+			<a>
+				<label>保障期限</label>
+				<div class="input-box">                  
+					<span>1年</span>
+				</div>		
+			</a>
+		</li>
+
+		<li>
+			<a>
+				<label>价&#12288;&#12288;格</label>
+				<div class="input-box">                  
+					<span>￥1999</span>
+				</div>		
+			</a>
+		</li>
+
+		<li>
+			<a>
+				<label>拼&#12288;&#12288;团</label>
+				<div class="input-box">                  
+					<span>返￥200</span>
+				</div>		
+			</a>
+		</li>
+
+	</ul>
+</section>

@@ -1,0 +1,57 @@
+<!-- 保障计划 3个导航按钮 -->
+<!-- ydlx  -->
+<!-- 2017-12-13  -->
+<section class="support-plan mg-b-15">
+	<div class="sp-title">
+		<i class="sp-tag"></i>
+		<%= "保障计划" %>
+	</div>
+
+	<ul id="sp-nav" class="sp-nav">
+		<% if(insurancePlan && insurancePlan.length > 0) { %>
+			<% for(var i=0;i < insurancePlan.length;i++){ %>
+				<li>
+				   <% if(i == "0") { %>
+				       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+			       <% } else { %>
+				       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+			       <% } %>
+				</li>
+			<% } %>
+		<% } %>
+	</ul>
+
+	<div class="sp-wire-con">
+      <div id="sp-wire" class="sp-wire"></div>
+    </div>
+
+	<ul id="sp-content" class="sp-content">
+		<% if(insurancePlan && insurancePlan.length > 0) { %>	
+			<li>
+				<a id="sp-toggle" class="sp-con-brief">
+					<span><%= insurancePlan[0].seriesDesc[0].title %></span>
+					<span><%= insurancePlan[0].seriesDesc[0].price %></span>
+					<i class="sp-icon">
+						<img class="sp-icon-img" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+					</i>
+				</a>
+				<p class="sp-con-details">
+					<%= insurancePlan[0].seriesDesc[0].desc %>
+				</p>
+			</li>
+
+			<li>
+				<a id="sp-toggle" class="sp-con-brief">
+					<span><%= insurancePlan[0].seriesDesc[1].title %></span>
+					<span><%= insurancePlan[0].seriesDesc[1].price %></span>
+					<i class="sp-icon">
+						<img class="sp-icon-img" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+					</i>
+				</a>
+				<p class="sp-con-details">
+					<%= insurancePlan[0].seriesDesc[1].desc %>
+				</p>
+			</li>
+		<% } %>
+	</ul>
+</section>

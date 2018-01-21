@@ -1,0 +1,16 @@
+<% if(seriesDesc && seriesDesc.length > 0) { %>
+	<% for(var i=0;i < seriesDesc.length;i++){ %>
+		<li>
+			<a id="sp-toggle" class="sp-con-brief">
+				<span><%= seriesDesc[i].title %></span>
+				<span><%= seriesDesc[i].price %></span>
+				<i class="sp-icon">
+					<img class="sp-icon-img" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+				</i>
+			</a>
+			<p class="sp-con-details">
+				<%= seriesDesc[i].desc %>
+			</p>
+		</li>
+	<% } %>
+<% } %>

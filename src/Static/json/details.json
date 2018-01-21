@@ -1,0 +1,87 @@
+{
+    "code": 10000,
+    "info": "success",
+    "response": {
+        "insuranceItem": [
+            {
+                "price": "",
+                "title": "身故或全残",
+                "desc": "被保险人因意外伤害事故，导致身故或全残，或者于合同生效或最后复效之日起90日后因疾病导致身故或全残，我们按合同保险金额给付身故或全残保险金。"
+            },
+            {
+                "price": "",
+                "title": "身故或全残",
+                "desc": "被保险人因意外伤害事故，导致身故或全残，或者于合同生效或最后复效之日起90日后因疾病导致身故或全残，我们按合同保险金额给付身故或全残保险金。"
+            },
+            {
+                "price": "",
+                "title": "身故或全残",
+                "desc": "被保险人因意外伤害事故，导致身故或全残，或者于合同生效或最后复效之日起90日后因疾病导致身故或全残，我们按合同保险金额给付身故或全残保险金。"
+            }
+        ],
+        "faq": [
+            {
+                "question": "签订合同之后又不想买了可以退吗？",
+                "answer": "签订合同之后会有10日的犹豫期，十日之内可无息退还您所支付的全部保险费"
+            },
+            {
+                "question": "如果在保险期间发生人身意外会理赔吗？",
+                "answer": "是要看具体情况的，只有在确定全部残疾或者死亡的情况下才可获得理赔"
+            }
+        ],
+        "header": {
+            "productTag": [
+                "jxcp",
+                "jtzz",
+                "wechat",
+                "rsx",
+                "web",
+                "xjbg",
+                "ganx"
+            ],
+            "sellCount": 125043,
+            "insuredAge": "18-60周岁",
+            "banner": "https://img2.renrenbx.com/pro_img/pro_list_img_baby.png",
+            "introduction": "小投入撬动大保障，在人生前进的路上，作为家庭顶梁柱，为家人做好周全打算，享受生活也不忘全面保障。",
+            "timeRange": "20年"
+        },
+        "proAdvantage": [
+            {
+                "img": "https://m1.renrenbx.com/rrbxcdn/rrbx/product_intro.jpg",
+                "btn": ""
+            },
+            {
+                "img": "//img2.renrenbx.com/pro_img/pro_info_img_20171117taikangrsyw_2.jpg",
+                "btn": ""
+            },
+            {
+                "img": "//img2.renrenbx.com/pro_img/pro_info_img_20171117taikangrsyw_3.jpg",
+                "btn": ""
+            },
+            {
+                "img": "//img2.renrenbx.com/pro_img/pro_info_img_20171117taikangrsyw_4.jpg",
+                "btn": ""
+            },
+            {
+                "img": "//img2.renrenbx.com/pro_img/pro_info_img_20171117taikangrsyw_5.jpg",
+                "btn": ""
+            }
+        ],
+        "comment": [],
+        "insurancePlan": null,
+        "insuranceInstruction": [
+            {
+                "title": "投保须知",
+                "link": "//m1.renrenbx.com/html/view/hengqindqs/tbxz.html"
+            },
+            {
+                "title": "保险条款",
+                "link": "//m1.renrenbx.com/html/view/hengqindqs/bxtk.html"
+            },
+            {
+                "title": "信息披露",
+                "link": "//m1.renrenbx.com/html/view/hengqindqs/xxpl.html"
+            }
+        ]
+    }
+}
