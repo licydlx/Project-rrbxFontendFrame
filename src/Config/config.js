@@ -33,8 +33,6 @@ module.exports = {
 			npro: ['npro_header', 'npro_support_plan', 'npro_elevator', 'npro_footer'],
 			ntri: ['trial_prem_trial', 'npro_footer'],
 			nbuy: ['nbuy_holder', 'nbuy_favoree', 'nbuy_supple_info', 'nbuy_clause', 'nbuy_footer']
-		},
-		
-		
+		}
 	}
 }

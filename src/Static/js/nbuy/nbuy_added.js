@@ -6,7 +6,6 @@ import e_nbuy_delete from '../../../Static/js/nbuy/nbuy_delete.js';
 
 const e_added = (par) => {
 	$('#container').on('click','#added', function() {
-		console.log("你好");
 		var html = nbuy_insured_group();
 		$(this).before(html);
 

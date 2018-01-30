@@ -1,20 +1,17 @@
-var e_npro_date_format = function() {
-	var obj = $(".comment-list").find(".cli-date");
-	obj.each(function(index,value){
-		var that = $(value),
-		date = formatDate(that.text());
+const e_npro_date_format = function() {
+	$(".comment-list").find(".cli-date").each(function(index, value) {
+		let that = $(value),
+			date = formatDate(that.text());
 		that.text(date.day);
 	});
 	// 格式化时间
-	function formatDate(par) {
-		var par = parseInt(par);
-		var now = new Date(par * 1000),
-			year = now.getFullYear(),
-			　　month = now.getMonth() + 1,
-			　　date = now.getDate(),
-			　　hour = now.getHours(),
-			　　minute = now.getMinutes(),
-			　　second = now.getSeconds();
+	const formatDate = (par) => {
+		let intPar = parseInt(par),
+		now = new Date(intPar * 1000);
+
+		let [year, month, date, hour, minute, second] =
+		[now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds()];
+		
 		if (hour < 10) {
 			hour = "0" + hour;
 		};

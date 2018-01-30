@@ -2,7 +2,8 @@
  	items
  } from '../../../Config/config.js'
  const e_npro_footer = (() => {
- 	$("#container").on("click", "#buy-now", () => {
+ 	$("#container").on("click", "#buy-now", (event) => {
+ 		event.preventDefault();
  		// 本地环境
  		if (window.location.origin.indexOf("http://localhost:8080") !== -1) return window.location.href = "price_cal.html";
  		// 线上环境

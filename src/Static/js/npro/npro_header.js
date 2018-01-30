@@ -1,4 +1,4 @@
-var e_npro_header = setTimeout(function() {
+const e_npro_header = setTimeout(function() {
 	$("#container .pro-text").css("left", "0");
 	setTimeout(function() {
 		$("#container .pro-text p").show();

@@ -1,13 +1,10 @@
-var e_npro_faq = (function () {
-	$("#container").on("click", "#f-trigger", clickFt);
-	function clickFt() {
-		var that = $(this).prev();
-		if (that.hasClass('active')) {
-			that.removeClass("active");
-		} else {
-			that.addClass("active");
-		};
+const e_npro_faq = (() => {
+	var clickFt = function(event){
+		event.preventDefault();
+		let that = $(this).prev();
+		that.hasClass('active') ? that.removeClass("active") : that.addClass("active");
 	}
+	$("#container").on("click", "#f-trigger", clickFt);
 })();
 
 export default e_npro_faq;
