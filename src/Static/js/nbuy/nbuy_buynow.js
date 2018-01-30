@@ -1,5 +1,7 @@
 import e_nbuy_popups from './nbuy_popups.js';
-import commonJs from '../depend/common.js';
+import {
+	commonJs
+} from '../depend/common.js';
 require("../../scss/component/depend/loading.scss");
 
 var e_nbuy_buynow = function(a) {
@@ -37,8 +39,8 @@ var e_nbuy_buynow = function(a) {
 				"policyHolderUser": {},
 				"insuredUser": {},
 				"extraParams": {
-					'amnt':lsObj.amnt,
-					'prem':lsObj.prem
+					'amnt': parseInt(lsObj.amnt),
+					'prem': parseInt(lsObj.prem)
 				}
 			};
 
