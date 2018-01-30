@@ -74,9 +74,6 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
   padding-bottom:4px;
 }
 
-.input-list a input{
-    font-size:14px;
-}
 .input-list li:last-child a {
     border-bottom: none;
 }
@@ -90,6 +87,10 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
     border-radius: 0;
     border:none;
 }
+.input-list a input{
+    font-size:14px;
+    color:#333;
+}
 
 .input-box {
     padding-top:4px;
@@ -100,7 +101,8 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;  
+    white-space: nowrap;
+    color:#333;
 }
 
 /* 正确与错误标识 */

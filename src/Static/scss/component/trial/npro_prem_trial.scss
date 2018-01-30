@@ -126,7 +126,6 @@
     margin-left:15px;
     margin-right:15px;
     max-height:200px;
-    overflow-y:scroll;
 }
 
 .sp-content li:not(:last-child) {
@@ -190,7 +189,8 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;  
+    white-space: nowrap;
+    color:#333;
 }
 
 /* 额外代码 */

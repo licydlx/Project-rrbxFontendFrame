@@ -21,7 +21,10 @@ var webpackConfig = {
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
 			use: [{
-				loader: "babel-loader"
+				loader: "babel-loader",
+				options: {
+					presets: ['env']
+				}
 			}]
 		}, {
 			test: /\.scss$/,
@@ -44,14 +47,13 @@ var webpackConfig = {
 };
 
 // 引入多页面文件配置
-// 
-//
-const {items} = require("./src/Config/config");
+const {
+	items
+} = require("./src/Config/config");
 
 items.htmlSet.forEach((page) => {
 	const htmlPlugin = new HtmlWebpackPlugin({
 		filename: `${page}.html`,
-		/*template: path.resolve(__dirname, `./src/${page}.html`),*/
 		template: "./src/template.html",
 		chunks: [page, 'commons']
 	});

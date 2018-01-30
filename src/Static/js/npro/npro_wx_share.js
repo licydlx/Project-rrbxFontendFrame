@@ -1,13 +1,5 @@
-var e_npro_wx_share = (function() {
-	var env;
-	if (window.location.hostname.indexOf("uatapi2") == 0) {
-		env = "https://uatapi2.renrenbx.com";
-	} else if (window.location.hostname.indexOf("localhost") == 0) {
-		env = "http://localhost:7010";
-	} else {
-		env = "https://api2.renrenbx.com";
-	};
-
+import env from '../../../Config/env.js';
+const e_npro_wx_share = (function() {
 	loadScript("https://res.wx.qq.com/open/js/jweixin-1.0.0.js", function() {
 		loadScript("https://m1.renrenbx.com/rrbxcdn/rrbx/wx_share/wx-common.js", function() {
 			var loadAnimation = function() {};

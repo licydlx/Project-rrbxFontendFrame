@@ -3,7 +3,7 @@ require("../Static/scss/reset/reset.scss");
 require("../Static/scss/common/common.scss");
 // 模板渲染
 import npro_header from '../Moudle/npro/npro_header.js';
-import npro_support_plan2 from '../Moudle/npro/npro_support_plan2.js';
+import npro_support_plan from '../Moudle/npro/npro_support_plan.js';
 import npro_product_intro from '../Moudle/npro/npro_product_intro.js';
 import npro_faq from '../Moudle/npro/npro_faq.js';
 import npro_user_comments from '../Moudle/npro/npro_user_comments.js';
@@ -29,7 +29,7 @@ var npro_elevator = function(obj) {
 
 const brickObj = {
 	'npro_header': npro_header,
-	'npro_support_plan2': npro_support_plan2,
+	'npro_support_plan': npro_support_plan,
 	'npro_product_intro': npro_product_intro,
 	'npro_faq': npro_faq,
 	'npro_user_comments': npro_user_comments,
@@ -37,7 +37,6 @@ const brickObj = {
 	'npro_lift_nav': npro_lift_nav,
 	'npro_elevator': npro_elevator,
 	'npro_footer': npro_footer
-	
 }
 
 /*  */

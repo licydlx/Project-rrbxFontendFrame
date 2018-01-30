@@ -2,23 +2,30 @@
 	<a class="related-person">投保人
 		<i class="arrows"></i>
 	</a>
+
 	<ul class="input-list">
 		<li>
 			<a>
 				<label>姓&#12288;&#12288;名</label>
-				<input id="holder_userName" maxlength="32" minlength="3" placeholder="请输入投保人姓名" data-belong="policyHolderUser" data-type="userName"></input>
+				<input id="holder_userName" maxlength="32" minlength="2" placeholder="购买人姓名" data-belong="policyHolderUser" data-type="userName" data-verify="userName"></input>
 			</a>
 		</li>
 		<li norequired="true">
 			<a>
 				<label>证件类型</label>
-				<input style="color:#333" id="holder_certiType" data-value="00" placeholder="身份证" value="身份证" unselectable="on" onfocus="this.blur()" readonly="readonly"></input>
+				<input style="color:#333" id="holder_certiType" data-value="00" data-belong="policyHolderUser" data-type="certiType" placeholder="身份证" value="身份证" unselectable="on" onfocus="this.blur()" readonly="readonly"></input>
 			</a>
 		</li>
-		<li >
+		<li>
 			<a>
 				<label>证件号码</label>
-				<input id="holder_certiNo" type="text" data-belong="policyHolderUser" data-type="certiNo" oninput="if(value.length>18)value=value.slice(0,18)" placeholder="请输入证件号码"></input>
+				<input id="holder_certiNo" type="text" data-belong="policyHolderUser" data-type="certiNo" oninput="if(value.length>18)value=value.slice(0,18)" placeholder="请输入证件号码" data-verify="certiNo"></input>
+			</a>
+		</li>
+		<li>
+			<a>
+				<label>邮箱地址</label>
+				<input type="email" data-belong="policyHolderUser" data-type="email" oninput="if(value.length>30)value=value.slice(0,30)" placeholder="请输入邮箱地址" data-verify="email"></input>
 			</a>
 		</li>
 	</ul>
@@ -30,12 +37,11 @@
 	</a>
 	
 	<ul class="input-list">
-		<li id="rela" class="select" norequired="true">
+		<li norequired="true">
 			<a>
 				<label>为谁投保</label>
-				<div class="input-box">
-					<input type="hidden" name="rela_id" id="relaId">                     
-					<span id="showRela" data-id="00">本人</span>
+				<div class="input-box">              
+					<span>本人</span>
 				</div>		
 			</a>
 		</li>

@@ -1,57 +1,40 @@
-var e_npro_support_plan3 = (function() {
+import npro_support_plan_tab from '../../../Moudle/npro/npro_support_plan_tab.js';
+var e_npro_support_plan3 = function(obj) {
 	$("#sp-nav").on("click", "a", clickSn);
 
 	function clickSn() {
-		var that = $(this);
+		var that = $(this),
+			tag = that.attr("data-tag"),
+			tar = $("#sp-wire");
 		if (!that.hasClass("active")) {
 			that.closest('ul').find('a').removeClass('active');
 			that.addClass("active");
-			var tag = that.attr("data-tag"),
-				prem = that.attr("data-price"),
-				amnt = that.attr("data-value"),
-				scheme = that.attr("data-id"),
-				tar = $("#sp-wire");
-			if (tag == 0) {
-				tar.css("margin-left", "0");
-				$("#sp-content li:first-child span:nth-child(2)").text("10万");
-				$("#sp-content li:nth-child(2) span:nth-child(2)").text("1万");
-				if (GV.sceneType == "3") {
-					window.location.href = 'renrenbaoxian://price/' + prem + GV.priceUnit;
-				};
-
-				localStorage.setItem('prem', prem);
-				localStorage.setItem('amnt', amnt);
-				localStorage.setItem('scheme', scheme);
-			} else if (tag == 1) {
-				tar.css("margin-left", "33.3%");
-				$("#sp-content li:first-child span:nth-child(2)").text("20万");
-				$("#sp-content li:nth-child(2) span:nth-child(2)").text("2万");
-				if (GV.sceneType == "3") {
-					window.location.href = 'renrenbaoxian://price/' + prem + GV.priceUnit;
-				};
-				localStorage.setItem('prem', prem);
-				localStorage.setItem('amnt', amnt);
-				localStorage.setItem('scheme', scheme);
-			} else if (tag == 2) {
-				tar.css("margin-left", "66.6%");
-				$("#sp-content li:first-child span:nth-child(2)").text("30万");
-				$("#sp-content li:nth-child(2) span:nth-child(2)").text("3万");
-				if (GV.sceneType == "3") {
-					window.location.href = 'renrenbaoxian://price/' + prem + GV.priceUnit;
-				};
-				localStorage.setItem('prem', prem);
-				localStorage.setItem('amnt', amnt);
-				localStorage.setItem('scheme', scheme);
-			};
+			tabLogic(tag, tar);
 		};
 	}
 
+	function tabLogic(tag, tar) {
+		var content = $("#sp-content");
+		switch (tag) {
+			case "0":
+				tar.css("margin-left", "0");
+				$("#sp-content").empty().append(npro_support_plan_tab(obj.insurancePlan[tag]));
+				break;
+			case "1":
+				tar.css("margin-left", "33.33%");
+				$("#sp-content").empty().append(npro_support_plan_tab(obj.insurancePlan[tag]));
+				break;
+			case "2":
+				tar.css("margin-left", "66.66%");
+				$("#sp-content").empty().append(npro_support_plan_tab(obj.insurancePlan[tag]));
+				break;
+		}
+	}
 	$("#sp-content").on("click", "a", clickSc);
 
 	function clickSc() {
 		var that = $(this),
 			sii = that.find(".sp-icon-img");
-
 		that.find("+ .sp-con-details").toggle();
 		if (!sii.hasClass('active')) {
 			sii.addClass("active");
@@ -59,6 +42,6 @@ var e_npro_support_plan3 = (function() {
 			sii.removeClass("active");
 		};
 	}
-})();
+};
 
 export default e_npro_support_plan3;

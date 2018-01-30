@@ -3,7 +3,8 @@ var validate = {
 		"phoneno": /^(1[34578][0-9]|14[57])\d{8}$/,
 		"userName": /^[a-zA-Z\u4e00-\u9fa5]+$/,
 		"certiNo": "certiNo",
-		"authCode":/^\d{6}$/ 
+		"authCode": /^\d{6,9}$/,
+		"email": /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 	},
 	format: function(par) {
 		return this.obj[par];
@@ -20,6 +21,8 @@ var validate = {
 			}
 		} else if (format == "checkbox") {
 			return true;
+		} else if (format == "all") {
+			return true;
 		} else {
 			var format = this.format(format);
 			return format.test(val);
@@ -27,9 +30,9 @@ var validate = {
 	},
 	isTrueValidateCodeBy18IdCard: function(a_idCard) {
 		var sum = 0,
-		Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1],
-		a_idCard = a_idCard.split(""),
-		ValideCode = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]; // 身份证验证位值.10代表X
+			Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1],
+			a_idCard = a_idCard.split(""),
+			ValideCode = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]; // 身份证验证位值.10代表X
 		if (a_idCard[17].toLowerCase() == 'x') { // toLowerCase()将原字符串的大写字母变成小写字母
 			a_idCard[17] = 10;
 		}

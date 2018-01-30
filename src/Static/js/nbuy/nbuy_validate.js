@@ -9,25 +9,13 @@ var e_nbuy_validate = function(a) {
 		if ($this.attr("readonly")) {
 			return;
 		}
-		var type = $this.attr("data-type");
-		var state = validate.contrast($this.val(), type);
+		var verify = $this.attr("data-verify"),
+		state = validate.contrast($this.val(), verify);
 		if (state) {
 			$this.closest("li").addClass('right');
-			/*storeValue(a, $this);*/
 		} else {
 			$this.closest("li").addClass('error');
 		};
 	});
-
-	/*	function storeValue(obj, that) {
-			var belong = that.attr("data-belong"),
-			type = that.attr("data-type");
-
-			if (belong && type) {
-				obj[belong][type] = $.trim(that.text());
-			};
-			
-		}*/
-
 };
 export default e_nbuy_validate;

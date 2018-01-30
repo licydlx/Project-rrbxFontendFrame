@@ -1,37 +1,40 @@
 module.exports = {
 	items: {
+		productId: "20180118kaixinbaodjx",
 		htmlSet: [
-			"npro_yongchengmzx",
+			"npro_kaixinbaodjx",
 			"price_cal",
-			"nbuy_yongchengmzx",
+			"nbuy_kaixinbaodjx",
 		],
 		loadAjax: {
 			npro: {
 				type: 'get',
 				url: '/mobile/getproductdetails',
 				data: {
-					"productId": "20180117yongchengmzx"
+					"productId": "20180118kaixinbaodjx"
 				}
 			},
 			ntri: {
 				type: 'get',
 				url: '/mobile/getproductdetails',
 				data: {
-					"productId": "20180117yongchengmzx"
+					"productId": "20180118kaixinbaodjx"
 				}
 			},
 			nbuy: {
 				type: 'get',
 				url: '/mobile/getproductinsureconfig',
 				data: {
-					"productId": "20180117yongchengmzx"
+					"productId": "20180118kaixinbaodjx"
 				}
 			}
 		},
 		htmlBrick: {
-			npro: ['npro_header', 'npro_support_plan2', 'npro_elevator', 'npro_footer'],
+			npro: ['npro_header', 'npro_support_plan', 'npro_elevator', 'npro_footer'],
 			ntri: ['trial_prem_trial', 'npro_footer'],
-			nbuy: ['nbuy_holder_group', 'nbuy_insured_group','nbuy_added','nbuy_favoree', 'nbuy_supple_info', 'nbuy_clause', 'nbuy_footer']
-		}
+			nbuy: ['nbuy_holder', 'nbuy_favoree', 'nbuy_supple_info', 'nbuy_clause', 'nbuy_footer']
+		},
+		
+		
 	}
 }

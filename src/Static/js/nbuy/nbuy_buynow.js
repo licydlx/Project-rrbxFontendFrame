@@ -27,66 +27,54 @@ var e_nbuy_buynow = function(a) {
 	function inputSuccess() {
 		var productId = JSON.parse(localStorage.getItem('productId')),
 			lsObj = JSON.parse(localStorage.getItem(productId)),
-			productSeriesId = lsObj.productSeriesId,
-			insureId = lsObj.insureId,
-			dataVal = lsObj.dataVal,
-			periodPremium = lsObj.periodPremium,
-			buyPrice = lsObj.buyPrice,
-			rela = $("#showRela").attr("data-id");
-		var passport1, passport2;
-		if (rela == "00") {
-			passport1 = $("#holder_certiNo").val();
-			passport2 = passport1;
-		} else {
-			passport1 = $("#holder_certiNo").val();
-			passport2 = $("#insured_certiNo").val();
-		};
-
-		var rrbx_basic = {
-				"rrbxProductId": "20180105anlianliuxuelx",
-				"productSeriesId": productSeriesId,
+			RRBX = {
+				"rrbxProductId": productId,
+				"productSeriesId": lsObj.productSeriesId,
 				"buyNum": 1,
-				"periodPremium": periodPremium,
-				"policyBeginDate": "",
+				"periodPremium": lsObj.periodPremium,
 				"expertId": "",
-				"saleChannel": ""
-
-			},
-			rrbx_holder = {
-				"policyHolderUser": {
-					"userName": $.trim($("#holder_userName").val()),
-					"certiType": $.trim($("#holder_certiType").attr("data-value")),
-					"certiNo": $.trim($("#holder_certiNo").val()),
-					"phoneno": $.trim($("#holder_phoneno").val())
-				}
-			},
-			rrbx_insured = {
-				"insuredUser": {}
-			},
-			rrbx_extend = {
+				"saleChannel": "",
+				"policyHolderUser": {},
+				"insuredUser": {},
 				"extraParams": {
-					"dataVal": dataVal,
-					"insureId": insureId,
-					"buyPrice": buyPrice,
-					"passport1": passport1,
-					"passport2": passport2,
-					"phone": $("#supple-info-tel").val(),
-					"captcha": $("#supple-info-code").val(),
-					"relatedperson": rela
+					'amnt':lsObj.amnt,
+					'prem':lsObj.prem
 				}
 			};
 
-		var obj = {},
-			objkeys = Object.keys(rrbx_holder.policyHolderUser);
-		rrbx_insured.insuredUser = Object.is(rela, "00") ? (rrbx_holder.policyHolderUser) : (objkeys.forEach(function(value, index) {
-			obj[value] = Object.is(value, "certiType") ? $.trim($("#insured_" + value).attr("data-value")) : $.trim($("#insured_" + value).val());
-		}), obj);
-		var orderPars = Object.assign(rrbx_basic, rrbx_holder, rrbx_insured, rrbx_extend);
-		ajaxCreateOrder(JSON.stringify(orderPars));
+		['policyHolderUser', 'extraParams'].forEach(function(par, index) {
+			$('[data-belong=' + par + ']').each(function(index, context) {
+				let that = $(context),
+					key = that.attr("data-type"),
+					value = that.val();
+				if (par === 'policyHolderUser') {
+					if (key === 'certiType') {
+						RRBX[par][key] = '00';
+						RRBX.insuredUser[key] = '00';
+					} else {
+						RRBX[par][key] = value;
+						RRBX.insuredUser[key] = value;
+					};
+
+				} else {
+					if (that.attr('id') === 'showArea') {
+						key.split(',').forEach(function(k, s, a) {
+							let code = that.attr('data-code').split(',');
+							RRBX[par][k] = code[s];
+						})
+					} else {
+						RRBX[par][key] = value;
+					};
+				};
+
+			});
+		});
+
+		ajaxCreateOrder(JSON.stringify(RRBX));
 	};
 
 	var ajaxCreateOrder = (ajaxData) => {
-		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=2fb1a1e81dce58c2cfca8e2169fc69f0&productId=20180105anlianliuxuelx",
+		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=2fb1a1e81dce58c2cfca8e2169fc69f0&productId=20180118kaixinbaodjx",
 			ajaxUrl = window.location.origin + '/mobile/norder/create?access_token=' + GV.nbuy_accessToken + '&productId=' + GV.nbuy_rrbxProductId + '',
 			url = window.location.origin.indexOf("api") == -1 ? localUrl : ajaxUrl;
 		$.ajax({
