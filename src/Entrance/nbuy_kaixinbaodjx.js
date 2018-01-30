@@ -14,9 +14,6 @@ import getCode from '../Static/js/nbuy/nbuy_getcode.js';
 
 import e_nbuy_rela from '../Static/js/nbuy/nbuy_rela.js';
 import timePicker from '../Static/js/nbuy/timePicker.js';
-import e_nbuy_delete from '../Static/js/nbuy/nbuy_delete.js';
-import e_nbuy_added from '../Static/js/nbuy/nbuy_added.js';
-import e_nbuy_relaBind from '../Static/js/nbuy/nbuy_relaBind.js';
 
 let ajaxPromise = new ajax_promise(),
 	options = items.loadAjax.nbuy,
@@ -32,12 +29,8 @@ ajaxPromise.send(options).then(data => {
 	e_nbuy_buynow();
 	e_nbuy_footer(data.response);
 	getCode();
-
-	e_nbuy_relaBind();
 	timePicker();
-	e_nbuy_delete();
 
-	e_nbuy_added();
 
 }).catch(error => {
 	console.log(error);
