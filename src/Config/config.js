@@ -1,31 +1,37 @@
+const productObj = {
+	id: '20180118kaixinbaodjx',
+	npro: 'npro_kaixinbaodjx',
+	nbuy: 'nbuy_kaixinbaodjx'
+}
+
 module.exports = {
 	items: {
-		productId: "20180118kaixinbaodjx",
+		productId: productObj.id,
 		htmlSet: [
-			"npro_kaixinbaodjx",
+			productObj.npro,
 			"price_cal",
-			"nbuy_kaixinbaodjx",
+			productObj.nbuy,
 		],
 		loadAjax: {
 			npro: {
 				type: 'get',
 				url: '/mobile/getproductdetails',
 				data: {
-					"productId": "20180118kaixinbaodjx"
+					"productId": productObj.id
 				}
 			},
 			ntri: {
 				type: 'get',
 				url: '/mobile/getproductdetails',
 				data: {
-					"productId": "20180118kaixinbaodjx"
+					"productId": productObj.id
 				}
 			},
 			nbuy: {
 				type: 'get',
 				url: '/mobile/getproductinsureconfig',
 				data: {
-					"productId": "20180118kaixinbaodjx"
+					"productId": productObj.id
 				}
 			}
 		},
@@ -35,8 +41,8 @@ module.exports = {
 			nbuy: ['nbuy_holder', 'nbuy_favoree', 'nbuy_supple_info', 'nbuy_clause', 'nbuy_footer']
 		},
 
-		nproEvent:{
-			'npro_support_plan':'three'
+		nproEvent: {
+			'npro_support_plan': 'three'
 		}
 	}
 }

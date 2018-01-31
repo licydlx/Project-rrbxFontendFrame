@@ -6,7 +6,6 @@ import tNbuy from '../Template/nbuy.js';
 
 // js 事件绑定
 import Accordion from '../Static/js/nbuy/nbuy_fold.js';
-
 import e_nbuy_validate from '../Static/js/nbuy/nbuy_validate.js';
 import e_nbuy_buynow from '../Static/js/nbuy/nbuy_buynow.js';
 import e_nbuy_footer from '../Static/js/nbuy/nbuy_footer.js';

@@ -1,5 +1,6 @@
 import npro_support_plan_tab from '../../../Moudle/npro/npro_support_plan_tab.js';
 const e_npro_prem_trial = function(obj) {
+	
 	let productId = JSON.parse(localStorage.getItem('productId')),
 		defaultPlan = $("#pt-sp-nav .active");
 	localStorage.setItem(productId, JSON.stringify({
@@ -50,9 +51,6 @@ const e_npro_prem_trial = function(obj) {
 		$("#pt-sp-content").empty().append(npro_support_plan_tab(obj.insurancePlan[tag]));
 	}
 
-	$(document).on("click", "#pt-close", function() {
-		window.history.go(-1);
-	});
 };
 
 export default e_npro_prem_trial;

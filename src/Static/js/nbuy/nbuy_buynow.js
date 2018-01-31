@@ -121,16 +121,16 @@ var e_nbuy_buynow = function(a) {
 	};
 
 	function alertError(data) {
-		var html = "";
-		html += '<div class="alert-bg">';
-		html += '<div class="alert">';
-		html += '<p class="alert-content">' + data + '</p>';
-		html += '<div class="alert-btns">';
-		html += '<a class="alert1-btn">确定</a>';
-		html += '</div>';
-		html += '</div>';
-		html += '</div>';
-		$("body").append(html);
+		let tpl = `<div class="alert-bg">
+					<div class="alert">
+					 <p class="alert-content">${data}</p>
+					 <div class="alert-btns">
+					  <a class="alert1-btn">确定</a>
+					 </div>
+					</div>
+				   </div>`;
+
+		$("body").append(tpl);
 		$("body").on("click", ".alert1-btn", function() {
 			$('.alert-bg').hide();
 		});

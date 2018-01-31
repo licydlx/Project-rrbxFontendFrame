@@ -9,6 +9,8 @@ import tNpro from '../Template/npro.js';
 import e_npro_date_format from '../Static/js/npro/npro_date_format.js';
 import e_npro_support_plan from '../Static/js/npro/npro_support_plan.js';
 import e_npro_wx_share from '../Static/js/npro/npro_wx_share.js';
+
+import e_npro_header from '../Static/js/npro/npro_header.js';
 // 插件引入
 import scrollSpy from '../Depend/plugin/scrollSpy.js';
 
@@ -34,6 +36,7 @@ ajaxPromise.send(options).then(data => {
 		"target": [".lt-one", ".lt-two", ".lt-three"],
 		"current": "current"
 	});
+	e_npro_header();
 	// 平台识别
 	if (GV && GV.sceneType == "3") {
 		$(".mg-b-footer").css("margin-bottom", "1rem");
