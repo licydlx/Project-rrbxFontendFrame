@@ -1,13 +1,4 @@
-var p_scrollSpy = setTimeout(function() {
-	scrollSpy({
-		"control1": ".lift-nav",
-		"control2": ".lift",
-		"target": [".lt-one", ".lt-two", ".lt-three"],
-		"current": "current"
-	});
-}, 1000);
-
-function scrollSpy(json) {
+const scrollSpy = (json) => {
 	var array = [];
 	for (var i = 0; i < json.target.length; i++) {
 		var t = $(json.target[i]).offset().top;
@@ -78,4 +69,4 @@ function scrollSpy(json) {
 	});
 }
 
-export default p_scrollSpy;
+export default scrollSpy;
