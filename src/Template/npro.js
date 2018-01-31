@@ -1,7 +1,7 @@
 //共同样式
 require("../Static/scss/reset/reset.scss");
 require("../Static/scss/common/common.scss");
-// 模板渲染
+// 模板渲染组件
 import npro_header from '../Moudle/npro/npro_header.js';
 import npro_support_plan from '../Moudle/npro/npro_support_plan.js';
 import npro_product_intro from '../Moudle/npro/npro_product_intro.js';
@@ -12,18 +12,19 @@ import npro_lift_nav from '../Moudle/npro/npro_lift_nav.js';
 import npro_footer from '../Moudle/npro/npro_footer.js';
 
 // 电梯井
-var npro_elevator = function(obj) {
+const npro_elevator = (obj) => {
 	return `${npro_lift_nav()}
 			<div class="lift-target">
-			<div class="lt-one">
-			${npro_product_intro(obj)}
-			</div>
-			${npro_faq(obj)}
-			<div class="lt-two">
-			${npro_user_comments(obj)}
-			</div><div class="lt-three">
-			${npro_insure_clause(obj)}
-			</div>
+				<div class="lt-one">
+					${npro_product_intro(obj)}
+				</div>
+				${npro_faq(obj)}
+				<div class="lt-two">
+					${npro_user_comments(obj)}
+				</div>
+				<div class="lt-three">
+					${npro_insure_clause(obj)}
+				</div>
 			</div>`;
 }
 
@@ -40,17 +41,16 @@ const brickObj = {
 }
 
 /*  */
-var tNpro = function(obj, brick) {
+const tNpro = (obj, brick) => {
 	// 平台识别
 	if (GV && GV.sceneType == "3") {
 		brickObj.npro_footer = () => "";
 	};
+	// 页面渲染
 	return document.getElementById("container").innerHTML =
 		brick.map((value, index, array) =>
 			array[index] = brickObj[value]).reduce((prev, next, index) => {
-			if (index == 1) {
-				prev = prev(obj);
-			};
+			Object.is(index,1) ? prev = prev(obj) : prev;
 			return `${prev}${next(obj)}`;
 		});
 };
