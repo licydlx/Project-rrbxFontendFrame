@@ -41,6 +41,7 @@ ajaxPromise.send(options).then(data => {
 	if (GV && GV.sceneType == "3") {
 		$(".mg-b-footer").css("margin-bottom", "1rem");
 	};
+
 }).catch(error => {
 	console.log(error);
 });
