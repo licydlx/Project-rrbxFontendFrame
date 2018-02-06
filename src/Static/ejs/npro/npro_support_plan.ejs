@@ -4,24 +4,26 @@
 		<i class="sp-tag"></i>
 		<%= "保障计划" %>
 	</div>
-
-	<ul id="sp-nav" class="sp-nav">
-		<% if(insurancePlan && insurancePlan.length > 0) { %>
-			<% for(var i=0;i < insurancePlan.length;i++){ %>
-				<li>
-				   <% if(i == "0") { %>
-				       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
-			       <% } else { %>
-				       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
-			       <% } %>
-				</li>
+	
+	<% if(insurancePlan && insurancePlan.length != 1) { %>
+		<ul id="sp-nav" class="sp-nav">
+			<% if(insurancePlan && insurancePlan.length > 0) { %>
+				<% for(var i=0;i < insurancePlan.length;i++){ %>
+					<li>
+					   <% if(i == "0") { %>
+					       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+				       <% } else { %>
+					       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+				       <% } %>
+					</li>
+				<% } %>
 			<% } %>
-		<% } %>
-	</ul>
+		</ul>
 
-	<div class="sp-wire-con">
-      <div id="sp-wire" class="sp-wire"></div>
-    </div>
+		<div class="sp-wire-con">
+	      <div id="sp-wire" class="sp-wire"></div>
+	    </div>
+	<% } %>
 	
     <% if(insurancePlan && insurancePlan.length > 0) { %>
 		<section id="sp-content" class="sp-content">
