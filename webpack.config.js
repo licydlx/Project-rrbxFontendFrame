@@ -3,6 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
+
 const extractSCSS = new ExtractPlugin({
 	filename: './css/[name].min.css',
 	disable: false,
@@ -34,7 +35,8 @@ var webpackConfig = {
 			})
 		}, {
 			test: /\.ejs$/,
-			loader: 'ejs-loader'
+			loader: 'ejs-compiled-loader?htmlmin'
+
 		}]
 	},
 	plugins: [

@@ -12,6 +12,10 @@ const clickNav = function(event) {
 		that.addClass("active");
 		tabLogic[num](obj, tag, tar);
 	};
+
+	// 第二社保-父母保险
+	localStorage.setItem('series_id',that.attr("data-id"));
+	$('#prem').text(parseFloat(that.attr("data-price")).toFixed(2) + '元');
 }
 
 // 保障计划 Content 事件
@@ -41,6 +45,10 @@ const tabLogic = {
 	},
 	'two': function(obj, tag, tar) {
 		this.changeWireCss(tar, parseInt(tag) * 50);
+		this.changeContent(obj, tag);
+	},
+	'four': function(obj, tag, tar) {
+		this.changeWireCss(tar, parseInt(tag) * 25);
 		this.changeContent(obj, tag);
 	}
 }

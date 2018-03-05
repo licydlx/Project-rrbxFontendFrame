@@ -37,12 +37,14 @@
 	</a>
 	
 	<ul class="input-list">
-		<li norequired="true">
+		<li id="rela" norequired="true">
 			<a>
 				<label>为谁投保</label>
 				<div class="input-box">              
-					<span>本人</span>
-				</div>		
+					<input type="hidden" name="rela_id" id="relaId">                     
+					<span id="showRela" data-id="01">本人</span>
+				</div>
+				<i class="arrows"></i>	
 			</a>
 		</li>
 		<div id="insured-add"></div>

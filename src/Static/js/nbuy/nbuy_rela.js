@@ -6,20 +6,17 @@ import nbuy_insured from '../../../Moudle/nbuy/nbuy_insured.js';
 const e_nbuy_rela = function(a) {
 	var html = nbuy_insured(),
 		data = [{
-			'id': '00',
+			'id': '01',
 			'value': '本人'
 		}, {
-			'id': '02',
+			'id': '40',
 			'value': '子女'
 		}, {
-			'id': '01',
+			'id': '50',
 			'value': '父母'
 		}, {
-			'id': '03',
+			'id': '10',
 			'value': '配偶'
-		}, {
-			'id': '04',
-			'value': '其他'
 		}],
 		obj = {
 			watch: function(pro, callback) {
@@ -53,7 +50,7 @@ const e_nbuy_rela = function(a) {
 		}
 	obj.a = "";
 	obj.watch("a", function(n, o, _this) {
-		if ($("#rela input").val() == "00") {
+		if ($("#rela input").val() == "01") {
 			$("#insured-add").empty();
 		} else {
 			$("#insured-add").empty();

@@ -4,8 +4,8 @@
   "description": "前端架构",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "ydlx",
   "license": "ISC",
@@ -17,6 +17,8 @@
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "ejs": "^2.5.7",
+    "ejs-compiled-loader": "^1.1.0",
+    "ejs-html-loader": "^3.1.0",
     "ejs-loader": "^0.3.0",
     "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.1",
@@ -27,7 +29,9 @@
     "postcss-loader": "^2.0.9",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
-    "webpack": "^3.5.6"
+    "uglifyjs-webpack-plugin": "^1.2.2",
+    "webpack": "^3.5.6",
+    "webpack-merge": "^4.1.2"
   },
   "browserslist": [
     "defaults",

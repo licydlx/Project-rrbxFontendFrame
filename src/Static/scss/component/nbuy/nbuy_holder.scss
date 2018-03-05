@@ -98,7 +98,7 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
 }
 .input-box > span {
     display:block;
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -200,4 +200,8 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
 /* 为谁投保 */
 #showRela {
     color:#333;
+}
+
+#rela .arrows {
+    transform: rotate(0deg);
 }

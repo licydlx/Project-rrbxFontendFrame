@@ -1,19 +1,16 @@
 const e_nbuy_relaBind = function(a) {
 	var data = [{
-		'id': '00',
+		'id': '01',
 		'value': '本人'
 	}, {
-		'id': '02',
+		'id': '40',
 		'value': '子女'
 	}, {
-		'id': '01',
+		'id': '50',
 		'value': '父母'
 	}, {
-		'id': '03',
+		'id': '10',
 		'value': '配偶'
-	}, {
-		'id': '04',
-		'value': '其他'
 	}];
 	$('.selectRela').on('click', function() {
 		var that = $(this),

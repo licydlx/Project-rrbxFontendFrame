@@ -1,17 +1,23 @@
 const productObj = {
-	id: '20180118kaixinbaodjx',
-	npro: 'npro_kaixinbaodjx',
-	nbuy: 'nbuy_kaixinbaodjx'
+	id: '2016062000000parentsprotect2',
+	npro: 'npro_parentsprotect2',
+	price_cal: 'price_cal',
+	nbuy: 'nbuy_parentsprotect2'
 }
 
 module.exports = {
 	items: {
 		productId: productObj.id,
-		htmlSet: [
-			productObj.npro,
-			"price_cal",
-			productObj.nbuy,
-		],
+		htmlSet: [{
+			title: '第二社保-父母保险',
+			page: productObj.npro
+		}, {
+			title: '试算页',
+			page: productObj.price_cal
+		}, {
+			title: '投保页',
+			page: productObj.nbuy
+		}],
 		loadAjax: {
 			npro: {
 				type: 'get',
@@ -40,9 +46,8 @@ module.exports = {
 			ntri: ['trial_prem_trial', 'npro_footer'],
 			nbuy: ['nbuy_holder', 'nbuy_favoree', 'nbuy_supple_info', 'nbuy_clause', 'nbuy_footer']
 		},
-
 		nproEvent: {
-			'npro_support_plan': 'three'
+			'npro_support_plan': 'four'
 		}
 	}
 }

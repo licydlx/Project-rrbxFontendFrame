@@ -3,7 +3,6 @@ import {
 	clickContent,
 	tabLogic
 } from './serviceLogic/npro_support_plan.js';
-
 import {
 	items
 } from '../../../Config/config.js';
@@ -17,9 +16,7 @@ const e_npro_support_plan = (obj) => {
 		num: items.nproEvent.npro_support_plan,
 		obj: obj
 	}, clickNav);
-
 	// 保障计划 Content
 	$("#sp-content").on("click", "a", clickContent);
 };
-
 export default e_npro_support_plan;

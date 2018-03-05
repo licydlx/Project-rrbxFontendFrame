@@ -1,31 +1,34 @@
-<section class="support-plan mg-b-15">
+<% 
+	insurancePlan[12].optionName = '青铜计划';
+	insurancePlan[0].optionName = '白银计划';
+	insurancePlan[1].optionName = '黄金计划';
+	insurancePlan[2].optionName = '钻石计划';
+	insurancePlan = [insurancePlan[12],insurancePlan[0],insurancePlan[1],insurancePlan[2]];
+%>
 
+<% if(insurancePlan) { %>
+<section class="support-plan mg-b-15">
 	<div class="sp-title">
 		<i class="sp-tag"></i>
 		<%= "保障计划" %>
 	</div>
-	
-	<% if(insurancePlan && insurancePlan.length != 1) { %>
+	<% if(insurancePlan.length != 1) { %>
 		<ul id="sp-nav" class="sp-nav">
-			<% if(insurancePlan && insurancePlan.length > 0) { %>
-				<% for(var i=0;i < insurancePlan.length;i++){ %>
-					<li>
-					   <% if(i == "0") { %>
-					       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
-				       <% } else { %>
-					       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
-				       <% } %>
-					</li>
-				<% } %>
+			<% for(var i=0;i < insurancePlan.length;i++){ %>
+				<li>
+				   <% if(Object.is(i,0)) { %>
+				       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+			       <% } else { %>
+				       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>"><%= insurancePlan[i].optionName %></a>  
+			       <% } %>
+				</li>
 			<% } %>
 		</ul>
-
 		<div class="sp-wire-con">
 	      <div id="sp-wire" class="sp-wire"></div>
 	    </div>
 	<% } %>
-	
-    <% if(insurancePlan && insurancePlan.length > 0) { %>
+    <% if(insurancePlan.length > 0) { %>
 		<section id="sp-content" class="sp-content">
 			<ul>
 				<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
@@ -46,3 +49,4 @@
 		</section>	
 	<% } %>
 </section>
+<% } %>

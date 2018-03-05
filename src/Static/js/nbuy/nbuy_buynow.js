@@ -1,6 +1,6 @@
-import e_nbuy_popups from './nbuy_popups.js';
 import {
-	commonJs
+	commonJs,
+	getProductId
 } from '../depend/common.js';
 require("../../scss/component/depend/loading.scss");
 
@@ -11,13 +11,11 @@ var e_nbuy_buynow = function(a) {
 			alertError("请先同意以下条款！");
 			return;
 		};
-
 		$(".input-list").find("li").each(function(index, val) {
 			if (!$(val).hasClass('right') && !$(val).attr("norequired")) {
 				doneState = false;
 			}
 		});
-
 		if (doneState) {
 			inputSuccess();
 		} else {
@@ -27,56 +25,90 @@ var e_nbuy_buynow = function(a) {
 	});
 
 	function inputSuccess() {
-		var productId = JSON.parse(localStorage.getItem('productId')),
-			lsObj = JSON.parse(localStorage.getItem(productId)),
+		var productId = getProductId(),
+			DataSet = JSON.parse(localStorage.getItem(productId)),
+			relaTag = $('#showRela').attr('data-id'),
 			RRBX = {
 				"rrbxProductId": productId,
-				"productSeriesId": lsObj.productSeriesId,
+				"productSeriesId": DataSet.trialResult.productSeriesId,
 				"buyNum": 1,
-				"periodPremium": lsObj.periodPremium,
-				"expertId": "",
-				"saleChannel": "",
+				"periodPremium": DataSet.trialResult.periodPremium,
+				"expertId": GV.nbuy_eid,
+				"saleChannel": getChannel(),
 				"policyHolderUser": {},
 				"insuredUser": {},
 				"extraParams": {
-					'amnt': parseInt(lsObj.amnt),
-					'prem': parseInt(lsObj.prem)
+					'prem': DataSet.trialResult.prem,
+					'dataVal': DataSet.trialResult.dataVal,
+					'itemkind': DataSet.trialResult.itemkind,
+					'appliRelation': relaTag
 				}
 			};
 
-		['policyHolderUser', 'extraParams'].forEach(function(par, index) {
-			$('[data-belong=' + par + ']').each(function(index, context) {
-				let that = $(context),
-					key = that.attr("data-type"),
-					value = that.val();
-				if (par === 'policyHolderUser') {
-					if (key === 'certiType') {
-						RRBX[par][key] = '00';
-						RRBX.insuredUser[key] = '00';
+		if (relaTag == '01') {
+			['policyHolderUser', 'extraParams'].forEach(function(par, index) {
+				$('[data-belong=' + par + ']').each(function(index, context) {
+					let that = $(context),
+						key = that.attr("data-type"),
+						value = that.val();
+					if (par === 'policyHolderUser') {
+						if (key === 'certiType') {
+							RRBX[par][key] = '00';
+							RRBX.insuredUser[key] = '00';
+						} else {
+							RRBX[par][key] = value;
+							RRBX.insuredUser[key] = value;
+						};
 					} else {
-						RRBX[par][key] = value;
-						RRBX.insuredUser[key] = value;
+						if (that.attr('id') === 'showArea') {
+							key.split(',').forEach(function(k, s, a) {
+								let code = that.attr('data-code').split(',');
+								RRBX[par][k] = code[s];
+							})
+						} else {
+							RRBX[par][key] = value;
+						};
 					};
 
-				} else {
-					if (that.attr('id') === 'showArea') {
-						key.split(',').forEach(function(k, s, a) {
-							let code = that.attr('data-code').split(',');
-							RRBX[par][k] = code[s];
-						})
-					} else {
-						RRBX[par][key] = value;
-					};
-				};
-
+				});
 			});
-		});
+		} else {
+			['policyHolderUser', 'insuredUser', 'extraParams'].forEach(function(par, index) {
+				$('[data-belong=' + par + ']').each(function(index, context) {
+					let that = $(context),
+						key = that.attr("data-type"),
+						value = that.val();
+					if (par === 'policyHolderUser') {
+						if (key === 'certiType') {
+							RRBX[par][key] = '00';
+						} else {
+							RRBX[par][key] = value;
+						};
+					} else if (par === 'insuredUser') {
+						if (key === 'certiType') {
+							RRBX[par][key] = '00';
+						} else {
+							RRBX[par][key] = value;
+						};
+					} else {
+						if (that.attr('id') === 'showArea') {
+							key.split(',').forEach(function(k, s, a) {
+								let code = that.attr('data-code').split(',');
+								RRBX[par][k] = code[s];
+							})
+						} else {
+							RRBX[par][key] = value;
+						};
+					};
+				});
+			});
+		};
 
 		ajaxCreateOrder(JSON.stringify(RRBX));
 	};
 
 	var ajaxCreateOrder = (ajaxData) => {
-		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=2fb1a1e81dce58c2cfca8e2169fc69f0&productId=20180118kaixinbaodjx",
+		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=07588141fdb1b62f2e5ec2ae07283b61&productId=20180126yianaxywx",
 			ajaxUrl = window.location.origin + '/mobile/norder/create?access_token=' + GV.nbuy_accessToken + '&productId=' + GV.nbuy_rrbxProductId + '',
 			url = window.location.origin.indexOf("api") == -1 ? localUrl : ajaxUrl;
 		$.ajax({
@@ -114,10 +146,10 @@ var e_nbuy_buynow = function(a) {
 	const payUrl = (par) => window.location.href = par.payUrl;
 
 	const getChannel = () => {
-		if (nbuy_channel != null && nbuy_channel != '') {
-			return nbuy_channel;
+		if (GV.nbuy_channel != null && GV.nbuy_channel != '') {
+			return GV.nbuy_channel;
 		}
-		return nbuy_appName;
+		return GV.nbuy_appName;
 	};
 
 	function alertError(data) {

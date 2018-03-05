@@ -37,7 +37,46 @@ const loadScript = (url, callback) => {
 	document.getElementsByTagName("head")[0].appendChild(script);
 }
 
+// 获取URL搜索参数
+// ydlx
+// 
+// 2018-2-27
+const getProductId = function() {
+	let searchObj = {};
+	(window.onpopstate = function() {
+		var match,
+			pl = /\+/g,
+			search = /([^&=]+)=?([^&]*)/g,
+			decode = function(s) {
+				return decodeURIComponent(s.replace(pl, " "));
+			},
+			query = window.location.search.substring(1);
+		while (match = search.exec(query))
+			searchObj[decode(match[1])] = decode(match[2]);
+	})();
+	return searchObj.productId;
+}
+
+// 时间戳 转为 yyyy-mm-dd 格式
+// ydlx
+// 
+// 2018-3-2
+const formatTimeStamp = function(par) {
+	let now = new Date(parseInt(par) * 1000);
+	let [year, month, date, hour, minute, second] =
+	[now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds()];
+	if (hour < 10) hour = "0" + hour;
+	if (minute < 10) minute = "0" + minute;
+	if (second < 10) second = "0" + second;
+	return {
+		"day": year + "-" + month + "-" + date,
+		"hour": hour + ":" + minute + ":" + second
+	}
+};
+
 export {
 	commonJs,
-	loadScript
+	loadScript,
+	getProductId,
+	formatTimeStamp
 };

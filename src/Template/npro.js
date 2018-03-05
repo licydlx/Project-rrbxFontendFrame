@@ -43,14 +43,14 @@ const brickObj = {
 /*  */
 const tNpro = (obj, brick) => {
 	// 平台识别
-	if (GV && GV.sceneType == "3") {
+	if (GV && Object.is(GV.sceneType, '3')) {
 		brickObj.npro_footer = () => "";
 	};
 	// 页面渲染
-	return document.getElementById("container").innerHTML =
+	document.getElementById("container").innerHTML =
 		brick.map((value, index, array) =>
 			array[index] = brickObj[value]).reduce((prev, next, index) => {
-			Object.is(index,1) ? prev = prev(obj) : prev;
+			Object.is(index, 1) ? prev = prev(obj) : prev;
 			return `${prev}${next(obj)}`;
 		});
 };

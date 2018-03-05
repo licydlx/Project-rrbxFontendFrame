@@ -1,7 +1,6 @@
 const e_npro_header = function() {
 	let [proText, proTextState, proLeft, proRight] =
 	[$("#container .pro-text"), $("#container .pro-text p"), $("#container .pt-left"), $("#container .pt-right")];
-
 	proText.css("left", "0");
 
 	setTimeout(function() {
@@ -17,7 +16,6 @@ const e_npro_header = function() {
 	$("#container").on("click", ".pt-right", function() {
 		proText.css("left", "0");
 		$(this).removeClass('pt-show');
-
 		setTimeout(function() {
 			proTextState.show();
 			proLeft.addClass('pt-show');
@@ -34,5 +32,4 @@ const e_npro_header = function() {
 		}, 500);
 	});
 };
-
 export default e_npro_header;

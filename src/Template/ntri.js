@@ -10,8 +10,8 @@ const brickObj = {
 	'npro_footer': npro_footer
 }
 
-var tTrial = function(obj,brick) {
-	return document.getElementById("container").innerHTML =
+var tTrial = function(obj, brick, callback) {
+	document.getElementById("container").innerHTML =
 		brick.map((value, index, array) => array[index] =
 			brickObj[value]).reduce((prev, next, index) => {
 			if (index == 1) {
@@ -19,5 +19,9 @@ var tTrial = function(obj,brick) {
 			};
 			return `${prev}${next(obj)}`;
 		});
+	if (callback) {
+		callback();
+	};
+
 };
 export default tTrial;

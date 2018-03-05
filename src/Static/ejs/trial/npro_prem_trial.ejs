@@ -1,47 +1,41 @@
+
 <section class="prem-trial">
-	<section class="support-deadline">
-		<a>
-			<label>保障期限</label>
-			<div class="input-box">                
-				<span><%= header.timeRange %></span>
-			</div>
-		</a>
-	</section>
-	<section class="support-plan">
-		<div class="sp-title">
-			<i class="sp-tag"></i>
-			<%= "保障计划" %>
-		</div>
-
-		<ul id="pt-sp-nav" class="sp-nav pt-sp-nav">
-			<% if(insurancePlan && insurancePlan.length > 0) { %>
-				<% for(var i=0;i < insurancePlan.length;i++){ %>
-					<li>
-					   <% if(i == "0") { %>
-					       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = "<%= insurancePlan[i].insureId %>"><%= insurancePlan[i].optionName %></a>  
-				       <% } else { %>
-					       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = <%= insurancePlan[i].insureId %>><%= insurancePlan[i].optionName %></a>  
-				       <% } %>
-					</li>
+	<% if (trialOne && trialOne.length) { %>
+		<% for(var x=0;x < trialOne.length;x++){ %>
+		  	<article class="trial-one">
+				<header class="title">
+					<i class="decorate"></i>
+					<%= trialOne[x].title %>
+				</header>
+				<% if (trialOne[x].trialTwo && trialOne[x].trialTwo.length) { %>
+					<% for(var y=0;y < trialOne[x].trialTwo.length;y++){ %>
+						<section class="trial-two">
+							<header class="title"><%= trialOne[x].trialTwo[y].title %></header>
+							<% if (trialOne[x].trialTwo[y].optional && trialOne[x].trialTwo[y].optional.length) { %>
+								<% for(var z=0;z < trialOne[x].trialTwo[y].optional.length;z++){ %>
+									<a class="optional" id="<%= trialOne[x].trialTwo[y].optional[z].id %>">
+										<div class="selected" data-seq="<%= trialOne[x].trialTwo[y].optional[z].seq %>" data-value="<%= trialOne[x].trialTwo[y].optional[z].key %>" data-tag="<%= trialOne[x].trialTwo[y].optional[z].tag %>">
+											<% if (trialOne[x].trialTwo[y].optional[z].textBranch) { %>
+												<div class="text">
+													<%= trialOne[x].trialTwo[y].optional[z].text %>
+												</div>
+												<div class="value">
+													<%= trialOne[x].trialTwo[y].optional[z].value %>
+												</div>
+											<% } else { %>
+												<%= trialOne[x].trialTwo[y].optional[z].text %>
+											<% } %>
+										</div>
+										<i class="icon">
+											<img class="img" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+										</i>
+									</a>
+								<% } %>
+							<% } %>
+						</section>
+					<% } %>
 				<% } %>
-			<% } %>
-		</ul>
-
-		<ul id="pt-sp-content" class="sp-content">
-			<% if(insurancePlan && insurancePlan.length > 0) { %>
-				<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
-				    <li>
-						<a id="sp-toggle" class="sp-con-brief">
-							<span><%= insurancePlan[0].seriesDesc[i].title %></span>
-							<span><%= insurancePlan[0].seriesDesc[i].price %></span>
-						</a>
-						<p class="sp-con-details">
-							<%= insurancePlan[0].seriesDesc[i].desc %>
-						</p>
-					</li>
-				<% } %>
-			<% } %>
-		</ul>
-	</section>
-
+			</article>
+		<% } %>
+	<% } %>
 </section>
