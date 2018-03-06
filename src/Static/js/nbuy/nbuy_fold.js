@@ -16,5 +16,4 @@ Accordion.prototype.dropdown = function(e) {
 	$this.parent().toggleClass('open');
 }
 
-
 export default Accordion;

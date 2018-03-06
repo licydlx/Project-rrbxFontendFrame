@@ -3,21 +3,15 @@ input{
     outline:none;    
     border:none;
 }
-
 input:focus { outline: none; }   
-
 input::-ms-input-placeholder{font-size:14px; line-height:1.4 !important;} 
 input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;} 
 
-.main {
+.infoBox {
     background-color: #ffffff;
 }
 
-.main li {
-    white-space: nowrap;
-}
-
-.main a {
+.infoBox a {
     display: block;
     position: relative;
     border-bottom: 1px solid #d7d7d7;
@@ -42,41 +36,43 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
     transform: rotate(270deg);
 }
 
-.related-person {
+.itemTitle {
     padding: 15px 15px;
     color: #333;
     font-size: 15px;
     font-weight: bold;
+    .arrows {
+        margin-right: 15px;
+    }
 }
 
-.related-person .arrows {
-    margin-right: 15px;
-}
-
-.input-list {
+.itemInfo {
     margin-left: 15px;
     margin-right: 15px;
     font-size: 14px;
+    li:last-child a {
+        border-bottom: none;
+    }
+    a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        color: #333;
+        display: flex;
+        label{
+          display:block;
+          width: 5rem;
+          font-size:14px;
+          padding-top:4px;
+          padding-bottom:4px;
+        }
+        input{
+            width:100%;
+            font-size:14px;
+            color:#333;
+        }
+    }
 }
 
-.input-list a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    color: #333;
-    display: flex;
-}
-
-.input-list a label{
-  display:block;
-  width: auto;
-  font-size:14px;
-  padding-top:4px;
-  padding-bottom:4px;
-}
-
-.input-list li:last-child a {
-    border-bottom: none;
-}
 .input-list a > input,
 .input-list a > div {
     flex: auto;
@@ -86,23 +82,6 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
     outline: none;
     border-radius: 0;
     border:none;
-}
-.input-list a input{
-    font-size:14px;
-    color:#333;
-}
-
-.input-box {
-    padding-top:4px;
-    padding-bottom:4px;
-}
-.input-box > span {
-    display:block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color:#333;
 }
 
 /* 正确与错误标识 */

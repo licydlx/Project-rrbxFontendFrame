@@ -1,88 +1,31 @@
 /* 关系绑定 代理 待优化 */
 /* ydlx */
 /* 2017-12-20 */
-import nbuy_insured from '../../../Moudle/nbuy/nbuy_insured.js';
+import nbuy_insured_rela from '../../../Moudle/nbuy/nbuy_insured_rela.js';
+const e_nbuy_rela = function(pars) {
+	var data = pars.relaData,
+		relaTemplate = nbuy_insured_rela(pars),
+		showRelaDom = $("#relaId");
 
-const e_nbuy_rela = function(a) {
-	var html = nbuy_insured(),
-		data = [{
-			'id': '01',
-			'value': '本人'
-		}, {
-			'id': '40',
-			'value': '子女'
-		}, {
-			'id': '50',
-			'value': '父母'
-		}, {
-			'id': '10',
-			'value': '配偶'
-		}],
-		obj = {
-			watch: function(pro, callback) {
-					if (pro in this) {
-						var old = this[pro];
-						Object.defineProperty(this, pro, {
-							set: function(val) {
-								var o = old;
-								old = val;
-								callback(val, o, this);
-							},
-							get: function() {
-								return old;
-							}
-						});
-					} else {
-						throw new Error("no such property");
-					}
-				}
-				/*,
-						toString: function() {
-							var str = "{   ";
-							for (pro in this) {
-								if (typeof this[pro] !== "function")
-									str += (pro + " : " + obj[pro] + ",")
-							}
-							str[str.length - 1] = ' ';
-							str += " }";
-							return str;
-						}*/
-		}
-	obj.a = "";
-	obj.watch("a", function(n, o, _this) {
-		if ($("#rela input").val() == "01") {
-			$("#insured-add").empty();
-		} else {
-			$("#insured-add").empty();
-			$("#insured-add").append(html);
-		}
-	});
-
-	function test() {
-		var $ia = $("#container #relaId").attr("value");
-		obj.a = $ia;
-	}
-
-	var showRelaDom = document.querySelector('#showRela'),
-		relaIdDom = document.querySelector('#relaId');
-
-	showRelaDom.addEventListener('click', function() {
-		var relaId = showRelaDom.dataset['id'],
-			bankSelect = new IosSelect(1, [data], {
-				container: '.container',
-				title: '关系选择',
-				itemHeight: 50,
-				itemShowCount: 3,
-				oneLevelId: relaId,
-				showAnimate: true,
-				callback: function(selectOneObj) {
-					relaIdDom.value = selectOneObj.id;
-					showRelaDom.innerHTML = selectOneObj.value;
-					showRelaDom.dataset['id'] = selectOneObj.id;
-					showRelaDom.dataset['value'] = selectOneObj.value;
-					test();
-				}
-			});
-	});
+	showRelaDom.click(function() {
+		var bankSelect = new IosSelect(1, [data], {
+			container: '#container',
+			title: '关系选择',
+			itemHeight: 50,
+			itemShowCount: 3,
+			oneLevelId: showRelaDom,
+			showAnimate: true,
+			callback: function(selectObj) {
+				showRelaDom.attr("data-id", selectObj.id);
+				showRelaDom.attr("value", selectObj.value);
+				if (Object.is(selectObj.value, "本人")) {
+					$("#rela ~ .add").remove();
+				} else {
+					$("#rela ~ .add").remove();
+					$("#rela").after(relaTemplate);
+				};
+			}
+		});
+	})
 };
 export default e_nbuy_rela;

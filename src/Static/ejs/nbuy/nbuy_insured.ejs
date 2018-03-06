@@ -1,18 +1,41 @@
-<li>
-	<a>
-		<label>姓&#12288;&#12288;名</label>
-		<input id="insured_userName" maxlength="32" minlength="2" placeholder="购买人姓名" data-belong="insuredUser" data-type="userName" data-verify="userName"></input>
-	</a>
-</li>
-<li norequired="true">
-	<a>
-		<label>证件类型</label>
-		<input style="color:#333" id="insured_certiType" data-value="00" data-belong="insuredUser" data-type="certiType" placeholder="身份证" value="身份证" unselectable="on" onfocus="this.blur()" readonly="readonly"></input>
-	</a>
-</li>
-<li>
-	<a>
-		<label>证件号码</label>
-		<input id="insured_certiNo" type="text" data-belong="insuredUser" data-type="certiNo" oninput="if(value.length>18)value=value.slice(0,18)" placeholder="请输入证件号码" data-verify="certiNo"></input>
-	</a>
-</li>
+<% console.log(insured) %>
+<section class="infoBox open mg-b-10">
+	<div class="infoItem">
+		<% if(insured) { %>
+			<a class="itemTitle"><%= insured.itemTitle %>
+				<i class="arrows"></i>
+			</a>
+			<% if(insured.itemInfo && insured.itemInfo.length > 0) { %>
+				<ul class="itemInfo">
+					<% for(var i=0;i < insured.itemInfo.length;i++){ %>
+						<% if(insured.itemInfo[i]["inputChoose"]) { %>
+							<li 
+								<% for(var x in insured.itemInfo[i]["inputChoose"]){ %>
+									<%= x+"="+insured.itemInfo[i]["inputChoose"][x] %>
+								<% } %>	
+							>
+						<% } else { %>
+							<li>
+						<% } %>
+								<a>
+									<label><%= insured.itemInfo[i]["inputName"] %></label>
+									<input 
+									<% for(var y in insured.itemInfo[i]["inputPars"]){ %>
+										<%= y+"="+insured.itemInfo[i]["inputPars"][y] %>
+									<% } %>	
+									></input>
+
+									<% console.log(insured.itemInfo[i]["inputChoose"]) %>
+									<% if(insured.itemInfo[i]["inputChoose"]) { %>
+										<% if(insured.itemInfo[i]["inputChoose"]["class"] == "choose") { %>
+											<i class="arrows"></i>	
+										<% } %>
+									<% } %>
+								</a>
+							</li>
+					<% } %>
+				</ul>
+			<% } %>
+		<% } %>
+	</div>
+</section>

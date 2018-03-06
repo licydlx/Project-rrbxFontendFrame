@@ -1,6 +1,7 @@
  import {
- 	items
+ 	productConfig
  } from '../../../Config/config.js';
+ 
  import env from '../../../Config/env.js';
  // 弹出层
  import {
@@ -8,15 +9,15 @@
  } from '../common/modal.js';
 
  const e_npro_footer = function() {
- 	var Modal = new consultServie('consultService','#service','#service-pop');
- 	Modal.init();
-
  	$("#container").on("click", "#buy-now", (event) => {
  		event.preventDefault();
  		// 本地环境
- 		if (window.location.origin.indexOf("http://localhost:8080") !== -1) return window.location.href = "price_cal.html";
+ 		if (window.location.origin.indexOf("http://localhost:8080") !== -1) return window.location.href = "ntri.html";
  		// 线上环境
- 		window.location.href = `${window.location.origin}/mobile/nproduct/productInsure.html?productId=${items.productId}&access_token=${GV.accessToken}&exterChannel=${GV.exterChannel}&sp=${GV.expertId}&eid=${GV.eid}&channel=${GV.channel}&sponsorGroup=${GV.sponsorGroup}&activityId=${GV.activityId}&paySucessUrl=${GV.paySucessUrl}&groupId=${GV.groupId}`;
+ 		window.location.href = `${window.location.origin}/mobile/nproduct/productInsure.html?
+ 		productId=${productConfig.productId}&access_token=${GV.accessToken}&exterChannel=${GV.exterChannel}
+ 		&sp=${GV.expertId}&eid=${GV.eid}&channel=${GV.channel}&sponsorGroup=${GV.sponsorGroup}
+ 		&activityId=${GV.activityId}&paySucessUrl=${GV.paySucessUrl}&groupId=${GV.groupId}`;
  	});
  };
 

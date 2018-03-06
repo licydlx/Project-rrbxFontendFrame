@@ -1,10 +1,10 @@
+<% if(comment && comment.length > 0) { %>
 <section class="user-comments mg-b-15">
 	<div class="uc-title">
 		<i class="uc-tag"></i>
 		<%= "用户评价" %>
 	</div>
 	<div class="comment-list">
-		<% if(comment && comment.length > 0) { %>
 		<% for(var i=0;i < comment.length;i++){ %>
 		<div class="cl-item">
 			<div class="cli-intro">
@@ -33,10 +33,12 @@
 			</div>
 		</div>
 		<% } %>
-		<% } %>
 	</div>
-
-	<a id="uc-trigger" class="uc-trigger">
-		<img src="https://img2.renrenbx.com/inco/more-up.png">
-	</a>
+	
+	<% if(comment.length > 5) { %>
+		<a class="trigger">
+			<img src="https://img2.renrenbx.com/inco/more-up.png">
+		</a>
+	<% } %>
 </section>
+<% } %>

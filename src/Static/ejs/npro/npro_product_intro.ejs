@@ -1,9 +1,7 @@
+<% if(proAdvantage && proAdvantage.length > 0) { %>
 <section class="product-intro">
-	<% if(proAdvantage && proAdvantage.length > 0) { %>
-		<% for(var i=0;i < proAdvantage.length;i++){ %>
-		<a>
-			<img src=<%= proAdvantage[i].img %>>
-		</a>
-		<% } %>
-	<% } %>
+	<a>
+		<img src=<%= proAdvantage[i].img %>>
+	</a>
 </section>
+<% } %>

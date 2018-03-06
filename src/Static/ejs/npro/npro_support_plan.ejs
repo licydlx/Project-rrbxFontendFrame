@@ -1,11 +1,3 @@
-<% 
-	insurancePlan[12].optionName = '青铜计划';
-	insurancePlan[0].optionName = '白银计划';
-	insurancePlan[1].optionName = '黄金计划';
-	insurancePlan[2].optionName = '钻石计划';
-	insurancePlan = [insurancePlan[12],insurancePlan[0],insurancePlan[1],insurancePlan[2]];
-%>
-
 <% if(insurancePlan) { %>
 <section class="support-plan mg-b-15">
 	<div class="sp-title">
@@ -47,6 +39,11 @@
 				<% } %>
 			</ul>
 		</section>	
+	<% } %>
+	<% if(insurancePlan && insurancePlan.length > 2) { %>
+		<a class="trigger">
+			<img src="https://img2.renrenbx.com/inco/more-up.png">
+		</a>
 	<% } %>
 </section>
 <% } %>

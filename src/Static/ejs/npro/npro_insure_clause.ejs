@@ -1,7 +1,7 @@
+<% if(insuranceInstruction && insuranceInstruction.length > 0){ %>
 <section class="insure-clause mg-b-footer">
-	<% if(insuranceInstruction && insuranceInstruction.length > 0){ %>
-		<% for(var i=0;i< insuranceInstruction.length;i++){ %>
-		<a href=<%= insuranceInstruction[i].link %>><%= insuranceInstruction[i].title %></a>
-		<% } %>
+	<% for(var i=0;i< insuranceInstruction.length;i++){ %>
+	<a href=<%= insuranceInstruction[i].link %>><%= insuranceInstruction[i].title %></a>
 	<% } %>
 </section>
+<% } %>

@@ -32,7 +32,7 @@
     line-height: 1.4;
     letter-spacing: 1px;
 
-    height:5rem;
+    height:10rem;
     overflow:hidden;
 
     transition:all .3s linear;
@@ -42,30 +42,6 @@
     color:#c2343d;
 }
 
-.f-trigger {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1.4rem;
-    background-color:#fff;
-}
-
-.f-trigger img {
-    display:block;
-    width:100%;
-    height:auto;
-    transform: rotate(0deg);
-    transition:all .3s linear;
-    width:1.6rem;
-
-
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:.4rem;
-}
-
 .faq .f-content.active ~ a img {
     transform: rotate(180deg);
     transition:all .3s linear;
@@ -73,4 +49,24 @@
 
 .faq .f-content.active {
     height:auto;
+}
+
+
+.trigger {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.8rem;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+.trigger img {
+    display:block;
+    width:1.6rem;
+    transform: rotate(0deg);
+    transition:all .3s linear;
 }

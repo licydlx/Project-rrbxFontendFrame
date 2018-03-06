@@ -12,10 +12,6 @@ const clickNav = function(event) {
 		that.addClass("active");
 		tabLogic[num](obj, tag, tar);
 	};
-
-	// 第二社保-父母保险
-	localStorage.setItem('series_id',that.attr("data-id"));
-	$('#prem').text(parseFloat(that.attr("data-price")).toFixed(2) + '元');
 }
 
 // 保障计划 Content 事件

@@ -1,24 +1,47 @@
 const webpack = require('webpack');
 const path = require('path');
+const glob = require('glob');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
-
 const extractSCSS = new ExtractPlugin({
 	filename: './css/[name].min.css',
 	disable: false,
 	allChunks: true
 });
-// 如果预先定义过环境变量，就将其赋值给`ASSET_PATH`变量，否则赋值为根目录
-// const ASSET_PATH = process.env.ASSET_PATH || './';
 
-var webpackConfig = {
-	entry: {
-		// main: './src/Entrance/npro.js'
-		// vendor: [
-		// 	'lodash'
-		// ]
-	},
+const productObj = require('./src/Config/config.json');
+//引入多页面文件配置
+const pageNameArray = glob.sync("./src/Config/Page/" + productObj.productId + "/*.json").map(function(value, index) {
+	return value.substring(value.lastIndexOf("/") + 1, value.lastIndexOf("."));
+});
+
+function getEntry() {
+	var entry = {};
+	pageNameArray.forEach(function(value, index) {
+		entry[value] = path.resolve(__dirname, `./src/Entrance/${value}.js`);
+	})
+	return entry;
+}
+
+function getPlugins() {
+	var plugins = [new CleanWebpackPlugin(['dist']),
+		extractSCSS
+	];
+	pageNameArray.forEach(function(value, index) {
+		const htmlPlugin = new HtmlWebpackPlugin({
+			title: value,
+			filename: `${value}.html`,
+			template: `./src/${value}.html`,
+			chunks: [value, 'commons']
+		});
+		plugins.push(htmlPlugin);
+	});
+	return plugins;
+}
+
+const webpackConfig = {
+	entry: getEntry(),
 	output: {
 		filename: './js/[name].min.js',
 		path: path.resolve(__dirname, 'dist')
@@ -42,54 +65,9 @@ var webpackConfig = {
 		}, {
 			test: /\.ejs$/,
 			loader: 'ejs-compiled-loader?htmlmin'
-
 		}]
 	},
-	plugins: [
-		new CleanWebpackPlugin(['dist']),
-		// new webpack.HashedModuleIdsPlugin(),
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: 'vendor'
-		// }),
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: 'manifest'
-		// }),
-		extractSCSS
-		// 该插件帮助我们安心地使用环境变量
-		// new webpack.DefinePlugin({
-		// 	'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
-		// })
-	],
+	plugins: getPlugins(),
 };
-
-//引入多页面文件配置
-const {
-	items
-} = require("./src/Config/config");
-
-items.htmlSet.forEach((value, index) => {
-	var target;
-	switch (index) {
-		case 0:
-			target = 'npro';
-			break;
-		case 1:
-			target = 'price_cal';
-			break;
-		case 2:
-			target = 'nbuy';
-			break;
-	}
-
-	const htmlPlugin = new HtmlWebpackPlugin({
-		title: value.title,
-		filename: `${value.page}.html`,
-		template: `./src/${target}.html`,
-		chunks: [value.page, 'commons']
-	});
-	webpackConfig.plugins.push(htmlPlugin);
-
-	webpackConfig.entry[value.page] = path.resolve(__dirname, `./src/Entrance/${target}.js`);
-});
 
 module.exports = webpackConfig;
