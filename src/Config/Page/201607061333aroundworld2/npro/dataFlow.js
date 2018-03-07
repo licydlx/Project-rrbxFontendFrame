@@ -1,6 +1,24 @@
 const dataFlow = function(data) {
 	console.log("dataFlow");
-	localStorage.setItem('channel', 'RRBXW');
-	localStorage.setItem('series_id', data.insurancePlan[0].id);
+	console.log(data);
+	localStorage.setItem(data.productId, JSON.stringify({
+		'GV': GV,
+		'trialSet':{
+			"pars":{
+				"rrbxProductId":"",
+				"productSeriesId":"",
+				"extraParams":{
+					"insureId":"",
+					"dataVal":"",
+					"ageRange":""
+				}
+			},
+			"result":{
+				"prem":""
+			}
+		},
+		'insurePolicy': data.value.insurePolicy,
+		"insurancePlan":data.value.insurancePlan
+	}));
 }
 export default dataFlow;

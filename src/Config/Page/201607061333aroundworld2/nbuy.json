@@ -4,13 +4,6 @@
         "productId": "201607061333aroundworld2",
         "title": "第二社保-父母保险"
     },
-    "loadAjax": {
-        "type": "GET",
-        "url": "/mobile/getproductinsureconfig",
-        "data": {
-            "productId": "201607061333aroundworld2"
-        }
-    },
     "htmlBrick": [
         "nbuy_holder",
         "nbuy_insured",
@@ -77,10 +70,12 @@
                 }]
             }
         },
-        "e_nbuy_validate":{
-
-            },
-            "Accordion":{}
+        "e_nbuy_validate": {},
+        "e_buy_fold": {},
+        "e_nbuy_getcode": {},
+        "e_nbuy_clause": {},
+        "e_nbuy_footer": {},
+        "e_nbuy_buynow": {}
     },
     "serviceLogic": "",
     "dataFlow": "",
@@ -103,7 +98,7 @@
                 "inputChoose": {
                     "id": "holderIdType",
                     "norequired": true,
-                    "class": "choose"
+                    "class": ""
                 },
                 "inputPars": {
                     "id": "holder_certiType",
@@ -159,7 +154,7 @@
                 "inputChoose": {
                     "id": "confirmedDate",
                     "norequired": true,
-                    "class": "choose"
+                    "class": ""
                 },
                 "inputPars": {
                     "id": "confirmedDateId",
@@ -173,7 +168,7 @@
                 "inputChoose": {
                     "id": "closingDate",
                     "norequired": true,
-                    "class": "choose"
+                    "class": ""
                 },
                 "inputPars": {
                     "id": "closingDateId",

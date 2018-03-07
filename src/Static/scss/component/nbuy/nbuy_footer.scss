@@ -4,31 +4,25 @@ footer {
     left:0;
     right:0;
     bottom:0;
-    
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-
     z-index:499;
 }
-
-footer > div,
-footer > a {
+.price,
+.buyNow {
     flex:1;
-
     display:flex;
     padding-top:15px;
     padding-bottom:15px;
     font-size:15px;
     justify-content: center;
 }
-
-footer > div {
+.price {
     color:#c2343d;
     background-color:#fff;
 }
-
-footer > a {
+.buyNow {
     background-color:#c2343d;
     color:#fff;
 }

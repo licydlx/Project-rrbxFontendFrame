@@ -29,7 +29,7 @@ const eventFuc = {
 	"e_npro_common": e_npro_common
 }
 
-class nproFactory {
+class lifeCycle {
 	constructor() {}
 		// 页面初始化
 	init() {
@@ -46,9 +46,10 @@ class nproFactory {
 				});
 			});
 			promise.then(function(value) {
+
 				that.bindEvent(value);
 				that.serviceLogic(value);
-				that.dataFlow(value);
+				that.dataFlow({"productId":productConfig.productId,"value":value});
 			}, function(error) {
 				console.log(error);
 			});
@@ -65,6 +66,7 @@ class nproFactory {
 		}
 		// 页面业务逻辑
 	serviceLogic(data) {
+		console.log(data);
 			if (serviceLogic) {
 				serviceLogic(data);
 			};
@@ -77,5 +79,5 @@ class nproFactory {
 	}
 };
 
-var npro = new nproFactory();
-npro.init();
+var launch = new lifeCycle();
+launch.init();

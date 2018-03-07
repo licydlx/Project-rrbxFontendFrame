@@ -5,13 +5,13 @@ import {
 require("../../scss/component/depend/loading.scss");
 
 var e_nbuy_buynow = function(a) {
-	$("#container").on("click", "#buy-now", function() {
+	$("#container").on("click", "#buyNow", function() {
 		var doneState = true;
 		if (!$(".agreed input").is(":checked")) {
 			alertError("请先同意以下条款！");
 			return;
 		};
-		$(".input-list").find("li").each(function(index, val) {
+		$(".itemInfo").find("li").each(function(index, val) {
 			if (!$(val).hasClass('right') && !$(val).attr("norequired")) {
 				doneState = false;
 			}

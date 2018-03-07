@@ -1,57 +1,69 @@
-// import env from '../Config/env.js';
-// import {
-// 	productConfig
-// } from '../Config/config.js';
-// import tTrial from '../Template/ntri.js';
-// // js事件绑定
-// //import e_npro_prem_trial from '../Static/js/trial/npro_prem_trial.js';
-// import e_ntri_choose from '../Static/js/trial/ntri_choose.js';
-// // import {
-// // 	attachModal
-// // } from '../Static/js/common/modal.js';
+import env from '../Config/env.js';
+import tTrial from '../Template/ntri.js';
+// js事件绑定
+import e_ntri_premTrial from '../Static/js/ntri/ntri_premTrial.js';
+import e_ntri_footer from '../Static/js/ntri/ntri_footer.js';
+// 动态导入相关产品的文件
+const productConfig = require('../Config/config.json');
 
-// // 页面配置信息
-// const configuration = require('../Config/pageConfig/' + productConfig.productId + '/ntri.js');
+const pageConfig = require("../Config/Page/" + productConfig.productId + "/ntri.json");
+const serviceLogic = require("../Config/Page/" + productConfig.productId + "/ntri/serviceLogic.js").default;
+const dataFlow = require("../Config/Page/" + productConfig.productId + "/ntri/dataFlow.js").default;
 
-// tTrial(configuration.View, brickArray, function() {
-// 	e_ntri_choose(configuration.Data);
-// 	var Modal = new attachModal('#buy-now', 'jobInform');
-// 	Modal.attachEvent();
-// }); 
-// // e_npro_prem_trial(data.response);
-// class nproFactory {
-// 	constructor() {}
-// 		// 页面初始化
-// 	init() {
-// 			tTrial(configuration.View, brickArray, function() {
-// 				e_ntri_choose(configuration.Data);
-// 				var Modal = new attachModal('#buy-now', 'jobInform');
-// 				Modal.attachEvent();
-// 			});
-// 		}
-// 		// 页面事件绑定
-// 	bindEvent(data) {
-// 			// 静态页面渲染后，绑定事件
-// 			var BE = pageConfig.bindEvent;
-// 			for (let func in BE) {
-// 				var pars = BE[func]["pars"] ? BE[func]["pars"] : null;
-// 				if (pars && pars["data"]) pars["data"] = data;
-// 				if (eventFuc[func]) eventFuc[func](pars);
-// 			};
-// 		}
-// 		// 页面业务逻辑
-// 	serviceLogic(data) {
-// 			if (serviceLogic) {
-// 				serviceLogic(data);
-// 			};
-// 		}
-// 		// 页面数据流
-// 	dataFlow(data) {
-// 		if (dataFlow) {
-// 			dataFlow(data);
-// 		};
-// 	}
-// };
+const eventFuc = {
+	"e_ntri_premTrial": e_ntri_premTrial,
+	"e_ntri_footer": e_ntri_footer
+}
 
-// var npro = new nproFactory();
-// npro.init();
+class lifeCycle {
+	constructor() {}
+		// 页面初始化
+	init() {
+			console.log(pageConfig);
+			var [that, renderData, brickArray] =
+			[this, pageConfig.renderData, pageConfig.htmlBrick];
+
+			var nproData = JSON.parse(localStorage.getItem(productConfig.productId));
+			console.log(nproData);
+			renderData = Object.assign(nproData.insurancePlan, renderData);
+
+			
+
+			const promise = new Promise(function(resolve, reject) {
+				tTrial(renderData, brickArray);
+				resolve({});
+			});
+			promise.then(function(value) {
+				// that.bindEvent(value);
+				// that.serviceLogic(value);
+				// that.dataFlow(value);
+			}, function(error) {
+				console.log(error);
+			});
+		}
+		// 页面事件绑定
+	bindEvent(data) {
+			// 静态页面渲染后，绑定事件
+			var BE = pageConfig.bindEvent;
+			for (let func in BE) {
+				var pars = BE[func]["pars"] ? BE[func]["pars"] : null;
+				if (pars && pars["data"]) pars["data"] = data;
+				if (eventFuc[func]) eventFuc[func](pars);
+			};
+		}
+		// 页面业务逻辑
+	serviceLogic(data) {
+			if (serviceLogic) {
+				serviceLogic(data);
+			};
+		}
+		// 页面数据流
+	dataFlow(data) {
+		if (dataFlow) {
+			dataFlow(data);
+		};
+	}
+};
+
+var launch = new lifeCycle();
+launch.init();

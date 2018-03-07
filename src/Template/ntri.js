@@ -2,12 +2,12 @@
 require("../Static/scss/reset/reset.scss");
 require("../Static/scss/common/common.scss");
 // 模板渲染
-import trial_prem_trial from '../Moudle/trial/npro_prem_trial.js';
-import npro_footer from '../Moudle/trial/npro_footer.js';
+import ntri_premTrial from '../Moudle/ntri/ntri_premTrial.js';
+import ntri_footer from '../Moudle/ntri/ntri_footer.js';
 
 const brickObj = {
-	'trial_prem_trial': trial_prem_trial,
-	'npro_footer': npro_footer
+	'ntri_premTrial': ntri_premTrial,
+	'ntri_footer': ntri_footer
 }
 
 var tTrial = function(obj, brick, callback) {

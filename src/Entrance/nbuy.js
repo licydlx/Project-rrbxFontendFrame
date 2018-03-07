@@ -1,14 +1,14 @@
 import env from '../Config/env.js';
-import ajax_promise from '../Depend/custom/load_ajax.js';
 import tNbuy from '../Template/nbuy.js';
 
 // js 事件绑定
-import Accordion from '../Static/js/nbuy/nbuy_fold.js';
+import e_buy_fold from '../Static/js/nbuy/nbuy_fold.js';
 import e_nbuy_validate from '../Static/js/nbuy/nbuy_validate.js';
 import e_nbuy_buynow from '../Static/js/nbuy/nbuy_buynow.js';
 import e_nbuy_footer from '../Static/js/nbuy/nbuy_footer.js';
-import getCode from '../Static/js/nbuy/nbuy_getcode.js';
+import e_nbuy_getcode from '../Static/js/nbuy/nbuy_getcode.js';
 import e_nbuy_rela from '../Static/js/nbuy/nbuy_rela.js';
+import e_nbuy_clause from '../Static/js/nbuy/nbuy_clause.js';
 import timePicker from '../Static/js/nbuy/timePicker.js';
 
 // 动态导入相关产品的文件
@@ -18,16 +18,17 @@ const serviceLogic = require("../Config/Page/" + productConfig.productId + "/nbu
 const dataFlow = require("../Config/Page/" + productConfig.productId + "/nbuy/dataFlow.js").default;
 
 const eventFuc = {
-	"Accordion": Accordion,
+	"e_buy_fold": e_buy_fold,
 	"e_nbuy_validate": e_nbuy_validate,
 	"e_nbuy_buynow": e_nbuy_buynow,
 	"e_nbuy_footer": e_nbuy_footer,
-	"getCode": getCode,
+	"e_nbuy_getcode": e_nbuy_getcode,
 	"e_nbuy_rela": e_nbuy_rela,
+	"e_nbuy_clause": e_nbuy_clause,
 	"timePicker": timePicker
 }
 
-class nproFactory {
+class lifeCycle {
 	constructor() {}
 		// 页面初始化
 	init() {
@@ -69,5 +70,5 @@ class nproFactory {
 	}
 };
 
-var npro = new nproFactory();
-npro.init();
+var launch = new lifeCycle();
+launch.init();

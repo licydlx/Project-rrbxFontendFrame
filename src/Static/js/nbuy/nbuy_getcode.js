@@ -1,5 +1,4 @@
 var getCode = function() {
-
 	$("#getCode").on("click", function() {
 		var _this = $(this),
 			phoneNo = $("#supple-info-tel").val(),

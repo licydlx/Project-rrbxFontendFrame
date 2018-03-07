@@ -9,12 +9,11 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
 
 .infoBox {
     background-color: #ffffff;
-}
-
-.infoBox a {
-    display: block;
-    position: relative;
-    border-bottom: 1px solid #d7d7d7;
+    a {
+        display: block;
+        position: relative;
+        border-bottom: 1px solid #d7d7d7;
+    }
 }
 
 .arrows {
@@ -71,17 +70,9 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
             color:#333;
         }
     }
-}
-
-.input-list a > input,
-.input-list a > div {
-    flex: auto;
-    color: #999;
-    margin-left: 15px;
-    // 去掉默认样式
-    outline: none;
-    border-radius: 0;
-    border:none;
+    .arrows {
+        transform: rotate(0deg);
+    }
 }
 
 /* 正确与错误标识 */
@@ -92,6 +83,7 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
 .right > a {
     border-bottom:1px solid #75dd75 !important;
 }
+
 /* 弹出框 */
 .popups {
     position: fixed;
@@ -160,27 +152,9 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
     cursor: pointer;
 }
 
-/* 验证码 */
-.getcode {
-    background-color: #92cd4e;
-    padding: 5px;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-}
-
 .disabled {
     pointer-events: none;
     cursor: default;
     opacity: 0.6;
     background-color:#999;
-}
-
-/* 为谁投保 */
-#showRela {
-    color:#333;
-}
-
-#rela .arrows {
-    transform: rotate(0deg);
 }
