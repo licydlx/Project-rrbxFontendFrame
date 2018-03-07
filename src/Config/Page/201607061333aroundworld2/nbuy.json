@@ -145,6 +145,7 @@
                 "inputPars": {
                     "id": "relaId",
                     "value": "本人",
+                    "data-id": "01",
                     "unselectable": "no",
                     "onfocus": "this.blur()",
                     "readonly": "readonly"

@@ -1,7 +1,7 @@
 import {
-	commonJs,
-	getProductId
+	commonJs
 } from '../depend/common.js';
+const productConfig = require('../../../Config/config.json');
 require("../../scss/component/depend/loading.scss");
 
 var e_nbuy_buynow = function(a) {
@@ -25,27 +25,30 @@ var e_nbuy_buynow = function(a) {
 	});
 
 	function inputSuccess() {
-		var productId = getProductId(),
-			DataSet = JSON.parse(localStorage.getItem(productId)),
-			relaTag = $('#showRela').attr('data-id'),
+		var DataSet = JSON.parse(localStorage.getItem(productConfig.productId)),
 			RRBX = {
-				"rrbxProductId": productId,
-				"productSeriesId": DataSet.trialResult.productSeriesId,
+				"rrbxProductId": productConfig.productId,
+				"productSeriesId": DataSet.trialSet.pars.productSeriesId,
 				"buyNum": 1,
-				"periodPremium": DataSet.trialResult.periodPremium,
+				"periodPremium": DataSet.trialSet.result.periodPremium,
 				"expertId": GV.nbuy_eid,
 				"saleChannel": getChannel(),
 				"policyHolderUser": {},
 				"insuredUser": {},
 				"extraParams": {
-					'prem': DataSet.trialResult.prem,
-					'dataVal': DataSet.trialResult.dataVal,
-					'itemkind': DataSet.trialResult.itemkind,
-					'appliRelation': relaTag
+					"dataVal": DataSet.trialSet.pars.extraParams.dataVal,
+					"insureId": DataSet.trialSet.pars.extraParams.insureId,
+					"buyPrice": DataSet.trialSet.result.prem,
+					"passport1": "",
+					"passport2": ""
 				}
 			};
 
+		var relaTag = $("#relaId").attr("data-id");
+		console.log(DataSet);
 		if (relaTag == '01') {
+			RRBX.extraParams.passport1 = $("#holder_certiNo").val();
+			RRBX.extraParams.passport2 = $("#holder_certiNo").val();
 			['policyHolderUser', 'extraParams'].forEach(function(par, index) {
 				$('[data-belong=' + par + ']').each(function(index, context) {
 					let that = $(context),
@@ -64,15 +67,19 @@ var e_nbuy_buynow = function(a) {
 							key.split(',').forEach(function(k, s, a) {
 								let code = that.attr('data-code').split(',');
 								RRBX[par][k] = code[s];
+								console.log(code[s]);
 							})
 						} else {
 							RRBX[par][key] = value;
+							console.log(value);
 						};
 					};
 
 				});
 			});
 		} else {
+			RRBX.extraParams.passport1 = $("#holder_certiNo").val();
+			RRBX.extraParams.passport2 = $("#insured_certiNo").val();
 			['policyHolderUser', 'insuredUser', 'extraParams'].forEach(function(par, index) {
 				$('[data-belong=' + par + ']').each(function(index, context) {
 					let that = $(context),
@@ -108,7 +115,7 @@ var e_nbuy_buynow = function(a) {
 	};
 
 	var ajaxCreateOrder = (ajaxData) => {
-		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=07588141fdb1b62f2e5ec2ae07283b61&productId=20180126yianaxywx",
+		var localUrl = "https://uatapi2.renrenbx.com/mobile/norder/create?access_token=07588141fdb1b62f2e5ec2ae07283b61&productId=201607061333aroundworld2",
 			ajaxUrl = window.location.origin + '/mobile/norder/create?access_token=' + GV.nbuy_accessToken + '&productId=' + GV.nbuy_rrbxProductId + '',
 			url = window.location.origin.indexOf("api") == -1 ? localUrl : ajaxUrl;
 		$.ajax({

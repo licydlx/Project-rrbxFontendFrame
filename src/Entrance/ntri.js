@@ -19,24 +19,20 @@ class lifeCycle {
 	constructor() {}
 		// 页面初始化
 	init() {
-			console.log(pageConfig);
-			var [that, renderData, brickArray] =
-			[this, pageConfig.renderData, pageConfig.htmlBrick];
+			var [that, renderData, brickArray, nproData] =
+			[this, pageConfig.renderData, pageConfig.htmlBrick, JSON.parse(localStorage.getItem(productConfig.productId))];
 
-			var nproData = JSON.parse(localStorage.getItem(productConfig.productId));
-			console.log(nproData);
-			renderData = Object.assign(nproData.insurancePlan, renderData);
+			renderData = Object.assign(nproData, renderData);
 
-			
-
+			console.log(renderData);
 			const promise = new Promise(function(resolve, reject) {
 				tTrial(renderData, brickArray);
-				resolve({});
+				resolve(renderData);
 			});
 			promise.then(function(value) {
-				// that.bindEvent(value);
-				// that.serviceLogic(value);
-				// that.dataFlow(value);
+				that.bindEvent(value);
+				that.serviceLogic(value);
+				that.dataFlow(value);
 			}, function(error) {
 				console.log(error);
 			});
@@ -47,6 +43,7 @@ class lifeCycle {
 			var BE = pageConfig.bindEvent;
 			for (let func in BE) {
 				var pars = BE[func]["pars"] ? BE[func]["pars"] : null;
+				
 				if (pars && pars["data"]) pars["data"] = data;
 				if (eventFuc[func]) eventFuc[func](pars);
 			};

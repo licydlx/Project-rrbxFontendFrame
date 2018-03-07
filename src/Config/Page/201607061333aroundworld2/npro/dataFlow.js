@@ -5,15 +5,16 @@ const dataFlow = function(data) {
 		'GV': GV,
 		'trialSet':{
 			"pars":{
-				"rrbxProductId":"",
-				"productSeriesId":"",
+				"rrbxProductId":data.productId,
 				"extraParams":{
-					"insureId":"",
-					"dataVal":"",
-					"ageRange":""
-				}
+					"insureId":data.value.insurancePlan[0].insureId,
+					"dataVal":1,
+					"ageRange":0
+				},
+				"productSeriesId":data.value.insurancePlan[0].id
 			},
 			"result":{
+				"periodPremium":"40",
 				"prem":""
 			}
 		},

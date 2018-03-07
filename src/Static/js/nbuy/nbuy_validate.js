@@ -3,11 +3,13 @@ const e_nbuy_validate = function() {
 	$("#container").on("focus", "input", function() {
 		$(this).closest("li").removeAttr('class');
 	});
+
 	$("#container").on("blur", "input", function() {
 		let that = $(this);
 		if (that.attr("readonly")) {
 			return;
 		}
+		
 		let verify = that.attr("data-verify"),
 			state = validate.contrast(that.val(), verify);
 		state ? that.closest("li").addClass('right') : that.closest("li").addClass('error');
