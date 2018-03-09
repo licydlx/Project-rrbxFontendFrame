@@ -1,4 +1,3 @@
-<% console.log(insured) %>
 <section class="infoBox mg-b-10">
 	<div class="infoItem">
 		<% if(insured) { %>
@@ -24,8 +23,6 @@
 										<%= y+"="+insured.itemInfo[i]["inputPars"][y] %>
 									<% } %>	
 									></input>
-
-									<% console.log(insured.itemInfo[i]["inputChoose"]) %>
 									<% if(insured.itemInfo[i]["inputChoose"]) { %>
 										<% if(insured.itemInfo[i]["inputChoose"]["class"] == "choose") { %>
 											<i class="arrows"></i>	

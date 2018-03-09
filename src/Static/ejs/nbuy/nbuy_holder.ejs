@@ -1,4 +1,3 @@
-<% console.log(holder) %>
 <section class="infoBox mg-b-10">
 	<div class="infoItem">
 		<% if(holder) { %>
@@ -24,8 +23,6 @@
 										<%= y+"="+holder.itemInfo[i]["inputPars"][y] %>
 									<% } %>	
 									></input>
-
-									<% console.log(holder.itemInfo[i]["inputChoose"]) %>
 									<% if(holder.itemInfo[i]["inputChoose"]) { %>
 										<% if(holder.itemInfo[i]["inputChoose"]["class"] == "choose") { %>
 											<i class="arrows"></i>	

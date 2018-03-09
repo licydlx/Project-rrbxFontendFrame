@@ -32,11 +32,11 @@ class lifeCycle {
 	constructor() {}
 		// 页面初始化
 	init() {
-			var [that,renderData,brickArray] =
-			[this,pageConfig.renderData, pageConfig.htmlBrick];
+			var [that, renderData, brickArray] =
+			[this, pageConfig.renderData, pageConfig.htmlBrick];
 			const promise = new Promise(function(resolve, reject) {
 				tNbuy(renderData, brickArray);
-				resolve({});
+				resolve(renderData);
 			});
 			promise.then(function(value) {
 				that.bindEvent(value);
@@ -58,9 +58,9 @@ class lifeCycle {
 		}
 		// 页面业务逻辑
 	serviceLogic(data) {
-			// if (serviceLogic) {
-			// 	serviceLogic(data);
-			// };
+			if (serviceLogic) {
+				serviceLogic(productConfig.productId,data);
+			};
 		}
 		// 页面数据流
 	dataFlow(data) {

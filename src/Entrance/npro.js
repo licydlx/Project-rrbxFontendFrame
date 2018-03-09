@@ -46,7 +46,6 @@ class lifeCycle {
 				});
 			});
 			promise.then(function(value) {
-
 				that.bindEvent(value);
 				that.serviceLogic(value);
 				that.dataFlow({"productId":productConfig.productId,"value":value});
@@ -66,7 +65,6 @@ class lifeCycle {
 		}
 		// 页面业务逻辑
 	serviceLogic(data) {
-		console.log(data);
 			if (serviceLogic) {
 				serviceLogic(data);
 			};

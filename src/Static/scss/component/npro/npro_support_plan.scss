@@ -1,7 +1,6 @@
 .support-plan {
     position: relative;
     background-color:#fff;
-    padding-bottom:15px;
 }
 
 .sp-title {
@@ -121,6 +120,7 @@
 
 .support-plan .sp-content.active {
     height:auto;
+    padding-bottom:1.8rem;
 }
 
 .sp-content li:not(:last-child) {

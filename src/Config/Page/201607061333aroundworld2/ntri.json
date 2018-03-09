@@ -11,9 +11,7 @@
         },
         "e_ntri_footer": {
             "pars": {
-                "data": {
-                    "haha": "xixi"
-                }
+                "data": {}
             }
         }
     },
@@ -35,56 +33,56 @@
             "type": "tab",
             "tab": [{
                 "data-id": 0,
-                "text": "60天~17岁"
+                "text": "60天~17周岁"
             }, {
                 "data-id": 1,
-                "text": "18~90岁"
+                "text": "18周岁~90周岁"
             }]
         }],
         "guaPeriod": [{
             "id": "1",
             "value": "1-7天",
-            "storageLife": 7
+            "storageLife": 6
         }, {
             "id": "2",
             "value": "8-10天",
-            "storageLife": 10
+            "storageLife": 9
         }, {
             "id": "3",
             "value": "11-14天",
-            "storageLife": 14
+            "storageLife": 13
         }, {
             "id": "4",
             "value": "15-17天",
-            "storageLife": 17
+            "storageLife": 16
         }, {
             "id": "5",
             "value": "18-21天",
-            "storageLife": 21
+            "storageLife": 20
         }, {
             "id": "6",
             "value": "22-24天",
-            "storageLife": 24
+            "storageLife": 23
         }, {
             "id": "7",
             "value": "25-30天",
-            "storageLife": 30
+            "storageLife": 29
         }, {
             "id": "8",
             "value": "31-60天",
-            "storageLife": 60
+            "storageLife": 59
         }, {
             "id": "9",
             "value": "61-90天",
-            "storageLife": 90
+            "storageLife": 89
         }, {
             "id": "10",
             "value": "91-180天",
-            "storageLife": 180
+            "storageLife": 179
         }, {
             "id": "11",
             "value": "全年（每次旅行最长天数183天)",
-            "storageLife": 183
+            "storageLife": 182
         }]
     }
 }

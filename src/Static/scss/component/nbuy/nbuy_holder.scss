@@ -65,7 +65,7 @@ input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;}
           padding-bottom:4px;
         }
         input{
-            width:100%;
+            flex:auto;
             font-size:14px;
             color:#333;
         }

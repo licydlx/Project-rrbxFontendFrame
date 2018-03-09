@@ -60,11 +60,12 @@ input{
         display:flex;
         font-size:1rem;
         a {
-            padding:5px 10px;
-            border:1px solid #eee;
+            padding: 3px 6px;
+            border: 1px solid #eee;
             border-radius: 6px;
-            margin-right:.5rem;
+            margin-right: .4rem;
             cursor: pointer;
+            font-size: 13px;
         }
         a.active {
             background-color:#be3e46;

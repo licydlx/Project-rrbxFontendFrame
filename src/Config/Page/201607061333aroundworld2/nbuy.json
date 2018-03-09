@@ -155,7 +155,7 @@
                 "inputChoose": {
                     "id": "confirmedDate",
                     "norequired": true,
-                    "class": ""
+                    "class": "choose"
                 },
                 "inputPars": {
                     "id": "confirmedDateId",
@@ -169,7 +169,7 @@
                 "inputChoose": {
                     "id": "closingDate",
                     "norequired": true,
-                    "class": ""
+                    "class": "none"
                 },
                 "inputPars": {
                     "id": "closingDateId",

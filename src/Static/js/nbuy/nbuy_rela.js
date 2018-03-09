@@ -6,7 +6,6 @@ const e_nbuy_rela = function(pars) {
 	var data = pars.relaData,
 		relaTemplate = nbuy_insured_rela(pars),
 		showRelaDom = $("#relaId");
-
 	showRelaDom.click(function() {
 		var bankSelect = new IosSelect(1, [data], {
 			container: '#container',

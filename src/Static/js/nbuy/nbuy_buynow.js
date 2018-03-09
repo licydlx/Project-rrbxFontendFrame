@@ -33,6 +33,7 @@ var e_nbuy_buynow = function(a) {
 				"periodPremium": DataSet.trialSet.result.periodPremium,
 				"expertId": GV.nbuy_eid,
 				"saleChannel": getChannel(),
+				"policyBeginDate": $("#confirmedDateId").val(),
 				"policyHolderUser": {},
 				"insuredUser": {},
 				"extraParams": {
@@ -43,9 +44,7 @@ var e_nbuy_buynow = function(a) {
 					"passport2": ""
 				}
 			};
-
 		var relaTag = $("#relaId").attr("data-id");
-		console.log(DataSet);
 		if (relaTag == '01') {
 			RRBX.extraParams.passport1 = $("#holder_certiNo").val();
 			RRBX.extraParams.passport2 = $("#holder_certiNo").val();
@@ -67,11 +66,9 @@ var e_nbuy_buynow = function(a) {
 							key.split(',').forEach(function(k, s, a) {
 								let code = that.attr('data-code').split(',');
 								RRBX[par][k] = code[s];
-								console.log(code[s]);
 							})
 						} else {
 							RRBX[par][key] = value;
-							console.log(value);
 						};
 					};
 
