@@ -1,0 +1,103 @@
+// 试算页 千年不变父容器
+// 作者:ydlx
+// 日期:2018-3-12
+.background {
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:48px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#000;
+    display:flex;
+    flex-direction: column-reverse;
+    overflow:hidden;
+    z-index:400;
+    .box {
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1rem solid #eee;
+        .header {
+            position: relative;
+            padding:15px;
+            font-size: 1rem;
+            line-height:1;
+            .tag {
+                position: absolute;
+                width: 5px;
+                height: 1rem;
+                left: 0;
+                top: 15px;
+                background-color: #b6a780;
+            }
+        }
+    }
+}
+
+// 试算页 item 选项组件
+//
+// 作者:ydlx
+// 日期:2018-3-7
+.item {
+    position: relative;
+    display:flex;
+    align-items: center;
+    height:3rem;
+    line-height:1;
+    margin-left:15px;
+    margin-right:15px;
+    background-color:#fff;
+    border-top:1px solid #eee;
+    .title {
+       position: relative;
+       width:5rem;
+       font-size:1rem;
+       .tag {
+            position: absolute;
+            width: 5px;
+            height: 1rem;
+            left: -15px;
+            background-color: #b6a780;
+        }
+    }
+    .tab {
+        flex:auto;
+        color:#333;
+        display:flex;
+        font-size:1rem;
+        padding:15px;
+        a {
+            padding: 3px 6px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-right: .4rem;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        a.active {
+            background-color:#be3e46;
+            color:#fff;
+        }
+    }
+    .choose{
+        flex:auto;
+        color:#333;
+        font-size:1rem;
+        padding:15px;
+    }
+    .icon {
+        position: absolute;
+        right: 0;
+        width: 1rem;
+        display: block;
+        height: 1rem;
+        .iconImg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: rotate(-90deg);
+        }
+    }
+}

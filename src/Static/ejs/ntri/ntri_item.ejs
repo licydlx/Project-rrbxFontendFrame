@@ -1,0 +1,54 @@
+<section class="background">
+	<section class="box">
+		<div class="header">
+			<i class="tag"></i>
+			<%= "保障计划" %>
+		</div>
+
+		<% if(item) { %>
+			<% for(var i=0;i < item.length;i++){ %>
+				<section class="item">
+					<label class="title"><%= item[i].title %></label>
+
+					<% if(item[i].type == "choose") { %>
+						<input class="choose"
+							<% for(var x in item[i].choose){ %>
+								<%= x+"="+item[i].choose[x] %>
+							<% } %>
+						>
+						<i class="icon">
+							<img class="iconImg" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+						</i>
+					<% } %>
+
+					<% if(item[i].type == "tab") { %>
+						<ul class="tab">
+							<% for(var y=0;y < item[i].tab.length;y++){ %>
+							<li><a
+								<% if(y==0){ %>
+									class="active"
+								<% } %>
+								<%= "data-id"+"="+item[i].tab[y]["data-id"] %>
+								><%= item[i].tab[y].text %></a></li>
+							<% } %>
+						</ul>
+					<% } %>
+					
+					<% if(item[i].type == "multiSelect") { %>
+						<ul class="tab">
+							<% for(var y=0;y < item[i].tab.length;y++){ %>
+							<li><a
+								<% if(y==0){ %>
+									class="active"
+								<% } %>
+								<%= "data-id"+"="+item[i].tab[y]["data-id"] %>
+								><%= item[i].tab[y].text %></a></li>
+							<% } %>
+						</ul>
+					<% } %>
+				</section>
+			<% } %>
+		<% } %>
+
+	</section>
+</section>

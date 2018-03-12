@@ -46,6 +46,30 @@ attachModal.prototype = {
 	}
 };
 
+const dateModal = function(dom, templete, par) {
+	this.dom = dom;
+	this.templeteName = templete;
+	this.templete = tpl[templete];
+	this.par = par;
+}
+
+dateModal.prototype = {
+	init: function() {
+		var that = this;
+		$('#container').on('click', '#stateIndform', function(event) {
+			event.preventDefault();
+			$('#stateIndform').remove();
+		});
+
+	},
+	show: function() {
+		$('#container').append(this.templete(this.par));
+	},
+	hide: function() {
+		$('#stateIndform').remove();
+	}
+};
+
 const consultServie = function(templete, bindDom, selfDom) {
 	this.templete = tpl[templete];
 	this.bindDom = bindDom;
@@ -74,5 +98,6 @@ consultServie.prototype = {
 
 export {
 	attachModal,
-	consultServie
+	consultServie,
+	dateModal
 };

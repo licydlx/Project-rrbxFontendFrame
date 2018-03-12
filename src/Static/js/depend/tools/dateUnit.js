@@ -90,11 +90,11 @@ var dateUnit = {
 		}
 		return YMD;
 	},
-	// 根据某一天日期及相差天数获取日期
-	// 参数：某一天日期:StartDate;相差天数:dimDd
-	// 例：getDateFromDimdd("2018/03/09",6)  =>  2018-03-15
-	// ydlx
-	// 2018-03-09
+	// 逻辑:根据某一天日期及相差天数获取日期
+	// 参数:某一天日期:StartDate;相差天数:dimDd
+	// 例子:getDateFromDimdd("2018/03/09",6)  =>  2018-03-15
+	// 作者:ydlx
+	// 日期:2018-03-09
 	getDateFromDimdd: function(StartDate, dimDd) {
 		var dayNum = Number(dimDd),
 			startDate = new Date(StartDate),
@@ -103,6 +103,16 @@ var dateUnit = {
 			//加/减天数后的毫秒值
 			tDmillisecond = sDmillisecond + dayNum * 24 * 60 * 60 * 1000;
 		return this.getFormatDate(tDmillisecond);
+	},
+	// 逻辑:根据两个日期获取它们天数差
+	// 参数:prevDate nextDate
+	// 例子:getDateDimDd("2018-03-12","2018-03-14") => 2
+	// 作者:ydlx
+	// 日期:2019-03-12
+	getDateDimdd: function(prevDate, nextDate) {
+		var pdMs = new Date(prevDate).valueOf(),
+			ndMs = new Date(nextDate).valueOf();
+		return (ndMs - pdMs) / (24 * 60 * 60 * 1000);
 	}
 }
 

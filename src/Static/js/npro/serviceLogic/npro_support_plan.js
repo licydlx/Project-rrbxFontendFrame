@@ -10,7 +10,9 @@ const clickNav = function(event) {
 	if (!that.hasClass("active")) {
 		that.closest('ul').find('a').removeClass('active');
 		that.addClass("active");
-		tabLogic[num](obj, tag, tar);
+		if (num) {
+			tabLogic[num](obj, tag, tar);
+		};
 	};
 }
 

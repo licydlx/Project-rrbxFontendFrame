@@ -4,7 +4,7 @@
 		<i class="sp-tag"></i>
 		<%= "保障计划" %>
 	</div>
-	<% if(insurancePlan.length != 1) { %>
+	<% if(insurancePlan.length > 1) { %>
 		<ul id="sp-nav" class="sp-nav">
 			<% for(var i=0;i < insurancePlan.length;i++){ %>
 				<li>
@@ -20,6 +20,7 @@
 	      <div id="sp-wire" class="sp-wire"></div>
 	    </div>
 	<% } %>
+
     <% if(insurancePlan.length > 0) { %>
 		<section id="sp-content" class="sp-content">
 			<ul>
@@ -40,7 +41,8 @@
 			</ul>
 		</section>	
 	<% } %>
-	<% if(insurancePlan && insurancePlan.length > 2) { %>
+
+	<% if(insurancePlan[0].seriesDesc.length > 5) { %>
 		<a class="trigger">
 			<img src="https://img2.renrenbx.com/inco/more-up.png">
 		</a>

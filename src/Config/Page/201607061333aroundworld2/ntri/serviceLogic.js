@@ -4,8 +4,14 @@
 // };
 import npro_support_plan_tab from '../../../../Moudle/npro/npro_support_plan_tab.js';
 import getPrem from '../../../../Static/js/depend/datas/premAjax.js';
+import {
+	consultServie
+} from '../../../../Static/js/common/modal.js';
 
 const serviceLogic = function(obj) {
+	// 客服咨询
+	new consultServie("consultService","#service","#service-pop").init();
+
 	var initAgeRange = obj.initTrialSet.pars.extraParams.ageRange,
 		initDataVal = obj.initTrialSet.pars.extraParams.dataVal,
 		initInsureId = obj.initTrialSet.pars.extraParams.insureId,

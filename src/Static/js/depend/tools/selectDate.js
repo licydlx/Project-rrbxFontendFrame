@@ -1,25 +1,34 @@
 class selectDate {
-	constructor(bindDom, defaultDate, prevYear, nextYear, func) {
+	constructor(bindDom, type, defaultDate, prevYear, nextYear, func) {
 		// 初始化时间
 		this.now = new Date();
 		this.nowYear = this.now.getFullYear();
-		this.nowMonth = this.now.getMonth() + 1;
-		this.nowDate = this.now.getDate();
+		switch (type) {
+			case 'birthday':
+				this.nowMonth = this.now.getMonth() + 1 > 9 ? this.now.getMonth() + 1 : "0" + (this.now.getMonth() + 1);
+				this.nowDate = this.now.getDate() > 9 ? this.now.getDate() : "0" + (this.now.getDate());
+				break;
+			case 'confirmedDate':
+				this.nowMonth = this.now.getMonth() + 1 > 9 ? this.now.getMonth() + 1 : "0" + (this.now.getMonth() + 1);
+				this.nowDate = this.now.getDate() + 1 > 9 ? this.now.getDate() + 1 : "0" + (this.now.getDate() + 1);
+				break;
+			default:
+				console.log('我是日期选择器');
+		}
 		this.bindDom = bindDom;
-		this.defaultDate = defaultDate || this.nowYear + '-' + this.nowMonth + '-' + this.nowDate;
-		this.prevYear = parseInt(prevYear) || 20;
-		this.nextYear = parseInt(nextYear) || 20;
+		this.defaultDate = defaultDate ? defaultDate : this.nowYear + '-' + this.nowMonth + '-' + this.nowDate;
+		this.prevYear = parseInt(prevYear);
+		this.nextYear = parseInt(nextYear);
 		this.func = func || undefined;
 	}
 	init() {
 		var that = this,
 			DOM = that.bindDom,
-			DATE = this.defaultDate;
-		DATE.replace('/', '-');
-		var dateArray = DATE.split('-');
-		DOM.attr('data-year', parseInt(dateArray[0]));
-		DOM.attr('data-month', parseInt(dateArray[1]));
-		DOM.attr('data-date', parseInt(dateArray[2]));
+			defaultDateArray = that.defaultDate.split("-");
+		DOM.attr('data-year', parseInt(defaultDateArray[0]));
+		DOM.attr('data-month', parseInt(defaultDateArray[1]));
+		DOM.attr('data-date', parseInt(defaultDateArray[2]));
+		DOM.attr('value', that.defaultDate);
 		DOM.bind('click', function() {
 			var oneLevelId = DOM.attr('data-year'),
 				twoLevelId = DOM.attr('data-month'),
@@ -30,21 +39,23 @@ class selectDate {
 				oneLevelId: oneLevelId,
 				twoLevelId: twoLevelId,
 				threeLevelId: threeLevelId,
-				showLoading: true,
+				showAnimate: true,
 				callback: function(selectOneObj, selectTwoObj, selectThreeObj) {
-					DOM.attr('data-year', selectOneObj.id);
-					DOM.attr('data-month', selectTwoObj.id);
-					DOM.attr('data-date', selectThreeObj.id);
 					var MONTH = parseInt(selectTwoObj.id),
 						DATE = parseInt(selectThreeObj.id);
 					MONTH = MONTH > 9 ? MONTH : "0" + MONTH;
 					DATE = DATE > 9 ? DATE : "0" + DATE;
 					var startDate = selectOneObj.value + '-' + MONTH + '-' + DATE;
-					DOM.attr("value",startDate);
-
 					if (that.func) {
-						that.func(startDate);
+						if (!that.func(startDate)) {
+							return;
+						};
 					};
+
+					DOM.attr('data-year', selectOneObj.id);
+					DOM.attr('data-month', selectTwoObj.id);
+					DOM.attr('data-date', selectThreeObj.id);
+					DOM.attr("value", startDate);
 				}
 			});
 		});
@@ -83,7 +94,6 @@ class selectDate {
 	YMD() {
 		var that = this;
 		var yearData = function(callback) {
-			console.log(this);
 			callback(that.formatYear(that.nowYear))
 		}
 

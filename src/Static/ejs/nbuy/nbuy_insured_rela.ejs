@@ -1,13 +1,13 @@
 <% if(relaTemplate) { %>
 	<% for(var i=0;i < relaTemplate.length;i++){ %>
 		<% if(relaTemplate[i]["inputChoose"]) { %>
-			<li class="add"
+			<li data-add
 				<% for(var x in relaTemplate[i]["inputChoose"]){ %>
 					<%= x+"="+relaTemplate[i]["inputChoose"][x] %>
 				<% } %>	
 			>
 		<% } else { %>
-			<li class="add">
+			<li data-add>
 		<% } %>
 				<a>
 					<label><%= relaTemplate[i]["inputName"] %></label>

@@ -47,7 +47,8 @@ const serviceLogic = function(productId, data) {
 	});
 
 	// 起保日期
-	new selectDate($("#confirmedDateId"),"confirmedDate",null,0,0,changeDeadlineDate).init();
+	var SD = new selectDate($("#confirmedDateId"),null,0,0,changeDeadlineDate);
+	SD.init();
 	function changeDeadlineDate(par){
 		// 保单默认次日生效,最长延后30天
 		var nowDate = dateUnit.getFormatDate().commonCurDate,

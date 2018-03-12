@@ -1,10 +1,11 @@
+import env from '../../../../Config/env.js';
 // 获取保费
 function getPrem(obj, pars) {
 	const promise = new Promise(function(resolve, reject) {
 		var data = JSON.stringify(pars);
 		$.ajax({
 			type: "POST",
-			url: "https://uatapi2.renrenbx.com/mobile/nproduct/trialCalculation",
+			url: env + "/mobile/nproduct/trialCalculation",
 			data: "productId=" + pars.rrbxProductId + "&data=" + data,
 			beforeSend: function() {},
 			success: function(data) {
