@@ -27,7 +27,7 @@ class selectOne {
 					that.bindDom.attr('data-id', selectObj.id);
 					that.bindDom.attr('value', selectObj.value);
 					if (that.func) {
-						that.func();
+						that.func(selectObj.id);
 					};
 				}
 			});

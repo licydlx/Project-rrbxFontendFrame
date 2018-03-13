@@ -1,38 +1,65 @@
 const dataFlow = function(data) {
+	// GV:全局变量; insuredPars:试算及投保参数; renderDate: 试算及投保页面数据
+	// 作者:ydlx
+	// 日期:2018-3-13
 	localStorage.setItem(data.productId, JSON.stringify({
 		'GV': GV,
-		'trialSet': {
+		'insuredPars': {
 			"pars": {
-				"rrbxProductId": data.productId,
-				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"dataVal": 1,
-					"ageRange": 0
+				"rrbx": {
+					"rrbxProductId": data.productId,
+					"productSeriesId": data.value.insurancePlan[0].id,
+					"periodPremium": data.value.insurancePlan[0].price,
+					"buyNum": 1,
+					"insurantApplicantRelation": "03"
 				},
-				"productSeriesId": data.value.insurancePlan[0].id
+				"extraParams": {
+					"holderOccupationCode": "",
+					"holderProvince": "",
+					"holderCity": "",
+					"holderDistrict": "",
+
+					"holderBirthday":"1992-02-02",
+					"insuredBirthday":"2017-02-02",
+					"payEndYear": "5",
+					"payIntv": "1",
+					"ylAmnt": "50",
+					"sex":"men",
+					"riskCodes": "",
+					"amnt": "5",
+					"prem": "608.72"
+				}
 			},
-			"result": {
-				"periodPremium": data.value.insurancePlan[0].price,
-				"prem": data.value.insurancePlan[0].price
+			"parsInit": {
+				"rrbx": {
+					"rrbxProductId": data.productId,
+					"productSeriesId": data.value.insurancePlan[0].id,
+					"periodPremium": data.value.insurancePlan[0].price,
+					"buyNum": 1,
+					"insurantApplicantRelation": "03"
+				},
+				"extraParams": {
+					"holderOccupationCode": "",
+					"holderProvince": "",
+					"holderCity": "",
+					"holderDistrict": "",
+
+					"holderBirthday":"1992-02-02",
+					"insuredBirthday":"2017-02-02",
+					"payEndYear": "5",
+					"payIntv": "1",
+					"ylAmnt": "50",
+					"sex":"men",
+					"riskCodes": "",
+					"amnt": "5",
+					"prem": "608.72"
+				}
 			}
 		},
-		'initTrialSet': {
-			"pars": {
-				"rrbxProductId": data.productId,
-				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"dataVal": 1,
-					"ageRange": 0
-				},
-				"productSeriesId": data.value.insurancePlan[0].id
-			},
-			"result": {
-				"periodPremium": data.value.insurancePlan[0].price,
-				"prem": data.value.insurancePlan[0].price
-			}
-		},
-		'insurePolicy': data.value.insurePolicy,
-		"insurancePlan": data.value.insurancePlan
+		"renderDate": {
+			'insurePolicy': data.value.insurePolicy,
+			"insurancePlan": data.value.insurancePlan
+		}
 	}));
 }
 export default dataFlow;

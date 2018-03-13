@@ -8,7 +8,6 @@ const productConfig = require('../Config/config.json');
 
 const pageConfig = require("../Config/Page/" + productConfig.productId + "/ntri.json");
 const serviceLogic = require("../Config/Page/" + productConfig.productId + "/ntri/serviceLogic.js").default;
-const dataFlow = require("../Config/Page/" + productConfig.productId + "/ntri/dataFlow.js").default;
 
 const eventFuc = {
 	"e_ntri_premTrial": e_ntri_premTrial,
@@ -19,43 +18,42 @@ class lifeCycle {
 	constructor() {}
 		// 页面初始化
 	init() {
-			var [that, renderData, brickArray, nproData] =
-			[this, pageConfig.renderData, pageConfig.htmlBrick, JSON.parse(localStorage.getItem(productConfig.productId))];
-			renderData = Object.assign(nproData, renderData);
-			const promise = new Promise(function(resolve, reject) {
+			// that: 当前作用域对象
+			// renderData: 页面渲染数据 (后台返回数据加json配置数据)
+			// brickArray: 页面模板组成
+			var rrbxSet = JSON.parse(localStorage.getItem(productConfig.productId)),
+				[that, renderData, brickArray] =
+				[this, Object.assign(pageConfig.renderData, rrbxSet.renderDate), pageConfig.htmlBrick];
+				
+			new Promise(function(resolve, reject) {
 				tTrial(renderData, brickArray);
-				resolve(renderData);
-			});
-			promise.then(function(value) {
-				that.bindEvent(value);
-				that.serviceLogic(value);
-				// that.dataFlow(value);
-			}, function(error) {
-				console.log(error);
-			});
+				resolve([renderData,rrbxSet]);
+			}).then(function(a) {
+				console.log(a[0]);
+				that.bindEvent(a[0]);
+				return a;
+			}).then(function(a) {
+				that.serviceLogic(a);
+			}).catch(function(err) {
+				console.log("试算页流程 work wrong");
+			}).then(function() {
+				console.log("work done");
+			})
 		}
 		// 页面事件绑定
 	bindEvent(data) {
-			// 静态页面渲染后，绑定事件
 			var BE = pageConfig.bindEvent;
 			for (let func in BE) {
 				var pars = BE[func]["pars"] ? BE[func]["pars"] : null;
-
 				if (pars && pars["data"]) pars["data"] = data;
 				if (eventFuc[func]) eventFuc[func](pars);
 			};
 		}
 		// 页面业务逻辑
 	serviceLogic(data) {
-			if (serviceLogic) {
-				serviceLogic(data);
-			};
-		}
-		// 页面数据流
-	dataFlow(data) {
-		// if (dataFlow) {
-		// 	dataFlow(data);
-		// };
+		if (serviceLogic) {
+			serviceLogic(data);
+		};
 	}
 };
 

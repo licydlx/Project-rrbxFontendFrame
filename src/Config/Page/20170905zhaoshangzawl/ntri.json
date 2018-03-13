@@ -65,6 +65,18 @@
                 "readonly": "readonly"
             }
         }, {
+            "title": "缴费年限",
+            "type": "choose",
+            "choose": {
+                "id": "payEndYear",
+                "data-id": "5",
+                "value": "5年",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
             "title": "缴费频率",
             "type": "choose",
             "choose": {
@@ -88,6 +100,23 @@
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
+        }, {
+            "title": "附加险",
+            "type": "multiSelect",
+            "id": "riskcodes",
+            "tab": [{
+                "data-id": "QMLD003",
+                "text": "附加险1：爱未来少儿危重疾病保险B款"
+            }, {
+                "data-id": "QMLD002",
+                "text": "附加险2：爱未来少儿特定疾病保险B款"
+            }, {
+                "data-id": "QMLH001",
+                "text": "附加险3：爱未来住院津贴长期医疗保险B款"
+            }, {
+                "data-id": "QMLD012",
+                "text": "附加险4：附加豁免保险费重大疾病保险B款"
+            }]
         }],
         "sex": [{
             "id": "men",
@@ -122,6 +151,13 @@
         }, {
             "id": "12",
             "value": "年缴"
+        }],
+        "payEndYear": [{
+            "id": "5",
+            "value": "五年"
+        }, {
+            "id": "10",
+            "value": "十年"
         }]
     }
 }

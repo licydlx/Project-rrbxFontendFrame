@@ -1,6 +1,6 @@
 import env from '../../../../Config/env.js';
 // 获取保费
-function getPrem(obj, pars) {
+function premAjax(rrbxSet, pars) {
 	const promise = new Promise(function(resolve, reject) {
 		var data = JSON.stringify(pars);
 		$.ajax({
@@ -19,11 +19,11 @@ function getPrem(obj, pars) {
 	});
 	promise.then(function(value) {
 		$("#prem").text(value + "元");
-		obj.trialSet.result.prem = value;
-		localStorage.setItem(obj.trialSet.pars.rrbxProductId, JSON.stringify(obj));
+		rrbxSet.insuredPars.pars.extraParams.prem = value;
+		localStorage.setItem(rrbxSet.insuredPars.pars.rrbx.rrbxProductId, JSON.stringify(rrbxSet));
 	}, function(error) {
 		console.log(error);
 	});
 }
 
-export default getPrem;
+export default premAjax;

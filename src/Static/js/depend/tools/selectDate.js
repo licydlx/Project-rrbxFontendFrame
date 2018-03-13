@@ -51,7 +51,6 @@ class selectDate {
 							return;
 						};
 					};
-
 					DOM.attr('data-year', selectOneObj.id);
 					DOM.attr('data-month', selectTwoObj.id);
 					DOM.attr('data-date', selectThreeObj.id);

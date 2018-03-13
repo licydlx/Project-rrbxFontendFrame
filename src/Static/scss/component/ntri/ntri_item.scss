@@ -54,36 +54,12 @@
        position: relative;
        width:5rem;
        font-size:1rem;
-       .tag {
-            position: absolute;
-            width: 5px;
-            height: 1rem;
-            left: -15px;
-            background-color: #b6a780;
-        }
+       line-height:1.4;
     }
-    .tab {
+    .content {
         flex:auto;
         color:#333;
         display:flex;
-        font-size:1rem;
-        padding:15px;
-        a {
-            padding: 3px 6px;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            margin-right: .4rem;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        a.active {
-            background-color:#be3e46;
-            color:#fff;
-        }
-    }
-    .choose{
-        flex:auto;
-        color:#333;
         font-size:1rem;
         padding:15px;
     }
@@ -98,6 +74,46 @@
             height: 100%;
             object-fit: contain;
             transform: rotate(-90deg);
+        }
+    }
+}
+
+// 多选组件
+// 作者:ydlx
+// 日期:2018-3-13
+.multiSelect {
+    flex-direction: column;
+    align-items: flex-start;
+    height:auto;
+    .title {
+        position: relative;
+        width: 5rem;
+        font-size: 1rem;
+        line-height: 3rem;
+    }
+    .content {
+        flex: auto;
+        color: #333;
+        display: flex;
+        font-size: 1rem;
+        padding: 0;
+        flex-direction: column;
+        width: 100%;
+        li {
+            border-bottom: 10px solid #fff;
+            a{
+                display: block;
+                width: 100%;
+                border-radius: 4px;
+                padding: 6px 10px;
+                box-sizing: border-box;
+                border:1px solid #eee;
+            }
+            a.active {
+                background-color: #c2343d;
+                border:1px solid #c2343d;
+                color:#fff;
+            }
         }
     }
 }

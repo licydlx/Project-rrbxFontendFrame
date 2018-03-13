@@ -2,12 +2,11 @@
 require("../Static/scss/reset/reset.scss");
 require("../Static/scss/common/common.scss");
 // 模板渲染
-import ntri_premTrial from '../Moudle/ntri/ntri_premTrial.js';
+
 import ntri_item from '../Moudle/ntri/ntri_item.js';
 import ntri_footer from '../Moudle/ntri/ntri_footer.js';
 
 const brickObj = {
-	'ntri_premTrial': ntri_premTrial,
 	'ntri_footer': ntri_footer,
 	'ntri_item':ntri_item
 }

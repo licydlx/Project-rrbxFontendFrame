@@ -1,7 +1,7 @@
 {
     "basicInfo": {
         "detailsPage": "nbuy",
-        "productId": "201607061333aroundworld2",
+        "productId": "20170905zhaoshangzawl",
         "title": "第二社保-父母保险"
     },
     "htmlBrick": [
@@ -72,10 +72,7 @@
         },
         "e_nbuy_validate": {},
         "e_buy_fold": {},
-        "e_nbuy_getcode": {},
-        "e_nbuy_clause": {},
-        "e_nbuy_footer": {},
-        "e_nbuy_buynow": {}
+        "e_nbuy_getcode": {}
     },
     "serviceLogic": "",
     "dataFlow": "",
@@ -120,6 +117,30 @@
                     "data-belong": "policyHolderUser",
                     "data-type": "certiNo",
                     "data-verify": "certiNo"
+                }
+            }, {
+                "inputName": "个人职业",
+                "inputChoose": {
+                    "id": "holderOccupationCode",
+                    "norequired": true,
+                    "class": "choose"
+                },
+                "inputPars": {
+                    "id": "holderOccupationCode",
+                    "value": "2018-03-01",
+                    "unselectable": "no",
+                    "onfocus": "this.blur()",
+                    "readonly": "readonly"
+                }
+            }, {
+                "inputName": "详细地址",
+                "inputPars": {
+                    "id": "null",
+                    "placeholder": "请输入详细地址",
+                    "oninput": "if(value.length>30)value=value.slice(0,30)",
+                    "data-belong": "policyHolderUser",
+                    "data-type": "address",
+                    "data-verify": "address"
                 }
             }, {
                 "inputName": "邮箱地址",
