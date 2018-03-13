@@ -1,39 +1,96 @@
-<section class="infoBox mg-b-10">
-	<div class="infoItem">
-		<% if(holder) { %>
-			<a class="itemTitle"><%= holder.itemTitle %>
-				<i class="arrows"></i>
-			</a>
-			<% if(holder.itemInfo && holder.itemInfo.length > 0) { %>
-				<ul class="itemInfo">
-					<% for(var i=0;i < holder.itemInfo.length;i++){ %>
-						<% if(holder.itemInfo[i]["inputChoose"]) { %>
-							<li 
-								<% for(var x in holder.itemInfo[i]["inputChoose"]){ %>
-									<%= x+"="+holder.itemInfo[i]["inputChoose"][x] %>
-								<% } %>	
-							>
-						<% } else { %>
-							<li>
+<% if(item.holder) { 
+   var objArray = item.holder.objArray;
+%>
+<section class="box">
+	<a class="header">
+		<i class="tag"></i>
+		<i class="arrows"></i>
+		<%= item.holder.title %>
+	</a>
+	
+	<div class="itemBox">
+		<% for(var i=0;i < objArray.length;i++){ %>
+
+			<% if(objArray[i].type == "input") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<input class="content"
+						<% for(var x in objArray[i].input){ %>
+							<%= x+"="+objArray[i].input[x] %>
 						<% } %>
-								<a>
-									<label><%= holder.itemInfo[i]["inputName"] %></label>
-									<input 
-									<% for(var y in holder.itemInfo[i]["inputPars"]){ %>
-										<%= y+"="+holder.itemInfo[i]["inputPars"][y] %>
-									<% } %>	
-									></input>
-									<% if(holder.itemInfo[i]["inputChoose"]) { %>
-										<% if(holder.itemInfo[i]["inputChoose"]["class"] == "choose") { %>
-											<i class="arrows"></i>	
-										<% } %>
-									<% } %>
-								</a>
-							</li>
-					<% } %>
-				</ul>
+					>
+				</section>
+			<% } %>
+			
+			<% if(objArray[i].type == "inputDefault") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<input class="content"
+						<% for(var x in objArray[i].inputDefault){ %>
+							<%= x+"="+objArray[i].inputDefault[x] %>
+						<% } %>
+					>
+				</section>
+			<% } %>
+
+			<% if(objArray[i].type == "choose") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<input class="content"
+						<% for(var x in objArray[i].choose){ %>
+							<%= x+"="+objArray[i].choose[x] %>
+						<% } %>
+					>
+					<i class="icon">
+						<img class="iconImg" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+					</i>
+				</section>
+			<% } %>
+
+			<% if(objArray[i].type == "singleSelect") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<ul class="content">
+						<% for(var y=0;y < objArray[i].tab.length;y++){ %>
+						<li><a
+							<% if(y==0){ %>
+								class="active"
+							<% } %>
+							<%= "data-id"+"="+objArray[i].tab[y]["data-id"] %>
+							><%= objArray[i].tab[y].text %></a></li>
+						<% } %>
+					</ul>
+				</section>
+			<% } %>
+			
+			<% if(objArray[i].type == "multiSelect") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<ul class="content" id="<%= item[i].id %>">
+						<% for(var y=0;y < objArray[i].tab.length;y++){ %>
+						<li><a
+							<%= "data-id"+"="+objArray[i].tab[y]["data-id"] %>
+							><%= objArray[i].tab[y].text %></a></li>
+						<% } %>
+					</ul>
+				</section>
+			<% } %>
+
+			<% if(objArray[i].type == "default") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+					<input class="content"
+						<% for(var x in objArray[i].default){ %>
+							<%= x+"="+objArray[i].default[x] %>
+						<% } %>
+					>
+					<i class="icon">
+						<img class="iconImg" src="https://m1.renrenbx.com/rrbxcdn/rrbx/arrows.png">
+					</i>
+				</section>
 			<% } %>
 		<% } %>
 	</div>
-</section>
 
+</section>
+<% } %>

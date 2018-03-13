@@ -1,160 +1,123 @@
-input{    
-    background:none;    
-    outline:none;    
-    border:none;
-}
-input:focus { outline: none; }   
-input::-ms-input-placeholder{font-size:14px; line-height:1.4 !important;} 
-input::-webkit-input-placeholder{font-size:14px;line-height:1.4 !important;} 
-
-.infoBox {
-    background-color: #ffffff;
-    a {
-        display: block;
+// 试算页 千年不变父容器
+// 作者:ydlx
+// 日期:2018-3-12
+.box {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1rem solid #eee;
+    .error {
+        border-bottom: 1px solid #ed3876;
+    }
+    .header {
         position: relative;
-        border-bottom: 1px solid #d7d7d7;
+        display:block;
+        padding:15px;
+        font-size: 1rem;
+        line-height:1;
+        border-bottom:1px solid #eee;
+        .tag {
+            position: absolute;
+            width: 5px;
+            height: 1rem;
+            left: 0;
+            top: 15px;
+            background-color: #b6a780;
+        }
+        .arrows {
+            position: absolute;
+            right: 18px;
+            width: 8px;
+            height: 14px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAeCAYAAAAl+Z4RAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABTElEQVQ4y52UTS5EURCFv/e0kZGRsQ2IyKH9dEsswFQLsQDLMTE0Q1tH//hJkWALFqFJMKknN0/3u/eq0atKzqnzVW5eYWZnwD5wImlEZpXAIrAMDM2sm2tQAJhZH+j5bEfSOMvATW6Ag1yTsvqQ1AOuvB2l4hT1gZldA4epSYppwxrOtqTbKEJYNZyxmXWyDNzkGOh7OzCzvWSEHJwyZhDDiRoEOBcBzmYyQg0nfLFbku6yDNzkEjjytptt4CbnwGnyDabU0r9u4NsfgTXgG1ArQzgHDFz8AexKekpKYGYtYAi0gQnQlvSchODie9/8CaxX4ugRzWy+SQzQiogfgFVn7tTFMxFiscMqp4jD2JMm8Z8EtdgTYEPSS9Odwr9yGPvDNzeKfxFqsd9TxQClmS147Io5GjusFjAGVvzabUmvqeIK4Qt4i117Vv0AMEmUl7PZbAwAAAAASUVORK5CYII=");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(90deg);
+            transition: all 1s ease;
+        }
     }
 }
 
-.arrows {
-    position: absolute;
-    right: 0;
-    width: 8px;
-    height: 14px;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAeCAYAAAAl+Z4RAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABTElEQVQ4y52UTS5EURCFv/e0kZGRsQ2IyKH9dEsswFQLsQDLMTE0Q1tH//hJkWALFqFJMKknN0/3u/eq0atKzqnzVW5eYWZnwD5wImlEZpXAIrAMDM2sm2tQAJhZH+j5bEfSOMvATW6Ag1yTsvqQ1AOuvB2l4hT1gZldA4epSYppwxrOtqTbKEJYNZyxmXWyDNzkGOh7OzCzvWSEHJwyZhDDiRoEOBcBzmYyQg0nfLFbku6yDNzkEjjytptt4CbnwGnyDabU0r9u4NsfgTXgG1ArQzgHDFz8AexKekpKYGYtYAi0gQnQlvSchODie9/8CaxX4ugRzWy+SQzQiogfgFVn7tTFMxFiscMqp4jD2JMm8Z8EtdgTYEPSS9Odwr9yGPvDNzeKfxFqsd9TxQClmS147Io5GjusFjAGVvzabUmvqeIK4Qt4i117Vv0AMEmUl7PZbAwAAAAASUVORK5CYII=");
-    background-repeat: no-repeat;
-    background-size: contain;
-    transform: rotate(90deg);
-    transition: all 1s ease;
-}
-
-.open .arrows {
-    transform: rotate(270deg);
-}
-
-.itemTitle {
-    padding: 15px 15px;
-    color: #333;
-    font-size: 15px;
-    font-weight: bold;
-    .arrows {
-        margin-right: 15px;
+// 试算页 item 选项组件
+//
+// 作者:ydlx
+// 日期:2018-3-7
+.item {
+    position: relative;
+    display:flex;
+    align-items: center;
+    height:3rem;
+    line-height:1;
+    margin-left:15px;
+    margin-right:15px;
+    background-color:#fff;
+    border-bottom:1px solid #eee;
+    .title {
+       position: relative;
+       width:5rem;
+       font-size:1rem;
+       line-height:1.4;
+    }
+    .content {
+        flex:auto;
+        color:#333;
+        display:flex;
+        font-size:1rem;
+        padding:15px;
+    }
+    .icon {
+        position: absolute;
+        right: 0;
+        width: 14px;
+        display: block;
+        height: 1rem;
+        .iconImg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: rotate(-90deg);
+        }
     }
 }
 
-.itemInfo {
-    margin-left: 15px;
-    margin-right: 15px;
-    font-size: 14px;
-    li:last-child a {
-        border-bottom: none;
+// 多选组件
+// 作者:ydlx
+// 日期:2018-3-13
+.multiSelect {
+    flex-direction: column;
+    align-items: flex-start;
+    height:auto;
+    .title {
+        position: relative;
+        width: 5rem;
+        font-size: 1rem;
+        line-height: 3rem;
     }
-    a {
-        padding-top: 15px;
-        padding-bottom: 15px;
+    .content {
+        flex: auto;
         color: #333;
         display: flex;
-        label{
-          display:block;
-          width: 5rem;
-          font-size:14px;
-          padding-top:4px;
-          padding-bottom:4px;
-        }
-        input{
-            flex:auto;
-            font-size:14px;
-            color:#333;
+        font-size: 1rem;
+        padding: 0;
+        flex-direction: column;
+        width: 100%;
+        li {
+            border-bottom: 10px solid #fff;
+            a{
+                display: block;
+                width: 100%;
+                border-radius: 4px;
+                padding: 6px 10px;
+                box-sizing: border-box;
+                border:1px solid #eee;
+            }
+            a.active {
+                background-color: #c2343d;
+                border:1px solid #c2343d;
+                color:#fff;
+            }
         }
     }
-    .arrows {
-        transform: rotate(0deg);
-    }
-}
-
-/* 正确与错误标识 */
-.error > a {
-    border-bottom:1px solid #ed3876 !important;
-}
-
-.right > a {
-    border-bottom:1px solid #75dd75 !important;
-}
-
-/* 弹出框 */
-.popups {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 6px;
-    background-color: #c2343d;
-    font-size: 16px;
-    width: 240px;
-    color: #fff;
-    text-align: center;
-    margin: auto;
-}
-
-.title,
-.text,
-.button {
-    height:36px;
-    font-size:13px;
-}
-
-.alert-bg {
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.alert {
-    width: 16rem;
-    background: #fff;
-    border-radius: 5px;
-}
-
-.alert-content {
-    padding: 15px;
-    font-size: 14px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.alert-btns {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-}
-
-.alert-btns a {
-    color: #5d554b;
-    padding: 10px;
-    font-size: 15px;
-    display: inline-block;
-}
-.alert1-btn {
-    cursor: pointer;
-}
-
-.disabled {
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.6;
-    background-color:#999;
 }

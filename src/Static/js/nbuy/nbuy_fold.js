@@ -9,7 +9,6 @@ var e_buy_fold = function() {
 				multiple: this.multiple
 			}, this.dropdown);
 		}
-
 		dropdown(e) {
 			var $el = e.data.el,
 				$this = $(this),
@@ -18,6 +17,6 @@ var e_buy_fold = function() {
 			$this.parent().toggleClass('open');
 		}
 	}
-	new Accordion($('.itemTitle'), false);
+	new Accordion($('.box .header'), false);
 }
 export default e_buy_fold;

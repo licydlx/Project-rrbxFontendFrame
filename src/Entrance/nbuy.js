@@ -31,7 +31,10 @@ class lifeCycle {
 			var rrbxSet = JSON.parse(localStorage.getItem(productConfig.productId)),
 				[that, renderData, brickArray] =
 				[this, Object.assign(pageConfig.renderData, rrbxSet.renderDate), pageConfig.htmlBrick];
-				
+			
+			console.log(rrbxSet);
+			console.log(renderData);
+
 			new Promise(function(resolve, reject) {
 				tNbuy(renderData, brickArray);
 				resolve([renderData,rrbxSet]);
@@ -45,7 +48,6 @@ class lifeCycle {
 			}).then(function() {
 				console.log("work done");
 			})
-
 		}
 		// 页面事件绑定
 	bindEvent(data) {
@@ -60,7 +62,7 @@ class lifeCycle {
 		// 页面业务逻辑
 	serviceLogic(data) {
 			if (serviceLogic) {
-				serviceLogic(productConfig.productId, data);
+				serviceLogic(data);
 			};
 		}
 };

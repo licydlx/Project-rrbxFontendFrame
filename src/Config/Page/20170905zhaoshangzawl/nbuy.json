@@ -13,24 +13,99 @@
         "nbuy_footer"
     ],
     "bindEvent": {
-        "e_nbuy_rela": {
-            "pars": {
-                "relaData": [{
-                    "id": "01",
-                    "value": "本人"
+        "e_nbuy_validate": {},
+        "e_buy_fold": {},
+        "e_nbuy_getcode": {}
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": {
+            "holder": {
+                "title": "投保人",
+                "objArray": [{
+                    "title": "姓名",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入姓名",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
                 }, {
-                    "id": "40",
-                    "value": "子女"
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "holder_certiType",
+                        "data-value": "00",
+                        "value": "身份证",
+                        "placeholder": "身份证",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiType"
+                    }
                 }, {
-                    "id": "50",
-                    "value": "父母"
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_certiNo",
+                        "placeholder": "请输入证件号码",
+                        "oninput": "if(value.length>18)value=value.slice(0,18)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiNo",
+                        "data-verify": "certiNo"
+                    }
                 }, {
-                    "id": "10",
-                    "value": "配偶"
-                }],
-                "relaTemplate": [{
-                    "inputName": "姓名",
-                    "inputPars": {
+                    "title": "个人职业",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderOccupationCode",
+                        "placeholder": "请选择个人职业",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "policyHolderUser",
+
+                        "data-belong": "policyHolderUser",
+                        "data-type": "holderOccupationCode",
+                        "data-verify": "holderOccupationCode"
+                    }
+                }, {
+                    "title": "邮箱地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "email",
+                        "data-verify": "email"
+                    }
+                }]
+            },
+            "insured": {
+                "title": "被保人",
+                "objArray": [{
+                    "title": "为谁投保",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "relaId",
+                        "value": "儿子/女儿",
+                        "data-id": "03",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "姓名",
+                    "type": "input",
+                    "input": {
                         "id": "insured_userName",
                         "minlength": 2,
                         "maxlength": 32,
@@ -40,13 +115,9 @@
                         "data-verify": "userName"
                     }
                 }, {
-                    "inputName": "证件类型",
-                    "inputChoose": {
-                        "id": "insuredIdType",
-                        "norequired": true,
-                        "class": ""
-                    },
-                    "inputPars": {
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
                         "id": "insured_certiType",
                         "data-value": "00",
                         "value": "身份证",
@@ -58,8 +129,9 @@
                         "data-type": "certiType"
                     }
                 }, {
-                    "inputName": "证件号码",
-                    "inputPars": {
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
                         "id": "insured_certiNo",
                         "placeholder": "请输入证件号码",
                         "oninput": "if(value.length>18)value=value.slice(0,18)",
@@ -70,135 +142,13 @@
                 }]
             }
         },
-        "e_nbuy_validate": {},
-        "e_buy_fold": {},
-        "e_nbuy_getcode": {}
-    },
-    "serviceLogic": "",
-    "dataFlow": "",
-    "renderData": {
-        "holder": {
-            "itemTitle": "投保人",
-            "itemInfo": [{
-                "inputName": "姓名",
-                "inputPars": {
-                    "id": "holder_userName",
-                    "minlength": 2,
-                    "maxlength": 32,
-                    "placeholder": "请输入姓名",
-                    "data-belong": "policyHolderUser",
-                    "data-type": "userName",
-                    "data-verify": "userName"
-                }
+        "data": {
+            "holderOccupationCode": [{
+                "id": "men",
+                "value": "男"
             }, {
-                "inputName": "证件类型",
-                "inputChoose": {
-                    "id": "holderIdType",
-                    "norequired": true,
-                    "class": ""
-                },
-                "inputPars": {
-                    "id": "holder_certiType",
-                    "data-value": "00",
-                    "value": "身份证",
-                    "placeholder": "身份证",
-                    "unselectable": "no",
-                    "onfocus": "this.blur()",
-                    "readonly": "readonly",
-                    "data-belong": "policyHolderUser",
-                    "data-type": "certiType"
-                }
-            }, {
-                "inputName": "证件号码",
-                "inputPars": {
-                    "id": "holder_certiNo",
-                    "placeholder": "请输入证件号码",
-                    "oninput": "if(value.length>18)value=value.slice(0,18)",
-                    "data-belong": "policyHolderUser",
-                    "data-type": "certiNo",
-                    "data-verify": "certiNo"
-                }
-            }, {
-                "inputName": "个人职业",
-                "inputChoose": {
-                    "id": "holderOccupationCode",
-                    "norequired": true,
-                    "class": "choose"
-                },
-                "inputPars": {
-                    "id": "holderOccupationCode",
-                    "value": "2018-03-01",
-                    "unselectable": "no",
-                    "onfocus": "this.blur()",
-                    "readonly": "readonly"
-                }
-            }, {
-                "inputName": "详细地址",
-                "inputPars": {
-                    "id": "null",
-                    "placeholder": "请输入详细地址",
-                    "oninput": "if(value.length>30)value=value.slice(0,30)",
-                    "data-belong": "policyHolderUser",
-                    "data-type": "address",
-                    "data-verify": "address"
-                }
-            }, {
-                "inputName": "邮箱地址",
-                "inputPars": {
-                    "id": "null",
-                    "placeholder": "请输入邮箱地址",
-                    "oninput": "if(value.length>30)value=value.slice(0,30)",
-                    "data-belong": "policyHolderUser",
-                    "data-type": "email",
-                    "data-verify": "email"
-                }
-            }]
-        },
-        "insured": {
-            "itemTitle": "被保人",
-            "itemInfo": [{
-                "inputName": "为谁投保",
-                "inputChoose": {
-                    "id": "rela",
-                    "norequired": true,
-                    "class": "choose"
-                },
-                "inputPars": {
-                    "id": "relaId",
-                    "value": "本人",
-                    "data-id": "01",
-                    "unselectable": "no",
-                    "onfocus": "this.blur()",
-                    "readonly": "readonly"
-                }
-            }, {
-                "inputName": "起保日期",
-                "inputChoose": {
-                    "id": "confirmedDate",
-                    "norequired": true,
-                    "class": "choose"
-                },
-                "inputPars": {
-                    "id": "confirmedDateId",
-                    "value": "2018-03-01",
-                    "unselectable": "no",
-                    "onfocus": "this.blur()",
-                    "readonly": "readonly"
-                }
-            }, {
-                "inputName": "终止日期",
-                "inputChoose": {
-                    "id": "closingDate",
-                    "norequired": true,
-                    "class": "none"
-                },
-                "inputPars": {
-                    "id": "closingDateId",
-                    "value": "2018-04-01",
-                    "unselectable": "no",
-                    "onfocus": "this.blur()",
-                    "readonly": "readonly"
-                }
+                "id": "women",
+                "value": "女"
             }]
         }
     }

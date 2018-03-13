@@ -9,36 +9,38 @@ import {
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSet = a[1];
+	console.log(a);
 	console.log(rrbxSet);
-
+	console.log(renderData);
 	// 平台识别
 	if (rrbxSet.GV && Object.is(rrbxSet.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
 
+	console.log("holderOccupationCode");
 		// 被保人性别
-	new selectOne($("#holderOccupationCode"), "性别选择", renderData.holderOccupationCode, holderOccupationCode).init();
+	new selectOne($("#holderOccupationCode"), "性别选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
 
 	function holderOccupationCode(value) {
 		console.log("nihao");
 	}
 
-	// 购买产品 
-	$("#container").on("click", "#buyNow", function() {
-		var doneState = true;
-		if (!$(".agreed input").is(":checked")) {
-			alertError("请先同意以下条款！");
-			return;
-		};
-		$(".itemInfo").find("li").each(function(index, val) {
-			if (!$(val).hasClass('right') && !$(val).attr("norequired")) {
-				doneState = false;
-			}
-		});
-		if (doneState) {
-			inputSuccess();
-		} else {
-			alertError("请输入正确信息！");
-			return;
-		};
-	});
+	// // 购买产品 
+	// $("#container").on("click", "#buyNow", function() {
+	// 	var doneState = true;
+	// 	if (!$(".agreed input").is(":checked")) {
+	// 		alertError("请先同意以下条款！");
+	// 		return;
+	// 	};
+	// 	$(".itemInfo").find("li").each(function(index, val) {
+	// 		if (!$(val).hasClass('right') && !$(val).attr("norequired")) {
+	// 			doneState = false;
+	// 		}
+	// 	});
+	// 	if (doneState) {
+	// 		inputSuccess();
+	// 	} else {
+	// 		alertError("请输入正确信息！");
+	// 		return;
+	// 	};
+	// });
 }
 export default serviceLogic;
