@@ -74,9 +74,30 @@ const formatTimeStamp = function(par) {
 	}
 };
 
+
+// 错误提示框
+// 作者:ydlx
+// 日期:2018-3-14
+const alertError = function(data) {
+	let tpl = `<div class="alert-bg">
+					<div class="alert">
+					 <p class="alert-content">${data}</p>
+					 <div class="alert-btns">
+					  <a class="alert1-btn">确定</a>
+					 </div>
+					</div>
+				   </div>`;
+
+	$("#container").append(tpl);
+	$("#container").on("click", ".alert1-btn", function() {
+		$('.alert-bg').remove();
+	});
+}
+
 export {
 	commonJs,
 	loadScript,
 	getProductId,
-	formatTimeStamp
+	formatTimeStamp,
+	alertError
 };

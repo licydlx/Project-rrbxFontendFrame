@@ -4,7 +4,8 @@ var validate = {
 		"userName": /^[a-zA-Z\u4e00-\u9fa5]+$/,
 		"certiNo": "certiNo",
 		"authCode": /^\d{6,9}$/,
-		"email": /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+		"email": /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+		"address":/\S/
 	},
 	format: function(par) {
 		return this.obj[par];

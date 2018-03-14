@@ -18,7 +18,7 @@ class selectOne {
 			event.preventDefault();
 			new IosSelect(1, [that.data], {
 				container: '#container',
-				title: this.title,
+				title: that.title,
 				itemHeight: 35,
 				itemShowCount: 4,
 				oneLevelId: that.bindDom.attr('data-id'),

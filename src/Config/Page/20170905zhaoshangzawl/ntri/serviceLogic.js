@@ -8,12 +8,10 @@ import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
-		rrbxSet = a[1];
-	console.log(rrbxSet);
-	// 初始化 保費參數值(由投保页回退回来)
-	Object.assign(rrbxSet.insuredPars.pars, rrbxSet.insuredPars.parsInit);
-	// 設置默認保費TEXT
-	$("#prem").text(rrbxSet.insuredPars.pars.extraParams.prem + "元");
+		rrbxSetObj = a[1];
+	// 初始化 保費參數值(由投保页回退回来) (多层级 对象 深拷贝)
+	var parsObj = JSON.parse(JSON.stringify(rrbxSetObj.insuredPars.parsInit));
+	getPrem(rrbxSetObj);
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 	// =============================
@@ -21,56 +19,56 @@ const serviceLogic = function(a) {
 	new selectDate($("#holderBirthday"), "birthday", '1992-02-02', 60, -20, holderBirthday).init();
 
 	function holderBirthday(value) {
-		rrbxSet.insuredPars.pars.extraParams.holderBirthday = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.holderBirthday = value;
+		getPrem(rrbxSetObj);
 		return true;
 	}
 	// 被保人出生日期
 	new selectDate($("#insuredBirthday"), "birthday", '2017-02-02', 9, 0, insuredBirthday).init();
 
 	function insuredBirthday(value) {
-		rrbxSet.insuredPars.pars.extraParams.insuredBirthday = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.insuredBirthday = value;
+		getPrem(rrbxSetObj);
 		return true;
 	}
 	// 被保人性别
 	new selectOne($("#sex"), "性别选择", renderData.sex, sex).init();
 
 	function sex(value) {
-		rrbxSet.insuredPars.pars.extraParams.sex = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.sex = value;
+		getPrem(rrbxSetObj);
 	}
 
 	// 保额选择
 	new selectOne($("#amnt"), "保额选择", renderData.amnt, coverageFunc).init();
 
 	function coverageFunc(value) {
-		rrbxSet.insuredPars.pars.extraParams.amnt = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.amnt = value;
+		getPrem(rrbxSetObj);
 	}
 
 	// 缴费年限
 	new selectOne($("#payEndYear"), "缴费年限", renderData.payEndYear, payEndYear).init();
 
 	function payEndYear(value) {
-		rrbxSet.insuredPars.pars.extraParams.payEndYear = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.payEndYear = value;
+		getPrem(rrbxSetObj);
 	}
 
 	// 缴费频率
 	new selectOne($("#payIntv"), "缴费频率", renderData.payIntv, payIntv).init();
 
 	function payIntv(value) {
-		rrbxSet.insuredPars.pars.extraParams.payIntv = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.payIntv = value;
+		getPrem(rrbxSetObj);
 	}
 
 	// 住院津贴
 	new selectOne($("#ylAmnt"), "住院津贴", renderData.ylAmnt, ylAmnt).init();
 
 	function ylAmnt(value) {
-		rrbxSet.insuredPars.pars.extraParams.ylAmnt = value;
-		getPrem(rrbxSet);
+		parsObj.extraParams.ylAmnt = value;
+		getPrem(rrbxSetObj);
 	}
 
 	// 数组 原型 增加 remove 方法
@@ -90,28 +88,34 @@ const serviceLogic = function(a) {
 	};
 
 	// 附加险多选
-	var riskcodesArray = [];
-	$("#riskcodes").on('click', 'a', function(event) {
+	var riskCodesArray = [parsObj.extraParams.riskCodes];
+	$("#riskCodes").on('click', 'a', function(event) {
 		event.preventDefault();
 		var that = $(this);
 		if (!that.hasClass("active")) {
 			that.addClass("active");
-			riskcodesArray.push(that.attr("data-id"));
+			riskCodesArray.push(that.attr("data-id"));
 
 		} else {
 			that.removeClass("active");
-			riskcodesArray.remove(that.attr("data-id"));
+			riskCodesArray.remove(that.attr("data-id"));
 		}
-		var riskcodes = riskcodesArray.join(',');
-		rrbxSet.insuredPars.pars.extraParams.riskcodes = riskcodes;
-		getPrem(rrbxSet);
+		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+
+		getPrem(rrbxSetObj);
 	});
 
 	// 获取保费 并 存储rrbxSet
-	function getPrem(rrbxSet) {
-		var ntriObj = rrbxSet.insuredPars.pars.rrbx;
-		ntriObj["extraParams"] = rrbxSet.insuredPars.pars.extraParams;
-		premAjax(rrbxSet, ntriObj);
+	function getPrem(rrbxSetObj) {
+		var ntriObj = parsObj.rrbx;
+		ntriObj["extraParams"] = parsObj.extraParams;
+
+		premAjax(ntriObj, function(value) {
+			$("#prem").text(value + "元");
+			parsObj.extraParams.prem = value;
+			rrbxSetObj.insuredPars.pars = parsObj;
+			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
+		});
 	}
 };
 export default serviceLogic;

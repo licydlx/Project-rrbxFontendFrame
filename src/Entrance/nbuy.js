@@ -31,10 +31,6 @@ class lifeCycle {
 			var rrbxSet = JSON.parse(localStorage.getItem(productConfig.productId)),
 				[that, renderData, brickArray] =
 				[this, Object.assign(pageConfig.renderData, rrbxSet.renderDate), pageConfig.htmlBrick];
-			
-			console.log(rrbxSet);
-			console.log(renderData);
-
 			new Promise(function(resolve, reject) {
 				tNbuy(renderData, brickArray);
 				resolve([renderData,rrbxSet]);

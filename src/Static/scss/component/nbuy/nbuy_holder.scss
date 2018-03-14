@@ -38,6 +38,14 @@
             transition: all 1s ease;
         }
     }
+    .itemBox {
+        > section[data-state=error] {
+            border-bottom:1px solid #ed3876;
+        }
+        > section[data-state=right] {
+            border-bottom:1px solid #75dd75;
+        }
+    }
 }
 
 // 试算页 item 选项组件

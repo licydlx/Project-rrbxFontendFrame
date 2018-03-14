@@ -103,19 +103,16 @@
         }, {
             "title": "附加险",
             "type": "multiSelect",
-            "id": "riskcodes",
-            "tab": [{
+            "id": "riskCodes",
+            "multiSelect": [{
                 "data-id": "QMLD003",
                 "text": "附加险1：爱未来少儿危重疾病保险B款"
             }, {
                 "data-id": "QMLD002",
                 "text": "附加险2：爱未来少儿特定疾病保险B款"
             }, {
-                "data-id": "QMLH001",
-                "text": "附加险3：爱未来住院津贴长期医疗保险B款"
-            }, {
                 "data-id": "QMLD012",
-                "text": "附加险4：附加豁免保险费重大疾病保险B款"
+                "text": "附加险3：附加豁免保险费重大疾病保险B款"
             }]
         }],
         "sex": [{

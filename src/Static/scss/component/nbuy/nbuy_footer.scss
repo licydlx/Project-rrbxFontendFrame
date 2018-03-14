@@ -26,3 +26,43 @@
     background-color:#c2343d;
     color:#fff;
 }
+
+
+.alert-bg {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    .alert {
+        width: 16rem;
+        background: #fff;
+        border-radius: 5px;
+        .alert-content {
+            padding: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .alert-btns {
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            .alert1-btn {
+                color: #5d554b;
+                padding: 10px;
+                font-size: 15px;
+                display: block;
+                cursor: pointer;
+            }
+        }
+    }
+}

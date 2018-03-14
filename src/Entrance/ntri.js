@@ -29,7 +29,6 @@ class lifeCycle {
 				tTrial(renderData, brickArray);
 				resolve([renderData,rrbxSet]);
 			}).then(function(a) {
-				console.log(a[0]);
 				that.bindEvent(a[0]);
 				return a;
 			}).then(function(a) {

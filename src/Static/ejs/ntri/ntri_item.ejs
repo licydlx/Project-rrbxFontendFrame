@@ -1,3 +1,4 @@
+
 <section class="background">
 	<section class="box">
 		<div class="header">
@@ -5,8 +6,41 @@
 			<%= "保障计划" %>
 		</div>
 
+		<% if(insurancePlan) { %>
+			<ul id="pt-sp-nav" class="sp-nav pt-sp-nav">
+				<% if(insurancePlan.length > 0) { %>
+					<% for(var i=0;i < insurancePlan.length;i++){ %>
+						<li>
+						   <% if(i == "0") { %>
+						       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = "<%= insurancePlan[i].insureId %>"><%= insurancePlan[i].optionName %></a>  
+					       <% } else { %>
+						       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = <%= insurancePlan[i].insureId %>><%= insurancePlan[i].optionName %></a>  
+					       <% } %>
+						</li>
+					<% } %>
+				<% } %>
+			</ul>
+
+			<ul id="pt-sp-content" class="sp-content">
+				<% if(insurancePlan && insurancePlan.length > 0) { %>
+					<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
+					    <li>
+							<a id="sp-toggle" class="sp-con-brief">
+								<span><%= insurancePlan[0].seriesDesc[i].title %></span>
+								<span><%= insurancePlan[0].seriesDesc[i].price %></span>
+							</a>
+							<p class="sp-con-details">
+								<%= insurancePlan[0].seriesDesc[i].desc %>
+							</p>
+						</li>
+					<% } %>
+				<% } %>
+			</ul>
+		<% } %>
+		
 		<% if(item) { %>
 			<% for(var i=0;i < item.length;i++){ %>
+			
 				<% if(item[i].type == "choose") { %>
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>
@@ -25,13 +59,13 @@
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>
 						<ul class="content">
-							<% for(var y=0;y < item[i].tab.length;y++){ %>
+							<% for(var y=0;y < item[i].singleSelect.length;y++){ %>
 							<li><a
 								<% if(y==0){ %>
 									class="active"
 								<% } %>
-								<%= "data-id"+"="+item[i].tab[y]["data-id"] %>
-								><%= item[i].tab[y].text %></a></li>
+								<%= "data-id"+"="+item[i].singleSelect[y]["data-id"] %>
+								><%= item[i].singleSelect[y].text %></a></li>
 							<% } %>
 						</ul>
 					</section>
@@ -41,12 +75,23 @@
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>
 						<ul class="content" id="<%= item[i].id %>">
-							<% for(var y=0;y < item[i].tab.length;y++){ %>
+							<% for(var y=0;y < item[i].multiSelect.length;y++){ %>
 							<li><a
-								<%= "data-id"+"="+item[i].tab[y]["data-id"] %>
-								><%= item[i].tab[y].text %></a></li>
+								<%= "data-id"+"="+item[i].multiSelect[y]["data-id"] %>
+								><%= item[i].multiSelect[y].text %></a></li>
 							<% } %>
 						</ul>
+					</section>
+				<% } %>
+
+				<% if(item[i].type == "inputDefault") { %>
+					<section class="item <%= item[i].type %>">
+						<label class="title"><%= item[i].title %></label>
+						<input class="content"
+							<% for(var x in item[i].inputDefault){ %>
+								<%= x+"="+item[i].inputDefault[x] %>
+							<% } %>
+						>
 					</section>
 				<% } %>
 			<% } %>

@@ -1,7 +1,6 @@
 import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import getPrem from '../../../../Static/js/depend/datas/premAjax.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
-
 import {dateModal} from '../../../../Static/js/common/modal.js';
 const serviceLogic = function(productId, data) {
 	var DataSet = JSON.parse(localStorage.getItem(productId)),
@@ -62,7 +61,6 @@ const serviceLogic = function(productId, data) {
 			$("#closingDateId").attr("value",dateUnit.getDateFromDimdd(par, ensureDays).commonCurDate);
 			return true;
 		};
-		
 	}
 }
 export default serviceLogic;
