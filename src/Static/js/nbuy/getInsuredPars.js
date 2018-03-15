@@ -5,7 +5,6 @@ const productConfig = require('../../../Config/config.json');
 require("../../scss/component/depend/loading.scss");
 
 const getInsuredPars = function(rrbxSet) {
-	console.log(rrbxSet);
 	var getChannel = function() {
 		if (rrbxSet.GV.nbuy_channel != null && rrbxSet.GV.nbuy_channel != '') {
 			return rrbxSet.GV.nbuy_channel;
@@ -25,7 +24,7 @@ const getInsuredPars = function(rrbxSet) {
 	};
 	var RRBX = Object.assign(rrbxDataModal, rrbxSet.insuredPars.pars.rrbx);
 
-	console.log(RRBX);
+	// console.log(RRBX);
 	var relaTag = $("#relaId").attr("data-id");
 
 	// 根据页面 整合投保参数

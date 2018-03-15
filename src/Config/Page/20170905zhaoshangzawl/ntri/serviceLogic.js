@@ -5,6 +5,7 @@ import {
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
+import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -19,17 +20,30 @@ const serviceLogic = function(a) {
 	new selectDate($("#holderBirthday"), "birthday", '1992-02-02', 60, -20, holderBirthday).init();
 
 	function holderBirthday(value) {
-		parsObj.extraParams.holderBirthday = value;
-		getPrem(rrbxSetObj);
-		return true;
+		var flag = dateUnit.getAgeRangeState(value,{"age":20},{"age":60});
+		console.log(value);
+
+		if (!flag) {
+			return false;
+		} else {
+			parsObj.extraParams.insuredBirthday = value;
+			getPrem(rrbxSetObj);
+			return true;
+		};
 	}
 	// 被保人出生日期
 	new selectDate($("#insuredBirthday"), "birthday", '2017-02-02', 9, 0, insuredBirthday).init();
 
 	function insuredBirthday(value) {
-		parsObj.extraParams.insuredBirthday = value;
-		getPrem(rrbxSetObj);
-		return true;
+		var flag = dateUnit.getAgeRangeState(value,{"ageDay":60},{"age":9});
+
+		if (!flag) {
+			return false;
+		} else {
+			parsObj.extraParams.insuredBirthday = value;
+			getPrem(rrbxSetObj);
+			return true;
+		};
 	}
 	// 被保人性别
 	new selectOne($("#sex"), "性别选择", renderData.sex, sex).init();

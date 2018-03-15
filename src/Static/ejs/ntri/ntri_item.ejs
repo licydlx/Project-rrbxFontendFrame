@@ -1,4 +1,3 @@
-
 <section class="background">
 	<section class="box">
 		<div class="header">
@@ -22,7 +21,7 @@
 			</ul>
 
 			<ul id="pt-sp-content" class="sp-content">
-				<% if(insurancePlan && insurancePlan.length > 0) { %>
+				<% if(insurancePlan.length > 0) { %>
 					<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
 					    <li>
 							<a id="sp-toggle" class="sp-con-brief">
@@ -40,7 +39,7 @@
 		
 		<% if(item) { %>
 			<% for(var i=0;i < item.length;i++){ %>
-			
+
 				<% if(item[i].type == "choose") { %>
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>

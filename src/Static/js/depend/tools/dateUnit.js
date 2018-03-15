@@ -108,11 +108,108 @@ var dateUnit = {
 	// 参数:prevDate nextDate
 	// 例子:getDateDimDd("2018-03-12","2018-03-14") => 2
 	// 作者:ydlx
-	// 日期:2019-03-12
+	// 日期:2018-03-12
 	getDateDimdd: function(prevDate, nextDate) {
 		var pdMs = new Date(prevDate).valueOf(),
 			ndMs = new Date(nextDate).valueOf();
-		return (ndMs - pdMs) / (24 * 60 * 60 * 1000);
+		return Math.floor((ndMs - pdMs) / (24 * 60 * 60 * 1000));
+	},
+	// 根据出生日期 获取年龄
+	// 参数:birthday
+	// 例子:getAgeFromBirthday("2018-03-15") => {"age":1}
+	// 作者:ydlx
+	// 日期:2018-3-15
+	getAgeFromBirthday: function(birthday) {
+		var [birthdayDate, currentDate] = [new Date(birthday), new Date()];
+		var [year, month, day] = [currentDate.getFullYear() - birthdayDate.getFullYear(),
+			currentDate.getMonth() - birthdayDate.getMonth(), currentDate.getDate() - birthdayDate.getDate()
+		];
+		// if (month < 0) {
+		//   year--;
+		//   month = currentDate.getMonth() + (12 - birthdayDate.getMonth());
+		// }
+		// if (day < 0) {
+		//   month--;
+		//   var index = [1, 3, 5, 7, 8, 10, 12, 4, 6, 9, 11, 2].findIndex((temp) => {
+		//       return temp === birthdayDate.getMonth() + 1;
+		//     }),
+		//     monthLength;
+		//   if (index <= 6) {
+		//     monthLength = 31;
+		//   } else if (index > 6 && index <= 10) {
+		//     monthLength = 30;
+		//   } else {
+		//     monthLength = 28;
+		//   }
+		//   day = currentDate.getDate() + (monthLength - birthdayDate.getDate());
+		// }
+		if (year < 1) {
+			var ageDay = Math.floor((currentDate.valueOf() - birthdayDate.valueOf()) / (24 * 60 * 60 * 1000));
+			return {
+				"age": 0,
+				"ageDay": ageDay
+			};
+		} else {
+			return {
+				"age": year
+			}
+		};
+	},
+
+	// 根据出生日期 及 范围区间 返回状态
+	// 参数:birthday,greate:{"ageDay":60} || {"age":1},less:{"ageDay":90} || {"age":9}
+	// 
+	// 
+	getAgeRangeState: function(birthday, greate, less) {
+		var [gre, le] = [false, false];
+
+		if (greate.ageDay) {
+			console.log(greate.ageDay);
+			var greateAge = this.getAgeFromBirthday(birthday);
+			if (greateAge.ageDay) {
+				if (greate.ageDay < greateAge.ageDay) {
+					return gre = true;
+				};
+			} else {
+				gre = true;
+			};
+		};
+
+		if (greate.age) {
+			console.log(greate.age);
+			var greateAge = this.getAgeFromBirthday(birthday);
+			if (greate.age > greateAge.age) {
+				gre = true;
+			};
+		};
+
+		if (less.ageDay) {
+			console.log(greate.age);
+			var lessAge = this.getAgeFromBirthday(birthday);
+			if (lessAge.ageDay) {
+				if (less.ageDay > lessAge.ageDay) {
+					le = true;
+				};
+			} else {
+				le = true;
+			};
+		};
+
+		if (less.age) {
+			console.log(less.age);
+			var lessAge = this.getAgeFromBirthday(birthday);
+			if (less.age < lessAge.age) {
+				le = true;
+			};
+		};
+
+		console.log(gre);
+		console.log(le);
+		if (gre && le) {
+			return true;
+		} else {
+			return false;
+		};
 	}
 }
 

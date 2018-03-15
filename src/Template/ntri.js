@@ -8,7 +8,7 @@ import ntri_footer from '../Moudle/ntri/ntri_footer.js';
 
 const brickObj = {
 	'ntri_footer': ntri_footer,
-	'ntri_item':ntri_item
+	'ntri_item': ntri_item
 }
 
 var tTrial = function(obj, brick, callback) {

@@ -21,15 +21,15 @@ class lifeCycle {
 			// that: 当前作用域对象
 			// renderData: 页面渲染数据 (后台返回数据加json配置数据)
 			// brickArray: 页面模板组成
-			var rrbxSet = JSON.parse(localStorage.getItem(productConfig.productId)),
+			var rrbxSetObj = JSON.parse(localStorage.getItem(productConfig.productId)),
 				[that, renderData, brickArray] =
-				[this, Object.assign(pageConfig.renderData, rrbxSet.renderDate), pageConfig.htmlBrick];
-				
+				[this, Object.assign(pageConfig.renderData, rrbxSetObj.renderDate), pageConfig.htmlBrick];
+
 			new Promise(function(resolve, reject) {
 				tTrial(renderData, brickArray);
-				resolve([renderData,rrbxSet]);
+				resolve([renderData, rrbxSetObj]);
 			}).then(function(a) {
-				that.bindEvent(a[0]);
+				that.bindEvent(a[1]);
 				return a;
 			}).then(function(a) {
 				that.serviceLogic(a);
