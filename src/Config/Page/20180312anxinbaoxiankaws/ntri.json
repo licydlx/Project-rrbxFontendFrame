@@ -1,0 +1,157 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "20170905zhaoshangzawl",
+        "title": "第二社保-父母保险"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {
+
+        },
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "投保人出生日期",
+            "type": "choose",
+            "choose": {
+                "id": "holderBirthday",
+                "value": "",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "被保人出生日期",
+            "type": "choose",
+            "choose": {
+                "id": "insuredBirthday",
+                "value": "",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "被保人性别",
+            "type": "choose",
+            "choose": {
+                "id": "sex",
+                "data-id": "men",
+                "value": "男",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "保额选择",
+            "type": "choose",
+            "choose": {
+                "id": "amnt",
+                "data-id": "5",
+                "value": "5万元",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "缴费年限",
+            "type": "choose",
+            "choose": {
+                "id": "payEndYear",
+                "data-id": "5",
+                "value": "5年",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "缴费频率",
+            "type": "choose",
+            "choose": {
+                "id": "payIntv",
+                "data-id": "1",
+                "value": "月缴",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "住院津贴",
+            "type": "choose",
+            "choose": {
+                "id": "ylAmnt",
+                "data-id": "50",
+                "value": "50元/天",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "附加险",
+            "type": "multiSelect",
+            "id": "riskCodes",
+            "multiSelect": [{
+                "data-id": "QMLD003",
+                "text": "附加险1：爱未来少儿危重疾病保险B款"
+            }, {
+                "data-id": "QMLD002",
+                "text": "附加险2：爱未来少儿特定疾病保险B款"
+            }]
+        }],
+        "sex": [{
+            "id": "men",
+            "value": "男"
+        }, {
+            "id": "women",
+            "value": "女"
+        }],
+        "amnt": [{
+            "id": "5",
+            "value": "5万元"
+        }, {
+            "id": "10",
+            "value": "10万元"
+        }, {
+            "id": "20",
+            "value": "20万元"
+        }],
+        "ylAmnt": [{
+            "id": "50",
+            "value": "50元/天"
+        }, {
+            "id": "100",
+            "value": "100元/天"
+        }, {
+            "id": "150",
+            "value": "150元/天"
+        }],
+        "payIntv": [{
+            "id": "1",
+            "value": "月缴"
+        }, {
+            "id": "12",
+            "value": "年缴"
+        }],
+        "payEndYear": [{
+            "id": "5",
+            "value": "五年"
+        }, {
+            "id": "10",
+            "value": "十年"
+        }]
+    }
+}
