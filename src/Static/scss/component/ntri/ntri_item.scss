@@ -92,6 +92,28 @@
 ::-webkit-scrollbar-thumb:active{border:0;border-radius:0;background-color:#737ed7}
 ::-webkit-scrollbar-thumb:window-inactive{background-color:#4c97da}
 
+// TAB单选
+// 作者:ydlx
+// 日期:2018-3-16
+.singleSelect {
+    .content {
+        li.active {
+            a {
+                color:#fff;
+                background-color:#c2343d;
+                border:none;
+            }
+        }
+        li {
+            a {
+                padding:5px 1rem;
+                border:1px solid #eee;
+                border-radius:4px;
+                margin-right:1rem;
+            }
+        }
+    }
+}
 // 多选组件
 // 作者:ydlx
 // 日期:2018-3-13

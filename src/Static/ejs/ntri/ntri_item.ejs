@@ -57,12 +57,13 @@
 				<% if(item[i].type == "singleSelect") { %>
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>
-						<ul class="content">
+						<ul class="content" id="<%= item[i].id %>">
 							<% for(var y=0;y < item[i].singleSelect.length;y++){ %>
-							<li><a
+							<li
 								<% if(y==0){ %>
 									class="active"
 								<% } %>
+							><a
 								<%= "data-id"+"="+item[i].singleSelect[y]["data-id"] %>
 								><%= item[i].singleSelect[y].text %></a></li>
 							<% } %>

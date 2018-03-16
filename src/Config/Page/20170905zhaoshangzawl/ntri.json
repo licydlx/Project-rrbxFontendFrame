@@ -2,7 +2,7 @@
     "basicInfo": {
         "detailsPage": "ntri",
         "productId": "20170905zhaoshangzawl",
-        "title": "第二社保-父母保险"
+        "title": "招商信诺-珍爱未来"
     },
     "htmlBrick": ["ntri_item", "ntri_footer"],
     "bindEvent": {
@@ -30,6 +30,17 @@
                 "readonly": "readonly"
             }
         }, {
+            "title": "投保人性别",
+            "type": "singleSelect",
+            "id":"",
+            "singleSelect": [{
+                "data-id": "men",
+                "text": "男"
+            }, {
+                "data-id": "women",
+                "text": "女"
+            }]
+        }, {
             "title": "被保人出生日期",
             "type": "choose",
             "choose": {
@@ -42,16 +53,15 @@
             }
         }, {
             "title": "被保人性别",
-            "type": "choose",
-            "choose": {
-                "id": "sex",
+            "type": "singleSelect",
+            "id":"sex",
+            "singleSelect": [{
                 "data-id": "men",
-                "value": "男",
-
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
+                "text": "男"
+            }, {
+                "data-id": "women",
+                "text": "女"
+            }]
         }, {
             "title": "保额选择",
             "type": "choose",
@@ -93,13 +103,24 @@
             "type": "choose",
             "choose": {
                 "id": "ylAmnt",
-                "data-id": "50",
-                "value": "50元/天",
+                "data-id": "0",
+                "value": "0元/天",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
+        },{
+            "title": "重疾豁免",
+            "type": "singleSelect",
+            "id":"zjhm",
+            "singleSelect": [{
+                "data-id": false,
+                "text": "不投保"
+            }, {
+                "data-id": true,
+                "text": "投保"
+            }]
         }, {
             "title": "附加险",
             "type": "multiSelect",
@@ -128,8 +149,14 @@
         }, {
             "id": "20",
             "value": "20万元"
+        }, {
+            "id": "30",
+            "value": "30万元"
         }],
         "ylAmnt": [{
+            "id": "0",
+            "value": "0元/天"
+        }, {
             "id": "50",
             "value": "50元/天"
         }, {

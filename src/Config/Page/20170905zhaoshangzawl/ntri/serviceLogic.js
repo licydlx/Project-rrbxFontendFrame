@@ -22,10 +22,14 @@ const serviceLogic = function(a) {
 	new selectDate($("#holderBirthday"), "birthday", '1992-02-02', 60, -20, holderBirthday).init();
 
 	function holderBirthday(value) {
-		var flag = dateUnit.getAgeRangeState(value,{"age":20},{"age":60});
+		var flag = dateUnit.getAgeRangeState(value, {
+			"age": 20
+		}, {
+			"age": 60
+		});
 
 		if (!flag) {
-			new dateModal(null,"stateIndform","投保人年龄最小20岁，最大60岁").init().show();
+			new dateModal(null, "stateIndform", "投保人年龄最小20岁，最大60岁").init().show();
 			return false;
 		} else {
 			parsObj.extraParams.holderBirthday = value;
@@ -37,10 +41,14 @@ const serviceLogic = function(a) {
 	new selectDate($("#insuredBirthday"), "birthday", '2017-02-02', 9, 0, insuredBirthday).init();
 
 	function insuredBirthday(value) {
-		var flag = dateUnit.getAgeRangeState(value,{"ageDay":60},{"age":9});
+		var flag = dateUnit.getAgeRangeState(value, {
+			"ageDay": 60
+		}, {
+			"age": 9
+		});
 
 		if (!flag) {
-			new dateModal(null,"stateIndform","被保人年龄最小60天，最大9岁").init().show();
+			new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9岁").init().show();
 			return false;
 		} else {
 			parsObj.extraParams.insuredBirthday = value;
@@ -49,12 +57,36 @@ const serviceLogic = function(a) {
 		};
 	}
 	// 被保人性别
-	new selectOne($("#sex"), "性别选择", renderData.sex, sex).init();
+	$(".singleSelect").on('click', 'a', function(event) {
+		event.preventDefault();
+		var $this = $(this);
+		var tagId = $this.closest(".content").attr("id");
+		var val = $this.attr("data-id");
 
-	function sex(value) {
-		parsObj.extraParams.sex = value;
+		if (!$this.closest("li").hasClass("active")) {
+			$this.closest(".content").find("li").removeClass("active");
+			$this.closest("li").addClass("active");
+		}
+
+		switch (tagId) {
+			case 'zjhm':
+				if (Object.is(val,'true')) {
+					console.log("true");
+					riskCodesArray.push('QMLD012');
+					console.log(riskCodesArray);
+				} else {
+					console.log("false");
+					riskCodesArray.remove('QMLD012');
+					console.log(riskCodesArray);
+				};
+				parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+				break;
+			case "sex":
+				parsObj.extraParams[tagId] = val;	
+				break;
+		}
 		getPrem(rrbxSetObj);
-	}
+	});
 
 	// 保额选择
 	new selectOne($("#amnt"), "保额选择", renderData.amnt, coverageFunc).init();
@@ -80,14 +112,6 @@ const serviceLogic = function(a) {
 		getPrem(rrbxSetObj);
 	}
 
-	// 住院津贴
-	new selectOne($("#ylAmnt"), "住院津贴", renderData.ylAmnt, ylAmnt).init();
-
-	function ylAmnt(value) {
-		parsObj.extraParams.ylAmnt = value;
-		getPrem(rrbxSetObj);
-	}
-
 	// 数组 原型 增加 remove 方法
 	// 作者:ydlx
 	// 日期:2018-3-13
@@ -105,7 +129,7 @@ const serviceLogic = function(a) {
 	};
 
 	// 附加险多选
-	var riskCodesArray = [parsObj.extraParams.riskCodes];
+	var riskCodesArray = [];
 	$("#riskCodes").on('click', 'a', function(event) {
 		event.preventDefault();
 		var that = $(this);
@@ -121,6 +145,22 @@ const serviceLogic = function(a) {
 
 		getPrem(rrbxSetObj);
 	});
+
+
+	// 住院津贴
+	new selectOne($("#ylAmnt"), "住院津贴", renderData.ylAmnt, ylAmnt).init();
+
+	function ylAmnt(value) {
+		// 津贴有无影响附加险
+		if (value == 0) {
+			riskCodesArray.remove("QMLH001");
+		} else {
+			riskCodesArray.push("QMLH001");
+		};
+		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+		parsObj.extraParams.ylAmnt = value;
+		getPrem(rrbxSetObj);
+	}
 
 	// 获取保费 并 存储rrbxSet
 	function getPrem(rrbxSetObj) {

@@ -25,7 +25,7 @@ const dataFlow = function(data) {
 					"payIntv": "1",
 					"ylAmnt": "50",
 					"sex":"men",
-					"riskCodes": "QMLH001",
+					"riskCodes": "",
 					"amnt": "5",
 					"prem": "608.72"
 				}
@@ -50,7 +50,7 @@ const dataFlow = function(data) {
 					"payIntv": "1",
 					"ylAmnt": "50",
 					"sex":"men",
-					"riskCodes": "QMLH001",
+					"riskCodes": "",
 					"amnt": "5",
 					"prem": "608.72"
 				}
