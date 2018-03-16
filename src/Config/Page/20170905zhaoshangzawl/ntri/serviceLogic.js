@@ -1,5 +1,6 @@
 import {
-	consultServie
+	consultServie,
+	dateModal
 } from '../../../../Static/js/common/modal.js';
 
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
@@ -16,17 +17,18 @@ const serviceLogic = function(a) {
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 	// =============================
+
 	// 投保人出生日期
 	new selectDate($("#holderBirthday"), "birthday", '1992-02-02', 60, -20, holderBirthday).init();
 
 	function holderBirthday(value) {
 		var flag = dateUnit.getAgeRangeState(value,{"age":20},{"age":60});
-		console.log(value);
 
 		if (!flag) {
+			new dateModal(null,"stateIndform","投保人年龄最小20岁，最大60岁").init().show();
 			return false;
 		} else {
-			parsObj.extraParams.insuredBirthday = value;
+			parsObj.extraParams.holderBirthday = value;
 			getPrem(rrbxSetObj);
 			return true;
 		};
@@ -38,6 +40,7 @@ const serviceLogic = function(a) {
 		var flag = dateUnit.getAgeRangeState(value,{"ageDay":60},{"age":9});
 
 		if (!flag) {
+			new dateModal(null,"stateIndform","被保人年龄最小60天，最大9岁").init().show();
 			return false;
 		} else {
 			parsObj.extraParams.insuredBirthday = value;

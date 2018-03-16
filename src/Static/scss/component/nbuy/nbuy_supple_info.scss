@@ -4,6 +4,7 @@
 /* 验证码 */
 .getcode {
     width: 6rem;
+    height:1rem;
     padding: 5px;
     border-radius: 4px;   
     text-align:center;
@@ -11,6 +12,11 @@
     color: #fff;
     cursor: pointer;
     
+    font-size:14px;
+    
     position: absolute;
     right: 0;
+    top:0;
+    bottom:0;
+    margin:auto;
 }

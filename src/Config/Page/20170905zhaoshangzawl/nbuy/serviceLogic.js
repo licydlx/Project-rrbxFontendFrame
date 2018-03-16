@@ -10,27 +10,83 @@ import {
 	alertError
 } from '../../../../Static/js/depend/common.js';
 
+import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
+
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import areaData from './area.js';
+
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
+
+	// 试算对象 
+	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
+	// 已阅读文案
+	nbuyClause(rrbxSetObj.renderDate.insurePolicy);
 	// 显示保费
 	$("#prem").text(rrbxSetObj.insuredPars.pars.extraParams.prem + "元");
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
-	// 被保人性别
-	new selectOne($("#holderOccupationCode"), "性别选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
+
+
+	// 投保人职业选择
+	new selectOne($("#holderOccupationCode"), "职业选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
 
 	function holderOccupationCode(value) {}
 
-	// 省市地区选择
+	// 投保人省市地区选择
 	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
 
 	function holderArea(value) {}
 
-	// // 购买产品 
+	// 根据身份证重新计算保费
+	$("input[data-type='certiNo']").blur(function(event) {
+		var $that = $(this),
+			cardObj = dateUnit.parseIdCard($that.val());
+		if (cardObj) {
+			switch ($that.attr("id")) {
+				case 'holder_certiNo':
+					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+						"age": 20
+					}, {
+						"age": 60
+					});
+
+					if (!flag) {
+						new dateModal(null, "stateIndform", "投保人年龄最小20岁，最大60周岁").init().show();
+						$("#holder_certiNo").val('');
+						$("#holder_certiNo").closest('.item').attr('data-state', '');
+						return;
+					} else {
+						trialObj.extraParams.holderBirthday = cardObj.birthday;
+						getPrem()
+						return;
+					};
+					break;
+				case 'insured_certiNo':
+					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+						"ageDay": 60
+					}, {
+						"age": 9
+					});
+
+					if (!flag) {
+						new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9周岁").init().show();
+						$("#insured_certiNo").val('');
+						$("#insured_certiNo").closest('.item').attr('data-state', '');
+						return;
+					} else {
+						trialObj.extraParams.insuredBirthday = cardObj.birthday;
+						getPrem()
+						return;
+					};
+					break;
+			}
+		}
+	});
+
+	// 购买产品 
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 
@@ -57,5 +113,16 @@ const serviceLogic = function(a) {
 			return;
 		};
 	});
+
+	// 获取保费 并 存储rrbxSet
+	function getPrem() {
+		premAjax(trialObj, function(value) {
+			$("#prem").text(value + "元");
+
+			trialObj.extraParams.prem = value;
+			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
+			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
+		});
+	}
 }
 export default serviceLogic;

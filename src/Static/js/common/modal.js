@@ -60,10 +60,11 @@ dateModal.prototype = {
 			event.preventDefault();
 			$('#stateIndform').remove();
 		});
-
+		return this;
 	},
 	show: function() {
 		$('#container').append(this.templete(this.par));
+		return this;
 	},
 	hide: function() {
 		$('#stateIndform').remove();

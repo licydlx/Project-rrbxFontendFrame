@@ -15,7 +15,8 @@
     "bindEvent": {
         "e_nbuy_validate": {},
         "e_buy_fold": {},
-        "e_nbuy_getcode": {}
+        "e_nbuy_getcode": {},
+        "e_nbuy_clause": {}
     },
     "serviceLogic": "",
     "dataFlow": "",
