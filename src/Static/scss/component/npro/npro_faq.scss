@@ -32,7 +32,7 @@
     line-height: 1.4;
     letter-spacing: 1px;
 
-    height:10rem;
+    max-height:10rem;
     overflow:hidden;
 
     transition:all .3s linear;
@@ -48,7 +48,7 @@
 }
 
 .faq .f-content.active {
-    height:auto;
+    max-height:100%;
 }
 
 

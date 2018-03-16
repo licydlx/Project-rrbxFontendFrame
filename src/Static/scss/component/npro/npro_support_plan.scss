@@ -110,7 +110,8 @@
     
     overflow:hidden;
     transition: all .3s linear;
-    height:10rem;
+    max-height: 10rem;
+    padding-bottom: 10px;
 }
 
 .support-plan .sp-content.active ~ a img {
@@ -119,7 +120,7 @@
 }
 
 .support-plan .sp-content.active {
-    height:auto;
+    max-height:100%;
     padding-bottom:1.8rem;
 }
 

@@ -1,0 +1,254 @@
+{
+    "basicInfo": {
+        "detailsPage": "nbuy",
+        "productId": "20180312anxinbaoxiankaws",
+        "title": "抗癌卫士"
+    },
+    "htmlBrick": [
+        "nbuy_holder",
+        "nbuy_insured",
+        "nbuy_favoree",
+        "nbuy_supple_info",
+        "nbuy_clause",
+        "nbuy_footer"
+    ],
+    "bindEvent": {
+        "e_nbuy_validate": {},
+        "e_buy_fold": {},
+        "e_nbuy_getcode": {},
+        "e_nbuy_clause": {}
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": {
+            "holder": {
+                "title": "投保人",
+                "objArray": [{
+                    "title": "姓名",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入姓名",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "holder_certiType",
+                        "data-value": "00",
+                        "value": "身份证",
+                        "placeholder": "身份证",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiType"
+                    }
+                }, {
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_certiNo",
+                        "placeholder": "请输入证件号码",
+                        "oninput": "if(value.length>18)value=value.slice(0,18)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiNo",
+                        "data-verify": "certiNo"
+                    }
+                }, {
+                    "title": "居住省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderArea",
+                        "placeholder": "请选择居住省市",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        
+                        "data-belong": "extraParams",
+                        "data-key":"holderProvince,holderCity,holderDistrict",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                },{
+                    "title": "详细地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holderAddress",
+                        "placeholder": "请输入详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "policyHolderUser",
+                        "data-type": "address",
+                        "data-verify": "address"
+                    }
+                }, {
+                    "title": "个人职业",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderOccupationCode",
+                        "placeholder": "请选择个人职业",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-type": "holderOccupationCode",
+                        "data-verify": "holderOccupationCode"
+                    }
+                }, {
+                    "title": "邮箱地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "email",
+                        "data-verify": "email"
+                    }
+                }]
+            },
+            "insured": {
+                "title": "被保人",
+                "objArray": [{
+                    "title": "为谁投保",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "relaId",
+                        "value": "儿子/女儿",
+                        "data-id": "03",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "姓名",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入姓名",
+                        "data-belong": "insuredUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "insured_certiType",
+                        "data-value": "00",
+                        "value": "身份证",
+                        "placeholder": "身份证",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "insuredUser",
+                        "data-type": "certiType"
+                    }
+                }, {
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_certiNo",
+                        "placeholder": "请输入证件号码",
+                        "oninput": "if(value.length>18)value=value.slice(0,18)",
+                        "data-belong": "insuredUser",
+                        "data-type": "certiNo",
+                        "data-verify": "certiNo"
+                    }
+                }]
+            }
+        },
+        "data": {
+            "holderOccupationCode": [{
+                "id": "A",
+                "value": "公务员"
+            }, {
+                "id": "C1",
+                "value": "旅游、餐饮、零售"
+            }, {
+                "id": "C2",
+                "value": "娱乐场所、博彩、影视娱乐业"
+            }, {
+                "id": "C3",
+                "value": "废品收购"
+            }, {
+                "id": "C3",
+                "value": "艺术品收藏、考古及文物保护"
+            }, {
+                "id": "C3",
+                "value": "拍卖、典当、贵金属和珠宝交易商"
+            }, {
+                "id": "C4",
+                "value": "房屋中介、律师、公证人员、会计师"
+            }, {
+                "id": "D1",
+                "value": "家庭主妇"
+            }, {
+                "id": "D2",
+                "value": "离退休人员"
+            }, {
+                "id": "D3",
+                "value": "无业、待业及无固定职业人员(除上面两种以外)"
+            }, {
+                "id": "D4",
+                "value": "自营投资者"
+            }, {
+                "id": "F",
+                "value": "农牧业、渔业、木材森林业"
+            }, {
+                "id": "G",
+                "value": "矿石开采业、建筑工程业、装潢业"
+            }, {
+                "id": "H",
+                "value": "五金电子电器、日用品、化工建材等制造业"
+            }, {
+                "id": "H",
+                "value": "机电及其他设备维修"
+            }, {
+                "id": "I",
+                "value": "水陆空交通运输业、邮政等公共事业"
+            }, {
+                "id": "I",
+                "value": "水电、燃气、通讯等公共事业"
+            }, {
+                "id": "I",
+                "value": "计算机与互联网"
+            }, {
+                "id": "J",
+                "value": "文教业、新闻出版广告业；卫生保健业；"
+            }, {
+                "id": "J",
+                "value": "清洁或家政、物业管理、物流等服务业"
+            }, {
+                "id": "J",
+                "value": "美容美发、摄影、殡葬等服务业"
+            }, {
+                "id": "K",
+                "value": "金融业"
+            }, {
+                "id": "L",
+                "value": "学生、学龄前儿童"
+            }, {
+                "id": "M",
+                "value": "企事业单位、民间组织和社会团体等工作人员"
+            }, {
+                "id": "M",
+                "value": "宗教业"
+            }]
+        }
+    }
+}

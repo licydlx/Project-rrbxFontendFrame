@@ -11,7 +11,7 @@ const clickNav = function(event) {
 		that.closest('ul').find('a').removeClass('active');
 		that.addClass("active");
 		if (num) {
-			tabLogic[num](obj, tag, tar);
+			tabLogic["tab"](obj, tag, tar, num);
 		};
 	};
 }
@@ -36,6 +36,10 @@ const tabLogic = {
 	},
 	'changeContent': function(a, b) {
 		$("#sp-content").empty().append(npro_support_plan_tab(a.insurancePlan[b]));
+	},
+	'tab': function(obj, tag, tar,num) {
+		this.changeWireCss(tar, parseInt(tag) * (100/num));
+		this.changeContent(obj, tag);
 	},
 	'three': function(obj, tag, tar) {
 		this.changeWireCss(tar, parseInt(tag) * 33.33);

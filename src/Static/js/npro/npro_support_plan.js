@@ -9,6 +9,9 @@ import {
 // 2018-1-31
 const e_npro_support_plan = function(pars){
 	// 保障计划 NAV
+	if (pars.num) {
+		$(".sp-wire").width((100/pars.num) + '%');
+	};
 	$("#sp-nav").on("click", "a", {
 		num: pars.num,
 		obj: pars.data
