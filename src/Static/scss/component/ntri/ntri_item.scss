@@ -1,3 +1,12 @@
+// 修改 scroll 默认样式 
+// 作者:ydlx
+// 日期:2018-1-18
+::-webkit-scrollbar{width:10px;background-color:#e1e5ea}
+::-webkit-scrollbar-thumb{background-color:#c3cad4;border-radius:10px;border:2px solid #e1e5ea;}
+::-webkit-scrollbar-thumb:hover{background-color:#aab1bc;}
+::-webkit-scrollbar-thumb:active{border:0;border-radius:0;background-color:#737ed7}
+::-webkit-scrollbar-thumb:window-inactive{background-color:#4c97da}
+
 // 试算页 千年不变父容器
 // 作者:ydlx
 // 日期:2018-3-12
@@ -20,7 +29,7 @@
         background-color: #fff;
         border-bottom: 1rem solid #eee;
         max-height: 460px;
-        overflow-y: scroll;
+        overflow-y: auto;
         .header {
             position: relative;
             padding:15px;
@@ -82,15 +91,6 @@
         }
     }
 }
-
-// 修改 scroll 默认样式 
-// 作者:ydlx
-// 日期:2018-1-18
-::-webkit-scrollbar{width:10px;background-color:#e1e5ea}
-::-webkit-scrollbar-thumb{background-color:#c3cad4;border-radius:10px;border:2px solid #e1e5ea;}
-::-webkit-scrollbar-thumb:hover{background-color:#aab1bc;}
-::-webkit-scrollbar-thumb:active{border:0;border-radius:0;background-color:#737ed7}
-::-webkit-scrollbar-thumb:window-inactive{background-color:#4c97da}
 
 // TAB单选
 // 作者:ydlx
@@ -158,6 +158,14 @@
 // 保障计划
 // 作者:ydlx
 // 日期:2018-3-14
+
+.supportPlan {
+    padding-bottom:10px;
+
+    .sp-icon {
+        display:none;
+    }
+}
 .sp-nav {
     display: flex;
     margin-left:15px;
@@ -197,7 +205,7 @@
     margin-left:15px;
     margin-right:15px;
     max-height:200px;
-    overflow-y:scroll;
+    overflow-y:auto;
     li {
         .sp-con-brief {
             position:relative;

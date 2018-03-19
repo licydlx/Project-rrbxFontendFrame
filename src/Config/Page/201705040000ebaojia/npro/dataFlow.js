@@ -14,10 +14,8 @@ const dataFlow = function(data) {
 					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"sex": "men",
-					"age": "18",
-					"prem": data.value.insurancePlan[0].price
+					"birthday":"1992-04-05",
+					"socialSecurity":"N"
 				}
 			},
 			"parsInit": {
@@ -29,10 +27,8 @@ const dataFlow = function(data) {
 					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"sex": "men",
-					"age": "18",
-					"prem": data.value.insurancePlan[0].price
+					"birthday":"1992-04-05",
+					"socialSecurity":"N"
 				}
 			}
 		},

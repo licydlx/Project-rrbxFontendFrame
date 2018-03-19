@@ -73,8 +73,8 @@ var dateUnit = {
 
 	// 获取当天日期 YMD格式
 	// 例：一般格式：2018-03-09;IOS格式:2018/03/09
-	// ydlx
-	// 2018-03-09
+	// 作者:ydlx
+	// 日期:2018-03-09
 	getFormatDate: function(par) {
 		var YMD,
 			currentDate = par ? new Date(par) : new Date(),
@@ -164,8 +164,9 @@ var dateUnit = {
 
 	// 根据出生日期 及 范围区间 返回状态
 	// 参数:birthday,greate:{"ageDay":60} || {"age":1},less:{"ageDay":90} || {"age":9}
-	// 
-	// 
+	// 例子:getAgeRangeState('1992-02-02',{'ageDay':60},{'age':60}) => true 
+	// 作者:ydlx
+	// 日期:2018-3-19
 	getAgeRangeState: function(birthday, greate, less) {
 		var [gre, le] = [false, false];
 
@@ -210,7 +211,18 @@ var dateUnit = {
 		} else {
 			return false;
 		};
+	},
+	// 根据出生日期 获取年龄
+	// 参数:birthday,greate:{"ageDay":60} || {"age":1},less:{"ageDay":90} || {"age":9}
+	// 例子:getAgeRangeState('1992-02-02',{'ageDay':60},{'age':60}) => true 
+	// 作者:ydlx
+	// 日期:2018-3-19
+	getBirthdayFromAge: function(age) {
+		var currentDate = new Date(),
+			[year, month, day] = [currentDate.getFullYear() - age, currentDate.getMonth() + 1, currentDate.getDate()];
+		return year + '-' + month + '-' + day;
 	}
+
 }
 
 export default dateUnit;

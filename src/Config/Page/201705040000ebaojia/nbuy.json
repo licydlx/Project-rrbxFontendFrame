@@ -1,12 +1,13 @@
 {
     "basicInfo": {
         "detailsPage": "nbuy",
-        "productId": "20180312anxinbaoxiankaws",
-        "title": "抗癌卫士"
+        "productId": "201705040000ebaojia",
+        "title": "平安医保+"
     },
     "htmlBrick": [
         "nbuy_holder",
         "nbuy_insured",
+        "nbuy_addInsured",
         "nbuy_favoree",
         "nbuy_supple_info",
         "nbuy_clause",

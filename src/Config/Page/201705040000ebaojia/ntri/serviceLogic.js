@@ -51,27 +51,27 @@ const serviceLogic = function(a) {
 			$("#pt-sp-content").empty().append(npro_support_plan_tab(renderData.insurancePlan[tag]));
 		}
 
-		// 出生日期
-	var birthdayFormat = dateUnit.getBirthdayFromAge(parsObj.extraParams.age);
+	// 	// 出生日期
+	// var birthdayFormat = dateUnit.getBirthdayFromAge(parsObj.extraParams.age);
 
-	new selectDate($("#age"), "birthday", birthdayFormat, 50, -18, age).init();
+	// new selectDate($("#age"), "birthday", birthdayFormat, 50, -18, age).init();
 
-	function age(value) {
-		var flag = dateUnit.getAgeRangeState(value, {
-			"age": 18
-		}, {
-			"age": 50
-		});
+	// function age(value) {
+	// 	var flag = dateUnit.getAgeRangeState(value, {
+	// 		"age": 18
+	// 	}, {
+	// 		"age": 50
+	// 	});
 
-		if (!flag) {
-			new dateModal(null, "stateIndform", "被保人年龄最小18周岁，最大50周岁").init().show();
-			return false;
-		} else {
-			parsObj.extraParams.age = dateUnit.getAgeFromBirthday(value).age;
-			getPrem(rrbxSetObj);
-			return true;
-		};
-	}
+	// 	if (!flag) {
+	// 		new dateModal(null, "stateIndform", "被保人年龄最小18周岁，最大50周岁").init().show();
+	// 		return false;
+	// 	} else {
+	// 		parsObj.extraParams.age = dateUnit.getAgeFromBirthday(value).age;
+	// 		getPrem(rrbxSetObj);
+	// 		return true;
+	// 	};
+	// }
 
 	// 性别
 	$(".singleSelect").on('click', 'a', function(event) {

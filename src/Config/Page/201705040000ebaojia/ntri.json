@@ -1,7 +1,7 @@
 {
     "basicInfo": {
         "detailsPage": "ntri",
-        "productId": "20180312anxinbaoxiankaws",
+        "productId": "201705040000ebaojia",
         "title": "抗癌卫士"
     },
     "htmlBrick": ["ntri_item", "ntri_footer"],
@@ -22,7 +22,7 @@
             "title": "出生日期",
             "type": "choose",
             "choose": {
-                "id": "age",
+                "id": "birthday",
                 "value": "",
 
                 "unselectable": "no",

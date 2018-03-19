@@ -1,4 +1,4 @@
 var productConfig = {
-    "productId": "20180312anxinbaoxiankaws"
+    "productId": "20170905zhaoshangzawl"
 }
 export default productConfig;

@@ -6,35 +6,37 @@
 		</div>
 
 		<% if(insurancePlan) { %>
-			<ul id="pt-sp-nav" class="sp-nav pt-sp-nav">
-				<% if(insurancePlan.length > 0) { %>
-					<% for(var i=0;i < insurancePlan.length;i++){ %>
-						<li>
-						   <% if(i == "0") { %>
-						       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = "<%= insurancePlan[i].insureId %>"><%= insurancePlan[i].optionName %></a>  
-					       <% } else { %>
-						       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = <%= insurancePlan[i].insureId %>><%= insurancePlan[i].optionName %></a>  
-					       <% } %>
-						</li>
+			<section class="supportPlan">
+				<ul id="pt-sp-nav" class="sp-nav pt-sp-nav">
+					<% if(insurancePlan.length > 0) { %>
+						<% for(var i=0;i < insurancePlan.length;i++){ %>
+							<li>
+							   <% if(i == "0") { %>
+							       <a class="active" data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>"  data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = "<%= insurancePlan[i].insureId %>"><%= insurancePlan[i].optionName %></a>  
+						       <% } else { %>
+							       <a data-price="<%= insurancePlan[i].price %>" data-id="<%= insurancePlan[i].id %>" data-value="<%= insurancePlan[i].insAmount %>" data-tag="<%= i %>" data-insureId = <%= insurancePlan[i].insureId %>><%= insurancePlan[i].optionName %></a>  
+						       <% } %>
+							</li>
+						<% } %>
 					<% } %>
-				<% } %>
-			</ul>
+				</ul>
 
-			<ul id="pt-sp-content" class="sp-content">
-				<% if(insurancePlan.length > 0) { %>
-					<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
-					    <li>
-							<a id="sp-toggle" class="sp-con-brief">
-								<span><%= insurancePlan[0].seriesDesc[i].title %></span>
-								<span><%= insurancePlan[0].seriesDesc[i].price %></span>
-							</a>
-							<p class="sp-con-details">
-								<%= insurancePlan[0].seriesDesc[i].desc %>
-							</p>
-						</li>
+				<ul id="pt-sp-content" class="sp-content">
+					<% if(insurancePlan.length > 0) { %>
+						<% for(var i=0;i < insurancePlan[0].seriesDesc.length;i++){ %>
+						    <li>
+								<a id="sp-toggle" class="sp-con-brief">
+									<span><%= insurancePlan[0].seriesDesc[i].title %></span>
+									<span><%= insurancePlan[0].seriesDesc[i].price %></span>
+								</a>
+								<p class="sp-con-details">
+									<%= insurancePlan[0].seriesDesc[i].desc %>
+								</p>
+							</li>
+						<% } %>
 					<% } %>
-				<% } %>
-			</ul>
+				</ul>
+			</section>
 		<% } %>
 		
 		<% if(item) { %>

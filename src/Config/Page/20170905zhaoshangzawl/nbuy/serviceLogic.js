@@ -31,7 +31,7 @@ const serviceLogic = function(a) {
 
 
 	// 投保人职业选择
-	new selectOne($("#holderOccupationCode"), "职业选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
+	new selectOne($("#holderOccupationCode"), "职业选择", renderData.item.data.holderOccupationCode, holderOccupationCode).init();
 
 	function holderOccupationCode(value) {}
 

@@ -2,7 +2,6 @@ import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
-import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
 import {
 	dateModal
 } from '../../../../Static/js/common/modal.js';
@@ -11,34 +10,36 @@ import {
 } from '../../../../Static/js/depend/common.js';
 
 import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
-
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
-import areaData from './area.js';
+
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
+	console.log(renderData);
+	console.log(rrbxSetObj);
 
 	// 试算对象 
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// 已阅读文案
-	nbuyClause(rrbxSetObj.renderDate.insurePolicy);
+	if (rrbxSetObj.renderDate.insurePolicy) {
+		nbuyClause(rrbxSetObj.renderDate.insurePolicy);
+	};
 	// 显示保费
-	$("#prem").text(rrbxSetObj.insuredPars.pars.extraParams.prem + "元");
+	$("#prem").text(trialObj.extraParams.prem + "元");
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
 
+	// =============
+	// 业务逻辑
+	// =============
 
-	// 投保人职业选择
-	new selectOne($("#holderOccupationCode"), "职业选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
+	console.log(renderData.data);
+	// 关系选择
+	new selectOne($("#relaId"), "关系选择", renderData.item.data.rela, relaId).init();
 
-	function holderOccupationCode(value) {}
-
-	// 投保人省市地区选择
-	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
-
-	function holderArea(value) {}
+	function relaId(value) {}
 
 	// 根据身份证重新计算保费
 	$("input[data-type='certiNo']").blur(function(event) {
@@ -48,13 +49,13 @@ const serviceLogic = function(a) {
 			switch ($that.attr("id")) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
+						"age": 18
 					}, {
-						"age": 60
+						"age": 100
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小20岁，最大60周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
 						$("#holder_certiNo").val('');
 						$("#holder_certiNo").closest('.item').attr('data-state', '');
 						return;
@@ -66,13 +67,13 @@ const serviceLogic = function(a) {
 					break;
 				case 'insured_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"ageDay": 60
+						"age": 18
 					}, {
-						"age": 9
+						"age": 50
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9周岁").init().show();
+						new dateModal(null, "stateIndform", "被保人年龄最小18周岁，最大50周岁").init().show();
 						$("#insured_certiNo").val('');
 						$("#insured_certiNo").closest('.item').attr('data-state', '');
 						return;
@@ -85,6 +86,10 @@ const serviceLogic = function(a) {
 			}
 		}
 	});
+
+	// =============
+	// end
+	// =============
 
 	// 购买产品 
 	$("#container").on("click", "#buyNow", function(event) {
