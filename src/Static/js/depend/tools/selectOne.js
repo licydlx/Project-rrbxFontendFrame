@@ -24,11 +24,13 @@ class selectOne {
 				oneLevelId: that.bindDom.attr('data-id'),
 				showAnimate: true,
 				callback: function(selectObj) {
+					if (that.func) {
+						if (!that.func(that.bindDom,selectObj.id)) {
+							return;
+						};
+					};
 					that.bindDom.attr('data-id', selectObj.id);
 					that.bindDom.attr('value', selectObj.value);
-					if (that.func) {
-						that.func(selectObj.id);
-					};
 				}
 			});
 		});

@@ -1,20 +1,17 @@
 import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
-import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
 import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
+import areaData from './area.js';
 import {
 	dateModal
 } from '../../../../Static/js/common/modal.js';
 import {
 	alertError
 } from '../../../../Static/js/depend/common.js';
-
 import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
-
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
-import areaData from './area.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -22,6 +19,7 @@ const serviceLogic = function(a) {
 
 	// 试算对象 
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
+	console.log(trialObj);
 	// 已阅读文案
 	nbuyClause(rrbxSetObj.renderDate.insurePolicy);
 	// 显示保费
@@ -29,16 +27,19 @@ const serviceLogic = function(a) {
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
 
-
 	// 投保人职业选择
-	new selectOne($("#holderOccupationCode"), "职业选择", renderData.item.data.holderOccupationCode, holderOccupationCode).init();
+	new selectOne($("#holderOccupationCode"), "职业选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
 
-	function holderOccupationCode(value) {}
+	function holderOccupationCode(content,value) {
+		return true;
+	};
 
 	// 投保人省市地区选择
 	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
 
-	function holderArea(value) {}
+	function holderArea(content,value) {
+		return true;
+	};
 
 	// 根据身份证重新计算保费
 	$("input[data-type='certiNo']").blur(function(event) {

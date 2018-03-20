@@ -13,6 +13,25 @@ const serviceLogic = function(a) {
 		rrbxSetObj = a[1];
 	// 初始化 保費參數值(由投保页回退回来) (多层级 对象 深拷贝)
 	var parsObj = JSON.parse(JSON.stringify(rrbxSetObj.insuredPars.parsInit));
+	// 附加险多选
+	var riskCodesArray = [];
+
+	// 数组 原型 增加 remove 方法
+	// 作者:ydlx
+	// 日期:2018-3-13
+	Array.prototype.indexOf = function(val) {
+		for (var i = 0; i < this.length; i++) {
+			if (this[i] == val) return i;
+		}
+		return -1;
+	};
+	Array.prototype.remove = function(val) {
+		var index = this.indexOf(val);
+		if (index > -1) {
+			this.splice(index, 1);
+		}
+	};
+
 	getPrem(rrbxSetObj);
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
@@ -56,12 +75,13 @@ const serviceLogic = function(a) {
 			return true;
 		};
 	}
+
 	// 被保人性别
 	$(".singleSelect").on('click', 'a', function(event) {
 		event.preventDefault();
-		var $this = $(this);
-		var tagId = $this.closest(".content").attr("id");
-		var val = $this.attr("data-id");
+		var $this = $(this),
+			tagId = $this.closest(".content").attr("id"),
+			value = $this.attr("data-id");
 
 		if (!$this.closest("li").hasClass("active")) {
 			$this.closest(".content").find("li").removeClass("active");
@@ -70,96 +90,107 @@ const serviceLogic = function(a) {
 
 		switch (tagId) {
 			case 'zjhm':
-				if (Object.is(val,'true')) {
-					console.log("true");
-					riskCodesArray.push('QMLD012');
-					console.log(riskCodesArray);
-				} else {
-					console.log("false");
-					riskCodesArray.remove('QMLD012');
-					console.log(riskCodesArray);
-				};
+				var code = $this.attr("data-code");
+				Object.is(value, '0') ? riskCodesArray.remove(code) : Object.is(riskCodesArray.indexOf(code), -1) ? riskCodesArray.push(code) : '';
 				parsObj.extraParams.riskCodes = riskCodesArray.join(',');
 				break;
-			case "sex":
-				parsObj.extraParams[tagId] = val;	
+			case 'holdersex':
+				parsObj.extraParams[tagId] = value;
+				break;
+			case "insuredsex":
+				parsObj.extraParams[tagId] = value;
 				break;
 		}
 		getPrem(rrbxSetObj);
 	});
 
 	// 保额选择
-	new selectOne($("#amnt"), "保额选择", renderData.amnt, coverageFunc).init();
+	new selectOne($("#basicAmnt"), "保额选择", renderData.data.basicAmnt, basicAmnt).init();
 
-	function coverageFunc(value) {
-		parsObj.extraParams.amnt = value;
+	function basicAmnt(content, value) {
+		parsObj.extraParams.basicAmnt = value;
+
+		// 附加险初始化
+		parsObj.extraParams.specificAmnt = "0";
+		parsObj.extraParams.severeAmnt = "0";
+		var specificAmnt = $('#specificAmnt'),
+			severeAmnt = $('#severeAmnt');
+		specificAmnt.attr('value', '0元').attr("data-id","0");
+		severeAmnt.attr('value', '0元').attr("data-id","0");
+		riskCodesArray.remove(specificAmnt.attr("data-code"));
+		riskCodesArray.remove(severeAmnt.attr("data-code"));
+		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+
 		getPrem(rrbxSetObj);
+		return true;
 	}
 
 	// 缴费年限
-	new selectOne($("#payEndYear"), "缴费年限", renderData.payEndYear, payEndYear).init();
+	new selectOne($("#payEndYear"), "缴费年限", renderData.data.payEndYear, payEndYear).init();
 
-	function payEndYear(value) {
+	function payEndYear(content, value) {
 		parsObj.extraParams.payEndYear = value;
 		getPrem(rrbxSetObj);
+		return true;
 	}
 
 	// 缴费频率
-	new selectOne($("#payIntv"), "缴费频率", renderData.payIntv, payIntv).init();
+	new selectOne($("#payIntv"), "缴费频率", renderData.data.payIntv, payIntv).init();
 
-	function payIntv(value) {
+	function payIntv(content, value) {
 		parsObj.extraParams.payIntv = value;
 		getPrem(rrbxSetObj);
+		return true;
 	}
 
-	// 数组 原型 增加 remove 方法
-	// 作者:ydlx
-	// 日期:2018-3-13
-	Array.prototype.indexOf = function(val) {
-		for (var i = 0; i < this.length; i++) {
-			if (this[i] == val) return i;
-		}
-		return -1;
-	};
-	Array.prototype.remove = function(val) {
-		var index = this.indexOf(val);
-		if (index > -1) {
-			this.splice(index, 1);
-		}
-	};
-
-	// 附加险多选
-	var riskCodesArray = [];
-	$("#riskCodes").on('click', 'a', function(event) {
-		event.preventDefault();
-		var that = $(this);
-		if (!that.hasClass("active")) {
-			that.addClass("active");
-			riskCodesArray.push(that.attr("data-id"));
-
-		} else {
-			that.removeClass("active");
-			riskCodesArray.remove(that.attr("data-id"));
-		}
-		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
-
-		getPrem(rrbxSetObj);
-	});
-
-
 	// 住院津贴
-	new selectOne($("#ylAmnt"), "住院津贴", renderData.ylAmnt, ylAmnt).init();
+	new selectOne($("#ylAmnt"), "住院津贴", renderData.data.ylAmnt, ylAmnt).init();
 
-	function ylAmnt(value) {
+	function ylAmnt(content, value) {
 		// 津贴有无影响附加险
-		if (value == 0) {
-			riskCodesArray.remove("QMLH001");
-		} else {
-			riskCodesArray.push("QMLH001");
-		};
+		var code = content.attr("data-code");
+		Object.is(value, '0') ? riskCodesArray.remove(code) : Object.is(riskCodesArray.indexOf(code), -1) ? riskCodesArray.push(code) : '';
 		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
 		parsObj.extraParams.ylAmnt = value;
 		getPrem(rrbxSetObj);
+
+		return true;
+	}
+
+	// 特定疾病保额
+	new selectOne($("#specificAmnt"), "特种疾病", renderData.data.specificAmnt, specificAmnt).init();
+
+	function specificAmnt(content, value) {
+		if (value > parseInt(parsObj.extraParams.basicAmnt) * 2) {
+			new dateModal(null, "stateIndform", "附加险保额最高为基本保额的2倍").init().show();
+			return false;
+		};
+
+		var code = content.attr("data-code");
+		Object.is(value, '0') ? riskCodesArray.remove(code) : Object.is(riskCodesArray.indexOf(code), -1) ? riskCodesArray.push(code) : '';
+		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+		parsObj.extraParams.specificAmnt = value;
+		getPrem(rrbxSetObj);
+
+		return true;
+	}
+
+	// 重疾保额
+	new selectOne($("#severeAmnt"), "重疾保额", renderData.data.severeAmnt, severeAmnt).init();
+
+	function severeAmnt(content, value) {
+		if (value > parseInt(parsObj.extraParams.basicAmnt) * 2) {
+			new dateModal(null, "stateIndform", "附加险保额最高为基本保额的2倍").init().show();
+			return false;
+		};
+
+		var code = content.attr("data-code");
+		Object.is(value, '0') ? riskCodesArray.remove(code) : Object.is(riskCodesArray.indexOf(code), -1) ? riskCodesArray.push(code) : '';
+		parsObj.extraParams.riskCodes = riskCodesArray.join(',');
+		parsObj.extraParams.severeAmnt = value;
+		getPrem(rrbxSetObj);
+
+		return true;
 	}
 
 	// 获取保费 并 存储rrbxSet

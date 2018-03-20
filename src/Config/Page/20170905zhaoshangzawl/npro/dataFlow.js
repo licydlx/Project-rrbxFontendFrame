@@ -21,12 +21,17 @@ const dataFlow = function(data) {
 
 					"holderBirthday":"1992-02-02",
 					"insuredBirthday":"2017-02-02",
+					"holdersex":"men",
+					"insuredsex":"men",
+
 					"payEndYear": "5",
 					"payIntv": "1",
-					"ylAmnt": "50",
-					"sex":"men",
+					
+					"basicAmnt": "5",
+					"ylAmnt": "0",
+					"severeAmnt":"0",
+					"specificAmnt":"0",
 					"riskCodes": "",
-					"amnt": "5",
 					"prem": "608.72"
 				}
 			},
@@ -46,12 +51,17 @@ const dataFlow = function(data) {
 
 					"holderBirthday":"1992-02-02",
 					"insuredBirthday":"2017-02-02",
+					"holdersex":"men",
+					"insuredsex":"men",
+
 					"payEndYear": "5",
 					"payIntv": "1",
-					"ylAmnt": "50",
-					"sex":"men",
+					
+					"basicAmnt": "5",
+					"ylAmnt": "0",
+					"severeAmnt":"0",
+					"specificAmnt":"0",
 					"riskCodes": "",
-					"amnt": "5",
 					"prem": "608.72"
 				}
 			}

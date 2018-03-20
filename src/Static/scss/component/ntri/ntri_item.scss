@@ -25,7 +25,7 @@
     overflow:hidden;
     z-index:400;
     .box {
-        width: 100%;
+        width: calc(100% + 10px);
         background-color: #fff;
         border-bottom: 1rem solid #eee;
         max-height: 460px;

@@ -125,7 +125,7 @@
                     "type": "inputDefault",
                     "inputDefault": {
                         "id": "relaId",
-                        "value": "儿子/女儿",
+                        "value": "子女",
                         "data-id": "03",
 
                         "unselectable": "no",
