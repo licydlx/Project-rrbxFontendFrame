@@ -19,18 +19,18 @@ const dataFlow = function(data) {
 					"holderCity": "",
 					"holderDistrict": "",
 
-					"holderBirthday":"1992-02-02",
-					"insuredBirthday":"2017-02-02",
-					"holdersex":"men",
-					"insuredsex":"men",
+					"holderBirthday": "1992-02-02",
+					"insuredBirthday": "2017-02-02",
+					"holdersex": "men",
+					"insuredsex": "men",
 
 					"payEndYear": "5",
 					"payIntv": "1",
-					
+
 					"basicAmnt": "5",
 					"ylAmnt": "0",
-					"severeAmnt":"0",
-					"specificAmnt":"0",
+					"severeAmnt": "0",
+					"specificAmnt": "0",
 					"riskCodes": "",
 					"prem": "608.72"
 				}
@@ -49,18 +49,18 @@ const dataFlow = function(data) {
 					"holderCity": "",
 					"holderDistrict": "",
 
-					"holderBirthday":"1992-02-02",
-					"insuredBirthday":"2017-02-02",
-					"holdersex":"men",
-					"insuredsex":"men",
+					"holderBirthday": "1992-02-02",
+					"insuredBirthday": "2017-02-02",
+					"holdersex": "men",
+					"insuredsex": "men",
 
 					"payEndYear": "5",
 					"payIntv": "1",
-					
+
 					"basicAmnt": "5",
 					"ylAmnt": "0",
-					"severeAmnt":"0",
-					"specificAmnt":"0",
+					"severeAmnt": "0",
+					"specificAmnt": "0",
 					"riskCodes": "",
 					"prem": "608.72"
 				}
@@ -69,6 +69,10 @@ const dataFlow = function(data) {
 		"renderDate": {
 			'insurePolicy': data.value.insurePolicy,
 			"insurancePlan": null
+		},
+		"defaultPars": {
+			"productId": data.productId,
+			"rela": "01"
 		}
 	}));
 }

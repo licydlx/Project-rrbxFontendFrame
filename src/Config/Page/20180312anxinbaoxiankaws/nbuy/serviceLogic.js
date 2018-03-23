@@ -13,13 +13,9 @@ import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 
-
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
-	console.log(renderData);
-	console.log(rrbxSetObj);
-
 	// 试算对象 
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// 已阅读文案
@@ -31,18 +27,27 @@ const serviceLogic = function(a) {
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
 
+
 	// =============
 	// 业务逻辑
 	// =============
 
-	console.log(renderData.data);
 	// 关系选择
-	new selectOne($("#relaId"), "关系选择", renderData.item.data.rela, relaId).init();
+	var relaObj = $("#relaId").closest(".item"),
+		relaNextCloneObj = relaObj.nextAll().clone();
+	relaObj.nextAll().remove();
 
-	function relaId(value) {}
+	new selectOne($("#relaId"), "关系选择", renderData.data.rela, relaId).init();
+
+	function relaId(constent, value) {
+		var cloneObj = relaNextCloneObj;
+		Object.is(value, "00") ? relaObj.nextAll().remove() : relaObj.after(cloneObj);
+		return true;
+	}
 
 	// 根据身份证重新计算保费
-	$("input[data-type='certiNo']").blur(function(event) {
+	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
+		console.log("ok");
 		var $that = $(this),
 			cardObj = dateUnit.parseIdCard($that.val());
 		if (cardObj) {
@@ -60,7 +65,7 @@ const serviceLogic = function(a) {
 						$("#holder_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
-						trialObj.extraParams.holderBirthday = cardObj.birthday;
+						trialObj.extraParams.birthday = cardObj.birthday;
 						getPrem()
 						return;
 					};
@@ -78,7 +83,7 @@ const serviceLogic = function(a) {
 						$("#insured_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
-						trialObj.extraParams.insuredBirthday = cardObj.birthday;
+						trialObj.extraParams.birthday = cardObj.birthday;
 						getPrem()
 						return;
 					};
@@ -110,9 +115,8 @@ const serviceLogic = function(a) {
 				};
 			};
 		});
-
 		if (doneState) {
-			buyAjax(getInsuredPars(rrbxSetObj));
+			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");
 			return;

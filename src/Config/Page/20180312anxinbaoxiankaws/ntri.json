@@ -22,8 +22,8 @@
             "title": "出生日期",
             "type": "choose",
             "choose": {
-                "id": "age",
-                "value": "",
+                "id": "birthday",
+                "value": "2000-01-01",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",

@@ -28,7 +28,7 @@ const getInsuredPars = function(rrbxSet) {
 	var relaTag = $("#relaId").attr("data-id");
 
 	// 根据页面 整合投保参数
-	if (Object.is(relaTag, "01")) {
+	if (Object.is(relaTag, rrbxSet.defaultPars.rela)) {
 		['policyHolderUser', 'extraParams'].forEach(function(par, index) {
 			$('[data-belong=' + par + ']').each(function(index, context) {
 				let that = $(context),

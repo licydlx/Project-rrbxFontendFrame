@@ -212,17 +212,16 @@ var dateUnit = {
 			return false;
 		};
 	},
-	// 根据出生日期 获取年龄
-	// 参数:birthday,greate:{"ageDay":60} || {"age":1},less:{"ageDay":90} || {"age":9}
-	// 例子:getAgeRangeState('1992-02-02',{'ageDay':60},{'age':60}) => true 
+	// 根据年龄 获取出生日期
+	// 参数:age:今天的年龄
+	// 例子:getBirthdayFromAge(18) => 2018-3-23
 	// 作者:ydlx
-	// 日期:2018-3-19
+	// 日期:2018-3-23
 	getBirthdayFromAge: function(age) {
 		var currentDate = new Date(),
 			[year, month, day] = [currentDate.getFullYear() - age, currentDate.getMonth() + 1, currentDate.getDate()];
 		return year + '-' + month + '-' + day;
 	}
-
 }
 
 export default dateUnit;

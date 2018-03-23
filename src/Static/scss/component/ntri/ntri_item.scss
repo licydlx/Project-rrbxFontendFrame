@@ -27,7 +27,6 @@
     .box {
         width: calc(100% + 10px);
         background-color: #fff;
-        border-bottom: 1rem solid #eee;
         max-height: 460px;
         overflow-y: auto;
         .header {
@@ -160,8 +159,8 @@
 // 日期:2018-3-14
 
 .supportPlan {
+    padding-top:10px;
     padding-bottom:10px;
-
     .sp-icon {
         display:none;
     }
@@ -204,8 +203,6 @@
 .sp-content {
     margin-left:15px;
     margin-right:15px;
-    max-height:200px;
-    overflow-y:auto;
     li {
         .sp-con-brief {
             position:relative;

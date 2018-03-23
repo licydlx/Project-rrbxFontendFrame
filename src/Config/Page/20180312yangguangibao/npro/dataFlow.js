@@ -11,13 +11,15 @@ const dataFlow = function(data) {
 					"productSeriesId": data.value.insurancePlan[0].id,
 					"periodPremium": data.value.insurancePlan[0].price,
 					"buyNum": 1,
-					"insurantApplicantRelation": "00"
+					"insurantApplicantRelation": ""
 				},
 				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"sex": "men",
-					"birthday": "2000-01-01",
-					"prem": data.value.insurancePlan[0].price
+					"insureId":data.value.insurancePlan[0].insureId,
+					"riskCodes":data.value.insurancePlan[0].insureId,
+					"basicAmnt":data.value.insurancePlan[0].insAmount,
+					"payEndYear":"",
+					"insuredSex":"men",
+					"insuredBirthday":"2000-01-01"
 				}
 			},
 			"parsInit": {
@@ -26,23 +28,16 @@ const dataFlow = function(data) {
 					"productSeriesId": data.value.insurancePlan[0].id,
 					"periodPremium": data.value.insurancePlan[0].price,
 					"buyNum": 1,
-					"insurantApplicantRelation": "00"
+					"insurantApplicantRelation": "03"
 				},
-				"extraParams": {
-					"insureId": data.value.insurancePlan[0].insureId,
-					"sex": "men",
-					"birthday": "2000-01-01",
-					"prem": data.value.insurancePlan[0].price
+				 "extraParams": {
+				// 	""
 				}
 			}
 		},
 		"renderDate": {
 			'insurePolicy': data.value.insurePolicy,
-			"insurancePlan": data.value.insurancePlan
-		},
-		"defaultPars": {
-			"productId": data.productId,
-			"rela": "00"
+			"insurancePlan": null
 		}
 	}));
 }

@@ -1,8 +1,8 @@
 {
     "basicInfo": {
         "detailsPage": "nbuy",
-        "productId": "20180312anxinbaoxiankaws",
-        "title": "抗癌卫士"
+        "productId": "20170508anbangjkzj",
+        "title": "健康之家综合疾病险"
     },
     "htmlBrick": [
         "nbuy_holder",
@@ -62,6 +62,50 @@
                         "data-verify": "certiNo"
                     }
                 }, {
+                    "title": "居住省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderArea",
+                        "placeholder": "请选择居住省市",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        
+                        "data-belong": "extraParams",
+                        "data-key":"holderProvince,holderCity,holderDistrict",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                },{
+                    "title": "详细地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holderAddress",
+                        "placeholder": "请输入详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "policyHolderUser",
+                        "data-type": "address",
+                        "data-verify": "address"
+                    }
+                }, {
+                    "title": "个人职业",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderOccupationCode",
+                        "placeholder": "请选择个人职业",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-type": "holderOccupationCode",
+                        "data-verify": "holderOccupationCode"
+                    }
+                }, {
                     "title": "邮箱地址",
                     "type": "input",
                     "input": {
@@ -78,11 +122,11 @@
                 "title": "被保人",
                 "objArray": [{
                     "title": "为谁投保",
-                    "type": "choose",
-                    "choose": {
+                    "type": "inputDefault",
+                    "inputDefault": {
                         "id": "relaId",
-                        "value": "本人",
-                        "data-id": "00",
+                        "value": "子女",
+                        "data-id": "03",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
@@ -129,24 +173,81 @@
             }
         },
         "data": {
-            "rela": [{
-                "id": "00",
-                "value": "本人"
+            "holderOccupationCode": [{
+                "id": "A",
+                "value": "公务员"
             }, {
-                "id": "601003",
-                "value": "父母"
+                "id": "C1",
+                "value": "旅游、餐饮、零售"
             }, {
-                "id": "601004",
-                "value": "配偶"
+                "id": "C2",
+                "value": "娱乐场所、博彩、影视娱乐业"
             }, {
-                "id": "601002",
-                "value": "子女"
+                "id": "C3",
+                "value": "废品收购"
             }, {
-                "id": "601006",
-                "value": "抚养"
+                "id": "C3",
+                "value": "艺术品收藏、考古及文物保护"
             }, {
-                "id": "601009",
-                "value": "赡养"
+                "id": "C3",
+                "value": "拍卖、典当、贵金属和珠宝交易商"
+            }, {
+                "id": "C4",
+                "value": "房屋中介、律师、公证人员、会计师"
+            }, {
+                "id": "D1",
+                "value": "家庭主妇"
+            }, {
+                "id": "D2",
+                "value": "离退休人员"
+            }, {
+                "id": "D3",
+                "value": "无业、待业及无固定职业人员(除上面两种以外)"
+            }, {
+                "id": "D4",
+                "value": "自营投资者"
+            }, {
+                "id": "F",
+                "value": "农牧业、渔业、木材森林业"
+            }, {
+                "id": "G",
+                "value": "矿石开采业、建筑工程业、装潢业"
+            }, {
+                "id": "H",
+                "value": "五金电子电器、日用品、化工建材等制造业"
+            }, {
+                "id": "H",
+                "value": "机电及其他设备维修"
+            }, {
+                "id": "I",
+                "value": "水陆空交通运输业、邮政等公共事业"
+            }, {
+                "id": "I",
+                "value": "水电、燃气、通讯等公共事业"
+            }, {
+                "id": "I",
+                "value": "计算机与互联网"
+            }, {
+                "id": "J",
+                "value": "文教业、新闻出版广告业；卫生保健业；"
+            }, {
+                "id": "J",
+                "value": "清洁或家政、物业管理、物流等服务业"
+            }, {
+                "id": "J",
+                "value": "美容美发、摄影、殡葬等服务业"
+            }, {
+                "id": "K",
+                "value": "金融业"
+            }, {
+                "id": "L",
+                "value": "学生、学龄前儿童"
+            }, {
+                "id": "M",
+                "value": "企事业单位、民间组织和社会团体等工作人员"
+            }, {
+                "id": "M",
+                "value": "宗教业"
             }]
         }
     }
