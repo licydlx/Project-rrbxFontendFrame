@@ -26,8 +26,6 @@ const serviceLogic = function(a) {
 	$("#prem").text(trialObj.extraParams.prem + "元");
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
-
-
 	// =============
 	// 业务逻辑
 	// =============
@@ -41,55 +39,57 @@ const serviceLogic = function(a) {
 
 	function relaId(constent, value) {
 		var cloneObj = relaNextCloneObj;
-		Object.is(value, "00") ? relaObj.nextAll().remove() : relaObj.after(cloneObj);
+		Object.is(value, rrbxSetObj.defaultPars.rela) ? relaObj.nextAll().remove() : relaObj.after(cloneObj);
 		return true;
 	}
 
 	// 根据身份证重新计算保费
 	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
-		console.log("ok");
 		var $that = $(this),
-			cardObj = dateUnit.parseIdCard($that.val());
-		if (cardObj) {
-			switch ($that.attr("id")) {
-				case 'holder_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 18
-					}, {
-						"age": 100
-					});
+			relaTag = Object.is(rrbxSetObj.defaultPars.rela, $("#relaId").attr("data-id"));
 
-					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
-						$("#holder_certiNo").val('');
-						$("#holder_certiNo").closest('.item').attr('data-state', '');
-						return;
-					} else {
-						trialObj.extraParams.birthday = cardObj.birthday;
-						getPrem()
-						return;
-					};
-					break;
-				case 'insured_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 18
-					}, {
-						"age": 50
-					});
-
-					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小18周岁，最大50周岁").init().show();
-						$("#insured_certiNo").val('');
-						$("#insured_certiNo").closest('.item').attr('data-state', '');
-						return;
-					} else {
-						trialObj.extraParams.birthday = cardObj.birthday;
-						getPrem()
-						return;
-					};
-					break;
-			}
-		}
+		if (relaTag) {
+			var holder_certiNo = $("#holder_certiNo");
+			state = holder_certiNo.closest('.item').attr("data-state");
+			if (!Object.is(state,"right")) return;
+			var cardObj = dateUnit.parseIdCard(holder_certiNo.val()),
+			flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"age": 18
+			}, {
+				"age": 100
+			});
+			
+			if (!flag) {
+				new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
+				holder_certiNo.val('');
+				holder_certiNo.closest('.item').attr('data-state', '');
+				return;
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				trialObj.extraParams.sex = cardObj.sex;
+			};
+		} else {
+			var insured_certiNo = $("#insured_certiNo"),
+			state = insured_certiNo.closest('.item').attr("data-state");
+			if (!Object.is(state,"right")) return;
+			var cardObj = dateUnit.parseIdCard(insured_certiNo.val()),
+			flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"age": 18
+			}, {
+				"age": 50
+			});
+			
+			if (!flag) {
+				new dateModal(null, "stateIndform", "被保人年龄最小18周岁，最大50周岁").init().show();
+				insured_certiNo.val('');
+				insured_certiNo.closest('.item').attr('data-state', '');
+				return;
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				trialObj.extraParams.sex = cardObj.sex;
+			};
+		};
+		getPrem();
 	});
 
 	// =============

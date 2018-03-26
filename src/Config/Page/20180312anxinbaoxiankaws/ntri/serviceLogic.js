@@ -16,9 +16,7 @@ const serviceLogic = function(a) {
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 	// =============================
-
-	getPrem(rrbxSetObj);
-	
+	getPrem();
 	// 保障计划
 	$("#pt-sp-nav").on('click', 'a', function(event) {
 		event.preventDefault();
@@ -36,7 +34,7 @@ const serviceLogic = function(a) {
 			parsObj.extraParams.insureId = insureId;
 
 			tabLogic(tag);
-			getPrem(rrbxSetObj);
+			getPrem();
 		}
 	});
 	const tabLogic = (tag) => {
@@ -83,13 +81,12 @@ const serviceLogic = function(a) {
 				parsObj.extraParams[tagId] = val;
 				break;
 		}
-		getPrem(rrbxSetObj);
+		getPrem();
 	});
 
 
 	// 获取保费 并 存储rrbxSet
-	function getPrem(rrbxSetObj) {
-
+	function getPrem() {
 		var ntriObj = parsObj.rrbx;
 		ntriObj["extraParams"] = parsObj.extraParams;
 

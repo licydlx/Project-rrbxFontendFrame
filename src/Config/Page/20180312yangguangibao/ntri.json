@@ -19,20 +19,18 @@
     "dataFlow": "",
     "renderData": {
         "item": [{
-            "title": "投保人出生日期",
-            "type": "choose",
-            "choose": {
-                "id": "holderBirthday",
-                "value": "1992-02-02",
-
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
-        }, {
-            "title": "投保人性别",
+            "title": "保障方案",
             "type": "singleSelect",
-            "id": "holdersex",
+            "id": "productSeriesId",
+            "singleSelect": [{
+                "data-code": "14872",
+                "data-id": "0",
+                "text": "PLUS"
+            }]
+        }, {
+            "title": "被保人性别",
+            "type": "singleSelect",
+            "id": "insuredSex",
             "singleSelect": [{
                 "data-id": "men",
                 "text": "男"
@@ -45,30 +43,18 @@
             "type": "choose",
             "choose": {
                 "id": "insuredBirthday",
-                "value": "2017-02-02",
+                "value": "2000-01-01",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
         }, {
-            "title": "被保人性别",
-            "type": "singleSelect",
-            "id": "insuredsex",
-            "singleSelect": [{
-                "data-id": "men",
-                "text": "男"
-            }, {
-                "data-id": "women",
-                "text": "女"
-            }]
-        }, {
-            "title": "保额选择",
+            "title": "基本保额",
             "type": "choose",
             "choose": {
-                "id": "basicAmnt",
-                "data-id": "5",
-                "value": "5万元",
+                "id": "amnt",
+                "value": "5万",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
@@ -79,97 +65,29 @@
             "type": "choose",
             "choose": {
                 "id": "payEndYear",
-                "data-id": "5",
-                "value": "5年",
+                "value": "至60岁",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
         }, {
-            "title": "缴费频率",
-            "type": "choose",
-            "choose": {
-                "id": "payIntv",
-                "data-id": "1",
-                "value": "月缴",
-
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
-        }, {
-            "title": "住院津贴",
-            "type": "choose",
-            "choose": {
-                "id": "ylAmnt",
-                "data-code": "QMLH001",
-                "data-id": "0",
-                "value": "0元/天",
-
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
-        }, {
-            "title": "特种疾病",
-            "type": "choose",
-            "choose": {
-                "id": "specificAmnt",
-                "data-code": "QMLD002",
-                "data-id": "0",
-                "value": "0元",
-
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
-        }, {
-            "title": "重疾保额",
-            "type": "choose",
-            "choose": {
-                "id": "severeAmnt",
-                "data-code": "QMLD003",
-                "data-id": "0",
-                "value": "0元",
-                
-                "unselectable": "no",
-                "onfocus": "this.blur()",
-                "readonly": "readonly"
-            }
-        }, {
-            "title": "重疾豁免",
+            "title": "附加险",
             "type": "singleSelect",
-            "id": "zjhm",
+            "id": "riskCodes",
             "singleSelect": [{
-                "data-code": "QMLD012",
-                "data-id": "0",
-                "text": "不投保"
+                "data-id": null,
+                "text": "无"
             }, {
-                "data-code": "QMLD012",
-                "data-id": "1",
-                "text": "投保"
+                "data-id": "WSDA",
+                "text": "轻症"
+            }, {
+                "data-id": "WSWP",
+                "text": "轻症+轻症豁免"
             }]
         }],
         "data": {
-            "holdersex": [{
-                "id": "men",
-                "value": "男"
-            }, {
-                "id": "women",
-                "value": "女"
-            }],
-            "insuredsex": [{
-                "id": "men",
-                "value": "男"
-            }, {
-                "id": "women",
-                "value": "女"
-            }],
-            "basicAmnt": [{
-                "id": "5",
-                "value": "5万元"
-            }, {
+            "amnt": [{
                 "id": "10",
                 "value": "10万元"
             }, {
@@ -178,65 +96,22 @@
             }, {
                 "id": "30",
                 "value": "30万元"
-            }],
-            "ylAmnt": [{
-                "id": "0",
-                "value": "0元/天"
-            }, {
-                "id": "50",
-                "value": "50元/天"
-            }, {
-                "id": "100",
-                "value": "100元/天"
-            }, {
-                "id": "150",
-                "value": "150元/天"
-            }],
-            "payIntv": [{
-                "id": "1",
-                "value": "月缴"
-            }, {
-                "id": "12",
-                "value": "年缴"
             }],
             "payEndYear": [{
-                "id": "5",
-                "value": "5年"
+                "id": "9",
+                "value": "至60岁"
             }, {
-                "id": "10",
-                "value": "10年"
-            }],
-            "severeAmnt": [{
-                "id": "0",
-                "value": "0元"
+                "id": "8",
+                "value": "30年"
             }, {
-                "id": "5",
-                "value": "5万元"
+                "id": "6",
+                "value": "20年"
             }, {
-                "id": "10",
+                "id": "4",
                 "value": "10万元"
             }, {
-                "id": "20",
-                "value": "20万元"
-            }, {
-                "id": "30",
-                "value": "30万元"
-            }],
-            "specificAmnt": [{
-                "id": "0",
-                "value": "0元"
-            }, {
-                "id": "5",
-                "value": "5万元"
-            }, {
-                "id": "10",
-                "value": "10万元"
-            }, {
-                "id": "20",
-                "value": "20万元"
-            }, {
-                "id": "30",
-                "value": "30万元"
+                "id": "1",
+                "value": "一次缴清"
             }]
         }
     }

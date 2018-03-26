@@ -19,7 +19,6 @@ const serviceLogic = function(a) {
 
 	// 试算对象 
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
-	console.log(trialObj);
 	// 已阅读文案
 	nbuyClause(rrbxSetObj.renderDate.insurePolicy);
 	// 显示保费
@@ -30,61 +29,68 @@ const serviceLogic = function(a) {
 	// 投保人职业选择
 	new selectOne($("#holderOccupationCode"), "职业选择", renderData.data.holderOccupationCode, holderOccupationCode).init();
 
-	function holderOccupationCode(content,value) {
+	function holderOccupationCode(content, value) {
 		return true;
 	};
 
 	// 投保人省市地区选择
 	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
 
-	function holderArea(content,value) {
+	function holderArea(content, value) {
 		return true;
 	};
 
 	// 根据身份证重新计算保费
-	$("input[data-type='certiNo']").blur(function(event) {
-		var $that = $(this),
-			cardObj = dateUnit.parseIdCard($that.val());
-		if (cardObj) {
-			switch ($that.attr("id")) {
-				case 'holder_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
+		var $that = $(this);
+		var relaTag = Object.is(rrbxSetObj.defaultPars.rela, $("#relaId").attr("data-id"));
+		var idTag = $that.attr("id");
+		switch (idTag) {
+			case "holder_certiNo":
+				var holder_certiNo = $("#holder_certiNo");
+				state = holder_certiNo.closest('.item').attr("data-state");
+				if (!Object.is(state, "right")) return;
+				var cardObj = dateUnit.parseIdCard(holder_certiNo.val()),
+					flag = dateUnit.getAgeRangeState(cardObj.birthday, {
 						"age": 20
 					}, {
 						"age": 60
 					});
 
-					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小20岁，最大60周岁").init().show();
-						$("#holder_certiNo").val('');
-						$("#holder_certiNo").closest('.item').attr('data-state', '');
-						return;
-					} else {
-						trialObj.extraParams.holderBirthday = cardObj.birthday;
-						getPrem()
-						return;
-					};
-					break;
-				case 'insured_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				if (!flag) {
+					new dateModal(null, "stateIndform", "投保人年龄最小20周岁,最大60周岁").init().show();
+					holder_certiNo.val('');
+					holder_certiNo.closest('.item').attr('data-state', '');
+					return;
+				} else {
+					trialObj.extraParams.holderBirthday = cardObj.birthday;
+					trialObj.extraParams.holdersex = cardObj.sex;
+				};
+				break;
+
+			case "insured_certiNo":
+				var insured_certiNo = $("#insured_certiNo"),
+					state = insured_certiNo.closest('.item').attr("data-state");
+				if (!Object.is(state, "right")) return;
+				var cardObj = dateUnit.parseIdCard(insured_certiNo.val()),
+					flag = dateUnit.getAgeRangeState(cardObj.birthday, {
 						"ageDay": 60
 					}, {
 						"age": 9
 					});
 
-					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9周岁").init().show();
-						$("#insured_certiNo").val('');
-						$("#insured_certiNo").closest('.item').attr('data-state', '');
-						return;
-					} else {
-						trialObj.extraParams.insuredBirthday = cardObj.birthday;
-						getPrem()
-						return;
-					};
-					break;
-			}
+				if (!flag) {
+					new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9周岁").init().show();
+					insured_certiNo.val('');
+					insured_certiNo.closest('.item').attr('data-state', '');
+					return;
+				} else {
+					trialObj.extraParams.insuredBirthday = cardObj.birthday;
+					trialObj.extraParams.insuredsex = cardObj.sex;
+				};
+				break;
 		}
+		getPrem();
 	});
 
 	// 购买产品 
@@ -108,7 +114,7 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
-			buyAjax(getInsuredPars(rrbxSetObj),rrbxSetObj);
+			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");
 			return;

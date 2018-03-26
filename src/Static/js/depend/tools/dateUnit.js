@@ -47,12 +47,12 @@ var dateUnit = {
 			icYear = idCard.substring(6, 10);
 			icMonth = idCard.substring(10, 12);
 			icDay = idCard.substring(12, 14);
-			sex = (parseInt(idCard.substr(16, 1)) % 2 == 1) ? '男' : '女';
+			sex = (parseInt(idCard.substr(16, 1)) % 2 == 1) ? 'men' : 'women';
 		} else if (idCard.length == 15) {
 			icYear = '19' + idCard.substring(6, 8);
 			icMonth = idCard.substring(8, 10);
 			icDay = idCard.substring(10, 12);
-			sex = (parseInt(idCard.substr(14, 1)) % 2 == 1) ? '男' : '女';
+			sex = (parseInt(idCard.substr(14, 1)) % 2 == 1) ? 'men' : 'women';
 		} else {
 			return false;
 		}
