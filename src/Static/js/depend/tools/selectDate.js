@@ -55,6 +55,7 @@ class selectDate {
 					DOM.attr('data-month', selectTwoObj.id);
 					DOM.attr('data-date', selectThreeObj.id);
 					DOM.attr("value", startDate);
+					DOM.attr("data-id", startDate);
 				}
 			});
 		});

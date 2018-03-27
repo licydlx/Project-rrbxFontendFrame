@@ -54,7 +54,7 @@
             "type": "choose",
             "choose": {
                 "id": "amnt",
-                "value": "5万",
+                "value": "10万",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
@@ -73,18 +73,15 @@
             }
         }, {
             "title": "附加险",
-            "type": "singleSelect",
-            "id": "riskCodes",
-            "singleSelect": [{
-                "data-id": null,
-                "text": "无"
-            }, {
-                "data-id": "WSDA",
-                "text": "轻症"
-            }, {
-                "data-id": "WSWP",
-                "text": "轻症+轻症豁免"
-            }]
+            "type": "choose",
+            "choose": {
+                "id": "riskCodes",
+                "value": "无",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
         }],
         "data": {
             "amnt": [{
@@ -108,10 +105,20 @@
                 "value": "20年"
             }, {
                 "id": "4",
-                "value": "10万元"
+                "value": "10年"
             }, {
                 "id": "1",
                 "value": "一次缴清"
+            }],
+            "riskCodes": [{
+                "id": null,
+                "value": "无"
+            }, {
+                "id": "WSDA",
+                "value": "轻症"
+            }, {
+                "id": "WSWP",
+                "value": "轻症+轻症豁免"
             }]
         }
     }

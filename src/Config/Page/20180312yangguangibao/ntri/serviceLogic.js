@@ -11,8 +11,10 @@ import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
+
 	// 初始化 保費參數值(由投保页回退回来) (多层级 对象 深拷贝)
 	var parsObj = JSON.parse(JSON.stringify(rrbxSetObj.insuredPars.parsInit));
+	console.log(parsObj);
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 
@@ -91,9 +93,25 @@ const serviceLogic = function(a) {
 
 	function payEndYear(content, value) {
 		parsObj.extraParams.payEndYear = value;
+		console.log(value);
+		parsObj.extraParams.payIntv = Object.is(value,"1") ? "D":"Y";
+		console.log(parsObj.extraParams.payIntv);
 		getPrem();
 		return true;
 	}
+
+	// 缴费年限
+	new selectOne($("#riskCodes"), "附加险", renderData.data.riskCodes, riskCodes).init();
+
+	var orginX = parsObj.extraParams.riskCodes;
+	function riskCodes(content, value) {
+		var x = [];
+		if (!Object.is(value,"null")) x.push(value);
+		parsObj.extraParams.riskCodes = orginX.split(',').concat(x).join(',');
+		getPrem();
+		return true;
+	}
+
 
 	// 获取保费 并 存储rrbxSet
 	function getPrem() {
@@ -102,7 +120,7 @@ const serviceLogic = function(a) {
 
 		premAjax(ntriObj, function(value) {
 			$("#prem").text(value + "元");
-			
+
 			parsObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars = parsObj;
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));

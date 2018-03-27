@@ -10,10 +10,10 @@ class selectArea {
 		this.data = data;
 		this.func = func;
 	}
-
+	
 	init() {
 		var that = this; 
-		that.bindDom.click(function(event) {
+		that.bindDom.on("click",function(event) {
 			event.preventDefault();
 
 			new IosSelect(3, [that.data.provinces, that.data.citys, that.data.countys], {

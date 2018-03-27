@@ -7,6 +7,7 @@
     "htmlBrick": [
         "nbuy_holder",
         "nbuy_insured",
+        "nbuy_bank",
         "nbuy_favoree",
         "nbuy_supple_info",
         "nbuy_clause",
@@ -16,7 +17,8 @@
         "e_nbuy_validate": {},
         "e_buy_fold": {},
         "e_nbuy_getcode": {},
-        "e_nbuy_clause": {}
+        "e_nbuy_clause": {},
+        "nbuyPurchase": {}
     },
     "serviceLogic": "",
     "dataFlow": "",
@@ -62,6 +64,18 @@
                         "data-verify": "certiNo"
                     }
                 }, {
+                    "title": "证件有效期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderCardValid",
+                        "value": "2020-01-01",
+
+                        "data-id":"2020-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
                     "title": "居住省市",
                     "type": "choose",
                     "choose": {
@@ -71,13 +85,13 @@
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
-                        
+
                         "data-belong": "extraParams",
-                        "data-key":"holderProvince,holderCity,holderDistrict",
+                        "data-key": "holderResidentProvince,holderResidentCity,holderResidentCounty",
                         "data-type": "area",
                         "data-verify": "area"
                     }
-                },{
+                }, {
                     "title": "详细地址",
                     "type": "input",
                     "input": {
@@ -101,8 +115,9 @@
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
+                        "data-key": ",,holderOccupationCode",
                         "data-belong": "extraParams",
-                        "data-type": "holderOccupationCode",
+                        "data-type": "area",
                         "data-verify": "holderOccupationCode"
                     }
                 }, {
@@ -121,12 +136,45 @@
             "insured": {
                 "title": "被保人",
                 "objArray": [{
+                    "title": "身高(CM)",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredHeight",
+                        "placeholder": "请输入身高",
+
+                        "data-belong": "extraParams",
+                        "data-type": "insuredHeight",
+                        "data-verify": "all"
+                    }
+                }, {
+                    "title": "体重(KG)",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredWeight",
+                        "placeholder": "请输入体重",
+
+                        "data-belong": "extraParams",
+                        "data-type": "insuredWeight",
+                        "data-verify": "all"
+                    }
+                }, {
+                    "title": "邮政编码",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredZip",
+                        "placeholder": "请输入邮政编码",
+
+                        "data-belong": "extraParams",
+                        "data-type": "insuredZip",
+                        "data-verify": "all"
+                    }
+                },{
                     "title": "为谁投保",
-                    "type": "inputDefault",
-                    "inputDefault": {
+                    "type": "choose",
+                    "choose": {
                         "id": "relaId",
-                        "value": "子女",
-                        "data-id": "03",
+                        "value": "本人",
+                        "data-id": "00",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
@@ -169,85 +217,131 @@
                         "data-type": "certiNo",
                         "data-verify": "certiNo"
                     }
+                }, {
+                    "title": "证件有效期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredCardValid",
+                        "value": "2020-01-01",
+                        "data-id":"2020-01-01",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "居住省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredArea",
+                        "placeholder": "请选择居住省市",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-key": "insuredResidentProvince,insuredResidentCity,insuredResidentCounty",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                }, {
+                    "title": "详细地址",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredAddress",
+                        "placeholder": "请输入详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "insuredUser",
+                        "data-type": "insuredAddress",
+                        "data-verify": "address"
+                    }
+                }, {
+                    "title": "个人职业",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredOccupationCode",
+                        "placeholder": "请选择个人职业",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-key": ",,insuredOccupationCode",
+                        "data-belong": "extraParams",
+                        "data-type": "area",
+                        "data-verify": "all"
+                    }
+                }]
+            },
+            "bank": {
+                "title": "银行卡信息",
+                "objArray": [{
+                    "title": "续费银行",
+                    "type": "choose",
+                    "choose": {
+                        "id": "renewalBankCode",
+                        "placeholder": "请选择续费银行",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-type": "renewalBankCode",
+                        "data-verify": "all"
+                    }
+                }, {
+                    "title": "银行卡号",
+                    "type": "input",
+                    "input": {
+                        "id": "renewalBankAccount",
+                        "placeholder": "请输入银行卡号",
+                        "oninput": "if(value.length>19)value=value.slice(0,19)",
+                        "data-belong": "extraParams",
+                        "data-type": "renewalBankAccount",
+                        "data-verify": "all"
+                    }
                 }]
             }
         },
         "data": {
-            "holderOccupationCode": [{
-                "id": "A",
-                "value": "公务员"
+            "relaId": [{
+                "id": "00",
+                "value": "本人"
             }, {
-                "id": "C1",
-                "value": "旅游、餐饮、零售"
+                "id": "25",
+                "value": "子女"
+            }],
+            "renewalBankCode": [{
+                "id": "ICBC",
+                "value": "工商银行"
             }, {
-                "id": "C2",
-                "value": "娱乐场所、博彩、影视娱乐业"
+                "id": "ABC",
+                "value": "农业银行"
             }, {
-                "id": "C3",
-                "value": "废品收购"
+                "id": "CCB",
+                "value": "建设银行"
             }, {
-                "id": "C3",
-                "value": "艺术品收藏、考古及文物保护"
+                "id": "BOC",
+                "value": "中国银行"
             }, {
-                "id": "C3",
-                "value": "拍卖、典当、贵金属和珠宝交易商"
+                "id": "PSBC",
+                "value": "邮政储蓄银行"
             }, {
-                "id": "C4",
-                "value": "房屋中介、律师、公证人员、会计师"
+                "id": "CMB",
+                "value": "招商银行"
             }, {
-                "id": "D1",
-                "value": "家庭主妇"
+                "id": "CEB",
+                "value": "光大银行"
             }, {
-                "id": "D2",
-                "value": "离退休人员"
+                "id": "CGB",
+                "value": "广发银行"
             }, {
-                "id": "D3",
-                "value": "无业、待业及无固定职业人员(除上面两种以外)"
-            }, {
-                "id": "D4",
-                "value": "自营投资者"
-            }, {
-                "id": "F",
-                "value": "农牧业、渔业、木材森林业"
-            }, {
-                "id": "G",
-                "value": "矿石开采业、建筑工程业、装潢业"
-            }, {
-                "id": "H",
-                "value": "五金电子电器、日用品、化工建材等制造业"
-            }, {
-                "id": "H",
-                "value": "机电及其他设备维修"
-            }, {
-                "id": "I",
-                "value": "水陆空交通运输业、邮政等公共事业"
-            }, {
-                "id": "I",
-                "value": "水电、燃气、通讯等公共事业"
-            }, {
-                "id": "I",
-                "value": "计算机与互联网"
-            }, {
-                "id": "J",
-                "value": "文教业、新闻出版广告业；卫生保健业；"
-            }, {
-                "id": "J",
-                "value": "清洁或家政、物业管理、物流等服务业"
-            }, {
-                "id": "J",
-                "value": "美容美发、摄影、殡葬等服务业"
-            }, {
-                "id": "K",
-                "value": "金融业"
-            }, {
-                "id": "L",
-                "value": "学生、学龄前儿童"
-            }, {
-                "id": "M",
-                "value": "企事业单位、民间组织和社会团体等工作人员"
-            }, {
-                "id": "M",
-                "value": "宗教业"
+                "id": "SPDB",
+                "value": "浦发银行"
             }]
         }
     }

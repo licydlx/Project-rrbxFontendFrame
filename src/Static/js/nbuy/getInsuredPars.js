@@ -6,29 +6,27 @@ require("../../scss/component/depend/loading.scss");
 
 const getInsuredPars = function(rrbxSet) {
 	var getChannel = function() {
-		if (rrbxSet.GV.nbuy_channel != null && rrbxSet.GV.nbuy_channel != '') {
-			return rrbxSet.GV.nbuy_channel;
+		if (GV.nbuy_channel != null && GV.nbuy_channel != '') {
+			return GV.nbuy_channel;
 		}
-		return rrbxSet.GV.nbuy_appName;
+		return GV.nbuy_appName;
 	};
 	var rrbxDataModal = {
 		"rrbxProductId": "",
 		"productSeriesId": "",
 		"buyNum": 1,
 		"periodPremium": "",
-		"expertId": rrbxSet.GV.nbuy_eid,
+		"expertId": GV.nbuy_eid,
 		"saleChannel": getChannel(),
 		"policyHolderUser": {},
 		"insuredUser": {},
 		"extraParams": {}
 	};
 	var RRBX = Object.assign(rrbxDataModal, rrbxSet.insuredPars.pars.rrbx);
-
-	// console.log(RRBX);
 	var relaTag = $("#relaId").attr("data-id");
-
+	var oneSelf = rrbxSet.defaultPars.rela;
 	// 根据页面 整合投保参数
-	if (Object.is(relaTag, rrbxSet.defaultPars.rela)) {
+	if (Object.is(relaTag, oneSelf)) {
 		['policyHolderUser', 'extraParams'].forEach(function(par, index) {
 			$('[data-belong=' + par + ']').each(function(index, context) {
 				let that = $(context),
@@ -36,7 +34,7 @@ const getInsuredPars = function(rrbxSet) {
 					value = that.val();
 				switch (par) {
 					case 'policyHolderUser':
-						Object.is(key, "certiType") ? RRBX[par][key] = RRBX.insuredUser[key] = '00' : RRBX[par][key] = RRBX.insuredUser[key] = value;
+						Object.is(key, "certiType") ? RRBX[par][key] = RRBX.insuredUser[key] = oneSelf : RRBX[par][key] = RRBX.insuredUser[key] = value;
 						break;
 					case 'extraParams':
 						if (key === 'area') {
@@ -67,7 +65,7 @@ const getInsuredPars = function(rrbxSet) {
 				switch (par) {
 					case 'policyHolderUser':
 					case 'insuredUser':
-						Object.is(key, "certiType") ? RRBX[par][key] = '00' : RRBX[par][key] = value;
+						Object.is(key, "certiType") ? RRBX[par][key] = oneSelf : RRBX[par][key] = value;
 						break;
 					case 'extraParams':
 						if (key === 'area') {

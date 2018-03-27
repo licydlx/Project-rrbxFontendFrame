@@ -17,15 +17,32 @@ const dataFlow = function(data) {
 					"insureId": data.value.insurancePlan[0].insureId,
 					"riskCodes": data.value.insurancePlan[0].insureId,
 
-					"amnt": "5",
+					"amnt": "10",
 					"payEndYear": "9",
 					"insuredSex": "men",
 					"insuredBirthday": "2000-01-01",
 
-					"payIntv": "",
-					"renewalBankCode": "",
-					"renewalBankAccount": ""
+					"payIntv": "Y",
 
+					"renewalBankCode": "",
+					"renewalBankAccount": "",
+
+					"holderCardValid":"2020-01-01",
+					"holderOccupationCode":"",
+
+					"holderResidentProvince":"",
+					"holderResidentCity":"",
+					"holderResidentCounty":"",
+					
+
+					"insuredCardValid":"2020-01-01",
+					"insuredOccupationCode":"",
+					"insuredResidentCounty":"",
+
+					"insuredHeight":"",
+					"insuredWeight":"",
+					"insuredZip":""
+					
 				}
 			},
 			"parsInit": {
@@ -40,15 +57,32 @@ const dataFlow = function(data) {
 					"insureId": data.value.insurancePlan[0].insureId,
 					"riskCodes": data.value.insurancePlan[0].insureId,
 
-					"amnt": "5",
+					"amnt": "10",
 					"payEndYear": "9",
 					"insuredSex": "men",
 					"insuredBirthday": "2000-01-01",
 
-					"payIntv": "",
-					"renewalBankCode": "",
-					"renewalBankAccount": ""
+					"payIntv": "Y",
 
+					"renewalBankCode": "",
+					"renewalBankAccount": "",
+
+					"holderCardValid":"2020-01-01",
+					"holderOccupationCode":"",
+
+					"holderResidentProvince":"",
+					"holderResidentCity":"",
+					"holderResidentCounty":"",
+					
+
+					"insuredCardValid":"2020-01-01",
+					"insuredOccupationCode":"",
+					"insuredResidentCounty":"",
+
+					"insuredHeight":"",
+					"insuredWeight":"",
+					"insuredZip":""
+					
 				}
 			}
 		},

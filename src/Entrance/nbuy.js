@@ -7,6 +7,8 @@ import e_nbuy_validate from '../Static/js/nbuy/nbuy_validate.js';
 import e_nbuy_getcode from '../Static/js/nbuy/nbuy_getcode.js';
 import e_nbuy_rela from '../Static/js/nbuy/nbuy_rela.js';
 import timePicker from '../Static/js/nbuy/timePicker.js';
+import nbuyPurchase from '../Static/js/nbuy/nbuyPurchase.js';
+
 
 // 动态导入相关产品的文件
 const productConfig = require('../Config/config.json');
@@ -18,7 +20,8 @@ const eventFuc = {
 	"e_nbuy_validate": e_nbuy_validate,
 	"e_nbuy_getcode": e_nbuy_getcode,
 	"e_nbuy_rela": e_nbuy_rela,
-	"timePicker": timePicker
+	"timePicker": timePicker,
+	"nbuyPurchase": nbuyPurchase
 }
 
 class lifeCycle {

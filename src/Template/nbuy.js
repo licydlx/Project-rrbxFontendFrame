@@ -9,7 +9,7 @@ import nbuy_clause from '../Moudle/nbuy/nbuy_clause.js';
 import nbuy_supple_info from '../Moudle/nbuy/nbuy_supple_info.js';
 import nbuy_footer from '../Moudle/nbuy/nbuy_footer.js';
 import nbuy_addInsured from '../Moudle/nbuy/nbuy_addInsured.js';
-
+import nbuy_bank from '../Moudle/nbuy/nbuy_bank.js';
 const brickObj = {
 	'nbuy_holder': nbuy_holder,
 	'nbuy_insured': nbuy_insured,
@@ -17,7 +17,8 @@ const brickObj = {
 	'nbuy_clause': nbuy_clause,
 	'nbuy_supple_info': nbuy_supple_info,
 	'nbuy_footer': nbuy_footer,
-	'nbuy_addInsured':nbuy_addInsured
+	'nbuy_addInsured':nbuy_addInsured,
+	'nbuy_bank':nbuy_bank
 }
 
 const tNbuy = function(obj, brick) {

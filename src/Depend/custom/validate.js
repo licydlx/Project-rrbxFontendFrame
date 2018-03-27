@@ -5,7 +5,9 @@ var validate = {
 		"certiNo": "certiNo",
 		"authCode": /^\d{6,9}$/,
 		"email": /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-		"address":/\S/
+		"address": /\S/,
+		"cardNo": /^[0-9]{16,19}$/,
+		"CmKg":/^[0-9]{1,3}$/
 	},
 	format: function(par) {
 		return this.obj[par];
