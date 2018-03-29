@@ -79,6 +79,7 @@ const serviceLogic = function(a) {
 	new selectOne($("#relaId"), "关系选择", renderData.data.relaId, relaId).init();
 
 	function relaId(constent, value) {
+		trialObj.insurantApplicantRelation = value;
 		var cloneObj = relaNextCloneObj;
 		Object.is(value, rrbxSetObj.defaultPars.rela) ? relaObj.nextAll().remove() : relaObj.after(cloneObj);
 		Object.is(value, rrbxSetObj.defaultPars.rela) ? "" : insuredIns();
@@ -117,44 +118,42 @@ const serviceLogic = function(a) {
 	$("#container").on("blur","input[data-type='certiNo']", function(event) {
 		var $that = $(this),
 			cardObj = dateUnit.parseIdCard($that.val());
-
-		console.log(cardObj);
 		if (cardObj) {
 			switch ($that.attr("id")) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
+						"age": 18
 					}, {
-						"age": 60
+						"age": 50
 					});
 
-					console.log("ok");
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小20岁，最大60周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小18周岁，最大50周岁").init().show();
 						$("#holder_certiNo").val('');
 						$("#holder_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
-						console.log("haha");
 						trialObj.extraParams.insuredBirthday = cardObj.birthday;
+						trialObj.extraParams.insuredSex = cardObj.sex;
 						getPrem()
 						return;
 					};
 					break;
 				case 'insured_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"ageDay": 60
+						"ageDay": 30
 					}, {
-						"age": 9
+						"age": 17
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小60天，最大9周岁").init().show();
+						new dateModal(null, "stateIndform", "如果被保人非本人,被保人年龄最小30天，最大17周岁").init().show();
 						$("#insured_certiNo").val('');
 						$("#insured_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
 						trialObj.extraParams.insuredBirthday = cardObj.birthday;
+						trialObj.extraParams.insuredSex = cardObj.sex;
 						getPrem()
 						return;
 					};

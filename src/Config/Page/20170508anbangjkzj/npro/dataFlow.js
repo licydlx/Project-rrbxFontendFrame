@@ -10,64 +10,64 @@ const dataFlow = function(data) {
 					"rrbxProductId": data.productId,
 					"productSeriesId": data.value.insurancePlan[0].id,
 					"periodPremium": data.value.insurancePlan[0].price,
-					"buyNum": 1
+					"buyNum": 1,
+					"insurantApplicantRelation":"00"
 				},
 				"extraParams": {
-					"insuYear": "106",
 					"birthday": "2000-01-01",
+					"sex":"men",
 					"amnt": "5",
-					"payendyear": "0",
+					"payendyear": "1000",
 					"payIntv": "0",
+					"exempt": "0",
+
 					"prem": "",
 
-					"exempt": "0",
-					"exemptPrem": "",
-
+					"insuYear":"106",
 					"holderOccupationCode": "",
-					"holderIdEndDate": "",
+					"holderIdEndDate": "2020-01-01",
 					"holderProvince": "",
 					"holderCity": "",
 					"holderCounty": "",
 
 					"insuredOccupationCode": "",
-					"insuredIdEndDate": "",
+					"insuredIdEndDate": "2020-01-01",
 					"insuredProvince": "",
 					"insuredCity": "",
 					"insuredCounty": ""
 				}
 			},
 			"parsInit": {
-				"pars": {
-					"rrbx": {
-						"rrbxProductId": data.productId,
-						"productSeriesId": data.value.insurancePlan[0].id,
-						"periodPremium": data.value.insurancePlan[0].price,
-						"buyNum": 1
-					},
-					"extraParams": {
-						"insuYear": "106",
-						"birthday": "2000-01-01",
-						"amnt": "5",
-						"payendyear": "0",
-						"payIntv": "0",
-						"prem": "",
-
-						"exempt": "0",
-						"exemptPrem": "",
-
-						"holderOccupationCode": "",
-						"holderIdEndDate": "",
-						"holderProvince": "",
-						"holderCity": "",
-						"holderCounty": "",
-
-						"insuredOccupationCode": "",
-						"insuredIdEndDate": "",
-						"insuredProvince": "",
-						"insuredCity": "",
-						"insuredCounty": ""
-					}
+				"rrbx": {
+					"rrbxProductId": data.productId,
+					"productSeriesId": data.value.insurancePlan[0].id,
+					"periodPremium": data.value.insurancePlan[0].price,
+					"buyNum": 1,
+					"insurantApplicantRelation":"00"
 				},
+				"extraParams": {
+					"birthday": "2000-01-01",
+					"sex":"men",
+					"amnt": "5",
+					"payendyear": "1000",
+					"payIntv": "0",
+					"exempt": "0",
+
+					"prem": "",
+
+					"insuYear":"106",
+					"holderOccupationCode": "",
+					"holderIdEndDate": "2020-01-01",
+					"holderProvince": "",
+					"holderCity": "",
+					"holderCounty": "",
+
+					"insuredOccupationCode": "",
+					"insuredIdEndDate": "2020-01-01",
+					"insuredProvince": "",
+					"insuredCity": "",
+					"insuredCounty": ""
+				}
 			}
 		},
 		"renderDate": {
@@ -76,7 +76,7 @@ const dataFlow = function(data) {
 		},
 		"defaultPars": {
 			"productId": data.productId,
-			"rela": "01"
+			"rela": "00"
 		}
 	}));
 }

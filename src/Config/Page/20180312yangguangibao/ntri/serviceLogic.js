@@ -14,7 +14,6 @@ const serviceLogic = function(a) {
 
 	// 初始化 保費參數值(由投保页回退回来) (多层级 对象 深拷贝)
 	var parsObj = JSON.parse(JSON.stringify(rrbxSetObj.insuredPars.parsInit));
-	console.log(parsObj);
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 
@@ -93,9 +92,7 @@ const serviceLogic = function(a) {
 
 	function payEndYear(content, value) {
 		parsObj.extraParams.payEndYear = value;
-		console.log(value);
 		parsObj.extraParams.payIntv = Object.is(value,"1") ? "D":"Y";
-		console.log(parsObj.extraParams.payIntv);
 		getPrem();
 		return true;
 	}

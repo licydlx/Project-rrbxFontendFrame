@@ -16,7 +16,8 @@
         "e_nbuy_validate": {},
         "e_buy_fold": {},
         "e_nbuy_getcode": {},
-        "e_nbuy_clause": {}
+        "e_nbuy_clause": {},
+        "nbuyPurchase": {}
     },
     "serviceLogic": "",
     "dataFlow": "",
@@ -62,6 +63,18 @@
                         "data-verify": "certiNo"
                     }
                 }, {
+                    "title": "证件有效期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderIdEndDate",
+                        "value": "2020-01-01",
+
+                        "data-id": "2020-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
                     "title": "居住省市",
                     "type": "choose",
                     "choose": {
@@ -71,13 +84,13 @@
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
-                        
+
                         "data-belong": "extraParams",
-                        "data-key":"holderProvince,holderCity,holderDistrict",
+                        "data-key": "holderProvince,holderCity,holderCounty",
                         "data-type": "area",
                         "data-verify": "area"
                     }
-                },{
+                }, {
                     "title": "详细地址",
                     "type": "input",
                     "input": {
@@ -99,11 +112,7 @@
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
-                        "readonly": "readonly",
-
-                        "data-belong": "extraParams",
-                        "data-type": "holderOccupationCode",
-                        "data-verify": "holderOccupationCode"
+                        "readonly": "readonly"
                     }
                 }, {
                     "title": "邮箱地址",
@@ -122,11 +131,11 @@
                 "title": "被保人",
                 "objArray": [{
                     "title": "为谁投保",
-                    "type": "inputDefault",
-                    "inputDefault": {
+                    "type": "choose",
+                    "choose": {
                         "id": "relaId",
-                        "value": "子女",
-                        "data-id": "03",
+                        "value": "本人",
+                        "data-id": "00",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
@@ -169,85 +178,85 @@
                         "data-type": "certiNo",
                         "data-verify": "certiNo"
                     }
+                }, {
+                    "title": "证件有效期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredIdEndDate",
+                        "value": "2020-01-01",
+                        "data-id": "2020-01-01",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "居住省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredArea",
+                        "placeholder": "请选择居住省市",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-key": "insuredResidentProvince,insuredResidentCity,insuredResidentCounty",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                }, {
+                    "title": "详细地址",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredAddress",
+                        "placeholder": "请输入详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "insuredUser",
+                        "data-type": "address",
+                        "data-verify": "address"
+                    }
+                }, {
+                    "title": "个人职业",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredOccupationCode",
+                        "placeholder": "请选择个人职业",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-key": ",,insuredOccupationCode",
+                        "data-belong": "extraParams",
+                        "data-type": "area",
+                        "data-verify": "all"
+                    }
                 }]
             }
         },
         "data": {
-            "holderOccupationCode": [{
-                "id": "A",
-                "value": "公务员"
+            "relaId": [{
+                "id": "00",
+                "value": "本人"
             }, {
-                "id": "C1",
-                "value": "旅游、餐饮、零售"
+                "id": "01",
+                "value": "父子"
             }, {
-                "id": "C2",
-                "value": "娱乐场所、博彩、影视娱乐业"
+                "id": "02",
+                "value": "父女"
             }, {
-                "id": "C3",
-                "value": "废品收购"
+                "id": "03",
+                "value": "母子"
             }, {
-                "id": "C3",
-                "value": "艺术品收藏、考古及文物保护"
+                "id": "04",
+                "value": "母女"
             }, {
-                "id": "C3",
-                "value": "拍卖、典当、贵金属和珠宝交易商"
-            }, {
-                "id": "C4",
-                "value": "房屋中介、律师、公证人员、会计师"
-            }, {
-                "id": "D1",
-                "value": "家庭主妇"
-            }, {
-                "id": "D2",
-                "value": "离退休人员"
-            }, {
-                "id": "D3",
-                "value": "无业、待业及无固定职业人员(除上面两种以外)"
-            }, {
-                "id": "D4",
-                "value": "自营投资者"
-            }, {
-                "id": "F",
-                "value": "农牧业、渔业、木材森林业"
-            }, {
-                "id": "G",
-                "value": "矿石开采业、建筑工程业、装潢业"
-            }, {
-                "id": "H",
-                "value": "五金电子电器、日用品、化工建材等制造业"
-            }, {
-                "id": "H",
-                "value": "机电及其他设备维修"
-            }, {
-                "id": "I",
-                "value": "水陆空交通运输业、邮政等公共事业"
-            }, {
-                "id": "I",
-                "value": "水电、燃气、通讯等公共事业"
-            }, {
-                "id": "I",
-                "value": "计算机与互联网"
-            }, {
-                "id": "J",
-                "value": "文教业、新闻出版广告业；卫生保健业；"
-            }, {
-                "id": "J",
-                "value": "清洁或家政、物业管理、物流等服务业"
-            }, {
-                "id": "J",
-                "value": "美容美发、摄影、殡葬等服务业"
-            }, {
-                "id": "K",
-                "value": "金融业"
-            }, {
-                "id": "L",
-                "value": "学生、学龄前儿童"
-            }, {
-                "id": "M",
-                "value": "企事业单位、民间组织和社会团体等工作人员"
-            }, {
-                "id": "M",
-                "value": "宗教业"
+                "id": "07",
+                "value": "配偶"
             }]
         }
     }

@@ -1,4 +1,5 @@
 import env from '../../../../Config/env.js';
+console.log(env);
 // 获取保费
 function premAjax(pars, func) {
 	const promise = new Promise(function(resolve, reject) {

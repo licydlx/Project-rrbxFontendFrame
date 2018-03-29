@@ -255,7 +255,7 @@
                         "maxlength": 32,
 
                         "data-belong": "insuredUser",
-                        "data-type": "insuredAddress",
+                        "data-type": "address",
                         "data-verify": "address"
                     }
                 }, {
@@ -277,7 +277,7 @@
                 }]
             },
             "bank": {
-                "title": "银行卡信息",
+                "title": "续期缴费信息",
                 "objArray": [{
                     "title": "续费银行",
                     "type": "choose",
@@ -312,8 +312,17 @@
                 "id": "00",
                 "value": "本人"
             }, {
-                "id": "25",
-                "value": "子女"
+                "id": "01",
+                "value": "父子"
+            }, {
+                "id": "02",
+                "value": "父女"
+            }, {
+                "id": "03",
+                "value": "母子"
+            }, {
+                "id": "04",
+                "value": "母女"
             }],
             "renewalBankCode": [{
                 "id": "ICBC",

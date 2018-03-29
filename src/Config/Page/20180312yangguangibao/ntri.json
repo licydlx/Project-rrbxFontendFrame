@@ -65,7 +65,7 @@
             "type": "choose",
             "choose": {
                 "id": "payEndYear",
-                "value": "至60岁",
+                "value": "至60周岁",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
@@ -96,7 +96,7 @@
             }],
             "payEndYear": [{
                 "id": "9",
-                "value": "至60岁"
+                "value": "至60周岁"
             }, {
                 "id": "8",
                 "value": "30年"

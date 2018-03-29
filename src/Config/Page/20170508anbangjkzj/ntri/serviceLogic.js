@@ -2,14 +2,10 @@ import {
 	consultServie,
 	dateModal
 } from '../../../../Static/js/common/modal.js';
+import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
-import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
-
-import basicPrem from './basicPrem.js';
-import exemptPrem from './exemptPrem.js';
-import numUnit from '../../../../Static/js/depend/tools/numUnit.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -19,15 +15,33 @@ const serviceLogic = function(a) {
 	// 客服咨询
 	new consultServie("consultService", "#service", "#service-pop").init();
 	// =============================
+	// 业务逻辑
+	// =============================
+	getPrem();
 
+	// 逻辑:根据出生日期变化重新计算保费
+	// 条件:被保人年龄区间 --大于28天,小于50周岁
+	new selectDate($("#birthday"), "birthday", '2000-01-01', 50, 0, birthday).init();
 
-	// var test = exemptPrem("1990-04-05","man",'18');
-	// console.log(test);
+	function birthday(value) {
+		var flag = dateUnit.getAgeRangeState(value, {
+			"ageDay": 28
+		}, {
+			"age": 50
+		});
 
-	// getPrem(rrbxSetObj);
-	var test = basicPrem('106','5','men',"1990-04-05",0)
-	console.log(test);
-	// 性别
+		if (!flag) {
+			new dateModal(null, "stateIndform", "被保人年龄最小28天，最大50周岁").init().show();
+			return false;
+		} else {
+			parsObj.extraParams.birthday = value;
+			getPrem();
+			return true;
+		};
+	}
+
+	// 逻辑:根据性别变化重新计算保费
+	// 条件:men:男性，women:女性
 	$(".singleSelect").on('click', 'a', function(event) {
 		event.preventDefault();
 		var $this = $(this),
@@ -38,29 +52,13 @@ const serviceLogic = function(a) {
 			$this.closest(".content").find("li").removeClass("active");
 			$this.closest("li").addClass("active");
 		}
+
+		parsObj.extraParams.sex = $this.attr("data-id");
+		getPrem();
 	});
 
-	// 出生日期
-	new selectDate($("#birthday"), "birthday", '2000-01-01', 50, 0, birthday).init();
-
-	function birthday(value) { 
-		var flag = dateUnit.getAgeRangeState(value, {
-			"ageDay": 28
-		}, {
-			"age": 50
-		});
-
-		if (!flag) {
-			new dateModal(null, "stateIndform", "投保人年龄最小28天，最大50周岁").init().show();
-			return false;
-		} else {
-			parsObj.extraParams.birthday = value;
-			getPrem();
-			return true;
-		};
-	}
-
-	// 保额选择
+	// 逻辑:根据保障额度变化重新计算保费
+	// 条件:5:5万,10:10万,15:15万,20:20万,25:25万,30:30万,35:35万
 	new selectOne($("#amnt"), "保额选择", renderData.data.amnt, amnt).init();
 
 	function amnt(content, value) {
@@ -69,10 +67,44 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
+	// 逻辑:根据缴费方式变化重新计算保费
+	// 条件:1000:一次交清,3:3年,5:5年,10:10年,15:15年,20:20年
+	new selectOne($("#payendyear"), "缴费方式选择", renderData.data.payendyear, payendyear).init();
 
-	// 获取保费 并 存储rrbxSetObj
+	function payendyear(content, value) {
+		parsObj.extraParams.payendyear = value;
+		// 逻辑:根据缴费方式判断改变缴费年期
+		// 条件:0:一次交清，12:其他年交
+		parsObj.extraParams.payIntv = Object.is(value, "1000") ? "0" : "12";
+		// 逻辑:根据缴费方式判断改变是否购买豁免险
+		if (Object.is(value, "1000")) {
+			parsObj.extraParams.exempt = "0";
+			$("#exempt").attr("data-id", "0").attr("value", "否");
+		}
+
+		getPrem();
+		return true;
+	}
+
+	// 逻辑:根据是否购买豁免险变化重新计算保费
+	// 条件:0:否,1是 （注意：一次交清不能购买豁免险）
+	new selectOne($("#exempt"), "缴费方式选择", renderData.data.exempt, exempt).init();
+
+	function exempt(content, value) {
+		var py = $("#payendyear").attr("data-id");
+		if (Object.is(py, "0")) {
+			new dateModal(null, "stateIndform", "一次交清不能购买豁免险").init().show();
+			return false;
+		} else {
+			parsObj.extraParams.exempt = value;
+			getPrem();
+			return true;
+		};
+	}
+
+	// 逻辑: 根据算参数获取保费,并存储公共数据对象
+	// 条件: 试算参数对象:ntriObj;公共数据对象:rrbxSetObj
 	function getPrem() {
-		
 		var ntriObj = parsObj.rrbx;
 		ntriObj["extraParams"] = parsObj.extraParams;
 
@@ -84,5 +116,9 @@ const serviceLogic = function(a) {
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
 		});
 	}
+
+	// =============================
+	// 业务逻辑
+	// =============================
 };
 export default serviceLogic;
