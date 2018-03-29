@@ -50,14 +50,15 @@
 			<% if(objArray[i].type == "singleSelect") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>
-					<ul class="content">
-						<% for(var y=0;y < objArray[i].tab.length;y++){ %>
-						<li><a
+					<ul class="content" id="<%= objArray[i].id %>" data-id="<%= objArray[i]['data-id'] %>">
+						<% for(var y=0;y < objArray[i].singleSelect.length;y++){ %>
+						<li
 							<% if(y==0){ %>
 								class="active"
 							<% } %>
-							<%= "data-id"+"="+objArray[i].tab[y]["data-id"] %>
-							><%= objArray[i].tab[y].text %></a></li>
+						><a
+							<%= "data-id"+"="+objArray[i].singleSelect[y]["data-id"] %>
+							> <%= objArray[i].singleSelect[y].text %></a></li>
 						<% } %>
 					</ul>
 				</section>

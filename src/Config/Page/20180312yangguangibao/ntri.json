@@ -117,7 +117,7 @@
                 "id": "WSDA",
                 "value": "轻症"
             }, {
-                "id": "WSWP",
+                "id": "WSDA,WSWP",
                 "value": "轻症+轻症豁免"
             }]
         }

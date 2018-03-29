@@ -18,7 +18,7 @@ import areaData from './area.js';
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
-	// 试算对象 
+	// 试算对象
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// 已阅读文案
 	if (rrbxSetObj.renderDate.insurePolicy) nbuyClause(rrbxSetObj.renderDate.insurePolicy);
@@ -118,15 +118,6 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 逻辑:获取投保人的投保人银行
-	// 条件:点击下拉选择,即可
-	new selectOne($("#renewalBankCode"), "银行选择", renderData.data.renewalBankCode, renewalBankCode).init();
-
-	function renewalBankCode(content, value) {
-		trialObj.extraParams.renewalBankCode = value;
-		return true;
-	};
-
 	// 逻辑:获取投保人的关系
 	// 条件:点击下拉选择,即可
 	var relaObj = $("#relaId").closest(".item"),
@@ -191,13 +182,13 @@ const serviceLogic = function(a) {
 			switch (certiNoId) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 18
+						"age": 20
 					}, {
-						"age": 50
+						"age": 40
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小18岁，最大50周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小20周岁，最大40周岁").init().show();
 						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (relaState) {
@@ -208,13 +199,13 @@ const serviceLogic = function(a) {
 					break;
 				case 'insured_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"ageDay": 28
+						"age": 20
 					}, {
-						"age": 50
+						"age": 40
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小28天，最大50周岁").init().show();
+						new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
 						$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (!relaState) {
@@ -244,7 +235,7 @@ const serviceLogic = function(a) {
 	// =============================
 
 	// 购买
-	// 
+	//
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 
@@ -265,7 +256,7 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
-			// 安康健康综合疾病险
+			// 和谐母婴安康疾病保险
 			// 逻辑: 投保页保额 amnt * 10000
 			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt =
 				parseInt(rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt) * 10000;

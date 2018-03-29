@@ -62,6 +62,8 @@
     margin-right:15px;
     background-color:#fff;
     border-bottom:1px solid #eee;
+    overflow:hidden;
+    transition: height .3s linear .3s;
     .title {
        position: relative;
        width:4rem;
@@ -89,6 +91,29 @@
             height: 100%;
             object-fit: contain;
             transform: rotate(-90deg);
+        }
+    }
+}
+
+// TAB单选
+// 作者:ydlx
+// 日期:2018-3-16
+.singleSelect {
+    .content {
+        li.active {
+            a {
+                color:#fff;
+                background-color:#c2343d;
+                border:none;
+            }
+        }
+        li {
+            a {
+                padding:5px 1rem;
+                border:1px solid #eee;
+                border-radius:4px;
+                margin-right:1rem;
+            }
         }
     }
 }

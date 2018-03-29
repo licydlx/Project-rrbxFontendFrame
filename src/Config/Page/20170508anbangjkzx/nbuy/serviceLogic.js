@@ -18,7 +18,7 @@ import areaData from './area.js';
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
-	// 试算对象 
+	// 试算对象
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// 已阅读文案
 	if (rrbxSetObj.renderDate.insurePolicy) nbuyClause(rrbxSetObj.renderDate.insurePolicy);
@@ -244,7 +244,7 @@ const serviceLogic = function(a) {
 	// =============================
 
 	// 购买
-	// 
+	//
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 

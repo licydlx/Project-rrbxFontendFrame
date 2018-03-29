@@ -1,8 +1,8 @@
 {
     "basicInfo": {
         "detailsPage": "ntri",
-        "productId": "20170508anbangjkzj",
-        "title": "健康之家综合疾病险"
+        "productId": "20170508anbangjkzx",
+        "title": "健康之享定期重大疾病保险"
     },
     "htmlBrick": ["ntri_item", "ntri_footer"],
     "bindEvent": {
@@ -18,12 +18,16 @@
     "renderData": {
         "item": [{
             "title": "保障期限",
-            "type": "singleSelect",
-            "id": "insuYear",
-            "singleSelect": [{
-                "data-id": "106",
-                "text": "终身"
-            }]
+            "type": "choose",
+            "choose": {
+                "id": "insuYear",
+                "data-id": "60",
+                "value": "至60周岁",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
         }, {
             "title": "出生日期",
             "type": "choose",
@@ -58,8 +62,7 @@
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
-        },
-        {
+        }, {
             "title": "缴费方式",
             "type": "choose",
             "choose": {
@@ -71,8 +74,7 @@
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
-        },
-        {
+        }, {
             "title": "购买豁免险",
             "type": "choose",
             "choose": {
@@ -86,6 +88,22 @@
             }
         }],
         "data": {
+            "insuYear": [{
+                "id": "60",
+                "value": "60周岁"
+            },{
+                "id": "65",
+                "value": "65周岁"
+            },{
+                "id": "70",
+                "value": "70周岁"
+            },{
+                "id": "75",
+                "value": "75周岁"
+            },{
+                "id": "80",
+                "value": "80周岁"
+            }],
             "amnt": [{
                 "id": "5",
                 "value": "5万元"
@@ -104,27 +122,36 @@
             }, {
                 "id": "30",
                 "value": "30万元"
+            }, {
+                "id": "35",
+                "value": "35万元"
+            }, {
+                "id": "40",
+                "value": "45万元"
+            }, {
+                "id": "50",
+                "value": "50万元"
             }],
-            "exempt":[{
+            "exempt": [{
                 "id": "0",
                 "value": "否"
             }, {
                 "id": "1",
                 "value": "是"
             }],
-            "payendyear":[{
+            "payendyear": [{
                 "id": "1000",
                 "value": "一次性缴清"
             }, {
                 "id": "3",
                 "value": "3年"
-            },{
+            }, {
                 "id": "5",
                 "value": "5年"
             }, {
                 "id": "10",
                 "value": "10年"
-            },{
+            }, {
                 "id": "15",
                 "value": "15年"
             }, {

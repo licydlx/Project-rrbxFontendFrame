@@ -97,13 +97,15 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 缴费年限
+	// 逻辑:附加险
+	// 条件:WDDG:主险；WSDA：i保轻疾险；WSWP：豁免轻疾险
 	new selectOne($("#riskCodes"), "附加险", renderData.data.riskCodes, riskCodes).init();
 
 	var orginX = parsObj.extraParams.riskCodes;
 	function riskCodes(content, value) {
 		var x = [];
 		if (!Object.is(value,"null")) x.push(value);
+
 		parsObj.extraParams.riskCodes = orginX.split(',').concat(x).join(',');
 		getPrem();
 		return true;
