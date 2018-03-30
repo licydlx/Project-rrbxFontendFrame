@@ -10,23 +10,38 @@ class selectArea {
 		this.data = data;
 		this.func = func;
 	}
-	
+
 	init() {
-		var that = this; 
-		that.bindDom.on("click",function(event) {
+		var that = this;
+
+		that.bindDom.on("click", function(event) {
 			event.preventDefault();
+			var codeStr = that.bindDom.attr("data-id"),
+				oneLevelId = "",
+				twoLevelId = "",
+				threeLevelId = "";
+			if (codeStr) {
+				var codeArray = codeStr.split(",");
+				oneLevelId = codeArray[0];
+				twoLevelId = codeArray[1];
+				threeLevelId = codeArray[2];
+			};
 
 			new IosSelect(3, [that.data.provinces, that.data.citys, that.data.countys], {
 				title: that.title,
 				itemHeight: 35,
 				relation: [1, 1],
-				oneLevelId: "threeLevelId",
-				twoLevelId: "threeLevelId",
-				threeLevelId: "threeLevelId",
+				oneLevelId: oneLevelId,
+				twoLevelId: twoLevelId,
+				threeLevelId: threeLevelId,
 				showAnimate: true,
 				callback: function(selectOneObj, selectTwoObj, selectThreeObj) {
 					if (that.func) {
-						that.func({selectOneObj,selectTwoObj,selectThreeObj});
+						that.func({
+							selectOneObj,
+							selectTwoObj,
+							selectThreeObj
+						});
 					};
 					that.bindDom.attr("data-id", selectOneObj.id + "," + selectTwoObj.id + "," + selectThreeObj.id);
 					that.bindDom.attr("value", selectOneObj.value + "," + selectTwoObj.value + "," + selectThreeObj.value);

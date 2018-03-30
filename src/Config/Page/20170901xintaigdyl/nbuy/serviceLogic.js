@@ -30,6 +30,7 @@ const serviceLogic = function(a) {
 	// =============================
 	// 业务逻辑
 	// =============================
+
 	// 本人:defaultRela
 	// 实际关系:relaTag
 	var defaultRela = rrbxSetObj.defaultPars.rela,
@@ -117,15 +118,6 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 逻辑:获取投保人的投保人银行
-	// 条件:点击下拉选择,即可
-	new selectOne($("#renewalBankCode"), "银行选择", renderData.data.renewalBankCode, renewalBankCode).init();
-
-	function renewalBankCode(content, value) {
-		trialObj.extraParams.renewalBankCode = value;
-		return true;
-	};
-
 	// 逻辑:获取投保人的关系
 	// 条件:点击下拉选择,即可
 	var relaObj = $("#relaId").closest(".item"),
@@ -190,13 +182,13 @@ const serviceLogic = function(a) {
 			switch (certiNoId) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 18
+						"age": 20
 					}, {
-						"age": 50
+						"age": 40
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小18岁，最大50周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小20周岁，最大40周岁").init().show();
 						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (relaState) {
@@ -207,13 +199,13 @@ const serviceLogic = function(a) {
 					break;
 				case 'insured_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"ageDay": 28
+						"age": 20
 					}, {
-						"age": 50
+						"age": 40
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小28天，最大50周岁").init().show();
+						new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
 						$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (!relaState) {
@@ -229,20 +221,12 @@ const serviceLogic = function(a) {
 	// 逻辑: 根据算参数获取保费,并存储公共数据对象
 	// 条件: 试算参数对象:ntriObj;公共数据对象:rrbxSetObj
 	function getPrem() {
-		var amnCur = trialObj.extraParams.amnt;
-		if (parseInt(amnCur) > 10000) {
-			trialObj.extraParams.amnt = parseInt(amnCur)/10000;
-		};
 		premAjax(trialObj, function(value) {
 			$("#prem").text(value + "元");
 
 			trialObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
-			// 安康健康综合疾病险
-			// 逻辑: 投保页保额 amnt * 10000
-			// 狀況: 試算: amnt:5,10,15,20,25,30 ; 核保: 50000,100000,150000,200000,250000,300000
-			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt = parseInt(trialObj.extraParams.amnt) * 10000;
 		});
 	}
 
@@ -272,6 +256,11 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
+			// 和谐母婴安康疾病保险
+			// 逻辑: 投保页保额 amnt * 10000
+			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt =
+				parseInt(rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt) * 10000;
+
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");

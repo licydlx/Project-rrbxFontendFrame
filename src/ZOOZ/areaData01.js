@@ -5,7 +5,7 @@ var provinces = [];
 areaData.RECORDS.forEach(function(x, y, z) {
 	if (x.ParentID == "100000"){
 		provinces.push({"id":x.RegionID,"value":x.RegionName,"parentId":x.ParentID});
-	} 
+	}
 });
 
 var citys = [];
@@ -30,11 +30,33 @@ areaData.RECORDS.forEach(function(x, y, z) {
 	})
 });
 
-var tpl = {
-	"provinces":provinces,
-	"citys":citys,
-	"countys":countys
-}
+// var tpl = {
+// 	"provinces":provinces,
+// 	"citys":citys,
+// 	"countys":countys
+// }
 
-$(".container").text(JSON.stringify(tpl));
+// $(".container").text(JSON.stringify(tpl));
 
+// 逻辑:获取限制城市code
+var limitArea = `北京、上海、深圳、广州、成都、杭州、武汉、重庆、天津、南京、苏州、长沙、青岛、佛山、西安、济南、东莞、厦门、福州、无锡、合肥、郑州、宁波、大连、石家庄、南宁、南昌、昆明、烟台、泉州、珠海、惠州、温州、太原`;
+
+var limitAreaArray = limitArea.split("、");
+
+console.log(limitAreaArray);
+
+var limitCitys = [];
+citys.forEach(function (x,y,z) {
+	limitAreaArray.forEach(function (m,n,l) {
+		if (x.value.indexOf(m) !== -1) {
+			limitCitys.push(x.id);
+		};
+	});
+});
+
+console.log(limitCitys);
+
+var a1 = JSON.stringify(limitAreaArray);
+var a2 = JSON.stringify(limitCitys);
+
+$(".container").text(a2);

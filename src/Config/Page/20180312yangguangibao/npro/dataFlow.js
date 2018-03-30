@@ -17,6 +17,10 @@ const dataFlow = function(data) {
 					"insureId": data.value.insurancePlan[0].insureId,
 					"riskCodes": data.value.insurancePlan[0].insureId,
 
+					"limitArea": JSON.stringify({
+						"data-id": "110000,110100,110101",
+						"value": "北京,北京市,东城区"
+					}),
 					"amnt": "10",
 					"payEndYear": "9",
 					"insuredSex": "men",
@@ -27,22 +31,23 @@ const dataFlow = function(data) {
 					"renewalBankCode": "",
 					"renewalBankAccount": "",
 
-					"holderCardValid":"2020-01-01",
-					"holderOccupationCode":"",
+					"holderCardValid": "2020-01-01",
+					"holderOccupationCode": "",
 
-					"holderResidentProvince":"",
-					"holderResidentCity":"",
-					"holderResidentCounty":"",
-					
+					"holderResidentProvince": "",
+					"holderResidentCity": "",
+					"holderResidentCounty": "",
 
-					"insuredCardValid":"2020-01-01",
-					"insuredOccupationCode":"",
-					"insuredResidentCounty":"",
+					"insuredCardValid": "2020-01-01",
+					"insuredOccupationCode": "",
 
-					"insuredHeight":"",
-					"insuredWeight":"",
-					"insuredZip":""
-					
+					"insuredResidentProvince": "",
+					"insuredResidentCity": "",
+					"insuredResidentCounty": "",
+
+					"insuredHeight": "",
+					"insuredWeight": "",
+					"insuredZip": ""
 				}
 			},
 			"parsInit": {
@@ -57,6 +62,10 @@ const dataFlow = function(data) {
 					"insureId": data.value.insurancePlan[0].insureId,
 					"riskCodes": data.value.insurancePlan[0].insureId,
 
+					"limitArea": JSON.stringify({
+						"data-id": "110000,110100,110101",
+						"value": "北京,北京市,东城区"
+					}),
 					"amnt": "10",
 					"payEndYear": "9",
 					"insuredSex": "men",
@@ -67,22 +76,23 @@ const dataFlow = function(data) {
 					"renewalBankCode": "",
 					"renewalBankAccount": "",
 
-					"holderCardValid":"2020-01-01",
-					"holderOccupationCode":"",
+					"holderCardValid": "2020-01-01",
+					"holderOccupationCode": "",
 
-					"holderResidentProvince":"",
-					"holderResidentCity":"",
-					"holderResidentCounty":"",
-					
+					"holderResidentProvince": "",
+					"holderResidentCity": "",
+					"holderResidentCounty": "",
 
-					"insuredCardValid":"2020-01-01",
-					"insuredOccupationCode":"",
-					"insuredResidentCounty":"",
+					"insuredCardValid": "2020-01-01",
+					"insuredOccupationCode": "",
 
-					"insuredHeight":"",
-					"insuredWeight":"",
-					"insuredZip":""
-					
+					"insuredResidentProvince": "",
+					"insuredResidentCity": "",
+					"insuredResidentCounty": "",
+
+					"insuredHeight": "",
+					"insuredWeight": "",
+					"insuredZip": ""
 				}
 			}
 		},

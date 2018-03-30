@@ -22,7 +22,7 @@ import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
-	// 试算对象 
+	// 试算对象
 	var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// 已阅读文案
 	if (rrbxSetObj.renderDate.insurePolicy) nbuyClause(rrbxSetObj.renderDate.insurePolicy);
@@ -34,17 +34,27 @@ const serviceLogic = function(a) {
 	// 关系Tag
 	var relaTag = $("#relaId").attr("data-id"),
 		defaultRela = rrbxSetObj.defaultPars.rela;
+	var areaObj = JSON.parse(trialObj.extraParams.limitArea),
+		areaIdArray = areaObj["data-id"].split(","),
+		areaValueArray = areaObj["value"].split(",");
+	$("#holderArea").attr("value", areaValueArray[0] + "," + areaValueArray[1] + "," + areaValueArray[2]);
 
+	trialObj.extraParams.holderResidentProvince = areaIdArray[0];
+	trialObj.extraParams.holderResidentCity = areaIdArray[1];
+	trialObj.extraParams.holderResidentCounty = areaIdArray[2];
+	trialObj.extraParams.insuredResidentProvince = areaIdArray[0];
+	trialObj.extraParams.insuredResidentCity = areaIdArray[1];
+	trialObj.extraParams.insuredResidentCounty = areaIdArray[2];
 	// 投保人省市地区选择
-	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
+	// new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
 
-	function holderArea(value) {
-		trialObj.extraParams.holderResidentProvince = value.selectOneObj.id;
-		trialObj.extraParams.holderResidentCity = value.selectTwoObj.id;
-		trialObj.extraParams.holderResidentCounty = value.selectThreeObj.id;
-		Object.is(relaTag, defaultRela) ? trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id : "";
-		return true;
-	};
+	// function holderArea(value) {
+	// 	trialObj.extraParams.holderResidentProvince = value.selectOneObj.id;
+	// 	trialObj.extraParams.holderResidentCity = value.selectTwoObj.id;
+	// 	trialObj.extraParams.holderResidentCounty = value.selectThreeObj.id;
+	// 	Object.is(relaTag, defaultRela) ? trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id : "";
+	// 	return true;
+	// };
 
 	// 投保人职业选择
 	new selectArea($("#holderOccupationCode"), "职业选择", occupationData, holderOccupationCode).init();
@@ -86,16 +96,19 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 被保人 
-	// 被保人省市地区选择
-
 	function insuredIns() {
-		new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
+		// 被保人
+		// 被保人省市地区选择
+		$("#insuredArea").attr("value", areaValueArray[0] + "," + areaValueArray[1] + "," + areaValueArray[2]);
+		trialObj.extraParams.insuredResidentProvince = areaIdArray[0];
+		trialObj.extraParams.insuredResidentCity = areaIdArray[1];
+		trialObj.extraParams.insuredResidentCounty = areaIdArray[2];
+		// new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
 
-		function insuredArea(value) {
-			trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id;
-			return true;
-		};
+		// function insuredArea(value) {
+		// 	trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id;
+		// 	return true;
+		// };
 
 		// 被保人职业选择
 		new selectArea($("#insuredOccupationCode"), "职业选择", occupationData, insuredOccupationCode).init();
@@ -115,7 +128,7 @@ const serviceLogic = function(a) {
 	}
 
 	// 根据身份证重新计算保费
-	$("#container").on("blur","input[data-type='certiNo']", function(event) {
+	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
 		var $that = $(this),
 			cardObj = dateUnit.parseIdCard($that.val());
 		if (cardObj) {
@@ -175,7 +188,7 @@ const serviceLogic = function(a) {
 
 
 	// 购买
-	// 
+	//
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 

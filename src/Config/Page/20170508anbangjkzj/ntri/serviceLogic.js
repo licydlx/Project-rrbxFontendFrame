@@ -73,7 +73,6 @@ const serviceLogic = function(a) {
 
 	function payendyear(content, value) {
 		parsObj.extraParams.payendyear = value;
-		console.log(value);
 		// 逻辑:根据缴费方式判断改变缴费年期
 		// 条件:1000:一次交清，12:其他年交
 		parsObj.extraParams.payIntv = Object.is(value, "1000") ? "0" : "12";

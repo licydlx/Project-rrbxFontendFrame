@@ -28,6 +28,17 @@
                 "text": "PLUS"
             }]
         }, {
+            "title": "所在地区",
+            "type": "choose",
+            "choose": {
+                "id": "limitArea",
+                "value": "北京,北京市,东城区",
+                "data-id": "110000,110100,110101",
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
             "title": "被保人性别",
             "type": "singleSelect",
             "id": "insuredSex",
@@ -55,7 +66,7 @@
             "choose": {
                 "id": "amnt",
                 "value": "10万",
-
+                "data-id": "10",
                 "unselectable": "no",
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
@@ -93,6 +104,12 @@
             }, {
                 "id": "30",
                 "value": "30万元"
+            }, {
+                "id": "40",
+                "value": "40万元"
+            }, {
+                "id": "50",
+                "value": "50万元"
             }],
             "payEndYear": [{
                 "id": "9",

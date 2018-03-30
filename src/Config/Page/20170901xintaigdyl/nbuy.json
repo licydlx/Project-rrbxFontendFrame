@@ -1,13 +1,12 @@
 {
     "basicInfo": {
         "detailsPage": "nbuy",
-        "productId": "20180312yangguangibao",
-        "title": "阳光寿险-I保"
+        "productId": "20170901xintaigdyl",
+        "title": "信泰高端医疗"
     },
     "htmlBrick": [
         "nbuy_holder",
         "nbuy_insured",
-        "nbuy_bank",
         "nbuy_favoree",
         "nbuy_supple_info",
         "nbuy_clause",
@@ -65,9 +64,20 @@
                     }
                 }, {
                     "title": "证件有效期",
+                    "type": "singleSelect",
+                    "data-id": "holderIdEndDate",
+                    "singleSelect": [{
+                        "data-id": "1",
+                        "text": "非长期"
+                    },{
+                        "data-id": "0",
+                        "text": "长期"
+                    }]
+                }, {
+                    "title": "有效止期",
                     "type": "choose",
                     "choose": {
-                        "id": "holderCardValid",
+                        "id": "holderIdEndDate",
                         "value": "2020-01-01",
 
                         "data-id": "2020-01-01",
@@ -77,16 +87,18 @@
                     }
                 }, {
                     "title": "居住省市",
-                    "type": "inputDefault",
-                    "inputDefault": {
+                    "type": "choose",
+                    "choose": {
                         "id": "holderArea",
+                        "placeholder": "请选择居住省市",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
                         "data-belong": "extraParams",
-                        "data-type": "certiType",
+                        "data-key": "holderProvince,holderCity,holderCounty",
+                        "data-type": "area",
                         "data-verify": "area"
                     }
                 }, {
@@ -111,12 +123,7 @@
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
-                        "readonly": "readonly",
-
-                        "data-key": ",,holderOccupationCode",
-                        "data-belong": "extraParams",
-                        "data-type": "area",
-                        "data-verify": "holderOccupationCode"
+                        "readonly": "readonly"
                     }
                 }, {
                     "title": "邮箱地址",
@@ -134,40 +141,7 @@
             "insured": {
                 "title": "被保人",
                 "objArray": [{
-                    "title": "身高(CM)",
-                    "type": "input",
-                    "input": {
-                        "id": "insuredHeight",
-                        "placeholder": "请输入身高",
-
-                        "data-belong": "extraParams",
-                        "data-type": "insuredHeight",
-                        "data-verify": "all"
-                    }
-                }, {
-                    "title": "体重(KG)",
-                    "type": "input",
-                    "input": {
-                        "id": "insuredWeight",
-                        "placeholder": "请输入体重",
-
-                        "data-belong": "extraParams",
-                        "data-type": "insuredWeight",
-                        "data-verify": "all"
-                    }
-                }, {
-                    "title": "邮政编码",
-                    "type": "input",
-                    "input": {
-                        "id": "insuredZip",
-                        "placeholder": "请输入邮政编码",
-
-                        "data-belong": "extraParams",
-                        "data-type": "insuredZip",
-                        "data-verify": "all"
-                    }
-                }, {
-                    "title": "投被关系",
+                    "title": "为谁投保",
                     "type": "choose",
                     "choose": {
                         "id": "relaId",
@@ -217,9 +191,20 @@
                     }
                 }, {
                     "title": "证件有效期",
+                    "type": "singleSelect",
+                    "data-id": "insuredIdEndDate",
+                    "singleSelect": [{
+                        "data-id": "1",
+                        "text": "非长期"
+                    },{
+                        "data-id": "0",
+                        "text": "长期"
+                    }]
+                }, {
+                    "title": "证件有效期",
                     "type": "choose",
                     "choose": {
-                        "id": "insuredCardValid",
+                        "id": "insuredIdEndDate",
                         "value": "2020-01-01",
                         "data-id": "2020-01-01",
 
@@ -229,16 +214,18 @@
                     }
                 }, {
                     "title": "居住省市",
-                    "type": "inputDefault",
-                    "inputDefault": {
+                    "type": "choose",
+                    "choose": {
                         "id": "insuredArea",
+                        "placeholder": "请选择居住省市",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
                         "data-belong": "extraParams",
-                        "data-type": "certiType",
+                        "data-key": "insuredProvince,insuredCity,insuredCounty",
+                        "data-type": "area",
                         "data-verify": "area"
                     }
                 }, {
@@ -263,42 +250,7 @@
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
-                        "readonly": "readonly",
-
-                        "data-key": ",,insuredOccupationCode",
-                        "data-belong": "extraParams",
-                        "data-type": "area",
-                        "data-verify": "all"
-                    }
-                }]
-            },
-            "bank": {
-                "title": "续期缴费信息",
-                "objArray": [{
-                    "title": "续费银行",
-                    "type": "choose",
-                    "choose": {
-                        "id": "renewalBankCode",
-                        "placeholder": "请选择续费银行",
-
-                        "unselectable": "no",
-                        "onfocus": "this.blur()",
-                        "readonly": "readonly",
-
-                        "data-belong": "extraParams",
-                        "data-type": "renewalBankCode",
-                        "data-verify": "all"
-                    }
-                }, {
-                    "title": "银行卡号",
-                    "type": "input",
-                    "input": {
-                        "id": "renewalBankAccount",
-                        "placeholder": "请输入银行卡号",
-                        "oninput": "if(value.length>19)value=value.slice(0,19)",
-                        "data-belong": "extraParams",
-                        "data-type": "renewalBankAccount",
-                        "data-verify": "all"
+                        "readonly": "readonly"
                     }
                 }]
             }
@@ -319,34 +271,9 @@
             }, {
                 "id": "04",
                 "value": "母女"
-            }],
-            "renewalBankCode": [{
-                "id": "ICBC",
-                "value": "工商银行"
             }, {
-                "id": "ABC",
-                "value": "农业银行"
-            }, {
-                "id": "CCB",
-                "value": "建设银行"
-            }, {
-                "id": "BOC",
-                "value": "中国银行"
-            }, {
-                "id": "PSBC",
-                "value": "邮政储蓄银行"
-            }, {
-                "id": "CMB",
-                "value": "招商银行"
-            }, {
-                "id": "CEB",
-                "value": "光大银行"
-            }, {
-                "id": "CGB",
-                "value": "广发银行"
-            }, {
-                "id": "SPDB",
-                "value": "浦发银行"
+                "id": "07",
+                "value": "配偶"
             }]
         }
     }

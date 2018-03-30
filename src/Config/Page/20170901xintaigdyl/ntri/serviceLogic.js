@@ -21,18 +21,18 @@ const serviceLogic = function(a) {
 	getPrem();
 
 	// 逻辑:根据出生日期变化重新计算保费
-	// 条件:被保人年龄区间 --大于20周岁,小于40周岁
+	// 条件:被保人年龄区间 --大于20周岁,小于50周岁
 	new selectDate($("#birthday"), "birthday", '1990-01-01', 51, -19, birthday).init();
 
 	function birthday(value) {
 		var flag = dateUnit.getAgeRangeState(value, {
 			"age": 20
 		}, {
-			"age": 40
+			"age": 50
 		});
 
 		if (!flag) {
-			new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
+			new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大50周岁").init().show();
 			return false;
 		} else {
 			parsObj.extraParams.birthday = value;

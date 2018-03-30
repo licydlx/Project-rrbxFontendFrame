@@ -4,7 +4,7 @@ var provinces = [];
 areaData.SQLResults.forEach(function(x, y, z) {
 	if (x[2] == "01"){
 		provinces.push({"id":x[0],"value":x[1],"parentId":"0"});
-	} 
+	}
 });
 
 console.log(provinces);
