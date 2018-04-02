@@ -7,6 +7,11 @@ import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
 
+import insuYearData from './insuYearData.js';
+import amntData from './amntData.js';
+import exemptData from './exemptData.js';
+import payendyearData from './payendyearData.js';
+
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
@@ -17,8 +22,16 @@ const serviceLogic = function(a) {
 	// =============================
 	// 业务逻辑
 	// =============================
-
 	getPrem();
+	// 逻辑:根据保障额度变化重新计算保费
+	// 条件:5:5万,10:10万,15:15万,20:20万,25:25万,30:30万,35:35万
+	new selectOne($("#insuYear"), "期限选择", insuYearData, insuYear).init();
+
+	function insuYear(content, value) {
+		parsObj.extraParams.insuYear = value;
+		getPrem();
+		return true;
+	}
 
 	// 逻辑:根据出生日期变化重新计算保费
 	// 条件:被保人年龄区间 --大于28天,小于50周岁
@@ -60,17 +73,42 @@ const serviceLogic = function(a) {
 
 	// 逻辑:根据保障额度变化重新计算保费
 	// 条件:5:5万,10:10万,15:15万,20:20万,25:25万,30:30万,35:35万
-	new selectOne($("#amnt"), "保额选择", renderData.data.amnt, amnt).init();
+	new selectOne($("#amnt"), "保额选择", amntData, amnt).init();
 
 	function amnt(content, value) {
-		parsObj.extraParams.amnt = value;
-		getPrem();
-		return true;
+		var curBirthday = $("#birthday").val(),
+			curAge = dateUnit.getAgeFromBirthday(curBirthday),
+			amntMax = amntJudge(curAge.age);
+		if (parseInt(value) > amntMax) {
+			new dateModal(null, "stateIndform", `在该年龄段,最大保额不超过${amntMax}万元`).init().show();
+			return false;
+		} else {
+			parsObj.extraParams.amnt = value;
+			getPrem();
+			return true;
+		};
+
 	}
 
+	function amntJudge(age) {
+		var amnt;
+		if (age >= 0 && age <= 17) {
+			amnt = 60;
+		}
+		if (age >= 18 && age <= 40) {
+			amnt = 50;
+		}
+		if (age >= 41 && age <= 45) {
+			amnt = 30;
+		}
+		if (age >= 46 && age <= 50) {
+			amnt = 20;
+		}
+		return amnt;
+	}
 	// 逻辑:根据缴费方式变化重新计算保费
 	// 条件:1000:一次交清,3:3年,5:5年,10:10年,15:15年,20:20年
-	new selectOne($("#payendyear"), "缴费方式选择", renderData.data.payendyear, payendyear).init();
+	new selectOne($("#payendyear"), "缴费方式选择", payendyearData, payendyear).init();
 
 	function payendyear(content, value) {
 		parsObj.extraParams.payendyear = value;
@@ -88,9 +126,10 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
+
 	// 逻辑:根据是否购买豁免险变化重新计算保费
 	// 条件:0:否,1是 （注意：一次交清不能购买豁免险）
-	new selectOne($("#exempt"), "缴费方式选择", renderData.data.exempt, exempt).init();
+	new selectOne($("#exempt"), "缴费方式选择", exemptData, exempt).init();
 
 	function exempt(content, value) {
 		var py = $("#payendyear").attr("data-id");

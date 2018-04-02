@@ -12,8 +12,10 @@ import {
 } from '../../../../Static/js/common/modal.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
-import occupationData from './occupation.js';
-import areaData from './area.js';
+
+import occupationData from './occupationData.js';
+import areaData from './areaData.js';
+import relaData from './relaData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -26,7 +28,6 @@ const serviceLogic = function(a) {
 	$("#prem").text(rrbxSetObj.insuredPars.pars.extraParams.prem + "元");
 	// 平台识别
 	if (rrbxSetObj.GV && Object.is(rrbxSetObj.GV.sceneType, '3')) $(".mg-b-footer").css("margin-bottom", "1rem");
-
 	// =============================
 	// 业务逻辑
 	// =============================
@@ -103,7 +104,6 @@ const serviceLogic = function(a) {
 		};
 
 	});
-
 	// 逻辑:获取投保人的身份有效期,如果被保人为本人则...
 	// 条件:点击下拉选择,即可
 	new selectDate($("#holderIdEndDate"), "birthday", '2020-01-01', 0, 60, holderIdEndDate).init();
@@ -117,21 +117,12 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 逻辑:获取投保人的投保人银行
-	// 条件:点击下拉选择,即可
-	new selectOne($("#renewalBankCode"), "银行选择", renderData.data.renewalBankCode, renewalBankCode).init();
-
-	function renewalBankCode(content, value) {
-		trialObj.extraParams.renewalBankCode = value;
-		return true;
-	};
-
 	// 逻辑:获取投保人的关系
 	// 条件:点击下拉选择,即可
 	var relaObj = $("#relaId").closest(".item"),
 		relaNextCloneObj = relaObj.nextAll().clone();
 	relaObj.nextAll().remove();
-	new selectOne($("#relaId"), "关系选择", renderData.data.relaId, relaId).init();
+	new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
 
 	function relaId(constent, value) {
 		trialObj.insurantApplicantRelation = value;
@@ -192,7 +183,7 @@ const serviceLogic = function(a) {
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
 						"age": 18
 					}, {
-						"age": 50
+						"age": 100
 					});
 
 					if (!flag) {
@@ -201,6 +192,7 @@ const serviceLogic = function(a) {
 					} else {
 						if (relaState) {
 							trialObj.extraParams.birthday = cardObj.birthday;
+							trialObj.extraParams.sex = cardObj.sex;
 							getPrem()
 						};
 					};
@@ -218,6 +210,7 @@ const serviceLogic = function(a) {
 					} else {
 						if (!relaState) {
 							trialObj.extraParams.birthday = cardObj.birthday;
+							trialObj.extraParams.sex = cardObj.sex;
 							getPrem()
 						}
 					};
@@ -231,7 +224,7 @@ const serviceLogic = function(a) {
 	function getPrem() {
 		var amnCur = trialObj.extraParams.amnt;
 		if (parseInt(amnCur) > 10000) {
-			trialObj.extraParams.amnt = parseInt(amnCur)/10000;
+			trialObj.extraParams.amnt = parseInt(amnCur) / 10000;
 		};
 		premAjax(trialObj, function(value) {
 			$("#prem").text(value + "元");

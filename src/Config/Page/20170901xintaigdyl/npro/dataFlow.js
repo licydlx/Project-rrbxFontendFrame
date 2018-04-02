@@ -11,25 +11,29 @@ const dataFlow = function(data) {
 					"productSeriesId": data.value.insurancePlan[0].id,
 					"periodPremium": data.value.insurancePlan[0].price,
 					"buyNum": 1,
-					"insurantApplicantRelation":"00"
+					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"birthday": "1990-01-01",
-					"amnt": "1",
-					"adjDuty":"0",
-					"prem": "",
+					"birthday": "2001-01-0",
+					"insAmount": "100",
+					"holderSocialSec": "01",
 
-					"holderOccupationCode": "",
-					"holderIdEndDate": "2020-01-01",
 					"holderProvince": "",
 					"holderCity": "",
-					"holderCounty": "",
+					"holderArea": "",
+					"holderAddress": "",
+					"holderOc": "",
 
-					"insuredOccupationCode": "",
-					"insuredIdEndDate": "2020-01-01",
-					"insuredProvince": "",
-					"insuredCity": "",
-					"insuredCounty": ""
+					"province": "",
+					"city": "",
+					"area": "",
+					"address": "",
+					"jobCode": "",
+
+					"bankCode": "",
+					"bankCard": "",
+					"bankProvince": "",
+					"bankCity": ""
 				}
 			},
 			"parsInit": {
@@ -38,31 +42,35 @@ const dataFlow = function(data) {
 					"productSeriesId": data.value.insurancePlan[0].id,
 					"periodPremium": data.value.insurancePlan[0].price,
 					"buyNum": 1,
-					"insurantApplicantRelation":"00"
+					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"birthday": "1990-01-01",
-					"amnt": "1",
-					"adjDuty":"0",
-					"prem": "",
+					"birthday": "2001-01-0",
+					"insAmount": "100",
+					"holderSocialSec": "01",
 
-					"holderOccupationCode": "",
-					"holderIdEndDate": "2020-01-01",
 					"holderProvince": "",
 					"holderCity": "",
-					"holderCounty": "",
+					"holderArea": "",
+					"holderAddress": "",
+					"holderOc": "",
 
-					"insuredOccupationCode": "",
-					"insuredIdEndDate": "2020-01-01",
-					"insuredProvince": "",
-					"insuredCity": "",
-					"insuredCounty": ""
+					"province": "",
+					"city": "",
+					"area": "",
+					"address": "",
+					"jobCode": "",
+
+					"bankCode": "",
+					"bankCard": "",
+					"bankProvince": "",
+					"bankCity": ""
 				}
 			}
 		},
 		"renderDate": {
 			'insurePolicy': data.value.insurePolicy,
-			"insurancePlan": null
+			"insurancePlan": data.value.insurancePlan
 		},
 		"defaultPars": {
 			"productId": data.productId,

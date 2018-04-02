@@ -11,9 +11,12 @@ import {
 	dateModal
 } from '../../../../Static/js/common/modal.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
+
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
-import occupationData from './occupation.js';
-import areaData from './area.js';
+
+import relaData from './relaData.js';
+import occupationData from './occupationData.js';
+import areaData from './areaData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -44,89 +47,39 @@ const serviceLogic = function(a) {
 
 		trialObj.extraParams.holderProvince = value.selectOneObj.id;
 		trialObj.extraParams.holderCity = value.selectTwoObj.id;
-		trialObj.extraParams.holderCounty = value.selectThreeObj.id;
+		trialObj.extraParams.holderArea = value.selectThreeObj.id;
 		if (Object.is(relaTag, defaultRela)) {
-			trialObj.extraParams.insuredProvince = value.selectOneObj.id;
-			trialObj.extraParams.insuredCity = value.selectTwoObj.id;
-			trialObj.extraParams.insuredCounty = value.selectThreeObj.id;
+			trialObj.extraParams.province = value.selectOneObj.id;
+			trialObj.extraParams.city = value.selectTwoObj.id;
+			trialObj.extraParams.area = value.selectThreeObj.id;
 		};
-		setTimeout(function() {
-			$("#holderArea").attr("value", value.selectThreeObj.value);
-		}, 100)
 		return true;
 	};
 
 	// 逻辑:获取投保人的职业,如果被保人为本人则...
 	// 条件:点击下拉选择,即可
-	new selectOne($("#holderOccupationCode"), "职业选择", occupationData, holderOccupationCode).init();
+	new selectOne($("#holderOc"), "职业选择", occupationData, holderOc).init();
 
-	function holderOccupationCode(content, value) {
+	function holderOc(content, value) {
 		relaTag = $("#relaId").attr("data-id");
-		trialObj.extraParams.holderOccupationCode = value;
+		trialObj.extraParams.holderOc = value;
 		if (Object.is(relaTag, defaultRela)) {
-			trialObj.extraParams.insuredOccupationCode = value;
+			trialObj.extraParams.jobCode = value;
 		};
 		return true;
 	};
-
-	// 逻辑:获取身份证有效期,如果为长期,则...;为非长期,则下拉框可选
-	// 条件:点击TAB选择,即可
-	$("#container").on('click', '.singleSelect a', function(event) {
-		event.preventDefault();
-
-		var $this = $(this),
-			endDateId = $this.closest('.content').attr("data-id"),
-			codeTag = $this.attr("data-id");
-
-		if (!$this.closest("li").hasClass("active")) {
-			$this.closest(".content").find("li").removeClass("active");
-			$this.closest("li").addClass("active");
-		}
-
-		if (Object.is(codeTag, "0")) {
-			trialObj.extraParams[endDateId] = '9999-01-01';
-
-			relaTag = $("#relaId").attr("data-id");
-			if (Object.is(relaTag, defaultRela)) {
-				trialObj.extraParams.insuredIdEndDate = '9999-01-01';
-			};
-			$("#" + endDateId + "").closest(".item").css({
-				"border-bottom": 'none',
-				"height": '0',
-
-			});
-		} else {
-			trialObj.extraParams[endDateId] = $("#" + endDateId).val();
-			$("#" + endDateId + "").closest(".item").css({
-				"height": '3rem',
-				"border-bottom": '1px solid #eee'
-			});
-		};
-
-	});
-
-	// 逻辑:获取投保人的身份有效期,如果被保人为本人则...
-	// 条件:点击下拉选择,即可
-	new selectDate($("#holderIdEndDate"), "birthday", '2020-01-01', 0, 60, holderIdEndDate).init();
-
-	function holderIdEndDate(value) {
-		relaTag = $("#relaId").attr("data-id");
-		trialObj.extraParams.holderIdEndDate = value;
-		if (Object.is(relaTag, defaultRela)) {
-			trialObj.extraParams.insuredIdEndDate = value;
-		};
-		return true;
-	}
 
 	// 逻辑:获取投保人的关系
 	// 条件:点击下拉选择,即可
 	var relaObj = $("#relaId").closest(".item"),
 		relaNextCloneObj = relaObj.nextAll().clone();
 	relaObj.nextAll().remove();
-	new selectOne($("#relaId"), "关系选择", renderData.data.relaId, relaId).init();
+
+	new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
 
 	function relaId(constent, value) {
 		trialObj.insurantApplicantRelation = value;
+
 		var cloneObj = relaNextCloneObj;
 		if (Object.is(value, rrbxSetObj.defaultPars.rela)) {
 			relaObj.nextAll().remove()
@@ -146,27 +99,20 @@ const serviceLogic = function(a) {
 		new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
 
 		function insuredArea(value) {
-			trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id;
+			trialObj.extraParams.province = value.selectOneObj.id;
+			trialObj.extraParams.city = value.selectTwoObj.id;
+			trialObj.extraParams.area = value.selectThreeObj.id;
 			return true;
 		};
 
 		// 逻辑:获取被保人的职业
 		// 条件:点击下拉选择,即可
-		new selectOne($("#insuredOccupationCode"), "职业选择", occupationData, insuredOccupationCode).init();
+		new selectOne($("#jobCode"), "职业选择", occupationData, jobCode).init();
 
-		function insuredOccupationCode(content, value) {
-			trialObj.extraParams.insuredOccupationCode = value;
+		function jobCode(content, value) {
+			trialObj.extraParams.jobCode = value;
 			return true;
 		};
-
-		// 逻辑:获取被保人的身份有效期
-		// 条件:点击下拉选择,即可
-		new selectDate($("#insuredIdEndDate"), "birthday", '2020-01-01', 0, 60, insuredIdEndDate).init();
-
-		function insuredIdEndDate(content, value) {
-			trialObj.extraParams.insuredIdEndDate = value;
-			return true;
-		}
 	}
 
 	// 逻辑:根据被保人身份证重新计算保费
@@ -182,13 +128,13 @@ const serviceLogic = function(a) {
 			switch (certiNoId) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
+						"age": 18
 					}, {
-						"age": 40
+						"age": 60
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小20周岁，最大40周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小18周岁，最大60周岁").init().show();
 						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (relaState) {
@@ -199,13 +145,13 @@ const serviceLogic = function(a) {
 					break;
 				case 'insured_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
+						"ageDay": 28
 					}, {
-						"age": 40
+						"age": 60
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
+						new dateModal(null, "stateIndform", "被保人年龄最小28天，最大60周岁").init().show();
 						$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (!relaState) {

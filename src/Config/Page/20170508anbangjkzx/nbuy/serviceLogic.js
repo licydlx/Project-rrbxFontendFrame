@@ -12,8 +12,10 @@ import {
 } from '../../../../Static/js/common/modal.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
-import occupationData from './occupation.js';
-import areaData from './area.js';
+
+import areaData from './areaData.js';
+import occupationData from './occupationData.js';
+import relaData from './relaData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -118,21 +120,12 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
-	// 逻辑:获取投保人的投保人银行
-	// 条件:点击下拉选择,即可
-	new selectOne($("#renewalBankCode"), "银行选择", renderData.data.renewalBankCode, renewalBankCode).init();
-
-	function renewalBankCode(content, value) {
-		trialObj.extraParams.renewalBankCode = value;
-		return true;
-	};
-
 	// 逻辑:获取投保人的关系
 	// 条件:点击下拉选择,即可
 	var relaObj = $("#relaId").closest(".item"),
 		relaNextCloneObj = relaObj.nextAll().clone();
 	relaObj.nextAll().remove();
-	new selectOne($("#relaId"), "关系选择", renderData.data.relaId, relaId).init();
+	new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
 
 	function relaId(constent, value) {
 		trialObj.insurantApplicantRelation = value;
@@ -193,7 +186,7 @@ const serviceLogic = function(a) {
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
 						"age": 18
 					}, {
-						"age": 50
+						"age": 100
 					});
 
 					if (!flag) {
@@ -230,15 +223,22 @@ const serviceLogic = function(a) {
 	// 逻辑: 根据算参数获取保费,并存储公共数据对象
 	// 条件: 试算参数对象:ntriObj;公共数据对象:rrbxSetObj
 	function getPrem() {
+		var amnCur = trialObj.extraParams.amnt;
+		if (parseInt(amnCur) > 10000) {
+			trialObj.extraParams.amnt = parseInt(amnCur) / 10000;
+		};
 		premAjax(trialObj, function(value) {
 			$("#prem").text(value + "元");
 
 			trialObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
+			// 安康健康综合疾病险
+			// 逻辑: 投保页保额 amnt * 10000
+			// 狀況: 試算: amnt:5,10,15,20,25,30 ; 核保: 50000,100000,150000,200000,250000,300000
+			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt = parseInt(trialObj.extraParams.amnt) * 10000;
 		});
 	}
-
 	// =============================
 	// 业务逻辑
 	// =============================
@@ -265,11 +265,6 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
-			// 安康健康综合疾病险
-			// 逻辑: 投保页保额 amnt * 10000
-			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt =
-				parseInt(rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt) * 10000;
-
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");

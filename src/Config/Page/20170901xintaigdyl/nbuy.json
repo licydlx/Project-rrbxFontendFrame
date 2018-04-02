@@ -7,6 +7,7 @@
     "htmlBrick": [
         "nbuy_holder",
         "nbuy_insured",
+        "nbuy_bank",
         "nbuy_favoree",
         "nbuy_supple_info",
         "nbuy_clause",
@@ -63,27 +64,15 @@
                         "data-verify": "certiNo"
                     }
                 }, {
-                    "title": "证件有效期",
-                    "type": "singleSelect",
-                    "data-id": "holderIdEndDate",
-                    "singleSelect": [{
-                        "data-id": "1",
-                        "text": "非长期"
-                    },{
-                        "data-id": "0",
-                        "text": "长期"
-                    }]
-                }, {
-                    "title": "有效止期",
-                    "type": "choose",
-                    "choose": {
-                        "id": "holderIdEndDate",
-                        "value": "2020-01-01",
-
-                        "data-id": "2020-01-01",
-                        "unselectable": "no",
-                        "onfocus": "this.blur()",
-                        "readonly": "readonly"
+                    "title": "邮箱地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "email",
+                        "data-verify": "email"
                     }
                 }, {
                     "title": "居住省市",
@@ -97,7 +86,7 @@
                         "readonly": "readonly",
 
                         "data-belong": "extraParams",
-                        "data-key": "holderProvince,holderCity,holderCounty",
+                        "data-key": "holderProvince,holderCity,holderArea",
                         "data-type": "area",
                         "data-verify": "area"
                     }
@@ -118,23 +107,12 @@
                     "title": "个人职业",
                     "type": "choose",
                     "choose": {
-                        "id": "holderOccupationCode",
+                        "id": "holderOc",
                         "placeholder": "请选择个人职业",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly"
-                    }
-                }, {
-                    "title": "邮箱地址",
-                    "type": "input",
-                    "input": {
-                        "id": "holder_email",
-                        "placeholder": "请输入邮箱地址",
-                        "oninput": "if(value.length>30)value=value.slice(0,30)",
-                        "data-belong": "policyHolderUser",
-                        "data-type": "email",
-                        "data-verify": "email"
                     }
                 }]
             },
@@ -190,29 +168,6 @@
                         "data-verify": "certiNo"
                     }
                 }, {
-                    "title": "证件有效期",
-                    "type": "singleSelect",
-                    "data-id": "insuredIdEndDate",
-                    "singleSelect": [{
-                        "data-id": "1",
-                        "text": "非长期"
-                    },{
-                        "data-id": "0",
-                        "text": "长期"
-                    }]
-                }, {
-                    "title": "证件有效期",
-                    "type": "choose",
-                    "choose": {
-                        "id": "insuredIdEndDate",
-                        "value": "2020-01-01",
-                        "data-id": "2020-01-01",
-
-                        "unselectable": "no",
-                        "onfocus": "this.blur()",
-                        "readonly": "readonly"
-                    }
-                }, {
                     "title": "居住省市",
                     "type": "choose",
                     "choose": {
@@ -224,7 +179,7 @@
                         "readonly": "readonly",
 
                         "data-belong": "extraParams",
-                        "data-key": "insuredProvince,insuredCity,insuredCounty",
+                        "data-key": "province,city,area",
                         "data-type": "area",
                         "data-verify": "area"
                     }
@@ -232,7 +187,7 @@
                     "title": "详细地址",
                     "type": "input",
                     "input": {
-                        "id": "insuredAddress",
+                        "id": "address",
                         "placeholder": "请输入详细地址",
                         "minlength": 2,
                         "maxlength": 32,
@@ -245,36 +200,54 @@
                     "title": "个人职业",
                     "type": "choose",
                     "choose": {
-                        "id": "insuredOccupationCode",
+                        "id": "jobCode",
                         "placeholder": "请选择个人职业",
 
+                        "data-belong": "extraParams",
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly"
                     }
                 }]
+            },
+            "bank": {
+                "title": "缴费银行",
+                "objArray": [{
+                    "title": "开户银行",
+                    "type": "choose",
+                    "choose": {
+                        "id": "bankCode",
+                        "placeholder": "请选择开户行",
+
+                        "data-belong": "extraParams",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                },{
+                    "title": "银行卡号",
+                    "type": "input",
+                    "input": {
+                        "id": "bankCard",
+                        "placeholder": "请输入银行卡号",
+
+                        "data-belong": "extraParams",
+                        "oninput": "if(value.length>19)value=value.slice(0,19)"
+                    }
+                },{
+                    "title": "银行所在",
+                    "type": "choose",
+                    "choose": {
+                        "id": "bankArea",
+                        "placeholder": "请选择银行所在",
+
+                        "data-belong": "extraParams",
+                        "data-key": "bankProvince,bankCity,bankCountry",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                }]
             }
-        },
-        "data": {
-            "relaId": [{
-                "id": "00",
-                "value": "本人"
-            }, {
-                "id": "01",
-                "value": "父子"
-            }, {
-                "id": "02",
-                "value": "父女"
-            }, {
-                "id": "03",
-                "value": "母子"
-            }, {
-                "id": "04",
-                "value": "母女"
-            }, {
-                "id": "07",
-                "value": "配偶"
-            }]
         }
     }
 }

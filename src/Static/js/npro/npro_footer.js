@@ -1,4 +1,4 @@
-import productConfig from '../../../Config/config.js';
+const productConfig = require('../../../Config/config.json');
 const e_npro_footer = function() {
 	$("#container").on("click", "#premTrial", (event) => {
 		event.preventDefault();

@@ -21,7 +21,8 @@
             "type": "choose",
             "choose": {
                 "id": "birthday",
-                "value": "1990-01-01",
+                "value": "2000-01-01",
+                "data-id":"2000-01-01",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
@@ -29,23 +30,23 @@
             }
         }, {
             "title": "基本保额",
-            "type": "choose",
-            "choose": {
-                "id": "amnt",
-                "data-id": "1",
-                "value": "1万元",
+            "type": "inputDefault",
+            "inputDefault": {
+                "id": "insAmount",
+                "value":"100万",
+                "data-id":"100",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
                 "readonly": "readonly"
             }
         }, {
-            "title": "孕妇高发疾病险",
+            "title": "社保",
             "type": "choose",
             "choose": {
-                "id": "adjDuty",
-                "data-id": "0",
-                "value": "否",
+                "id": "holderSocialSec",
+                "data-id": "01",
+                "value": "无社保",
 
                 "unselectable": "no",
                 "onfocus": "this.blur()",
@@ -53,28 +54,12 @@
             }
         }],
         "data": {
-            "amnt": [{
-                "id": "1",
-                "value": "1万元"
+            "holderSocialSec": [{
+                "id": "01",
+                "value": "无社保"
             }, {
-                "id": "5",
-                "value": "5万元"
-            }, {
-                "id": "10",
-                "value": "10万元"
-            }, {
-                "id": "20",
-                "value": "20万元"
-            },{
-                "id": "30",
-                "value": "30万元"
-            }],
-            "adjDuty": [{
-                "id": "0",
-                "value": "否"
-            }, {
-                "id": "1",
-                "value": "是"
+                "id": "00",
+                "value": "有社保"
             }]
         }
     }
