@@ -34,6 +34,7 @@
                         "minlength": 2,
                         "maxlength": 32,
                         "placeholder": "请输入姓名",
+
                         "data-belong": "policyHolderUser",
                         "data-type": "userName",
                         "data-verify": "userName"
@@ -49,6 +50,7 @@
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
+
                         "data-belong": "policyHolderUser",
                         "data-type": "certiType"
                     }
@@ -59,6 +61,7 @@
                         "id": "holder_certiNo",
                         "placeholder": "请输入证件号码",
                         "oninput": "if(value.length>18)value=value.slice(0,18)",
+
                         "data-belong": "policyHolderUser",
                         "data-type": "certiNo",
                         "data-verify": "certiNo"
@@ -85,9 +88,8 @@
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
-                        "data-belong": "extraParams",
-                        "data-type": "certiType",
-                        "data-verify": "area"
+                        "data-type":"holderArea",
+                        "data-belong": "extraParams"
                     }
                 }, {
                     "title": "详细地址",
@@ -113,10 +115,9 @@
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
-                        "data-key": ",,holderOccupationCode",
+                        "data-type":"holderOccupationCodeType",
                         "data-belong": "extraParams",
-                        "data-type": "area",
-                        "data-verify": "holderOccupationCode"
+                        "data-verify": "all"
                     }
                 }, {
                     "title": "邮箱地址",
@@ -125,6 +126,7 @@
                         "id": "holder_email",
                         "placeholder": "请输入邮箱地址",
                         "oninput": "if(value.length>30)value=value.slice(0,30)",
+
                         "data-belong": "policyHolderUser",
                         "data-type": "email",
                         "data-verify": "email"
@@ -186,6 +188,7 @@
                         "minlength": 2,
                         "maxlength": 32,
                         "placeholder": "请输入姓名",
+
                         "data-belong": "insuredUser",
                         "data-type": "userName",
                         "data-verify": "userName"
@@ -201,6 +204,7 @@
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
+
                         "data-belong": "insuredUser",
                         "data-type": "certiType"
                     }
@@ -211,6 +215,7 @@
                         "id": "insured_certiNo",
                         "placeholder": "请输入证件号码",
                         "oninput": "if(value.length>18)value=value.slice(0,18)",
+
                         "data-belong": "insuredUser",
                         "data-type": "certiNo",
                         "data-verify": "certiNo"
@@ -237,9 +242,8 @@
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
-                        "data-belong": "extraParams",
-                        "data-type": "certiType",
-                        "data-verify": "area"
+                        "data-type": "insuredAreaType",
+                        "data-belong": "extraParams"
                     }
                 }, {
                     "title": "详细地址",
@@ -265,9 +269,8 @@
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
 
-                        "data-key": ",,insuredOccupationCode",
+                        "data-type":"insuredOccupationCodeType",
                         "data-belong": "extraParams",
-                        "data-type": "area",
                         "data-verify": "all"
                     }
                 }]
@@ -296,6 +299,7 @@
                         "id": "renewalBankAccount",
                         "placeholder": "请输入银行卡号",
                         "oninput": "if(value.length>19)value=value.slice(0,19)",
+
                         "data-belong": "extraParams",
                         "data-type": "renewalBankAccount",
                         "data-verify": "all"

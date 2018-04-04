@@ -17,10 +17,10 @@ const dataFlow = function(data) {
 					"insureId": data.value.insurancePlan[0].insureId,
 					"riskCodes": data.value.insurancePlan[0].insureId,
 
-					"limitArea": JSON.stringify({
+					"limitArea":  {
 						"data-id": "110000,110100,110101",
 						"value": "北京,北京市,东城区"
-					}),
+					},
 					"amnt": "10",
 					"payEndYear": "9",
 					"insuredSex": "men",

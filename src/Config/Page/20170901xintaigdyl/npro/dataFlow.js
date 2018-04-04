@@ -33,7 +33,8 @@ const dataFlow = function(data) {
 					"bankCode": "",
 					"bankCard": "",
 					"bankProvince": "",
-					"bankCity": ""
+					"bankCity": "",
+					"bankCountry":""
 				}
 			},
 			"parsInit": {
@@ -64,7 +65,8 @@ const dataFlow = function(data) {
 					"bankCode": "",
 					"bankCard": "",
 					"bankProvince": "",
-					"bankCity": ""
+					"bankCity": "",
+					"bankCountry":""
 				}
 			}
 		},

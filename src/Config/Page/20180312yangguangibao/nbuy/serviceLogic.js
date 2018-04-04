@@ -18,7 +18,6 @@ import {
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 
-
 const serviceLogic = function(a) {
 	var renderData = a[0],
 		rrbxSetObj = a[1];
@@ -47,7 +46,6 @@ const serviceLogic = function(a) {
 	trialObj.extraParams.insuredResidentCounty = areaIdArray[2];
 	// 投保人省市地区选择
 	// new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
-
 	// function holderArea(value) {
 	// 	trialObj.extraParams.holderResidentProvince = value.selectOneObj.id;
 	// 	trialObj.extraParams.holderResidentCity = value.selectTwoObj.id;
@@ -88,7 +86,7 @@ const serviceLogic = function(a) {
 
 	new selectOne($("#relaId"), "关系选择", renderData.data.relaId, relaId).init();
 
-	function relaId(constent, value) {
+	function relaId(content, value) {
 		trialObj.insurantApplicantRelation = value;
 		var cloneObj = relaNextCloneObj;
 		Object.is(value, rrbxSetObj.defaultPars.rela) ? relaObj.nextAll().remove() : relaObj.after(cloneObj);
@@ -104,7 +102,6 @@ const serviceLogic = function(a) {
 		trialObj.extraParams.insuredResidentCity = areaIdArray[1];
 		trialObj.extraParams.insuredResidentCounty = areaIdArray[2];
 		// new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
-
 		// function insuredArea(value) {
 		// 	trialObj.extraParams.insuredResidentCounty = value.selectThreeObj.id;
 		// 	return true;
@@ -130,14 +127,17 @@ const serviceLogic = function(a) {
 	// 根据身份证重新计算保费
 	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
 		var $that = $(this),
-			cardObj = dateUnit.parseIdCard($that.val());
+			cardObj = dateUnit.parseIdCard($that.val()),
+			certiNoId = $that.attr("id"),
+			relaTag = $("#relaId").attr("data-id"),
+			relaState = Object.is(relaTag, defaultRela);
 		if (cardObj) {
-			switch ($that.attr("id")) {
+			switch (certiNoId) {
 				case 'holder_certiNo':
 					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
 						"age": 18
 					}, {
-						"age": 50
+						"age": 100
 					});
 
 					if (!flag) {
@@ -146,10 +146,11 @@ const serviceLogic = function(a) {
 						$("#holder_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
-						trialObj.extraParams.insuredBirthday = cardObj.birthday;
-						trialObj.extraParams.insuredSex = cardObj.sex;
-						getPrem()
-						return;
+						if (relaState) {
+							trialObj.extraParams.insuredBirthday = cardObj.birthday;
+							trialObj.extraParams.insuredSex = cardObj.sex;
+							getPrem();
+						};
 					};
 					break;
 				case 'insured_certiNo':
@@ -165,10 +166,11 @@ const serviceLogic = function(a) {
 						$("#insured_certiNo").closest('.item').attr('data-state', '');
 						return;
 					} else {
-						trialObj.extraParams.insuredBirthday = cardObj.birthday;
-						trialObj.extraParams.insuredSex = cardObj.sex;
-						getPrem()
-						return;
+						if (!relaState) {
+							trialObj.extraParams.insuredBirthday = cardObj.birthday;
+							trialObj.extraParams.insuredSex = cardObj.sex;
+							getPrem()
+						}
 					};
 					break;
 			}
@@ -182,10 +184,32 @@ const serviceLogic = function(a) {
 
 			trialObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
+
+			// 投保费用限制
+			insureFilter(value);
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
 		});
 	}
 
+	// 逻辑:投保条件过滤
+	// 条件:保费累计20万及以上需身份证复印件等等
+	var payYear = {
+		"1": 1,
+		"4": 10,
+		"6": 20,
+		"8": 30,
+		"9": 60
+	};
+
+	function insureFilter(prem) {
+		var birthday = trialObj.extraParams.insuredBirthday,
+			age = dateUnit.getAgeFromBirthday(birthday).age,
+			num = payYear[trialObj.extraParams.payEndYear],
+			totalPrem = Object.is(num, "60") ? (60 - age) * prem : prem * num;
+		if (totalPrem > 200000) {
+			new dateModal(null, "stateIndform", "保费累计超过20万元,需要身份证复印件,或咨询客服,或回试算页重新选择保障方案").init().show();
+		};
+	}
 
 	// 购买
 	//

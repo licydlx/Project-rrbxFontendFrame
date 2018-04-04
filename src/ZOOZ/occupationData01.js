@@ -42,39 +42,36 @@ two.forEach(function(x,y,z){
 	})
 });
 
-// console.log(three);
-
-var test = Object.values(occupationData4).map(function(x, y) {
-	return Object.values(x);
-}).reduce(function(m,n){
-	return m.concat(n);
+// 第四层
+var A = Object.values(occupationData4).reduce(function(m,n){
+	return Object.assign(m, n);
 });
-console.log(test);
 
-var haha = test.map(function(x, y) {
-	return $.map(x, function(value, index) {
-	    return [value];
-	});
-})
+var B = Object.values(A).reduce(function(m,n){
+	return Object.assign(m, n);
+});
 
-console.log(haha.length);
-console.log(haha);
-
-
-var A = haha.reduce(function(m,n){
+var C = Object.values(B).reduce(function(m,n){
 	return m.concat(n);
 });
 
-console.log(A);
+
+var four = [];
+three.forEach(function(x,y,z){
+	C.forEach(function(m,n,l){
+		var id = m[1]+"";
+		if (x.id.slice(0, 5) == id.slice(0, 5)) {
+			four.push({"id":id,"value":m[0],"parentId":x.id});
+		};
+	})
+});
 
 
-// var a = [1,2];
-// var b = [3,4];
-// var c = [5,6];
+var tpl = {
+	"one":one,
+	"two":two,
+	"three":three,
+	"four":four
+}
 
-// var d = [a,b,c];
-// var xixi = d.reduce(function(x,y){
-// 	return x.concat(y);
-// });
-
-// console.log(xixi);
+$(".container").text(JSON.stringify(tpl));

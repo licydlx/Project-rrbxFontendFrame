@@ -47,6 +47,7 @@
                         "value": "身份证",
                         "placeholder": "身份证",
                         "unselectable": "no",
+
                         "onfocus": "this.blur()",
                         "readonly": "readonly",
                         "data-belong": "policyHolderUser",
@@ -87,7 +88,6 @@
 
                         "data-belong": "extraParams",
                         "data-key": "holderProvince,holderCity,holderArea",
-                        "data-type": "area",
                         "data-verify": "area"
                     }
                 }, {
@@ -99,8 +99,8 @@
                         "minlength": 2,
                         "maxlength": 32,
 
-                        "data-belong": "policyHolderUser",
-                        "data-type": "address",
+                        "data-belong": "extraParams",
+                        "data-type": "holderAddress",
                         "data-verify": "address"
                     }
                 }, {
@@ -109,6 +109,8 @@
                     "choose": {
                         "id": "holderOc",
                         "placeholder": "请选择个人职业",
+
+                        "data-belong": "extraParams",
 
                         "unselectable": "no",
                         "onfocus": "this.blur()",
@@ -180,7 +182,6 @@
 
                         "data-belong": "extraParams",
                         "data-key": "province,city,area",
-                        "data-type": "area",
                         "data-verify": "area"
                     }
                 }, {
@@ -192,7 +193,7 @@
                         "minlength": 2,
                         "maxlength": 32,
 
-                        "data-belong": "insuredUser",
+                        "data-belong": "extraParams",
                         "data-type": "address",
                         "data-verify": "address"
                     }
@@ -204,6 +205,7 @@
                         "placeholder": "请选择个人职业",
 
                         "data-belong": "extraParams",
+
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly"
@@ -220,6 +222,7 @@
                         "placeholder": "请选择开户行",
 
                         "data-belong": "extraParams",
+
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly"
@@ -232,7 +235,9 @@
                         "placeholder": "请输入银行卡号",
 
                         "data-belong": "extraParams",
-                        "oninput": "if(value.length>19)value=value.slice(0,19)"
+                        "data-type": "bankCard",
+                        "oninput": "if(value.length>19)value=value.slice(0,19)",
+                        "data-verify": "all"
                     }
                 },{
                     "title": "银行所在",
@@ -241,10 +246,11 @@
                         "id": "bankArea",
                         "placeholder": "请选择银行所在",
 
-                        "data-belong": "extraParams",
-                        "data-key": "bankProvince,bankCity,bankCountry",
-                        "data-type": "area",
-                        "data-verify": "area"
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams"
                     }
                 }]
             }

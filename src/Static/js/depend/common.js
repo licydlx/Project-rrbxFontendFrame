@@ -1,4 +1,4 @@
-// 投保 状态过度动画 
+// 投保 状态过度动画
 // ydlx
 // github:https://github.com/licydlx/rrbx
 // 2018-1-30
@@ -39,7 +39,6 @@ const loadScript = (url, callback) => {
 
 // 获取URL搜索参数
 // ydlx
-// 
 // 2018-2-27
 const getProductId = function() {
 	let searchObj = {};
@@ -59,7 +58,7 @@ const getProductId = function() {
 
 // 时间戳 转为 yyyy-mm-dd 格式
 // ydlx
-// 
+//
 // 2018-3-2
 const formatTimeStamp = function(par) {
 	let now = new Date(parseInt(par) * 1000);
@@ -94,10 +93,62 @@ const alertError = function(data) {
 	});
 }
 
+// 阳光i保 保费限制
+// 作者:ydlx
+// 日期:2018-3-14
+
+const alertPrem = function(data) {
+	let tpl = `<section class="AlertBg">
+			     <div class="Alert">
+				   <header class="H1">${data.title}</header>
+			       <div class="T1">${data.textOne}</div>
+			       <div class="T2">${data.textTwo}</div>
+			       <button class="B1">${data.buttonText}</button>
+			       <div class="T3">${data.footerText.title}</div>
+			     </div>
+			   </section>`;
+
+	$("#container").append(tpl);
+
+	$("#container").on("click", ".B1", function() {
+		$('.AlertBg').remove();
+	});
+
+	$("#container").on("click", ".T3", function() {
+		callTel(".Alert","客服电话:400-772-2928");
+	});
+}
+
+const callTel = function(dom, text) {
+	let tpl = `<section class="telBg">
+				   <div class="telContent">
+				     <div class="text">
+				     	${text}
+				     </div>
+				     <div class="button">
+				     	<a data-id="cancel">取消</a>
+				     	<a href="tel:400-772-2928" data-id="confirm">呼叫</a>
+				     </div>
+				   </div>
+			   </section>`;
+
+	$(dom).append(tpl);
+
+	$("#container").on("click", ".telContent a", function() {
+		var id = $(this).attr("data-id");
+		switch (id) {
+			case "cancel":
+				$(".telContent").remove();
+				break;
+		}
+	});
+}
+
 export {
 	commonJs,
 	loadScript,
 	getProductId,
 	formatTimeStamp,
-	alertError
+	alertError,
+	alertPrem
 };

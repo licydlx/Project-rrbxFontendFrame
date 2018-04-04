@@ -31,7 +31,7 @@ const serviceLogic = function(a) {
 		/* Act on the event */
 		addInsuredObj.create();
 	});
-	// 试算对象 
+	// 试算对象
 	// var trialObj = rrbxSetObj.insuredPars.pars.rrbx;
 	// // 已阅读文案
 	// if (rrbxSetObj.renderDate.insurePolicy) {

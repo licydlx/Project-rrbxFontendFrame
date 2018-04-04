@@ -1,6 +1,7 @@
 import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
+import selectThree from '../../../../Static/js/depend/tools/selectThree.js';
 import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
@@ -17,6 +18,7 @@ import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 import relaData from './relaData.js';
 import occupationData from './occupationData.js';
 import areaData from './areaData.js';
+import bankData from './bankData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -58,13 +60,13 @@ const serviceLogic = function(a) {
 
 	// 逻辑:获取投保人的职业,如果被保人为本人则...
 	// 条件:点击下拉选择,即可
-	new selectOne($("#holderOc"), "职业选择", occupationData, holderOc).init();
+	new selectThree($("#holderOc"), "职业选择", occupationData, holderOc).init();
 
-	function holderOc(content, value) {
+	function holderOc(value) {
 		relaTag = $("#relaId").attr("data-id");
-		trialObj.extraParams.holderOc = value;
+		trialObj.extraParams.holderOc = value.selectThreeObj.id;
 		if (Object.is(relaTag, defaultRela)) {
-			trialObj.extraParams.jobCode = value;
+			trialObj.extraParams.jobCode = value.selectThreeObj.id;
 		};
 		return true;
 	};
@@ -77,7 +79,7 @@ const serviceLogic = function(a) {
 
 	new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
 
-	function relaId(constent, value) {
+	function relaId(content, value) {
 		trialObj.insurantApplicantRelation = value;
 
 		var cloneObj = relaNextCloneObj;
@@ -90,10 +92,43 @@ const serviceLogic = function(a) {
 		return true;
 	}
 
+	// 逻辑:投保人银行选择...
+	// 条件:点击下拉选择,即可
+	new selectOne($("#bankCode"), "银行选择", bankData, bankCode).init();
+
+	function bankCode(content, value) {
+		trialObj.extraParams.bankCode = value;
+		return true;
+	};
+
+	// 逻辑:获取投保人的省市区,如果被保人为本人则...
+	// 条件:点击下拉选择,即可
+	new selectArea($("#bankArea"), "省市选择", areaData, bankArea).init();
+
+	function bankArea(value) {
+		trialObj.extraParams.bankProvince = value.selectOneObj.id;
+		trialObj.extraParams.bankCity = value.selectTwoObj.id;
+		trialObj.extraParams.bankCountry = value.selectThreeObj.id;
+		return true;
+	};
+
+	// 逻辑:详细地址
+	// 输入,光标离开
+	$("#container").on('blur', '#holderAddress', function(event) {
+		event.preventDefault();
+		var value = $(this).val();
+		if (value && value != "") {
+			relaTag = $("#relaId").attr("data-id");
+			trialObj.extraParams.holderAddress = value;
+			if (Object.is(relaTag, defaultRela)) {
+				trialObj.extraParams.address = value;
+			};
+		};
+	});
+
 	// 逻辑:被保人非本人时,绑定被保人选项事件
 	// 条件:改变关系,即可
 	function insuredIns() {
-
 		// 逻辑:获取被保人的省市区
 		// 条件:点击下拉选择,即可
 		new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
@@ -107,10 +142,10 @@ const serviceLogic = function(a) {
 
 		// 逻辑:获取被保人的职业
 		// 条件:点击下拉选择,即可
-		new selectOne($("#jobCode"), "职业选择", occupationData, jobCode).init();
+		new selectThree($("#jobCode"), "职业选择", occupationData, jobCode).init();
 
-		function jobCode(content, value) {
-			trialObj.extraParams.jobCode = value;
+		function jobCode(value) {
+			trialObj.extraParams.jobCode = value.selectThreeObj.id;
 			return true;
 		};
 	}
@@ -202,11 +237,6 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
-			// 和谐母婴安康疾病保险
-			// 逻辑: 投保页保额 amnt * 10000
-			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt =
-				parseInt(rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt) * 10000;
-
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");

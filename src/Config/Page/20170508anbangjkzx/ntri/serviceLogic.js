@@ -112,20 +112,30 @@ const serviceLogic = function(a) {
 
 	function payendyear(content, value) {
 		parsObj.extraParams.payendyear = value;
-		console.log(value);
-		// 逻辑:根据缴费方式判断改变缴费年期
-		// 条件:1000:一次交清，12:其他年交
-		parsObj.extraParams.payIntv = Object.is(value, "1000") ? "0" : "12";
-		// 逻辑:根据缴费方式判断改变是否购买豁免险
-		if (Object.is(value, "1000")) {
-			parsObj.extraParams.exempt = "0";
-			$("#exempt").attr("data-id", "0").attr("value", "否");
+
+		// 逻辑:根据年龄限制缴费年期
+		// 条件:age > 45 缴费年期最大15年
+		var curBirthday = $("#birthday").val(),
+			curAge = dateUnit.getAgeFromBirthday(curBirthday);
+		if (curAge.age > 40 && curAge.age <= 45 && parseInt(value) > 15) {
+			new dateModal(null, "stateIndform", `在该年龄段,最大缴费年期不超过15年`).init().show();
+			return false;
+		} else if (curAge.age > 45 && curAge.age <= 50 && parseInt(value) > 10) {
+			new dateModal(null, "stateIndform", `在该年龄段,最大缴费年期不超过10年`).init().show();
+			return false;
+		} else {
+			// 逻辑:根据缴费方式判断改变缴费年期
+			// 条件:1000:一次交清，12:其他年交
+			parsObj.extraParams.payIntv = Object.is(value, "1000") ? "0" : "12";
+			// 逻辑:根据缴费方式判断改变是否购买豁免险
+			if (Object.is(value, "1000")) {
+				parsObj.extraParams.exempt = "0";
+				$("#exempt").attr("data-id", "0").attr("value", "否");
+			}
+			getPrem();
+			return true;
 		}
-
-		getPrem();
-		return true;
 	}
-
 
 	// 逻辑:根据是否购买豁免险变化重新计算保费
 	// 条件:0:否,1是 （注意：一次交清不能购买豁免险）

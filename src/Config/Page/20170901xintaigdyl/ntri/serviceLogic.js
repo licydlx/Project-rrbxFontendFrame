@@ -18,10 +18,7 @@ const serviceLogic = function(a) {
 	// =============================
 	// 业务逻辑
 	// =============================
-	console.log(renderData);
-
 	getPrem();
-	console.log(parsObj);
 	// 逻辑:根据保障方案变化改变方案id及保额并重新计算保费
 	// 条件:普惠版:id,保额;尊享版:id,保额;
 	$("#pt-sp-nav").on('click', 'a', function(event) {

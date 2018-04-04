@@ -177,45 +177,59 @@ const serviceLogic = function(a) {
 			certiNoId = $that.attr("id"),
 			relaTag = $("#relaId").attr("data-id"),
 			relaState = Object.is(relaTag, defaultRela);
+		if (relaState && Object.is("holder_certiNo", certiNoId)) {
+			if (cardObj.sex == "men") {
+				new dateModal(null, "stateIndform", "您好,该产品被保人只能为女性;如果您为其他人投保，请先选择关系").init().show();
+				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+				return;
+			};
+			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"age": 20
+			}, {
+				"age": 40
+			});
 
-		if (cardObj) {
-			switch (certiNoId) {
-				case 'holder_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
-					}, {
-						"age": 40
-					});
+			if (!flag) {
+				new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
+				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				getPrem();
+			};
+		} else if (Object.is("insured_certiNo", certiNoId)) {
+			if (cardObj.sex == "men") {
+				new dateModal(null, "stateIndform", "您好,该产品被保人只能为女性").init().show();
+				$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
+				return;
+			};
+			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"age": 20
+			}, {
+				"age": 40
+			});
 
-					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小20周岁，最大40周岁").init().show();
-						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
-					} else {
-						if (relaState) {
-							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
-						};
-					};
-					break;
-				case 'insured_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 20
-					}, {
-						"age": 40
-					});
-
-					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
-						$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
-					} else {
-						if (!relaState) {
-							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
-						}
-					};
-					break;
-			}
-		}
+			if (!flag) {
+				new dateModal(null, "stateIndform", "被保人年龄最小20周岁，最大40周岁").init().show();
+				$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				getPrem();
+			};
+		} else {
+			var holderObj = $("#holder_certiNo").val();
+			if (holderObj && holderObj != "") {
+				var holderAgeFlag = dateUnit.getAgeRangeState(dateUnit.parseIdCard(holderObj).birthday, {
+					"age": 18
+				}, {
+					"age": 100
+				});
+				if (!holderAgeFlag) {
+					new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
+					$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+					return;
+				}
+			};
+		};
 	});
 
 	// 逻辑: 根据算参数获取保费,并存储公共数据对象
@@ -256,11 +270,6 @@ const serviceLogic = function(a) {
 		});
 
 		if (doneState) {
-			// 和谐母婴安康疾病保险
-			// 逻辑: 投保页保额 amnt * 10000
-			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt =
-				parseInt(rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt) * 10000;
-
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
 			alertError("请输入正确信息！");

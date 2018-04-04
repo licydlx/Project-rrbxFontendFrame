@@ -195,7 +195,8 @@ const serviceLogic = function(a) {
 					} else {
 						if (relaState) {
 							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
+							trialObj.extraParams.sex = cardObj.sex;
+							getPrem();
 						};
 					};
 					break;
@@ -212,7 +213,8 @@ const serviceLogic = function(a) {
 					} else {
 						if (!relaState) {
 							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
+							trialObj.extraParams.sex = cardObj.sex;
+							getPrem();
 						}
 					};
 					break;

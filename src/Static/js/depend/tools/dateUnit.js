@@ -164,7 +164,7 @@ var dateUnit = {
 
 	// 根据出生日期 及 范围区间 返回状态
 	// 参数:birthday,greate:{"ageDay":60} || {"age":1},less:{"ageDay":90} || {"age":9}
-	// 例子:getAgeRangeState('1992-02-02',{'ageDay':60},{'age':60}) => true 
+	// 例子:getAgeRangeState('1992-02-02',{'ageDay':60},{'age':60}) => true
 	// 作者:ydlx
 	// 日期:2018-3-19
 	getAgeRangeState: function(birthday, greate, less) {

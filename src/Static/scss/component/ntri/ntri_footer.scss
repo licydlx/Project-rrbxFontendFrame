@@ -7,7 +7,7 @@
     margin:auto;
     z-index:499;
     display:flex;
-    
+
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -18,7 +18,7 @@
 
 .footer > a:first-child {
     flex:1;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,8 +55,104 @@
 
     background-color: #c2343d;
     color:#fff;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+// 保费限制 弹出框
+// 作者:ydlx
+// 日期:2018-04-04
+.AlertBg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .Alert{
+        width: 16rem;
+        background: #fff;
+        border-radius: 5px;
+        .H1 {
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .T1 {
+            font-size: 14px;
+            border-bottom: 2px dashed #eee;
+            margin: 0 15px;
+            padding-bottom: 15px;
+        }
+        .T2{
+            margin: 0 15px;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            font-size: 14px;
+        }
+        .B1{
+            margin: 0 30px;
+            width: calc(100% - 60px);
+            background: #c2343d;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .T3 {
+            text-align: center;
+            font-size: 14px;
+            padding-top: 15px;
+            padding-bottom: 5px;
+            cursor: pointer;
+            color: #c2343d;
+        }
+    }
+}
+
+.telBg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+   .telContent {
+        width: 14rem;
+        height: 6rem;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        background-color: #fff;
+        .text {
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+        }
+        .button {
+            display: flex;
+            text-align: center;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            a {
+                flex: 1;
+                padding: 15px;
+                color: #000;
+            }
+            a:first-child {
+                border-right: 1px solid #eee;
+            }
+        }
+    }
 }

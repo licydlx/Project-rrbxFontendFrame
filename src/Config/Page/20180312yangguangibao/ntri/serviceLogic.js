@@ -3,12 +3,17 @@ import {
 	dateModal
 } from '../../../../Static/js/common/modal.js';
 
-import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
-import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
-import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
-import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
-import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
+import {
+	alertPrem
+} from '../../../../Static/js/depend/common.js';
 
+import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
+
+import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
+import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
+import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
+
+import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 import areaData from '../nbuy/area.js';
 import limitAreaArray from './limitAreaArray.js';
 
@@ -29,21 +34,20 @@ const serviceLogic = function(a) {
 
 	// 逻辑:根据保额重新计算保费
 	// 条件:..
-
 	var areaTag;
 	new selectArea($("#limitArea"), "所在地区", areaData, limitArea).init();
 
 	function limitArea(value) {
 		parsObj.extraParams.limitArea = JSON.stringify({
-			"data-id": value.selectOneObj.id + "," + value.selectTwoObj.id + "," + value.selectThreeObj.id,
-			"value": value.selectOneObj.value + "," + value.selectTwoObj.value + "," + value.selectThreeObj.value
+			'data-id': value.selectOneObj.id + ',' + value.selectTwoObj.id + ',' + value.selectThreeObj.id,
+			'value': value.selectOneObj.value + ',' + value.selectTwoObj.value + ',' + value.selectThreeObj.value
 		});
 		areaTag = false;
 		limitAreaArray.forEach(function(x, y, z) {
 			if (Object.is(x, value.selectTwoObj.id)) {
 				areaTag = true;
 			} else {
-				$("#amnt").attr("value", "10");
+				$("#amnt").attr("value", "10万元");
 				parsObj.extraParams.amnt = "10";
 			}
 		});
@@ -77,8 +81,14 @@ const serviceLogic = function(a) {
 	new selectOne($("#amnt"), "保额选择", renderData.data.amnt, amnt).init();
 
 	function amnt(content, value) {
-		if (Object.is(areaTag, false) && parseInt(value) > 30) {
+		// 被保人年龄
+		var age = dateUnit.getAgeFromBirthday(parsObj.extraParams.insuredBirthday).age;
+
+		if (age >= 18 && age <= 40 && Object.is(areaTag, false) && parseInt(value) > 30) {
 			new dateModal(null, "stateIndform", "您所在地区不支持30万以上保额").init().show();
+			return false;
+		} else if (age <= 50 && age >= 41 && parseInt(value) > 20) {
+			new dateModal(null, "stateIndform", "您的年龄段不支持20万以上保额").init().show();
 			return false;
 		} else {
 			parsObj.extraParams.amnt = value;
@@ -112,10 +122,20 @@ const serviceLogic = function(a) {
 	new selectOne($("#payEndYear"), "缴费年限", renderData.data.payEndYear, payEndYear).init();
 
 	function payEndYear(content, value) {
-		parsObj.extraParams.payEndYear = value;
-		parsObj.extraParams.payIntv = Object.is(value, "1") ? "D" : "Y";
-		getPrem();
-		return true;
+		// 被保人年龄
+		var age = dateUnit.getAgeFromBirthday(parsObj.extraParams.insuredBirthday).age;
+		if (age > 45 && parseInt(value) > 4) {
+			new dateModal(null, "stateIndform", "您的年龄段不支持10年以上缴费").init().show();
+			return false;
+		} else if (age > 40 && age <= 45 && parseInt(value) > 6) {
+			new dateModal(null, "stateIndform", "您的年龄段不支持20年以上缴费").init().show();
+			return false;
+		} else {
+			parsObj.extraParams.payEndYear = value;
+			parsObj.extraParams.payIntv = Object.is(value, "1") ? "D" : "Y";
+			getPrem();
+			return true;
+		};
 	}
 
 	// 逻辑:根据附加险重新计算保费
@@ -141,11 +161,43 @@ const serviceLogic = function(a) {
 
 		premAjax(ntriObj, function(value) {
 			$("#prem").text(value + "元");
-
 			parsObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars = parsObj;
+
+			// 投保费用限制
+			insureFilter(value);
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
 		});
+	}
+
+	// 逻辑:投保条件过滤
+	// 条件:保费累计20万及以上需身份证复印件等等
+	var payYear = {
+		"1": 1,
+		"4": 10,
+		"6": 20,
+		"8": 30,
+		"9": 60
+	};
+
+	function insureFilter(prem) {
+		var birthday = parsObj.extraParams.insuredBirthday;
+		var age = dateUnit.getAgeFromBirthday(birthday).age;
+		var num = payYear[parsObj.extraParams.payEndYear];
+		var totalPrem = Object.is(num, "60") ? (60 - age) * prem : prem * num;
+		if (totalPrem > 200000) {
+			alertPrem({
+				"title": "温馨提示",
+				"textOne": "您好,根据保监会规定,累计保费总额不得高于20万元(年交保费*交费年期)",
+				"textTwo": "建议您降低基本额度,分成2~3次投保,保障权益不变!",
+				"buttonText": "了解",
+				"footerText": {
+					"title": "客服电话",
+					"tel": "400-772-2928"
+				}
+			});
+			return;
+		};
 	}
 
 	/**
