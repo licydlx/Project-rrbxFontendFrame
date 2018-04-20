@@ -163,7 +163,7 @@ const serviceLogic = function(a) {
 		// 条件:点击下拉选择,即可
 		new selectDate($("#insuredIdEndDate"), "birthday", '2020-01-01', 0, 60, insuredIdEndDate).init();
 
-		function insuredIdEndDate(content, value) {
+		function insuredIdEndDate(value) {
 			trialObj.extraParams.insuredIdEndDate = value;
 			return true;
 		}
@@ -235,12 +235,20 @@ const serviceLogic = function(a) {
 	// 逻辑: 根据算参数获取保费,并存储公共数据对象
 	// 条件: 试算参数对象:ntriObj;公共数据对象:rrbxSetObj
 	function getPrem() {
+		var amnCur = trialObj.extraParams.amnt;
+		if (parseInt(amnCur) > 10000) {
+			trialObj.extraParams.amnt = parseInt(amnCur) / 10000;
+		};
 		premAjax(trialObj, function(value) {
 			$("#prem").text(value + "元");
 
 			trialObj.extraParams.prem = value;
 			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
+			// 和谐母婴
+			// 逻辑: 投保页保额 amnt * 10000
+			// 狀況: 試算: 1:1万,5:5万,10:10万,20:20万,30:30万 核保: 10000,50000,100000,200000,300000
+			rrbxSetObj.insuredPars.pars.rrbx.extraParams.amnt = parseInt(trialObj.extraParams.amnt) * 10000;
 		});
 	}
 

@@ -4,7 +4,6 @@
     right:0;
     bottom:0;
     background-color:#fff;
-    
     max-width: 500px;
     margin:auto;
     z-index:999;
@@ -16,7 +15,6 @@
 
 .footer > a:first-child {
     flex:1;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,7 +58,7 @@
 
 // 代驾险 网站备案
 // ydlx
-// 2018-2-5 
+// 2018-2-5
 .alert-bg {
     background: rgba(0, 0, 0, 0.7);
     position: fixed;

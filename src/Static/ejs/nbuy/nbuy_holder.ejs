@@ -1,4 +1,4 @@
-<% if(item.holder) { 
+<% if(item.holder) {
    var objArray = item.holder.objArray;
 %>
 <section class="box">
@@ -7,10 +7,9 @@
 		<i class="arrows"></i>
 		<%= item.holder.title %>
 	</a>
-	
+
 	<div class="itemBox">
 		<% for(var i=0;i < objArray.length;i++){ %>
-
 			<% if(objArray[i].type == "input") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>
@@ -21,7 +20,7 @@
 					>
 				</section>
 			<% } %>
-			
+
 			<% if(objArray[i].type == "inputDefault") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>
@@ -63,7 +62,7 @@
 					</ul>
 				</section>
 			<% } %>
-			
+
 			<% if(objArray[i].type == "multiSelect") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>
@@ -90,9 +89,7 @@
 					</i>
 				</section>
 			<% } %>
-			
 		<% } %>
 	</div>
-
 </section>
 <% } %>

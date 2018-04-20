@@ -152,7 +152,28 @@
         }
     }
 }
-
+// Text组件
+// 作者:ydlx
+// 日期:2018-3-13
+.text  {
+    height: auto;
+    align-items: baseline;
+    .content {
+        flex-direction: column;
+        .sub {
+            justify-content: space-between;
+            display: flex;
+            font-size: 1rem;
+            padding: 5px 0;
+            align-items: center;
+            span:nth-child(2){
+                font-size:14px;
+                text-align:right;
+                line-height: 1.4;
+            }
+        }
+    }
+}
 
 // 保障计划
 // 作者:ydlx

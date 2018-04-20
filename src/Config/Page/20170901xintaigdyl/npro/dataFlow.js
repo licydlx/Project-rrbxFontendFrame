@@ -14,9 +14,11 @@ const dataFlow = function(data) {
 					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"birthday": "2001-01-0",
+					"birthday": "2001-01-01",
 					"insAmount": "100",
 					"holderSocialSec": "01",
+
+					"rela":"00",
 
 					"holderProvince": "",
 					"holderCity": "",
@@ -46,9 +48,11 @@ const dataFlow = function(data) {
 					"insurantApplicantRelation": "00"
 				},
 				"extraParams": {
-					"birthday": "2001-01-0",
+					"birthday": "2001-01-01",
 					"insAmount": "100",
 					"holderSocialSec": "01",
+
+					"rela":"00",
 
 					"holderProvince": "",
 					"holderCity": "",

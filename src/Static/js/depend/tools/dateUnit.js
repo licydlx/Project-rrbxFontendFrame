@@ -1,4 +1,4 @@
-var dateUnit = {
+ var dateUnit = {
 	check15IdCardNo: function(idCardNo) {
 		//15位身份证号码的基本校验
 		var check = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(idCardNo);
@@ -172,6 +172,7 @@ var dateUnit = {
 
 		if (greate.ageDay) {
 			var greateAge = this.getAgeFromBirthday(birthday);
+			console.log(greateAge.ageDay);
 			if (greateAge.ageDay) {
 				if (greate.ageDay <= greateAge.ageDay) {
 					gre = true;

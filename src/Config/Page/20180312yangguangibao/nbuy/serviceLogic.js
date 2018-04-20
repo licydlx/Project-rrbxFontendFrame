@@ -2,11 +2,11 @@ import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
 
 import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
 import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
+import selectThree from '../../../../Static/js/depend/tools/selectThree.js';
+
 import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
 import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 
-import occupationData from './occupation.js';
-import areaData from './area.js';
 import {
 	dateModal
 } from '../../../../Static/js/common/modal.js';
@@ -17,6 +17,9 @@ import {
 } from '../../../../Static/js/depend/common.js';
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
+
+import occupationData from './occupationData.js';
+import areaData from './areaData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -55,11 +58,11 @@ const serviceLogic = function(a) {
 	// };
 
 	// 投保人职业选择
-	new selectArea($("#holderOccupationCode"), "职业选择", occupationData, holderOccupationCode).init();
+	new selectThree($("#holderOccupationCode"), "职业选择", occupationData, holderOccupationCode).init();
 
 	function holderOccupationCode(value) {
 		trialObj.extraParams.holderOccupationCode = value.selectThreeObj.id;
-		Object.is(relaTag, defaultRela) ? trialObj.extraParams.insuredOccupationCode = value.selectThreeObj.id : "";
+		if(Object.is(relaTag, defaultRela)) trialObj.extraParams.insuredOccupationCode = value.selectThreeObj.id;
 		return true;
 	};
 
@@ -68,7 +71,7 @@ const serviceLogic = function(a) {
 
 	function holderCardValid(value) {
 		trialObj.extraParams.holderCardValid = value;
-		Object.is(relaTag, defaultRela) ? trialObj.extraParams.insuredCardValid = value : "";
+		if(Object.is(relaTag, defaultRela)) trialObj.extraParams.insuredCardValid = value;
 		return true;
 	}
 	// 投保人银行选择
@@ -108,7 +111,7 @@ const serviceLogic = function(a) {
 		// };
 
 		// 被保人职业选择
-		new selectArea($("#insuredOccupationCode"), "职业选择", occupationData, insuredOccupationCode).init();
+		new selectThree($("#insuredOccupationCode"), "职业选择", occupationData, insuredOccupationCode).init();
 
 		function insuredOccupationCode(value) {
 			trialObj.extraParams.insuredOccupationCode = value.selectThreeObj.id;

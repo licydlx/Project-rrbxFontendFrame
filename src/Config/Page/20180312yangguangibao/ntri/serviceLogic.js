@@ -14,7 +14,8 @@ import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
 
 import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
-import areaData from '../nbuy/area.js';
+
+import areaData from '../nbuy/areaData.js';
 import limitAreaArray from './limitAreaArray.js';
 
 const serviceLogic = function(a) {
@@ -166,6 +167,7 @@ const serviceLogic = function(a) {
 
 			// 投保费用限制
 			insureFilter(value);
+
 			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
 		});
 	}
@@ -184,18 +186,28 @@ const serviceLogic = function(a) {
 		var birthday = parsObj.extraParams.insuredBirthday;
 		var age = dateUnit.getAgeFromBirthday(birthday).age;
 		var num = payYear[parsObj.extraParams.payEndYear];
-		var totalPrem = Object.is(num, "60") ? (60 - age) * prem : prem * num;
+
+		var totalPrem = Object.is(num, 60) ? (60 - age) * prem : prem * num;
+
 		if (totalPrem > 200000) {
 			alertPrem({
 				"title": "温馨提示",
 				"textOne": "您好,根据保监会规定,累计保费总额不得高于20万元(年交保费*交费年期)",
 				"textTwo": "建议您降低基本额度,分成2~3次投保,保障权益不变!",
-				"buttonText": "了解",
+				"buttonText": "知道",
 				"footerText": {
 					"title": "客服电话",
 					"tel": "400-772-2928"
 				}
 			});
+			// 逻辑: 不符合要求,初始化值(简单出包)
+			$("#amnt").attr({"value":"10万","data-id":"10"});
+			parsObj.extraParams.amnt = "10";
+			$("#payEndYear").attr({"value":"10年","data-id":"4"});
+			parsObj.extraParams.payEndYear = "4";
+			parsObj.extraParams.payIntv = "Y";
+			getPrem();
+			// end
 			return;
 		};
 	}

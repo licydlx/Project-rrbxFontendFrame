@@ -1,0 +1,31 @@
+<% if (comment) { %>
+	<% for(var i=0;i < comment.length;i++){ %>
+		<div class="cl-item">
+			<div class="cli-intro">
+				<a class="cli-icon">
+					<img src=<%= comment[i].avatar %>>
+				</a>
+				<div class="cli-honor">
+					<div class="cli-name"><%= comment[i].uname %></div>
+					<div class="cli-score">
+						<% if(comment[i]) { %>
+							<% for(var j=0;j < comment[i].productScore;j++){ %>
+								<a>
+									<img src="//img2.renrenbx.com/inco/icon-s.png">
+								</a>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+
+				<div class="cli-date">
+					<%= comment[i].createTime %>
+				</div>
+			</div>
+
+			<div class="cli-text">
+				<%= comment[i].content %>
+			</div>
+		</div>
+	<% } %>
+<% } %>

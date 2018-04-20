@@ -1,0 +1,32 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201704250000safeguardians",
+        "title": "运动卫士"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "保障期限",
+            "type": "choose",
+            "choose": {
+                "id": "timeRange",
+                "value": "1天",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

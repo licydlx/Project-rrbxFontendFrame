@@ -3,7 +3,7 @@ import {
 	commonJs,
 	alertError
 } from '../common.js';
-// 
+//
 const buyAjax = function(ajaxData,rrbxSetObj) {
 	var url = env + '/mobile/norder/create?access_token=' + GV.nbuy_accessToken + '&productId=' + GV.nbuy_rrbxProductId + '';
 	$.ajax({

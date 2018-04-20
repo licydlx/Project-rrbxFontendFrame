@@ -81,6 +81,7 @@ const serviceLogic = function(a) {
 
 	function relaId(content, value) {
 		trialObj.insurantApplicantRelation = value;
+		trialObj.extraParams.rela = value;
 
 		var cloneObj = relaNextCloneObj;
 		if (Object.is(value, rrbxSetObj.defaultPars.rela)) {
@@ -150,6 +151,55 @@ const serviceLogic = function(a) {
 		};
 	}
 
+	// // 逻辑:根据被保人身份证重新计算保费
+	// // 条件:在被保人选项输入正确身份证,并移走光标,即可
+	// $("#container").on("blur", "input[data-type='certiNo']", function(event) {
+	// 	var $that = $(this),
+	// 		cardObj = dateUnit.parseIdCard($that.val()),
+	// 		certiNoId = $that.attr("id"),
+	// 		relaTag = $("#relaId").attr("data-id"),
+	// 		relaState = Object.is(relaTag, defaultRela);
+
+	// 	if (cardObj) {
+	// 		switch (certiNoId) {
+	// 			case 'holder_certiNo':
+	// 				var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+	// 					"age": 18
+	// 				}, {
+	// 					"age": 60
+	// 				});
+
+	// 				if (!flag) {
+	// 					new dateModal(null, "stateIndform", "投保人年龄最小18周岁，最大60周岁").init().show();
+	// 					$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+	// 				} else {
+	// 					if (relaState) {
+	// 						trialObj.extraParams.birthday = cardObj.birthday;
+	// 						getPrem()
+	// 					};
+	// 				};
+	// 				break;
+	// 			case 'insured_certiNo':
+	// 				var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+	// 					"ageDay": 28
+	// 				}, {
+	// 					"age": 60
+	// 				});
+
+	// 				if (!flag) {
+	// 					new dateModal(null, "stateIndform", "被保人年龄最小28天，最大60周岁").init().show();
+	// 					$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
+	// 				} else {
+	// 					if (!relaState) {
+	// 						trialObj.extraParams.birthday = cardObj.birthday;
+	// 						getPrem()
+	// 					}
+	// 				};
+	// 				break;
+	// 		}
+	// 	}
+	// });
+
 	// 逻辑:根据被保人身份证重新计算保费
 	// 条件:在被保人选项输入正确身份证,并移走光标,即可
 	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
@@ -158,45 +208,49 @@ const serviceLogic = function(a) {
 			certiNoId = $that.attr("id"),
 			relaTag = $("#relaId").attr("data-id"),
 			relaState = Object.is(relaTag, defaultRela);
+		if (relaState && Object.is("holder_certiNo", certiNoId)) {
+			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"age": 18
+			}, {
+				"age": 100
+			});
 
-		if (cardObj) {
-			switch (certiNoId) {
-				case 'holder_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"age": 18
-					}, {
-						"age": 60
-					});
+			if (!flag) {
+				new dateModal(null, "stateIndform", "被保人年龄最小28天，最大60周岁").init().show();
+				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				getPrem();
+			};
+		} else if (Object.is("insured_certiNo", certiNoId)) {
+			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+				"ageDay": 28
+			}, {
+				"age": 60
+			});
 
-					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小18周岁，最大60周岁").init().show();
-						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
-					} else {
-						if (relaState) {
-							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
-						};
-					};
-					break;
-				case 'insured_certiNo':
-					var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-						"ageDay": 28
-					}, {
-						"age": 60
-					});
-
-					if (!flag) {
-						new dateModal(null, "stateIndform", "被保人年龄最小28天，最大60周岁").init().show();
-						$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
-					} else {
-						if (!relaState) {
-							trialObj.extraParams.birthday = cardObj.birthday;
-							getPrem()
-						}
-					};
-					break;
-			}
-		}
+			if (!flag) {
+				new dateModal(null, "stateIndform", "被保人年龄最小28天，最大60周岁").init().show();
+				$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
+			} else {
+				trialObj.extraParams.birthday = cardObj.birthday;
+				getPrem();
+			};
+		} else {
+			var holderObj = $("#holder_certiNo").val();
+			if (holderObj && holderObj != "") {
+				var holderAgeFlag = dateUnit.getAgeRangeState(dateUnit.parseIdCard(holderObj).birthday, {
+					"age": 18
+				}, {
+					"age": 100
+				});
+				if (!holderAgeFlag) {
+					new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
+					$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
+					return;
+				}
+			};
+		};
 	});
 
 	// 逻辑: 根据算参数获取保费,并存储公共数据对象

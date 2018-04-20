@@ -1,3 +1,4 @@
+require("../../scss/component/depend/loading.scss");
 // 投保 状态过度动画
 // ydlx
 // github:https://github.com/licydlx/rrbx
@@ -138,7 +139,7 @@ const callTel = function(dom, text) {
 		var id = $(this).attr("data-id");
 		switch (id) {
 			case "cancel":
-				$(".telContent").remove();
+				$(".telBg").remove();
 				break;
 		}
 	});

@@ -97,6 +97,32 @@
 						>
 					</section>
 				<% } %>
+
+				<% if(item[i].type == "text") { %>
+					<section class="item <%= item[i].type %>">
+						<label class="title"><%= item[i].title %></label>
+						<div class="content">
+							<% for(var y=0;y < item[i].text.length;y++){ %>
+								<div class="sub">
+									<span><%= item[i].text[y].explain %></span>
+									<% if(typeof item[i].text[y].value == "string") { %>
+										<span><%= item[i].text[y].value %></span>
+									<% } else { %>
+										<span id="amntBlock">
+											<div>
+												第一年<span><%= item[i].text[y].value[0] %></span>万元,
+											</div>
+											<div>
+												第二年及以后<span style="color:#c2343d;"><%= item[i].text[y].value[1] %></span>万元
+											</div>
+										</span>
+									<% } %>
+								</div>
+							<% } %>
+						</div>
+					</section>
+				<% } %>
+
 			<% } %>
 		<% } %>
 	</section>

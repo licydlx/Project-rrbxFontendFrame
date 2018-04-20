@@ -32,9 +32,9 @@ a,button,input,textarea{
 
 // 消除transition闪屏
 a,input {
-    -webkit-transform-style: preserve-3d; 
-    -webkit-backface-visibility: hidden; 
-    -webkit-perspective: 1000; 
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
 }
 
 // ios中去掉默认input默认样式

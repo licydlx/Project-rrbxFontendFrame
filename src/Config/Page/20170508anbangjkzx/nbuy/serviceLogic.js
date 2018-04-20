@@ -165,7 +165,7 @@ const serviceLogic = function(a) {
 		// 条件:点击下拉选择,即可
 		new selectDate($("#insuredIdEndDate"), "birthday", '2020-01-01', 0, 60, insuredIdEndDate).init();
 
-		function insuredIdEndDate(content, value) {
+		function insuredIdEndDate(value) {
 			trialObj.extraParams.insuredIdEndDate = value;
 			return true;
 		}

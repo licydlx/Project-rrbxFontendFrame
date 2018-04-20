@@ -83,6 +83,18 @@ const serviceLogic = function(a) {
 			new dateModal(null, "stateIndform", `在该年龄段,最大保额不超过${amntMax}万元`).init().show();
 			return false;
 		} else {
+			// 根据保额变化 文案保额变化
+			var copyData = [[`${value * 1}`,`${value * 2}`],[`${value * 1}`,`${value * 2}`],"主险累积所交保费",`${value * 0.5}万元`];
+			$(".text .sub span:nth-child(2)").each(function(x,y){
+				if (typeof copyData[x] == "string") {
+					$(y).text(copyData[x]);
+				} else {
+					$("#amntBlock div:first-child span").text(copyData[x][0]);
+					$("#amntBlock div:nth-child(2) span").text(copyData[x][1]);
+				};
+				// amntBlock
+			});
+
 			parsObj.extraParams.amnt = value;
 			getPrem();
 			return true;

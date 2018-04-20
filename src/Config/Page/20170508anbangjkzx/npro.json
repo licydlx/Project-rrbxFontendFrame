@@ -22,7 +22,11 @@
             }
         },
         "e_npro_faq": {},
-        "e_npro_user_comments": {},
+        "e_npro_user_comments": {
+            "pars": {
+                "data": {}
+            }
+        },
         "e_npro_footer": {},
         "scrollSpy": {
             "pars": {

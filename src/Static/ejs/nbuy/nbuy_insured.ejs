@@ -1,4 +1,4 @@
-<% if(item.insured) { 
+<% if(item.insured) {
    var objArray = item.insured.objArray;
 %>
 <section class="box">
@@ -19,7 +19,7 @@
 					>
 				</section>
 			<% } %>
-			
+
 			<% if(objArray[i].type == "inputDefault") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>

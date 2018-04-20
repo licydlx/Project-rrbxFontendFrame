@@ -3,7 +3,7 @@ var occupationData = {"RECORDS":[{"OCC_CODE":"11","OCC_NAME":"国家机关、党
 
 var one = [];
 occupationData.RECORDS.forEach(function(x, y, z) {
-	if (x.LEVEL == "0") one.push({"id":x.OCC_CODE,"value":x.OCC_NAME,"parentId":0});
+	if (x.LEVEL == "0" && x.OCC_CODE.split("").length == 2) one.push({"id":x.OCC_CODE,"value":x.OCC_NAME,"parentId":0});
 });
 
 var two = [];
@@ -11,7 +11,7 @@ occupationData.RECORDS.forEach(function(x, y, z) {
 	one.map(function(m, n) {
 		return m.id;
 	}).forEach(function(u,v) {
-		if (x.LEVEL == "1" && x.SUPER_CODE == u) {
+		if (x.LEVEL == "1" && x.SUPER_CODE == u && x.SUPER_CODE.split("").length == 2) {
 			two.push({"id":x.OCC_CODE,"value":x.OCC_NAME,"parentId":x.SUPER_CODE})
 		};
 	});
@@ -23,8 +23,19 @@ occupationData.RECORDS.forEach(function(x, y, z) {
 	two.map(function(m, n) {
 		return m.id;
 	}).forEach(function(u,v) {
-		if (x.LEVEL == "2" && x.SUPER_CODE == u) {
+		if (x.LEVEL == "2" && x.SUPER_CODE == u && x.SUPER_CODE.split("").length == 4) {
 			three.push({"id":x.OCC_CODE,"value":x.OCC_NAME,"parentId":x.SUPER_CODE})
+		};
+	});
+});
+
+var four = [];
+occupationData.RECORDS.forEach(function(x, y, z) {
+	three.map(function(m, n) {
+		return m.id;
+	}).forEach(function(u,v) {
+		if (x.LEVEL == "3" && x.SUPER_CODE == u) {
+			four.push({"id":x.OCC_CODE,"value":x.OCC_NAME,"parentId":x.SUPER_CODE})
 		};
 	});
 });
@@ -33,6 +44,7 @@ occupationData.RECORDS.forEach(function(x, y, z) {
 console.log(one);
 console.log(two);
 console.log(three);
+console.log(four);
 var tpl = {
 	"one":one,
 	"two":two,

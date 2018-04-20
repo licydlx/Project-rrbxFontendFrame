@@ -73,6 +73,11 @@ const serviceLogic = function(a) {
 			new dateModal(null, "stateIndform", `在该年龄段,最大保额不超过${amntMax}万元`).init().show();
 			return false;
 		} else {
+			// 根据保额变化 文案保额变化
+			var copyData = [5,1,5,5,5,10,10];
+			$(".text .sub span:nth-child(2)").each(function(x,y){
+				$(y).text(value/5 * copyData[x] + "万元");
+			});
 			parsObj.extraParams.amnt = value;
 			getPrem();
 			return true;

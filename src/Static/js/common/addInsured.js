@@ -1,4 +1,4 @@
-import insuredTemplate from './insuredTemplate.js';	
+import insuredTemplate from './insuredTemplate.js';
 class addInsured {
 	constructor(bindDom, title, template, func) {
 		this.bindDom = bindDom;

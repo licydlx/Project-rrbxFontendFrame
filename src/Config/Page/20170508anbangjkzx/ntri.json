@@ -63,6 +63,22 @@
                 "readonly": "readonly"
             }
         }, {
+            "title": "保障项目",
+            "type": "text",
+            "text": [{
+                "explain": "50种重疾保障",
+                "value": [5,10]
+            },{
+                "explain": "全残保险金",
+                "value": [5,10]
+            },{
+                "explain": "身故保险金",
+                "value": "主险累计所交保费"
+            },{
+                "explain": "轻症保险金",
+                "value": "2.5万元"
+            }]
+        }, {
             "title": "缴费方式",
             "type": "choose",
             "choose": {

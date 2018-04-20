@@ -1,0 +1,82 @@
+{
+    "basicInfo": {
+        "detailsPage": "npay",
+        "productId": "20180411shanghairsdjg",
+        "title": "大金刚"
+    },
+    "htmlBrick": ["npay_orderInfo", "npay_bankcardInfo", "npay_tip", "npay_footer"],
+    "bindEvent": {
+        "bankCode": {
+            "id": "bankCode",
+            "title": "银行选择",
+            "type": "selectOne"
+        },
+        "bankAreaData": {
+            "id": "bankAreaData",
+            "title": "开户省市",
+            "type": "selectTwo"
+        }
+    },
+    "renderData": {
+        "item": {
+            "orderInfo": {
+                "title": "上海人寿  大金刚意外险",
+                "objArray": [{
+                    "title": "订单号",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "orderNo",
+
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "保费",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "prem",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }]
+            },
+            "bankcardInfo": {
+                "title": "银行卡支付",
+                "objArray": [{
+                    "title": "开户名",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "holderUserName",
+                        "oninput": "if(value.length>10)value=value.slice(0,10)"
+                    }
+                }, {
+                    "title": "开户行",
+                    "type": "choose",
+                    "choose": {
+                        "id": "bankCode",
+                        "placeholder": "请选择账户开户行",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "银行卡号",
+                    "type": "input",
+                    "input": {
+                        "id": "cardCode",
+                        "placeholder": "请选择银行卡号",
+                        "oninput": "if(value.length>19)value=value.slice(0,19)"
+                    }
+                }, {
+                    "title": "开户省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "bankAreaData",
+                        "placeholder": "请选择账户开户省市",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }]
+            }
+        }
+    }
+}

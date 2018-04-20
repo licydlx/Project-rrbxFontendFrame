@@ -162,12 +162,11 @@ const serviceLogic = function(a) {
 		// 条件:点击下拉选择,即可
 		new selectDate($("#insuredIdEndDate"), "birthday", '2020-01-01', 0, 60, insuredIdEndDate).init();
 
-		function insuredIdEndDate(content, value) {
+		function insuredIdEndDate(value) {
 			trialObj.extraParams.insuredIdEndDate = value;
 			return true;
 		}
 	}
-
 	// 逻辑:根据被保人身份证重新计算保费
 	// 条件:在被保人选项输入正确身份证,并移走光标,即可
 	$("#container").on("blur", "input[data-type='certiNo']", function(event) {
@@ -187,7 +186,7 @@ const serviceLogic = function(a) {
 					});
 
 					if (!flag) {
-						new dateModal(null, "stateIndform", "投保人年龄最小18岁，最大50周岁").init().show();
+						new dateModal(null, "stateIndform", "投保人年龄最小18岁").init().show();
 						$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 					} else {
 						if (relaState) {

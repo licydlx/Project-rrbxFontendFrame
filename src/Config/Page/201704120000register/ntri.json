@@ -1,0 +1,76 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201704120000register",
+        "title": "挂号无忧宝"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "附加险-就医陪诊",
+            "type": "singleSelect",
+            "id": "attachState",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        },{
+            "title": "附加被保人-父母",
+            "type": "singleSelect",
+            "id": "fieldAA",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        },{
+            "title": "附加被保人-配偶",
+            "type": "singleSelect",
+            "id": "fieldAB",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        },{
+            "title": "附加被保人-子女",
+            "type": "singleSelect",
+            "id": "fieldAC",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        },{
+            "title": "附加被保人-其他",
+            "type": "singleSelect",
+            "id": "fieldAD",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        }]
+    }
+}

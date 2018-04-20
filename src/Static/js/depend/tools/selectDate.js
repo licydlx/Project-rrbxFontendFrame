@@ -12,6 +12,10 @@ class selectDate {
 				this.nowMonth = this.now.getMonth() + 1 > 9 ? this.now.getMonth() + 1 : "0" + (this.now.getMonth() + 1);
 				this.nowDate = this.now.getDate() + 1 > 9 ? this.now.getDate() + 1 : "0" + (this.now.getDate() + 1);
 				break;
+			case 'confirmedDate5':
+				this.nowMonth = this.now.getMonth() + 1 > 9 ? this.now.getMonth() + 1 : "0" + (this.now.getMonth() + 1);
+				this.nowDate = this.now.getDate() + 5 > 9 ? this.now.getDate() + 5 : "0" + (this.now.getDate() + 5);
+				break;
 			default:
 				console.log('我是日期选择器');
 		}
