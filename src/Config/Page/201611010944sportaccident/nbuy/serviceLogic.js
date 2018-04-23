@@ -39,8 +39,9 @@ const serviceLogic = function(a) {
 	new selectTwo($("#holderArea"), "省市选择", areaData, holderArea).init();
 
 	function holderArea(value) {
-		trialObj.extraParams.proname = value.selectOneObj.id;
-		trialObj.extraParams.cityname = value.selectTwoObj.id;
+		console.log(value);
+		trialObj.extraParams.proname = value.selectOneObj.value;
+		trialObj.extraParams.cityname = value.selectTwoObj.value;
 		return true;
 	};
 

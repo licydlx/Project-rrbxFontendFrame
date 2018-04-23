@@ -13,7 +13,6 @@ const extractSCSS = new ExtractPlugin({
 	allChunks: true
 });
 
-
 //引入多页面文件配置
 const pageNameArray = glob.sync("./src/Config/Page/" + productObj.productId + "/*.json").map(function(value, index) {
 	return value.substring(value.lastIndexOf("/") + 1, value.lastIndexOf("."));

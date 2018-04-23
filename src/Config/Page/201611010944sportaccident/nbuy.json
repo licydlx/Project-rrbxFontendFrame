@@ -87,8 +87,7 @@
                         "readonly": "readonly",
 
                         "data-belong": "extraParams",
-                        "data-key": "proname,cityname",
-                        "data-type": "area",
+                        "data-type": "all",
                         "data-verify": "area"
                     }
                 }]
