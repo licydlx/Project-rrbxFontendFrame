@@ -202,24 +202,24 @@ const serviceLogic = function(a) {
 			};
 
 			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-				"age": 10
+				"age": 18
 			}, {
-				"age": 90
+				"age": 65
 			});
 
 			if (!flag) {
-				new dateModal(null, "stateIndform", "被保人年龄最小10周岁,最大90周岁;如为他人投保,请先选择关系").init().show();
+				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁;如为他人投保,请先选择关系").init().show();
 				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 			}
 		} else if (Object.is("insured_certiNo", certiNoId)) {
 			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-				"age": 10
+				"age": 18
 			}, {
-				"age": 90
+				"age": 65
 			});
 
 			if (!flag) {
-				new dateModal(null, "stateIndform", "被保人年龄最小10周岁,最大90周岁").init().show();
+				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁").init().show();
 				$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
 			}
 		} else {
