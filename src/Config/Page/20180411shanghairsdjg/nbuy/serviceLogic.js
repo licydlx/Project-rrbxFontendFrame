@@ -16,7 +16,6 @@ import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 
 import areaData from './areaData.js';
 import occupationData from './occupationData.js';
-import relaData from './relaData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -118,12 +117,22 @@ const serviceLogic = function(a) {
 	new selectDate($("#holderCardValid"), "birthday", '2020-01-01', 0, 60, holderCardValid).init();
 
 	function holderCardValid(value) {
-		relaTag = $("#relaId").attr("data-id");
-		trialObj.extraParams.holderCardValid = value;
-		if (Object.is(relaTag, defaultRela)) {
-			trialObj.extraParams.insuredIdEndDate = value;
-		};
-		return true;
+		var curDate = dateUnit.getFormatDate().commonCurDate;
+
+		var pdMs = new Date(curDate).valueOf(),
+			ndMs = new Date(value).valueOf();
+
+		if (ndMs < pdMs){
+			new dateModal(null, "stateIndform", "有效截止期选择有误").init().show();
+			return false;
+		} else {
+			relaTag = $("#relaId").attr("data-id");
+			trialObj.extraParams.holderCardValid = value;
+			if (Object.is(relaTag, defaultRela)) {
+				trialObj.extraParams.insuredIdEndDate = value;
+			};
+			return true;
+		}
 	}
 
 	// 逻辑:获取投保人的关系
@@ -131,19 +140,20 @@ const serviceLogic = function(a) {
 	var relaObj = $("#relaId").closest(".item"),
 		relaNextCloneObj = relaObj.nextAll().clone();
 	relaObj.nextAll().remove();
-	new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
 
-	function relaId(constent, value) {
-		trialObj.insurantApplicantRelation = value;
-		var cloneObj = relaNextCloneObj;
-		if (Object.is(value, rrbxSetObj.defaultPars.rela)) {
-			relaObj.nextAll().remove()
-		} else {
-			relaObj.after(cloneObj);
-			insuredIns();
-		};
-		return true;
-	}
+	// new selectOne($("#relaId"), "关系选择", relaData, relaId).init();
+
+	// function relaId(constent, value) {
+	// 	trialObj.insurantApplicantRelation = value;
+	// 	var cloneObj = relaNextCloneObj;
+	// 	if (Object.is(value, rrbxSetObj.defaultPars.rela)) {
+	// 		relaObj.nextAll().remove()
+	// 	} else {
+	// 		relaObj.after(cloneObj);
+	// 		insuredIns();
+	// 	};
+	// 	return true;
+	// }
 
 	// 逻辑:被保人非本人时,绑定被保人选项事件
 	// 条件:改变关系,即可
@@ -198,6 +208,7 @@ const serviceLogic = function(a) {
 			var curAge = dateUnit.getAgeFromBirthday(cardObj.birthday).age;
 			if (curAge < 18) {
 				new dateModal(null, "stateIndform", "投保人年龄最小18周岁").init().show();
+				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 				return;
 			};
 
@@ -208,7 +219,7 @@ const serviceLogic = function(a) {
 			});
 
 			if (!flag) {
-				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁;如为他人投保,请先选择关系").init().show();
+				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁").init().show();
 				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
 			}
 		} else if (Object.is("insured_certiNo", certiNoId)) {
@@ -259,7 +270,8 @@ const serviceLogic = function(a) {
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 
-		var doneState = true;
+		var doneState = true,
+			errName;
 		if (!$(".agreed input").is(":checked")) {
 			alertError("请先同意以下条款！");
 			return;
@@ -267,10 +279,16 @@ const serviceLogic = function(a) {
 		$(".itemBox").find(".item").each(function(index, val) {
 			if ($(val).hasClass('input') && $(val).attr("data-state") !== "right") {
 				doneState = false;
+				if (!doneState && !errName) {
+					errName = $(this).find('.title')[0].innerText.replace(/\s+/g,"");
+				};
 			}
 			if ($(val).hasClass('choose')) {
 				if (!$(val).find("input").attr("data-id")) {
 					doneState = false;
+					if (!doneState && !errName) {
+						errName = $(this).find('.title')[0].innerText.replace(/\s+/g,"");
+					};
 				};
 			};
 		});
@@ -278,7 +296,7 @@ const serviceLogic = function(a) {
 		if (doneState) {
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
-			alertError("请输入正确信息！");
+			alertError("请输入" + errName + "！");
 			return;
 		};
 	});

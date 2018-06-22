@@ -1,7 +1,12 @@
 import dateUnit from '../../../../Static/js/depend/tools/dateUnit.js';
+import premAjax from '../../../../Static/js/depend/datas/premAjax.js';
+import selectOne from '../../../../Static/js/depend/tools/selectOne.js';
+import selectArea from '../../../../Static/js/depend/tools/selectArea.js';
+import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
 import nbuyClause from '../../../../Static/js/nbuy/nbuyClause.js';
 import {
-	alertError
+	alertError,
+	loadScript
 } from '../../../../Static/js/depend/common.js';
 import {
 	dateModal
@@ -9,9 +14,8 @@ import {
 import buyAjax from '../../../../Static/js/depend/datas/buyAjax.js';
 import getInsuredPars from '../../../../Static/js/nbuy/getInsuredPars.js';
 
-import selectDate from '../../../../Static/js/depend/tools/selectDate.js';
-import selectTwo from '../../../../Static/js/depend/tools/selectTwo.js';
 import areaData from './areaData.js';
+import occupationData from './occupationData.js';
 
 const serviceLogic = function(a) {
 	var renderData = a[0],
@@ -34,15 +38,116 @@ const serviceLogic = function(a) {
 	var defaultRela = rrbxSetObj.defaultPars.rela,
 		relaTag = $("#relaId").attr("data-id");
 
-	// 逻辑:获取投被保人的省市区
+	// 逻辑:获取身份证有效期,如果为长期,则...;为非长期,则下拉框可选
+	// 条件:点击TAB选择,即可
+	$("#container").on('click', '.singleSelect a', function(event) {
+		event.preventDefault();
+
+		var $this = $(this),
+			endDateId = $this.closest('.content').attr("data-id"),
+			codeTag = $this.attr("data-id");
+
+		if (!$this.closest("li").hasClass("active")) {
+			$this.closest(".content").find("li").removeClass("active");
+			$this.closest("li").addClass("active");
+		}
+
+		if (Object.is(codeTag, "0")) {
+			trialObj.extraParams[endDateId] = '9999-01-01';
+
+			relaTag = $("#relaId").attr("data-id");
+			if (Object.is(relaTag, defaultRela)) {
+				trialObj.extraParams.insuredIdEndDate = '9999-01-01';
+			};
+			$("#" + endDateId + "").closest(".item").css({
+				"border-bottom": 'none',
+				"height": '0',
+
+			});
+		} else {
+			trialObj.extraParams[endDateId] = $("#" + endDateId).val();
+			$("#" + endDateId + "").closest(".item").css({
+				"height": '3rem',
+				"border-bottom": '1px solid #eee'
+			});
+		};
+	});
+
+	// 逻辑:获取投保人的身份有效期,如果被保人为本人则...
 	// 条件:点击下拉选择,即可
-	new selectTwo($("#holderArea"), "省市选择", areaData, holderArea).init();
+	new selectDate($("#holderCardValid"), "birthday", '2020-01-01', 0, 60, holderCardValid).init();
+
+	function holderCardValid(value) {
+		var curDate = dateUnit.getFormatDate().commonCurDate;
+
+		var pdMs = new Date(curDate).valueOf(),
+			ndMs = new Date(value).valueOf();
+
+		if (ndMs < pdMs) {
+			new dateModal(null, "stateIndform", "有效截止期选择有误").init().show();
+			return false;
+		} else {
+			trialObj.extraParams.holderCardValid = value;
+			return true;
+		}
+	}
+
+	// 逻辑:获取被保人的身份有效期
+	// 条件:点击下拉选择,即可
+	new selectDate($("#insuredCardValid"), "birthday", '2020-01-01', 0, 60, insuredCardValid).init();
+
+	function insuredCardValid(value) {
+		var curDate = dateUnit.getFormatDate().commonCurDate;
+
+		var pdMs = new Date(curDate).valueOf(),
+			ndMs = new Date(value).valueOf();
+
+		if (ndMs < pdMs) {
+			new dateModal(null, "stateIndform", "有效截止期选择有误").init().show();
+			return false;
+		} else {
+			trialObj.extraParams.insuredCardValid = value;
+			return true;
+		}
+	}
+
+	// 逻辑:获取投保人的省市区,如果被保人为本人则...
+	// 条件:点击下拉选择,即可
+	new selectArea($("#holderArea"), "省市选择", areaData, holderArea).init();
 
 	function holderArea(value) {
-		trialObj.extraParams.proname = value.selectOneObj.id;
-		trialObj.extraParams.cityname = value.selectTwoObj.id;
+		relaTag = $("#relaId").attr("data-id");
+
+		trialObj.extraParams.holderResidentProvince = value.selectOneObj.id;
+		trialObj.extraParams.holderResidentCity = value.selectTwoObj.id;
+		trialObj.extraParams.holderResidentCounty = value.selectThreeObj.id;
+		if (Object.is(relaTag, defaultRela)) {
+			trialObj.extraParams.insureResidentProvince = value.selectOneObj.id;
+			trialObj.extraParams.insureResidentCity = value.selectTwoObj.id;
+			trialObj.extraParams.insureResidentCounty = value.selectThreeObj.id;
+		};
 		return true;
 	};
+
+	// 逻辑:获取被保人的省市区
+	// 条件:点击下拉选择,即可
+	new selectArea($("#container #insuredArea"), "省市选择", areaData, insuredArea).init();
+
+	function insuredArea(value) {
+		trialObj.extraParams.insureResidentProvince = value.selectOneObj.id;
+		trialObj.extraParams.insureResidentCity = value.selectTwoObj.id;
+		trialObj.extraParams.insureResidentCounty = value.selectThreeObj.id;
+		return true;
+	};
+
+	// 逻辑:选择被保人个人职业
+	// 条件:...
+	new selectOne($("#insureOccupationCode"), "个人职业", occupationData, insureOccupationCode).init();
+
+	function insureOccupationCode(content, value) {
+		trialObj.extraParams.insureOccupationCode = value;
+		return true;
+	}
 
 	// 逻辑:根据被保人身份证重新计算保费
 	// 条件:在被保人选项输入正确身份证,并移走光标,即可
@@ -61,26 +166,37 @@ const serviceLogic = function(a) {
 			};
 
 			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-				"age": 18
+				"ageDay": 27
 			}, {
-				"age": 65
+				"age": 17
 			});
 
 			if (!flag) {
-				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁;").init().show();
+				new dateModal(null, "stateIndform", "被保人年龄最小28天,最大17周岁").init().show();
 				$("#holder_certiNo").val('').closest('.item').attr('data-state', '');
-			};
+			}
 		} else if (Object.is("insured_certiNo", certiNoId)) {
-			var flag = dateUnit.getAgeRangeState(cardObj.birthday, {
-				"age": 18
-			}, {
-				"age": 65
-			});
+			var ageTag = trialObj.extraParams.ageRang;
+			var flag;
+			if (Object.is(ageTag, '0')) {
+				flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+					"ageDay": 27
+				}, {
+					"age": 9
+				});
+			} else {
+				flag = dateUnit.getAgeRangeState(cardObj.birthday, {
+					"age": 10
+				}, {
+					"age": 17
+				});
+			};
 
 			if (!flag) {
-				new dateModal(null, "stateIndform", "被保人年龄最小18周岁,最大65周岁").init().show();
+				new dateModal(null, "stateIndform", "您所填身份证与试算页所选年龄范围不符!").init().show();
 				$("#insured_certiNo").val('').closest('.item').attr('data-state', '');
-			};
+			}
+
 		} else {
 			var holderObj = $("#holder_certiNo").val();
 			if (holderObj && holderObj != "") {
@@ -96,22 +212,18 @@ const serviceLogic = function(a) {
 				}
 			};
 		};
-	});
+	})
 
-	// 逻辑:选择保单生效期
-	// 条件:延后不超过1年
-	new selectDate($("#policyBeginDate"), "confirmedDate", null, 0, 1, policyBeginDate).init();
-	trialObj.policyBeginDate = $("#policyBeginDate").attr("value");
-	function policyBeginDate(value) {
-		var today = dateUnit.getFormatDate().commonCurDate,
-			gap = dateUnit.getDateDimdd(today, value);
-		if (gap >= 1 && gap <= 365) {
-			trialObj.policyBeginDate = value;
-			return true;
-		} else {
-			new dateModal(null, "stateIndform", "保单生效日必须延后1天到1年").init().show();
-			return false;
-		};
+	// 逻辑: 根据算参数获取保费,并存储公共数据对象
+	// 条件: 试算参数对象:ntriObj;公共数据对象:rrbxSetObj
+	function getPrem() {
+		premAjax(trialObj, function(value) {
+			$("#prem").text(value + "元");
+
+			trialObj.extraParams.prem = value;
+			rrbxSetObj.insuredPars.pars.rrbx = trialObj;
+			localStorage.setItem(rrbxSetObj.insuredPars.parsInit.rrbx.rrbxProductId, JSON.stringify(rrbxSetObj));
+		});
 	}
 	// =============================
 	// 业务逻辑
@@ -122,7 +234,8 @@ const serviceLogic = function(a) {
 	$("#container").on("click", "#buyNow", function(event) {
 		event.preventDefault();
 
-		var doneState = true;
+		var doneState = true,
+			errName;
 		if (!$(".agreed input").is(":checked")) {
 			alertError("请先同意以下条款！");
 			return;
@@ -130,10 +243,16 @@ const serviceLogic = function(a) {
 		$(".itemBox").find(".item").each(function(index, val) {
 			if ($(val).hasClass('input') && $(val).attr("data-state") !== "right") {
 				doneState = false;
+				if (!doneState && !errName) {
+					errName = $(this).find('.title')[0].innerText.replace(/\s+/g, "");
+				};
 			}
 			if ($(val).hasClass('choose')) {
 				if (!$(val).find("input").attr("data-id")) {
 					doneState = false;
+					if (!doneState && !errName) {
+						errName = $(this).find('.title')[0].innerText.replace(/\s+/g, "");
+					};
 				};
 			};
 		});
@@ -141,7 +260,7 @@ const serviceLogic = function(a) {
 		if (doneState) {
 			buyAjax(getInsuredPars(rrbxSetObj), rrbxSetObj);
 		} else {
-			alertError("请输入正确信息！");
+			alertError("请输入正确" + errName + "！");
 			return;
 		};
 	});

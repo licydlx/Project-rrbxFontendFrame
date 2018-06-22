@@ -10,6 +10,7 @@ import npro_user_comments from '../Moudle/npro/npro_user_comments.js';
 import npro_insure_clause from '../Moudle/npro/npro_insure_clause.js';
 import npro_lift_nav from '../Moudle/npro/npro_lift_nav.js';
 import npro_footer from '../Moudle/npro/npro_footer.js';
+import npro_elifebaogroup from '../Moudle/npro/npro_elifebaogroup.js';
 
 // 电梯井
 const npro_elevator = (obj) => {
@@ -37,7 +38,8 @@ const brickObj = {
 	'npro_insure_clause': npro_insure_clause,
 	'npro_lift_nav': npro_lift_nav,
 	'npro_elevator': npro_elevator,
-	'npro_footer': npro_footer
+	'npro_footer': npro_footer,
+	'npro_elifebaogroup':npro_elifebaogroup
 }
 
 /*  */

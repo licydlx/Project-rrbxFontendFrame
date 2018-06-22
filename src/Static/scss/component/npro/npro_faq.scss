@@ -1,3 +1,14 @@
+// 平安e生保团购
+// 2018-06-07
+.eg-box img {
+    display:block;
+    width:100%;
+    height:auto;
+}
+.eg-box-list {
+    display:flex;
+}
+
 .faq {
     position: relative;
 	display: flex;
@@ -70,3 +81,4 @@
     transform: rotate(0deg);
     transition:all .3s linear;
 }
+

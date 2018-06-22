@@ -136,25 +136,14 @@
                         "data-type": "email",
                         "data-verify": "email"
                     }
-                }, {
-                    "title": "手机号码",
-                    "type": "input",
-                    "input": {
-                        "id": "holderUserCellPhoneNumber",
-                        "placeholder": "请输入手机号码",
-                        "oninput": "if(value.length>11)value=value.slice(0,11)",
-                        "data-belong": "policyHolderUser",
-                        "data-type": "insuredUserCellPhoneNumber",
-                        "data-verify": "phoneno"
-                    }
                 }]
             },
             "insured": {
-                "title": "被保人",
+                "title": "被保险人",
                 "objArray": [{
                     "title": "为谁投保",
-                    "type": "choose",
-                    "choose": {
+                    "type": "inputDefault",
+                    "inputDefault": {
                         "id": "relaId",
                         "value": "本人",
                         "data-id": "00",
@@ -262,17 +251,6 @@
                         "unselectable": "no",
                         "onfocus": "this.blur()",
                         "readonly": "readonly"
-                    }
-                }, {
-                    "title": "手机号码",
-                    "type": "input",
-                    "input": {
-                        "id": "insuredUserCellPhoneNumber",
-                        "placeholder": "请输入手机号码",
-                        "oninput": "if(value.length>11)value=value.slice(0,11)",
-                        "data-belong": "insuredUser",
-                        "data-type": "insuredUserCellPhoneNumber",
-                        "data-verify": "phoneno"
                     }
                 }]
             }

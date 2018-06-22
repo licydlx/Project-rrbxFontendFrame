@@ -4,21 +4,21 @@
 			<li data-add
 				<% for(var x in relaTemplate[i]["inputChoose"]){ %>
 					<%= x+"="+relaTemplate[i]["inputChoose"][x] %>
-				<% } %>	
+				<% } %>
 			>
 		<% } else { %>
 			<li data-add>
 		<% } %>
 				<a>
 					<label><%= relaTemplate[i]["inputName"] %></label>
-					<input 
+					<input
 					<% for(var y in relaTemplate[i]["inputPars"]){ %>
 						<%= y+"="+relaTemplate[i]["inputPars"][y] %>
-					<% } %>	
+					<% } %>
 					></input>
 					<% if(relaTemplate[i]["inputChoose"]) { %>
 						<% if(relaTemplate[i]["inputChoose"]["class"] == "choose") { %>
-							<i class="arrows"></i>	
+							<i class="arrows"></i>
 						<% } %>
 					<% } %>
 				</a>

@@ -1,0 +1,33 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201611111404jiacaidaoqiang",
+        "title": "大金刚"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "保障期限",
+            "type": "inputDefault",
+            "inputDefault": {
+                "id": "timeRange",
+                "value": "1年",
+                "data-id": "365",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

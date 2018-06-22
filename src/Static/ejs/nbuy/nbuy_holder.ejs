@@ -10,6 +10,20 @@
 
 	<div class="itemBox">
 		<% for(var i=0;i < objArray.length;i++){ %>
+
+			<% if(objArray[i].type == "uploadImg") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+
+					<div class="uploadBox">
+					    <form id="<%= objArray[i].uploadImg.formId %>" class="uploadItem" enctype='multipart/form-data'>
+					        <label for="<%= objArray[i].uploadImg.inputId %>"></label>
+					        <input type="file" id="<%= objArray[i].uploadImg.inputId %>" name="image" accept=".jpg, .jpeg, .png" multiple hidden="hidden">
+					    </form>
+					</div>
+				</section>
+			<% } %>
+
 			<% if(objArray[i].type == "input") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>

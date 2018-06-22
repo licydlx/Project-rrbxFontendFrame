@@ -111,17 +111,17 @@ const serviceLogic = function(a) {
 	});
 
 	// 逻辑:选择保单生效期
-	// 条件:必须延后5天到1年
+	// 条件:必须延后5天到半年
 	new selectDate($("#policyBeginDate"), "confirmedDate5", null, 0, 1, policyBeginDate).init();
 	trialObj.policyBeginDate = $("#policyBeginDate").attr("value");
 	function policyBeginDate(value) {
 		var today = dateUnit.getFormatDate().commonCurDate,
 			gap = dateUnit.getDateDimdd(today, value);
-		if (gap >= 5 && gap <= 365) {
+		if (gap >= 5 && gap <= 180) {
 			trialObj.policyBeginDate = value;
 			return true;
 		} else {
-			new dateModal(null, "stateIndform", "保单生效日必须延后5天到1年").init().show();
+			new dateModal(null, "stateIndform", "保单生效日必须延后5天到半年").init().show();
 			return false;
 		};
 	}

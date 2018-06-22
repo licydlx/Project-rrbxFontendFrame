@@ -1,0 +1,44 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201610171655chinatravelnew",
+        "title": "华夏蜜月保"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "保障期限",
+            "type": "choose",
+            "choose": {
+                "id": "dataVal",
+                "value": "3天",
+                "data-id": "3",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        },{
+            "title": "出生日期",
+            "type": "choose",
+            "choose": {
+                "id": "birthday",
+                "value": "2000-01-01",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "20180411yangguangcxinpatient",
+        "title": "阳光财险-住院保"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "保障期限",
+            "type": "inputDefault",
+            "inputDefault": {
+                "id": "none",
+                "value": "一年",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

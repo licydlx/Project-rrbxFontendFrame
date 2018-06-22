@@ -1,0 +1,85 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "20170926kaixinbaokhb",
+        "title": "百年人寿康惠保"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [{
+            "title": "被保人生日",
+            "type": "choose",
+            "choose": {
+                "id": "birthday",
+                "value": "2000-01-01",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "被保人性别",
+            "type": "singleSelect",
+            "id": "sex",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "男"
+            }, {
+                "data-id": "1",
+                "text": "女"
+            }]
+        }, {
+            "title": "特定疾病附加险",
+            "type": "singleSelect",
+            "id": "fjx",
+            "singleSelect": [{
+                "data-id": "0",
+                "text": "不投保"
+            }, {
+                "data-id": "1",
+                "text": "投保"
+            }]
+        }, {
+            "title": "保障期限",
+            "type": "singleSelect",
+            "id": "period",
+            "singleSelect": [{
+                "data-id": "1",
+                "text": "至70周岁"
+            }, {
+                "data-id": "2",
+                "text": "终身"
+            }]
+        },{
+            "title": "保额",
+            "type": "choose",
+            "choose": {
+                "id": "amnt",
+                "value": "10万",
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        },{
+            "title": "缴费年限",
+            "type": "choose",
+            "choose": {
+                "id": "feeYear",
+                "value": "10年",
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

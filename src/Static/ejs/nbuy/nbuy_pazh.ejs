@@ -1,0 +1,39 @@
+<% if(item.pazh) {
+   var objArray = item.policy.pazh;
+%>
+<section class="box">
+	<a class="header">
+		<i class="tag"></i>
+		<i class="arrows"></i>
+		<%= item.pazh.title %>
+	</a>
+
+	<div class="transfer-box">
+		<img class="bankImg" src="<%= item.pazh.bankImg %>">
+		<p class="bankNote">注：请使用对公账户进行转账，完成汇款后，请上传汇款凭证</p>
+
+		<div class="bankTemplate">
+			<a id="bankTemplate" class="zone">
+				<img src="<%= item.pazh.bankTemplate %>">
+				<p>点击查看模板</p>
+			</a>
+			<div class="zone">
+				<p>照片所有信息需清晰可见，内容真实有效，不得做任何修改。</p>
+				<p>照片支持.jpg .jpeg .gif .png 格式，大小不得超过5M。</p>
+			</div>
+		</div>
+
+		<div class="bank-transfer">
+			<div class="title">转账凭证</div>
+			<div class="uploadBox">
+			    <form id="uploadForm-three" class="uploadItem" enctype='multipart/form-data'>
+			        <label for="uploadImg-three"></label>
+			        <input type="file" id="uploadImg-three" name="image" accept=".jpg, .jpeg, .png" multiple hidden="hidden">
+			    </form>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+<% } %>

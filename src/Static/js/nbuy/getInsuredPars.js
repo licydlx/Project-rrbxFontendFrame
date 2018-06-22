@@ -34,7 +34,7 @@ const getInsuredPars = function(rrbxSet) {
 					value = that.val();
 				switch (par) {
 					case 'policyHolderUser':
-						Object.is(key, "certiType") ? RRBX[par][key] = RRBX.insuredUser[key] = oneSelf : RRBX[par][key] = RRBX.insuredUser[key] = value;
+						Object.is(key, "certiType") ? RRBX[par][key] = RRBX.insuredUser[key] = "00" : RRBX[par][key] = RRBX.insuredUser[key] = value;
 						break;
 					case 'extraParams':
 						if (key === 'area') {
@@ -65,7 +65,7 @@ const getInsuredPars = function(rrbxSet) {
 				switch (par) {
 					case 'policyHolderUser':
 					case 'insuredUser':
-						Object.is(key, "certiType") ? RRBX[par][key] = oneSelf : RRBX[par][key] = value;
+						Object.is(key, "certiType") ? RRBX[par][key] = "00" : RRBX[par][key] = value;
 						break;
 					case 'extraParams':
 						if (key === 'area') {

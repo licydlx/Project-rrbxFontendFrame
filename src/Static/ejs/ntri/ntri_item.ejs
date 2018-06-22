@@ -98,6 +98,17 @@
 					</section>
 				<% } %>
 
+				<% if(item[i].type == "input") { %>
+					<section class="item <%= item[i].type %>">
+						<label class="title"><%= item[i].title %></label>
+						<input class="content"
+							<% for(var x in item[i].input){ %>
+								<%= x+"="+item[i].input[x] %>
+							<% } %>
+						>
+					</section>
+				<% } %>
+
 				<% if(item[i].type == "text") { %>
 					<section class="item <%= item[i].type %>">
 						<label class="title"><%= item[i].title %></label>
@@ -119,6 +130,15 @@
 									<% } %>
 								</div>
 							<% } %>
+						</div>
+					</section>
+				<% } %>
+
+				<% if(item[i].type == "imgShow") { %>
+					<section class="item <%= item[i].type %>">
+						<label class="title"><%= item[i].title %></label>
+						<div class="content">
+							<img src="<%= item[i].imgSrc %>">
 						</div>
 					</section>
 				<% } %>

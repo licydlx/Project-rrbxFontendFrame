@@ -71,6 +71,31 @@ dateModal.prototype = {
 	}
 };
 
+const previewImgModal = function(dom, templete, par) {
+	this.dom = dom;
+	this.templeteName = templete;
+	this.templete = tpl[templete];
+	this.par = par;
+}
+
+previewImgModal.prototype = {
+	init: function() {
+		var that = this;
+		$('#container').on('click', '#previewImg', function(event) {
+			event.preventDefault();
+			$('#previewImg').remove();
+		});
+		return this;
+	},
+	show: function() {
+		$('#container').append(this.templete(this.par));
+		return this;
+	},
+	hide: function() {
+		$('#previewImg').remove();
+	}
+};
+
 const consultServie = function(templete, bindDom, selfDom) {
 	this.templete = tpl[templete];
 	this.bindDom = bindDom;
@@ -100,5 +125,6 @@ consultServie.prototype = {
 export {
 	attachModal,
 	consultServie,
-	dateModal
+	dateModal,
+	previewImgModal
 };

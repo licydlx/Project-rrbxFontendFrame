@@ -39,7 +39,6 @@ const serviceLogic = function(a) {
 	new selectTwo($("#holderArea"), "省市选择", areaData, holderArea).init();
 
 	function holderArea(value) {
-		console.log(value);
 		trialObj.extraParams.proname = value.selectOneObj.value;
 		trialObj.extraParams.cityname = value.selectTwoObj.value;
 		return true;
@@ -100,17 +99,17 @@ const serviceLogic = function(a) {
 	});
 
 	// 逻辑:选择保单生效期
-	// 条件:延后不超过1年
+	// 条件:延后不超过半年
 	new selectDate($("#policyBeginDate"), "confirmedDate", null, 0, 1, policyBeginDate).init();
 	trialObj.policyBeginDate = $("#policyBeginDate").attr("value");
 	function policyBeginDate(value) {
 		var today = dateUnit.getFormatDate().commonCurDate,
 			gap = dateUnit.getDateDimdd(today, value);
-		if (gap >= 1 && gap <= 365) {
+		if (gap >= 1 && gap <= 180) {
 			trialObj.policyBeginDate = value;
 			return true;
 		} else {
-			new dateModal(null, "stateIndform", "保单生效日必须延后1天到1年").init().show();
+			new dateModal(null, "stateIndform", "保单生效日必须延后1天到半年").init().show();
 			return false;
 		};
 	}

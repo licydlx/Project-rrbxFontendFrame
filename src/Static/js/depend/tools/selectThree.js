@@ -9,7 +9,6 @@ class selectThree {
 		this.title = title;
 		this.data = data;
 		this.func = func;
-		console.log(data);
 	}
 
 	init() {

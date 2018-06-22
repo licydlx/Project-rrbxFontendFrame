@@ -11,6 +11,8 @@ function premAjax(pars, func) {
 			success: function(data) {
 				if (data.code == 10000) {
 					resolve(data.response);
+				} else {
+					resolve("^^!");
 				};
 			},
 			error: function(xhr, type) {},

@@ -1,13 +1,16 @@
 var validate = {
 	obj: {
-		"phoneno": /^(1[34578][0-9]|14[57])\d{8}$/,
+		"phoneno": /^(1[3456789][0-9]|14[57])\d{8}$/,
 		"userName": /^[a-zA-Z\u4e00-\u9fa5]+$/,
 		"certiNo": "certiNo",
 		"authCode": /^\d{6,9}$/,
 		"email": /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
 		"address": /\S/,
 		"cardNo": /^[0-9]{16,19}$/,
-		"CmKg":/^[0-9]{1,3}$/
+		"CmKg": /^[0-9]{1,3}$/,
+		"postcode": /^[1-9][0-9]{5}$/,
+		"noNull": /\S+/,
+		"onlyNum": /^[0-9]*$/
 	},
 	format: function(par) {
 		return this.obj[par];
@@ -26,6 +29,10 @@ var validate = {
 			return true;
 		} else if (format == "all") {
 			return true;
+		} else if (format == "onlyNum") {
+			var format = this.format(format);
+			var format1 = this.format("noNull");
+			return format1.test(val) && format.test(val);
 		} else {
 			var format = this.format(format);
 			return format.test(val);

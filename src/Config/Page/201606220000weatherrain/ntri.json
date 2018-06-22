@@ -1,0 +1,136 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201606220000weatherrain",
+        "title": "大金刚"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": [ {
+            "title": "选择时间",
+            "type": "choose",
+            "choose": {
+                "id": "myTime",
+                "data-id": "1",
+                "value": "",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }, {
+            "title": "居住省市",
+            "type": "choose",
+            "choose": {
+                "id": "holderArea",
+                "placeholder": "请选择居住省市",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly",
+                "value":"北京市,北京市",
+                "data-belong": "extraParams",
+                "data-key": "province,city,county",
+                "data-type": "area",
+                "data-verify": "area"
+            }
+        },{
+            "title": "购买份数",
+            "type": "choose",
+            "choose": {
+                "id": "amnt",
+                "data-id": "1",
+                "value": "1份",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        },{
+            "title": "保障期限",
+            "type": "inputDefault",
+            "inputDefault": {
+                "id": "timeRange",
+                "value": "1月",
+                "data-id": "365",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }],
+        "data": {
+            "amnt": [{
+                "id": "1",
+                "value": "1份"
+            },{
+                "id": "2",
+                "value": "2份"
+            },{
+                "id": "3",
+                "value": "3份"
+            },{
+                "id": "4",
+                "value": "4份"
+            },{
+                "id": "5",
+                "value": "5份"
+            },{
+                "id": "6",
+                "value": "6份"
+            },{
+                "id": "7",
+                "value": "7份"
+            },{
+                "id": "8",
+                "value": "8份"
+            },{
+                "id": "9",
+                "value": "9份"
+            },{
+                "id": "10",
+                "value": "10份"
+            },{
+                "id": "11",
+                "value": "11份"
+            },{
+                "id": "12",
+                "value": "12份"
+            },{
+                "id": "13",
+                "value": "13份"
+            },{
+                "id": "14",
+                "value": "14份"
+            },{
+                "id": "15",
+                "value": "15份"
+            },{
+                "id": "16",
+                "value": "16份"
+            },{
+                "id": "17",
+                "value": "17份"
+            },{
+                "id": "18",
+                "value": "18份"
+            },{
+                "id": "19",
+                "value": "19份"
+            },{
+                "id": "20",
+                "value": "20份"
+            }]
+        }
+    }
+}

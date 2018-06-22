@@ -43,6 +43,18 @@ const tpl = {
 					</div>
 					<div class="shadow" cancel=""></div>
 				</section>`;
+	},
+	previewImg:function(src){
+		return `<div id="previewImg" class="modal">
+			<article class="modalArea">
+				<section class="content">
+					<img src=${src} />
+				</section>
+				<footer>
+					<a>确定</a>
+				</footer>
+			</article>
+		</div>`;
 	}
 }
 

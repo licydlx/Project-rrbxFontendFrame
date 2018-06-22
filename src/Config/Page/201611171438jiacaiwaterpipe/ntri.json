@@ -1,0 +1,21 @@
+{
+    "basicInfo": {
+        "detailsPage": "ntri",
+        "productId": "201611171438jiacaiwaterpipe",
+        "title": "水暖管爆裂家财险"
+    },
+    "htmlBrick": ["ntri_item", "ntri_footer"],
+    "bindEvent": {
+        "e_ntri_premTrial": {},
+        "e_ntri_footer": {
+            "pars": {
+                "data": {}
+            }
+        }
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": []
+    }
+}

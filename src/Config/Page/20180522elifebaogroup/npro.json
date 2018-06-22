@@ -1,0 +1,36 @@
+{
+    "basicInfo": {
+        "detailsPage": "npro",
+        "productId": "20180522elifebaogroup",
+        "title": "平安e生保团体版"
+    },
+    "loadAjax": {
+        "type": "GET",
+        "url": "/mobile/getproductdetails",
+        "data": {
+            "productId": "20180522elifebaogroup"
+        }
+    },
+    "htmlBrick": ["npro_elifebaogroup","npro_faq","npro_footer"],
+    "bindEvent": {
+        "e_npro_common": {},
+        "e_npro_header": {},
+        "e_npro_support_plan": {
+            "pars": {
+                "data": {},
+                "num":2
+            }
+        },
+        "e_npro_faq": {},
+        "e_npro_user_comments": {
+            "pars": {
+                "data": {}
+            }
+        },
+        "e_npro_footer": {},
+
+        "e_npro_wx_share": {}
+    },
+    "serviceLogic": "",
+    "dataFlow": ""
+}
