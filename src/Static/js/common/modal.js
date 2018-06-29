@@ -71,19 +71,19 @@ dateModal.prototype = {
 	}
 };
 
-const previewImgModal = function(dom, templete, par) {
+const dateModals = function(dom, templete, par) {
 	this.dom = dom;
 	this.templeteName = templete;
 	this.templete = tpl[templete];
 	this.par = par;
 }
 
-previewImgModal.prototype = {
+dateModals.prototype = {
 	init: function() {
 		var that = this;
-		$('#container').on('click', '#previewImg', function(event) {
+		$('#container').on('click', '#stateIndforms', function(event) {
 			event.preventDefault();
-			$('#previewImg').remove();
+			$('#stateIndforms').remove();
 		});
 		return this;
 	},
@@ -92,6 +92,44 @@ previewImgModal.prototype = {
 		return this;
 	},
 	hide: function() {
+		$('#stateIndforms').remove();
+	}
+};
+
+
+const previewImgModal = function(dom, templete, par,parentId,callback) {
+	this.dom = dom;
+	this.templeteName = templete;
+	this.templete = tpl[templete];
+	this.par = par;
+	this.parentId = parentId;
+	this.callback = callback;
+}
+
+previewImgModal.prototype = {
+	init: function() {
+		var that = this;
+		$('#container').one('click', '#piSure', function(event) {
+			event.preventDefault();
+			$('#previewImg').remove();
+			that.remove();
+		});
+
+		$('#container').one('click', '#piDelete', function(event) {
+			event.preventDefault();
+			that.dom.parent().remove();
+			that.remove();
+			if (that.callback) {
+				that.callback(that.dom,that.par,that.parentId);
+			};
+		});
+		return this;
+	},
+	show: function() {
+		$('#container').append(this.templete(this.par));
+		return this;
+	},
+	remove: function() {
 		$('#previewImg').remove();
 	}
 };
@@ -122,9 +160,33 @@ consultServie.prototype = {
 	}
 }
 
+const previewImgModals = function(dom, templete, par) {
+	this.dom = dom;
+	this.templeteName = templete;
+	this.templete = tpl[templete];
+	this.par = par;
+}
+
+previewImgModals.prototype = {
+	init: function() {
+		var that = this;
+		$('#container').on('click', '#previewImgs', function(event) {
+			event.preventDefault();
+			$('#previewImgs').remove();
+		});
+		return this;
+	},
+	show: function() {
+		$('#container').append(this.templete(this.par));
+		return this;
+	}
+};
+
 export {
 	attachModal,
 	consultServie,
 	dateModal,
-	previewImgModal
+	dateModals,
+	previewImgModal,
+	previewImgModals
 };

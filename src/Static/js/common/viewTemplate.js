@@ -46,16 +46,38 @@ const tpl = {
 	},
 	previewImg:function(src){
 		return `<div id="previewImg" class="modal">
-			<article class="modalArea">
-				<section class="content">
-					<img src=${src} />
-				</section>
-				<footer>
-					<a>确定</a>
-				</footer>
-			</article>
-		</div>`;
-	}
+					<article class="modalArea">
+						<section class="content">
+							<img src=${src} />
+						</section>
+						<footer>
+							<a id="piSure">确定</a><a id="piDelete">删除</a>
+						</footer>
+					</article>
+				</div>`;
+	},
+	stateIndforms: function(par) {
+		return `<div id="stateIndforms" class="modal">
+					<article class="modalArea">
+						<header>${par.title}</header>
+						<section class="content">
+							${par.content}
+						</section>
+						<footer>
+							<a>确定</a>
+						</footer>
+					</article>
+				</div>`;
+	},
+	previewImgs:function(src){
+		return `<div id="previewImgs" class="modal">
+					<article class="modalArea">
+						<section class="content">
+							<img src=${src} />
+						</section>
+					</article>
+				</div>`;
+	},
 }
 
 export {

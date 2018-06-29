@@ -52,6 +52,14 @@
     transform: rotate(270deg);
 }
 
+.item.textDefault .title {
+    width: 100%;
+    font-size: 12px;
+    color: #a3a3a3;
+}
+
+
+
 // 试算页 item 选项组件
 //
 // 作者:ydlx
@@ -250,16 +258,23 @@
 .tabs li {
     flex:1;
     text-align:center;
-}
-
-.tabs li {
     background-color:#fff;
     color:#333;
+    border-radius:6px;
 }
-
 .tabs li.active {
     background-color:#b6a780;
     color:#fff;
+}
+
+.tabs > li:first-child{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.tabs > li:nth-child(2){
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .tabs li a {
@@ -269,7 +284,7 @@
 }
 
 .tabs-content {
-    height:130px;
+    height:400px;
     position: relative;
     overflow:hidden;
 }
@@ -304,7 +319,7 @@
 }
 
 .tabs-item-lxjy > .email {
-    color:#b2aeae;
+    color:#000;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
     padding: 10px;

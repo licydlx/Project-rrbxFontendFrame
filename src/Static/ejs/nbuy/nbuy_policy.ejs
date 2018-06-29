@@ -1,6 +1,5 @@
 <% if(item.policy) {
    var objArray = item.policy.objArray;
-   console.log(objArray);
 %>
 <section class="box">
 	<a class="header">
@@ -46,6 +45,13 @@
 					</i>
 				</section>
 			<% } %>
+
+			<% if(objArray[i].type == "textDefault") { %>
+				<section class="item <%= objArray[i].type %>">
+					<label class="title"><%= objArray[i].title %></label>
+				</section>
+			<% } %>
+
 		<% } %>
 
 	</div>

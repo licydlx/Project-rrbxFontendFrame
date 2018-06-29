@@ -1,11 +1,11 @@
-<% if(item.insured) {
-   var objArray = item.insured.objArray;
+<% if(item.insured_add) {
+   var objArray = item.insured_add.objArray;
 %>
 <section class="box">
 	<a class="header">
 		<i class="tag"></i>
 		<i class="arrows"></i>
-		<%= item.insured.title %>
+		<%= item.insured_add.title %>
 	</a>
 	<div class="itemBox">
 		<% for(var i=0;i < objArray.length;i++){ %>
@@ -79,7 +79,7 @@
 					</ul>
 				</section>
 			<% } %>
-			
+
 			<% if(objArray[i].type == "multiSelect") { %>
 				<section class="item <%= objArray[i].type %>">
 					<label class="title"><%= objArray[i].title %></label>

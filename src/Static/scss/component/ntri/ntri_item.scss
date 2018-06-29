@@ -179,16 +179,34 @@
 // imgShow组件
 // 作者:ydlx
 // 日期:2018-6-21
+
+
 .imgShow {
     flex-direction: column;
     align-items: flex-start;
     height: auto;
     padding-bottom:15px;
     .title {
-        width:auto;
+        position: relative;
+        width:100%;
         padding:15px 0;
+        .arrows {
+            position: absolute;
+            right: 18px;
+            width: 8px;
+            height: 14px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAeCAYAAAAl+Z4RAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABTElEQVQ4y52UTS5EURCFv/e0kZGRsQ2IyKH9dEsswFQLsQDLMTE0Q1tH//hJkWALFqFJMKknN0/3u/eq0atKzqnzVW5eYWZnwD5wImlEZpXAIrAMDM2sm2tQAJhZH+j5bEfSOMvATW6Ag1yTsvqQ1AOuvB2l4hT1gZldA4epSYppwxrOtqTbKEJYNZyxmXWyDNzkGOh7OzCzvWSEHJwyZhDDiRoEOBcBzmYyQg0nfLFbku6yDNzkEjjytptt4CbnwGnyDabU0r9u4NsfgTXgG1ArQzgHDFz8AexKekpKYGYtYAi0gQnQlvSchODie9/8CaxX4ugRzWy+SQzQiogfgFVn7tTFMxFiscMqp4jD2JMm8Z8EtdgTYEPSS9Odwr9yGPvDNzeKfxFqsd9TxQClmS147Io5GjusFjAGVvzabUmvqeIK4Qt4i117Vv0AMEmUl7PZbAwAAAAASUVORK5CYII=");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(90deg);
+            transition: all 1s ease;
+        }
     }
     .content {
+        display:block;
         padding:0;
         img {
             width: 100%;
@@ -196,6 +214,11 @@
             object-fit: contain;
         }
     }
+}
+
+
+.open .title .arrows {
+    transform: rotate(270deg);
 }
 
 // 保障计划

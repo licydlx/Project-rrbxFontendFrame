@@ -1,4 +1,4 @@
-import validate from '../../../Depend/custom/validate.js';
+import validate from '../depend/tools/validate.js';
 const e_nbuy_validate = function() {
 	$("#container").on("focus", "input", function() {
 		$(this).closest(".item").removeAttr('data-state');
