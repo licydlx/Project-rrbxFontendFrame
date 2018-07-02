@@ -14,14 +14,14 @@ const extractSCSS = new ExtractPlugin({
 });
 
 //引入多页面文件配置
-const pageNameArray = glob.sync("./src/Entrance/" + productObj.productId + "/*.json").map(function(value, index) {
+const pageNameArray = glob.sync("./src/Pages/" + productObj.productId + "/*.json").map(function(value, index) {
 	return value.substring(value.lastIndexOf("/") + 1, value.lastIndexOf("."));
 });
 
 function getEntry() {
 	var entry = {};
 	pageNameArray.forEach(function(value, index) {
-		entry[value] = path.resolve(__dirname, `./src/Entrance/${productObj.productId}/${value}.js`);
+		entry[value] = path.resolve(__dirname, `./src/Pages/${productObj.productId}/${value}.js`);
 	})
 	return entry;
 }

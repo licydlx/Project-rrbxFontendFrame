@@ -1,0 +1,35 @@
+<% if(pagePZ) {
+	var PZ = pagePZ;
+%>
+	<% if(PZ.belong == 'npro') { %>
+		<footer class="footer">
+			<a id="service">
+				<img src="//m1.renrenbx.com/inco/ser_icon.png">
+				<em>咨询客服</em>
+			</a>
+			<% if(header) { %>
+				<a id="prem"><%= header.price %><%= header.priceUnit %></a>
+			<% } %>
+			<a id="premTrial">保费试算</a>
+		</footer>
+	<% } %>
+
+	<% if(PZ.belong == 'ntri') { %>
+		<footer class="footer">
+			<a id="service">
+				<img src="//m1.renrenbx.com/inco/ser_icon.png">
+				<em>咨询客服</em>
+			</a>
+			<a id="prem"></a>
+			<a id="goBuy">去投保</a>
+		</footer>
+	<% } %>
+
+	<% if(PZ.belong == 'nbuy') { %>
+		<footer class="footer">
+			<div id="prem" class="prem"></div>
+			<a id="buyNow" class="buyNow">立即购买</a>
+		</footer>
+	<% } %>
+
+<% } %>

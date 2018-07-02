@@ -1,0 +1,211 @@
+{
+    "basicInfo": {
+        "detailsPage": "nbuy",
+        "productId": "20180614pinganlxjy",
+        "title": "乐享教育"
+    },
+    "htmlBrick": [
+        "nbuy_policy",
+        "nbuy_holder",
+        "nbuy_insured",
+        "nbuy_insured_add",
+        "nbuy_lxjy",
+        "nbuy_pazh",
+        "nbuy_favoree",
+        "nbuy_supple_info",
+        "nbuy_clause",
+        "nbuy_footer"
+    ],
+    "bindEvent": {
+        "e_nbuy_validate": {},
+        "e_buy_fold": {},
+        "e_nbuy_getcode": {},
+        "e_nbuy_clause": {},
+        "nbuyPurchase": {}
+    },
+    "serviceLogic": "",
+    "dataFlow": "",
+    "renderData": {
+        "item": {
+            "policy": {
+                "title": "基本信息",
+                "objArray": [{
+                    "title": "起保日期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "policyBeginDate",
+                        "placeholder": "请选择起保日期",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "终止日期",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "policyEndDate",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "注:如遇节假日,起保日期则顺延至节假日后的第三个工作日,实际起止日期以保单为准.",
+                    "type": "textDefault"
+                }]
+            },
+            "holder": {
+                "title": "投保人信息",
+                "objArray": [{
+                    "title": "营业执照(请上传)",
+                    "type": "uploadImg",
+                    "uploadImg": {
+                        "formId": "uploadForm",
+                        "inputId": "uploadImg"
+                    }
+                }, {
+                    "title": "联系人",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入联系人姓名",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "联系电话",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_telephone",
+                        "placeholder": "请输入联系电话",
+                        "oninput": "if(value.length>11)value=value.slice(0,11)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "telephone",
+                        "data-verify": "noNull"
+                    }
+                }, {
+                    "title": "电子邮箱",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "email",
+                        "data-verify": "email"
+                    }
+                }]
+            },
+            "insured": {
+                "title": "被保人信息",
+                "objArray": [{
+                    "title": "为谁投保",
+                    "type": "choose",
+                    "choose": {
+                        "id": "relaId",
+                        "value": "本公司",
+                        "data-id": "00",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                },{
+                    "title": "营业执照(请上传)",
+                    "type": "uploadImg",
+                    "uploadImg": {
+                        "formId": "insuredUploadForm",
+                        "inputId": "insuredUploadImg"
+                    }
+                }, {
+                    "title": "联系人",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入联系人姓名",
+                        "data-belong": "insuredUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "联系电话",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_telephone",
+                        "placeholder": "请输入联系电话",
+                        "oninput": "if(value.length>11)value=value.slice(0,11)",
+                        "data-belong": "insuredUser",
+                        "data-type": "telephone",
+                        "data-verify": "noNull"
+                    }
+                }, {
+                    "title": "电子邮箱",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "insuredUser",
+                        "data-type": "email",
+                        "data-verify": "email"
+                    }
+                }]
+            },
+            "insured_add": {
+                "title": "被保人附加信息",
+                "objArray": [ {
+                    "title": "投保地址",
+                    "type": "input",
+                    "input": {
+                        "id": "insuredAddress",
+                        "placeholder": "请输入被保人的详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "policyHolderUser",
+                        "data-type": "address",
+                        "data-verify": "noNull"
+                    }
+                },{
+                    "title": "私有资产",
+                    "type": "choose",
+                    "choose": {
+                        "id": "asset",
+                        "value": "不超过4千万(不含车辆)",
+                        "data-id": "0",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "是否需要发票",
+                    "type": "choose",
+                    "choose": {
+                        "id": "invoice",
+                        "value": "不需要",
+                        "data-id": "0",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }]
+            },
+            "lxjy": {
+                "title": "员工、学生信息(以下方式任选一种)",
+                "exampleImg": "https://m1.renrenbx.com/rrbxcdn/rrbx/pinganlxjy/exampleImg.png"
+            },
+            "pazh": {
+                "title": "平安账户信息",
+                "bankImg": "https://m1.renrenbx.com/rrbxcdn/rrbx/pinganlxjy/pingan.jpg",
+                "bankTemplate": "https://m1.renrenbx.com/rrbxcdn/rrbx/pinganlxjy/bankTemplate.jpg"
+            }
+        }
+    }
+}

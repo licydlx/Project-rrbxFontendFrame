@@ -1,0 +1,14 @@
+.product-intro {
+    display:flex;
+    flex-direction: column;
+}
+
+.product-intro a,
+.product-intro img {
+    display:block;
+}
+
+.product-intro img {
+    width:100%;
+    height:auto;
+}
