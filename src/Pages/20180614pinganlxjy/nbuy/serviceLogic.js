@@ -56,7 +56,11 @@ const serviceLogic = function(a) {
 	function relaId(constent, value) {
 		trialObj.insurantApplicantRelation = value;
 
+<<<<<<< HEAD
 		//
+=======
+		// 
+>>>>>>> 9d2defb7cbe923c6d95e2637279e7b019022ed16
 		var iAddress = $('#insuredAddress');
 		if (Object.is(value, defaultRela)) {
 			iAddress.attr('data-belong', 'policyHolderUser');

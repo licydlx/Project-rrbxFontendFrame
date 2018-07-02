@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+</head>
+    <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="https://m1.renrenbx.com/rrbxcdn/hjb/depend/jquery-2.1.0.min.js"><\/script>')</script>
+    <style>
+    	.item {
+    		height: 1400px;
+    		text-align: center;
+    		line-height: 1400px;
+    		font-size: 400px;
+    	}
+
+    	.ml {
+    		position: fixed;
+    		top: 0;
+    		right: 0;
+    		width: 200px;
+    		display: flex;
+    		height: 40px;
+    		background-color: #000;
+    		color: #fff;
+    	}
+
+    	.ml > div {
+    		flex: 1;
+    	}
+    </style>
+<body>
+
+    <article id="container">
+    	<nav>
+    		<ul>
+    			<li><a href="" title=""></a></li>
+    			<li><a href="" title=""></a></li>
+    			<li><a href="" title=""></a></li>
+    		</ul>
+    	</nav>
+
+		<div id="navId" class="ml">
+			<div id="one">one</div>
+			<div id="two">two</div>
+			<div id="three">three</div>
+		</div>
+		<div class="item">
+
+		</div>
+    	<div class="item" data-scrollSpy="one">
+    		one
+    	</div>
+
+    	<div class="item" data-scrollSpy="two">
+    		two
+    	</div>
+
+    	<div class="item" data-scrollSpy="three">
+    		three
+    	</div>
+    </article>
+
+<script src="./demo.js"></script>
+<script>
+	var img = new Image();
+	img.src = 'https://m1.renrenbx.com/rrbxcdn/rrbx/pinganlxjy/exampleImg.png';
+
+	img.onload = function(){
+		console.log("i");
+	}
+	window.onload = function(){
+		console.log("w");
+	}
+</script>
+</body>
+</html>
