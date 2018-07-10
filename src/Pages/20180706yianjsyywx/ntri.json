@@ -1,0 +1,43 @@
+{
+    "htmlBrick": ["ntri_item", "common_footer"],
+    "PZ": {
+        "pagePZ": {
+            "belong": "ntri",
+            "footer": {}
+        },
+        "eventPZ": {
+            "eArray": ["footer"],
+            "belong": "ntri",
+            "footer": {}
+        }
+    },
+    "renderData": {
+        "item": [{
+            "title": "保险期间",
+            "type": "choose",
+            "choose": {
+                "id": "dataVal",
+
+                "value": "7天",
+                "data-id": "1",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        },{
+            "title": "附加险",
+            "type": "choose",
+            "choose": {
+                "id": "itemkind",
+
+                "value": "A01",
+                "data-id": "A01",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

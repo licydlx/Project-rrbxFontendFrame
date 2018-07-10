@@ -1,0 +1,40 @@
+{
+    "htmlBrick": ["ntri_item", "common_footer"],
+    "PZ": {
+        "pagePZ": {
+            "belong": "ntri",
+            "footer": {}
+        },
+        "eventPZ": {
+            "eArray": ["footer"],
+            "belong": "ntri",
+            "footer": {}
+        }
+    },
+    "renderData": {
+        "item": [{
+            "title": "出生日期",
+            "type": "choose",
+            "choose": {
+                "id": "birthday",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        },{
+            "title": "有无社保",
+            "type": "choose",
+            "choose": {
+                "id": "fieldBM",
+
+                "value": "有社保",
+                "data-id": "1",
+
+                "unselectable": "no",
+                "onfocus": "this.blur()",
+                "readonly": "readonly"
+            }
+        }]
+    }
+}

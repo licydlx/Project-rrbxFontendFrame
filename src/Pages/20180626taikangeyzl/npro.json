@@ -1,0 +1,25 @@
+{
+	"productId": "20180626taikangeyzl",
+	"loadAjax": {
+		"type": "GET",
+		"url": "/mobile/getproductdetails",
+		"data": {
+			"productId": "20180626taikangeyzl"
+		}
+	},
+	"htmlBrick": ["npro_header", "common_supportPlan", "npro_elevator", "common_footer"],
+	"PZ": {
+		"pagePZ": {
+			"belong": "npro",
+			"footer": {}
+		},
+		"eventPZ": {
+			"eArray": ["common","header", "supportPlan", "footer","wxShare","scrollSpy","userComments"],
+			"belong": "npro",
+			"common": {},
+			"header": {},
+			"footer": {}
+		}
+	}
+
+}

@@ -1,0 +1,100 @@
+<%#
+	说明:根据需要定制模态框模块或者重构
+	作者:ydlx
+
+	已有模块: 默认文本模态框
+	          客服咨询模态框
+ %>
+
+<% if (config.type == 'defaultConfig') {
+	var CF = config;
+%>
+	<%#
+		默认文本模态框
+ 	%>
+	<article class="modal-bg">
+		<% if (CF.modalContent) { %>
+
+			<% if (CF.modalContent.className) {
+				var classNameArray ='';
+			%>
+				<% for(var c in CF.modalContent.className){ %>
+					<% classNameArray += ' ' + CF.modalContent.className[c] %>
+				<% } %>
+			<% } %>
+			<section class="modal-content<%= classNameArray %>"
+				<% for(var x in CF.modalContent){ %>
+					<% if (typeof CF.modalContent[x] == 'string'){ %>
+						<%= x + '=' + CF.modalContent[x] %>
+					<% } %>
+				<% } %>
+			>
+		<% } else { %>
+			<section class="modal-content">
+		<% } %>
+
+				<% if (CF.modalItem) { %>
+
+					<% if (CF.modalItem.className) {
+						var classNameArray ='';
+					%>
+						<% for(var c in CF.modalItem.className){ %>
+							<% classNameArray += ' ' + CF.modalItem.className[c] %>
+						<% } %>
+					<% } %>
+					<section class="modal-item<%= classNameArray %>"
+						<% for(var x in CF.modalItem){ %>
+							<% if (typeof CF.modalItem[x] == 'string'){ %>
+								<%= x + '=' + CF.modalItem[x] %>
+							<% } %>
+						<% } %>
+					>
+
+						<%= CF.text %>
+				<% } else { %>
+					<section class="modal-item">
+						<%= CF.text %>
+				<% } %>
+
+					</section>
+			</section>
+	</article>
+
+<% } else if (config.type == 'consultService') {
+	var CF = config;
+%>
+	<%#
+		客服咨询模态框
+ 	%>
+	<article class="modal-bg">
+		<% if (CF.modalContent) { %>
+
+			<% if (CF.modalContent.className) {
+				var classNameArray ='';
+			%>
+				<% for(var c in CF.modalContent.className){ %>
+					<% classNameArray += ' ' + CF.modalContent.className[c] %>
+				<% } %>
+			<% } %>
+			<section class="modal-content<%= classNameArray %>"
+			<% for(var x in CF.modalContent){ %>
+				<% if (typeof CF.modalContent[x] == 'string'){ %>
+					<%= x + '=' + CF.modalContent[x] %>
+				<% } %>
+			<% } %>
+		>
+		<% } else { %>
+			<section class="modal-content">
+		<% } %>
+
+				<section class="modal-item modalItem-consult">
+					<a href="tel:400-772-2928">客服电话 400-772-2928</a>
+				</section>
+				<section class="modal-item modalItem-consult">
+					<a id="consultCancel">取消</a>
+				</section>
+			</section>
+
+	</article>
+
+<% } %>
