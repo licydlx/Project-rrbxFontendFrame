@@ -1,0 +1,84 @@
+// 平安e生保团购
+// 2018-06-07
+.eg-box img {
+    display:block;
+    width:100%;
+    height:auto;
+}
+.eg-box-list {
+    display:flex;
+}
+
+.faq {
+    position: relative;
+	display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-bottom:2rem;
+}
+
+.f-title {
+    padding: 15px 0 8px 0;
+    font-size: 1rem;
+    line-height: 1;
+    border-bottom: 1px solid #eee;
+    margin-left: 15px;
+    margin-bottom: 7px;
+    margin-right: 15px;
+}
+
+.f-tag {
+    position: absolute;
+    width: 5px;
+    height: 1rem;
+    left: 0;
+    top: 15px;
+    background-color: #b6a780;
+}
+
+.f-content {
+    padding-left:15px;
+    padding-right:15px;
+    font-size:.85rem;
+    line-height: 1.4;
+    letter-spacing: 1px;
+
+    max-height:10rem;
+    overflow:hidden;
+
+    transition:all .3s linear;
+}
+
+.f-card > div:first-child{
+    color:#c2343d;
+}
+
+.faq .f-content.active ~ a img {
+    transform: rotate(180deg);
+    transition:all .3s linear;
+}
+
+.faq .f-content.active {
+    max-height:100%;
+}
+
+
+.trigger {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.8rem;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+.trigger img {
+    display:block;
+    width:1.6rem;
+    transform: rotate(0deg);
+    transition:all .3s linear;
+}
+

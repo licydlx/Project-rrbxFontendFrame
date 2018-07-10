@@ -1,0 +1,227 @@
+{
+    "htmlBrick": [
+        "nbuy_main",
+        "nbuy_sub",
+        "common_footer"
+    ],
+    "PZ": {
+        "pagePZ": {
+            "belong": "nbuy",
+            "footer": {}
+        },
+        "eventPZ": {
+            "eArray": ["common", "footer", "getCode", "nbuyClause", "serviceVerify"],
+            "belong": "nbuy",
+            "common": {},
+            "footer": {},
+            "getCode": {},
+            "nbuyClause": {},
+            "serviceVerify": {}
+        }
+    },
+    "renderData": {
+        "item": {
+            "ensureDate": {
+                "title": "保障生效日期",
+                "objArray": [{
+                    "title": "起保时间",
+                    "type": "choose",
+                    "choose": {
+                        "id": "policyBeginDate",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }]
+            },
+            "holder": {
+                "title": "投保人信息",
+                "objArray": [{
+                    "title": "联系人",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入联系人姓名",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "holder_certiType",
+                        "data-value": "00",
+                        "value": "身份证",
+                        "placeholder": "身份证",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiType"
+                    }
+                }, {
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_certiNo",
+                        "placeholder": "请输入证件号码",
+                        "oninput": "if(value.length>18)value=value.slice(0,18)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "certiNo",
+                        "data-verify": "certiNo"
+                    }
+                }, {
+                    "title": "邮箱地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holder_email",
+                        "placeholder": "请输入邮箱地址",
+                        "oninput": "if(value.length>30)value=value.slice(0,30)",
+                        "data-belong": "policyHolderUser",
+                        "data-type": "email",
+                        "data-verify": "email"
+                    }
+                }, {
+                    "title": "详细地址",
+                    "type": "input",
+                    "input": {
+                        "id": "holderAddress",
+                        "placeholder": "请输入详细地址",
+                        "minlength": 2,
+                        "maxlength": 32,
+
+                        "data-belong": "policyHolderUser",
+                        "data-type": "address",
+                        "data-verify": "all"
+                    }
+                }, {
+                    "title": "证件有效起期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderUserTCertfBgnTm",
+                        "value": "2010-01-01",
+
+                        "data-id": "2010-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "证件有效止期",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderUserTCertfEndTm",
+                        "value": "2020-01-01",
+
+                        "data-id": "2020-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "居住省市",
+                    "type": "choose",
+                    "choose": {
+                        "id": "holderArea",
+                        "placeholder": "请选择居住省市",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+
+                        "data-belong": "extraParams",
+                        "data-key": "holderUserProvince,holderUserCity,holderUserCounty",
+                        "data-type": "area",
+                        "data-verify": "area"
+                    }
+                }]
+            },
+            "insured": {
+                "title": "被保人信息",
+                "objArray": [{
+                    "title": "为谁投保",
+                    "type": "choose",
+                    "choose": {
+                        "id": "relaId",
+                        "value": "本人",
+                        "data-id": "00",
+
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "姓名",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_userName",
+                        "minlength": 2,
+                        "maxlength": 32,
+                        "placeholder": "请输入姓名",
+
+                        "data-belong": "insuredUser",
+                        "data-type": "userName",
+                        "data-verify": "userName"
+                    }
+                }, {
+                    "title": "证件类型",
+                    "type": "inputDefault",
+                    "inputDefault": {
+                        "id": "insured_certiType",
+                        "data-value": "00",
+                        "value": "身份证",
+                        "placeholder": "身份证",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly",
+                        "data-belong": "insuredUser",
+                        "data-type": "certiType"
+                    }
+                }, {
+                    "title": "证件号码",
+                    "type": "input",
+                    "input": {
+                        "id": "insured_certiNo",
+                        "placeholder": "请输入证件号码",
+                        "oninput": "if(value.length>18)value=value.slice(0,18)",
+
+                        "data-belong": "insuredUser",
+                        "data-type": "certiNo",
+                        "data-verify": "certiNo"
+                    }
+                }, {
+                    "title": "证件开始日",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredUserTCertfBgnTm",
+                        "value": "2010-01-01",
+
+                        "data-id": "2010-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }, {
+                    "title": "证件到期日",
+                    "type": "choose",
+                    "choose": {
+                        "id": "insuredUserTCertfEndTm",
+                        "value": "2020-01-01",
+
+                        "data-id": "2020-01-01",
+                        "unselectable": "no",
+                        "onfocus": "this.blur()",
+                        "readonly": "readonly"
+                    }
+                }]
+            },
+            "favoree": {},
+            "supple_info": {},
+            "clause": {}
+        }
+    }
+}

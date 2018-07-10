@@ -1,0 +1,38 @@
+<% if(renderData) {
+   var itemlist = renderData.item;
+%>
+	<% if(itemlist.favoree) {%>
+		<section class="profitPeople mg-b-10">
+			<div>受益人</div>
+			<div>法定</div>
+		</section>
+	<% } %>
+
+	<% if(itemlist.supple_info && !GV.nbuy_user) {%>
+		<section class="box suppleInfo">
+			<a class="header">
+				<i class="tag"></i>
+				<i class="arrows"></i>
+				补充信息
+			</a>
+			<div class="itemBox">
+				<section class="item input">
+					<label class="title">手&#12288;&#12288;机</label>
+					<input id="supple-info-tel" class="content" type="tel" data-verify="phoneno" data-belong="extraParams" data-type="phone" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="请输入手机号码"></input>
+				</section>
+				<section class="item input">
+					<label class="title">验&#8194;证&#8194;码</label>
+					<input id="supple-info-code" class="content" type="tel" data-belong="extraParams" data-type="captcha" data-verify="authCode" placeholder="请输入验证码"></input>
+					<span id="getCode" class="getcode">获取验证码</span>
+				</section>
+			</div>
+		</section>
+	<% } %>
+
+	<% if(itemlist.clause) {%>
+		<section class="agreed mg-b-47">
+			<p id="clause"><input type="checkbox" data-verify="checkbox">我已阅读并认可</input></p>
+		</section>
+	<% } %>
+
+<% } %>

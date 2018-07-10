@@ -8,20 +8,20 @@ const ExtractPlugin = require('extract-text-webpack-plugin');
 const productObj = require('./src/Config/config.json');
 
 const extractSCSS = new ExtractPlugin({
-	filename: './css/[name]' + productObj.ver + '.min.css',
+	filename: './' + productObj.productId + '/css/[name]' + productObj.ver + '.min.css',
 	disable: false,
 	allChunks: true
 });
 
 //引入多页面文件配置
-const pageNameArray = glob.sync("./src/Config/Page/" + productObj.productId + "/*.json").map(function(value, index) {
+const pageNameArray = glob.sync("./src/Pages/" + productObj.productId + "/*.json").map(function(value, index) {
 	return value.substring(value.lastIndexOf("/") + 1, value.lastIndexOf("."));
 });
 
 function getEntry() {
 	var entry = {};
 	pageNameArray.forEach(function(value, index) {
-		entry[value] = path.resolve(__dirname, `./src/Entrance/${value}.js`);
+		entry[value] = path.resolve(__dirname, `./src/Pages/${productObj.productId}/${value}.js`);
 	})
 	return entry;
 }
@@ -33,7 +33,8 @@ function getPlugins() {
 	pageNameArray.forEach(function(value, index) {
 		const htmlPlugin = new HtmlWebpackPlugin({
 			title: value,
-			filename: `${value}.html`,
+			productId: productObj.productId,
+			filename: `./${productObj.productId}/${value}.html`,
 			template: `./src/${value}.html`,
 			chunks: [value, 'commons']
 		});
@@ -45,7 +46,7 @@ function getPlugins() {
 const webpackConfig = {
 	entry: getEntry(),
 	output: {
-		filename: './js/[name]' + productObj.ver + '.min.js',
+		filename: './' + productObj.productId + '/js/[name]' + productObj.ver + '.min.js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	module: {
@@ -55,7 +56,8 @@ const webpackConfig = {
 			use: [{
 				loader: "babel-loader",
 				options: {
-					presets: ['env']
+					presets: ['env'],
+					plugins: ['transform-runtime']
 				}
 			}]
 		}, {
