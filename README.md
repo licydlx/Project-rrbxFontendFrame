@@ -39,18 +39,18 @@
 
 	     ┆┄ nbuy ┄┆┄ serviceLogic.js 当前产品投保页 业务逻辑
 	 	 ┆			 ┆
-	 	 ┆			 ┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
-	 	 ┆          ┆
+	 	 ┆┄ nbuy ┄┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
+	 	 ┆
 	 	 ┆
 		 ┆┄ ntri ┄┆┄ serviceLogic.js 当前产品投保页 业务逻辑
 	 	 ┆			 ┆
-	 	 ┆			 ┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
-	 	 ┆          ┆
+	 	 ┆┄ ntri ┄┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
+	 	 ┆
 	 	 ┆
 		 ┆┄ npro ┄┆┄ serviceLogic.js 当前产品投保页 业务逻辑
 	 	 ┆			 ┆
-	 	 ┆			 ┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
-	 	 ┆          ┆
+	 	 ┆┄ npro ┄┆┄ XX.js 其它依赖js(关系,地区,职业等数据)
+	 	 ┆
 	 	 ┆
 		 ┆┄ nbuy.js   ┄┆┄ 投保页 组装入口
 	 	 ┆
@@ -67,52 +67,52 @@
 	#### Static
 
    		 ┆┄ Common ┄┆┄ 公用基础代码 (因历史,时间及个人水平等因素 代码,命名有待改进)
-	 	 ┆			   ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ Depend ┄┆┄ 功能性组件等 ajax,下拉,验证等等
-		 ┆			   ┆
+		 ┆
 	 	 ┆
 		 ┆┄ Private ┄┆┄ 临时性公用基础代码
-		 ┆			    ┆
+		 ┆
 
 	#### Component
 
 		 ┆┄ Common ┄┆┄ 公用基础代码 html组件
-	 	 ┆			   ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ Scss   ┄┆┄ 公用基础代码 Scss组件
-		 ┆			   ┆
+		 ┆
 	 	 ┆
 		 ┆┄ Private ┄┆┄ 临时性公用基础代码
-	 	 ┆			    ┆
+	 	 ┆
 
 
 	#### EventBinding
  		 ┆┄ nbuy.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ ntri.js ┄┆┄
-		 ┆			    ┆				事件绑定区
+		 ┆							事件绑定区
 	 	 ┆
 		 ┆┄ npro.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ npay.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 
 	#### ViewTemplate
 
  		 ┆┄ nbuy.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ ntri.js ┄┆┄
-		 ┆			    ┆				页面模板区
+		 ┆						页面模板区
 	 	 ┆
 		 ┆┄ npro.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 	 	 ┆
 		 ┆┄ npay.js ┄┆┄
-	 	 ┆			    ┆
+	 	 ┆
 
 ### 开发流程
  1.Config目录: config.json 配置产品ID及版本号
